@@ -24,6 +24,9 @@ export const global = css`
         width: 1920px;
         height: 1080px;
         background-color: #fafafa;
+        height: 108rem;
+        width: 192rem;
+        
     }
 
 
