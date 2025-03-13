@@ -1,4 +1,5 @@
 /**@jsxImportSource @emotion/react */
+
 import * as s from './style';
 import React from 'react'
 import { buttontest } from '../../../styles/button'
@@ -16,4 +17,4 @@ function MainHeader() {
   )
 }
 
-export default MainHeader
+export default MainHeader;
