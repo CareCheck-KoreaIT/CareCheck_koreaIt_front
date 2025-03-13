@@ -1,16 +1,22 @@
 import { css } from "@emotion/react";
 
 export const layout = css`
-    display: flex;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+`;
 
-    box-sizing: border-box;
+export const container = css`
+  box-sizing: border-box;
+  display: flex;
+  border: 0.1rem solid #dbdbdb;
+  border-radius: 0.4rem;
 
-    border: 0.1rem solid #dbdbdb;
-    border-radius: 0.4rem;
+  width: 160rem;
+  height: 100rem;
 
-    width: 192rem;
-    height: 108rem;
-
-    background-color: #ffffff;
-    overflow: hidden;
-`;  
+  background-color: #ffffff;
+  overflow: hidden;
+`;
