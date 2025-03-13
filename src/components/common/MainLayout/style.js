@@ -4,8 +4,8 @@ export const layout = css`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100vh;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
 `;
 
 export const container = css`
@@ -14,8 +14,8 @@ export const container = css`
   border: 0.1rem solid #dbdbdb;
   border-radius: 0.4rem;
 
-  width: 110rem;
-  height: 70rem;
+  width: 160rem;
+  height: 100rem;
 
   background-color: #ffffff;
   overflow: hidden;

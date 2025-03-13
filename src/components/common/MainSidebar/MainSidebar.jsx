@@ -9,11 +9,11 @@ function MainSidebar() {
         <h2>CareCheck</h2>
       </header>
       <section css={s.section}>
-        <div>접수</div>
-        <div>수납</div>
-        <div>관리자</div>
+        <div>환자등록</div>
+        <div>진료접수</div>
+        <div>접수취소</div>
       </section>
-      <footer>
+      <footer css={s.footer}>
         <div>logout</div>
       </footer>
     </div>

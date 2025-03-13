@@ -4,19 +4,19 @@ export const layout = css`
   box-sizing: border-box;
   display: flex;
   width: 100%;
-  height: 100%; /* 화면 전체 높이 */
+  height: 100%;
   background-color: #eeeeee;
 `;
 
 export const sidebar = css`
-  width: 25rem;
+  width: 30rem;
 `;
 
 export const container = css`
   display: flex;
   flex-direction: column;
   margin: 5rem;
-  width: 75rem;
+  width: 60rem;
 `;
 
 export const header = css`
