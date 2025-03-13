@@ -12,7 +12,7 @@ export const global = css`
         margin: 0;
         padding: 0;
         height: 100vh;
-        overflow: hidden;
+        overflow: auto;
         font-family: "Noto Sans KR", serif;
         font-size: 62.5%;   /** 1rem을 10px로 변환 */
     }
@@ -21,6 +21,8 @@ export const global = css`
         display: flex;
         justify-content: center;
         align-items: center;
+        width: 1920px;
+        height: 1080px;
         background-color: #fafafa;
         height: 108rem;
         width: 192rem;
