@@ -13,7 +13,7 @@ function MainRoute() {
         <MainHeader />
       </div>
       <div css={s.mainContent}>
-        <DetailBillPage />
+        <MainContainer />
       </div>
     </div>
   );

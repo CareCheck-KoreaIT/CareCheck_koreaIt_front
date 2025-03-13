@@ -6,12 +6,13 @@ export const sidebar = css`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
+  width: 31rem;
   height: 100%;
   background-color: #464667;
   border-top-right-radius: 2.8rem;
   border-bottom-right-radius: 2.8rem;
   color: #ffffff;
+  font-weight: bold;
 `;
 
 export const header = css`

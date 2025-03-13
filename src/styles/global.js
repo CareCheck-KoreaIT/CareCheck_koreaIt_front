@@ -3,10 +3,6 @@ import { css } from "@emotion/react";
 export const global = css`
   @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap");
 
-  * {
-    color: #333333;
-  }
-
   html,
   body,
   #root {
