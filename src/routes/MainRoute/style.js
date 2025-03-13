@@ -1,22 +1,19 @@
 import { css } from "@emotion/react";
 
 export const layout = css`
-  box-sizing: border-box;
   display: flex;
-  width: 100%;
-  height: 100%;
-  background-color: #eeeeee;
+  height: 108rem; /* 화면 전체 높이 */
 `;
 
 export const sidebar = css`
-  width: 30rem;
+  width: 34.7rem;
 `;
 
 export const container = css`
   display: flex;
   flex-direction: column;
   margin: 5rem;
-  width: 60rem;
+  width: 163.3rem;
 `;
 
 export const header = css`
