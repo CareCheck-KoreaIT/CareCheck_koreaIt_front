@@ -7,6 +7,7 @@ import { Global } from "@emotion/react";
 import { global } from "./styles/global";
 import ReceiptPage from "./pages/ReceiptPage/ReceiptPage";
 import OrderPage from "./pages/OrderPage/OrderPage";
+import PatientRegistrationPage from "./pages/PatientRegistrationPage/PatientRegistrationPage";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/receipt" element={<ReceiptPage />} />
           <Route path="/join" element={<JoinPage />} />
           <Route path="/order" element={<OrderPage />} />
+          <Route path="/patient" element={<PatientRegistrationPage />} />
         </Routes>
       </MainLayout>
     </>
