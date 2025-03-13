@@ -24,7 +24,7 @@ export const global = css`
         align-items: center;
         background-color: #fafafa;
     }
-
+    
 
 
 
