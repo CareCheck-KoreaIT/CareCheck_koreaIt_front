@@ -5,7 +5,7 @@ export const layout = css`
     box-sizing: border-box;
     align-items: center;
     flex-direction: column;
-    margin-top: 5rem;
+    margin-top: 7rem;
     overflow: hidden;
     width: 100%;
     height: 100%;
@@ -45,8 +45,16 @@ export const inputGroup = css`
   justify-content: center;
   flex-direction: column;
   box-sizing: border-box;
-  margin-top: 2rem;
-  
+  margin-top: 3rem;
+  width: 75rem;
+`;
+
+export const inputLineGroup = css`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+
 `;
 
 export const input = css`
@@ -54,7 +62,8 @@ export const input = css`
   justify-content: space-between;
   align-items: center;
   box-sizing: border-box;
-  width: 60rem;
+  margin: 1rem 0.5rem 0;
+  width: 49.5%;
   font-size: 2rem;
   border-bottom: 0.1rem solid #3283CE;
 
@@ -68,43 +77,48 @@ export const input = css`
   }
 
   & > input {
-    width: 60rem;
+    flex-grow: 1;
     height: 8.4rem;
     border: none;
+    font-size: 2rem;
 
     &:focus {
       outline: none;
       border: none;
     }
 
-    &::placeholder{
-    font-size: 2rem;
-    color: #9F9F9F;
-    }
   }
 
 `;
 
 export const input2 = css`
   display: flex;
+  justify-content: center;
   align-items: center;
-  width: 60rem;
-  height: 8.4rem;
+  margin: 1rem 0.5rem 0;
+  width: 100%;
   font-size: 2rem;
   border-bottom: 0.1rem solid #3283CE;
-
+  
   & > label {
-    width: 8rem;
+    width: 10rem;
+    height: 8.6rem;
     margin-right: 2rem;
     text-align: left;
-    font-size: 2rem;
-
+    line-height: 8rem;
   }
 
-  & > select {
-    width: 30rem;
-    height: 5rem;
-    border-radius: 0.5rem;
+  & > input {
+    flex-grow: 1;
+    outline: none;
+    border: none;
+    height: 8.4rem;
+    font-size: 2rem;
+    
+    &::placeholder{
+    font-size: 2rem;
+    color: #9F9F9F;
+    }
   }
 
 `;
@@ -116,8 +130,8 @@ export const button = css`
   margin-top: 5rem;
 
   & > button {
-    width: 58rem;
-    height: 9.6rem;
+    width: 71rem;
+    height: 11.6rem;
     background-color: #464667;
     outline: none;
     border-radius: 1.5rem;

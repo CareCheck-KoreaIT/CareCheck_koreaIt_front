@@ -1,5 +1,4 @@
 /**@jsxImportSource @emotion/react */
-import { layout } from '../../routes/MainRoute/style';
 import * as s from './style';
 import React, { useState } from 'react'
 import { RiUser3Fill } from "react-icons/ri";
