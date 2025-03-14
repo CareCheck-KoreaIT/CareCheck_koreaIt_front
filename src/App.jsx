@@ -16,18 +16,22 @@ import MembershipJoinPage from "./pages/MembershipJoinPage/MembershipJoinPage";
 import InformationPage from "./pages/informationPage/informationPage";
 import InformationChangePage from "./pages/InformationChangePage/InformationChangePage";
 import MedicalReceptionPage from "./pages/MedicalReceptionPage/MedicalReceptionPage";
+import { useUserMeQuery } from "./queries/userQuery";
+import AuthRoute from "./routes/AuthRoute/AuthRoute";
 
 
 function App() {
+
+  useUserMeQuery();
+
   return (
     <>
       <Global styles={global} />
       <MainLayout>
         <Routes>
           <Route path="/*" element={<MainRoute />} />
-          <Route path="/login" element={<LoginPage />} />
+          <Route path="/auth/*" element={<AuthRoute />} />
           <Route path="/receipt" element={<ReceiptPage />} />
-          <Route path="/join" element={<JoinPage />} />
           <Route path="/order" element={<OrderPage />} />
           <Route path="/table" element={<TablePage />} />
           <Route path="/patient" element={<PatientRegistrationPage />} />
