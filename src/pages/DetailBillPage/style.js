@@ -1,18 +1,29 @@
 import { css } from "@emotion/react";
 
 export const layout = css`
+  box-sizing: border-box;
   display: flex;
   width: 100%;
   height: auto;
+`;
+
+export const header = css`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  margin-top: 3rem;
+  width: 170rem;
+  height: 6rem;
 `;
 
 export const container = css`
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  margin-top: 5rem;
+  margin-top: 10rem;
   margin-left: 12rem;
-  width: 104rem;
+  width: 100rem;
   border: 0.1rem solid #000000;
 `;
 export const title = css`
@@ -157,8 +168,8 @@ export const totalPayInfo = css`
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  width: 104rem;
-  height: 7rem;
+  width: 20.5rem;
+  height: 10rem;
   margin-left: 79.5rem;
 `;
 

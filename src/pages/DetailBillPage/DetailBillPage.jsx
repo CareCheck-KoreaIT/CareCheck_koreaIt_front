@@ -2,13 +2,18 @@
 import * as s from "./style";
 import React from "react";
 import MainSidebar from "../../components/common/MainSidebar/MainSidebar";
+import NoTitleHeaderMenu from "../../components/NoTitleHeaderMenu/NotitleHeaderMenu";
 
 function DetailBillPage() {
   return (
     <div css={s.layout}>
-      <MainSidebar />
       <div>
-        <header>헤더가 입력됩니다.</header>
+        <MainSidebar />
+      </div>
+      <div>
+        <header css={s.header}>
+          <NoTitleHeaderMenu />
+        </header>
         <div css={s.container}>
           <main>
             <h2 css={s.title}>진료비세부내역서</h2>

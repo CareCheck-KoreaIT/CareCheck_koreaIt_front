@@ -17,8 +17,11 @@ export const sidebar = css`
 
 export const header = css`
   margin-top: 5rem;
-  font-size: 3rem;
+  font-size: 2.6rem;
   font-weight: bold;
+  & > h2 {
+    color: #ffffff;
+  }
 `;
 
 export const section = css`
@@ -32,9 +35,13 @@ export const section = css`
     align-items: center;
     width: 21.2rem;
     height: 5rem;
+    color: #ffffff;
     background-color: #464667;
     font-size: 2.5rem;
     cursor: pointer;
+    & > span {
+      margin-left: 1rem;
+    }
   }
 `;
 
