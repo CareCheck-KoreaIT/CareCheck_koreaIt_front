@@ -5,7 +5,7 @@ export const layout = css`
     box-sizing: border-box;
     align-items: center;
     flex-direction: column;
-    margin-top: 7rem;
+    margin-top: 2rem;
     overflow: hidden;
     width: 100%;
     height: 100%;
@@ -24,7 +24,7 @@ export const titleGroup = css`
 export const title1 = css`
     display: flex;
     justify-content: center;
-    margin: 0;
+    margin-top: 6rem;
     font-size: 6rem;
     color: #464667;
     cursor: default;
@@ -95,8 +95,8 @@ export const input2 = css`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 1rem 0.5rem 0;
-  width: 100%;
+  margin: 1rem 2rem 0;
+  width: 71rem;
   font-size: 2rem;
   border-bottom: 0.1rem solid #3283CE;
   
