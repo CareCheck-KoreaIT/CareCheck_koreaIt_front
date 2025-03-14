@@ -16,7 +16,7 @@ import MembershipJoinPage from "./pages/MembershipJoinPage/MembershipJoinPage";
 import InformationPage from "./pages/informationPage/informationPage";
 import InformationChangePage from "./pages/InformationChangePage/InformationChangePage";
 import MedicalReceptionPage from "./pages/MedicalReceptionPage/MedicalReceptionPage";
-import Yeongsujeungpage from "./pages/Yeongsujeungpage/Yeongsujeungpage";
+import StatsPage from "./pages/StatsPage/StatsPage";
 
 
 function App() {
@@ -26,7 +26,7 @@ function App() {
       <MainLayout>
         <Routes>
           <Route path="/*" element={<MainRoute />} />
-          <Route path="/loghhin" element={<LoginPage />} />
+          <Route path="/login" element={<LoginPage />} />
           <Route path="/receipt" element={<ReceiptPage />} />
           <Route path="/join" element={<JoinPage />} />
           <Route path="/order" element={<OrderPage />} />
@@ -39,7 +39,7 @@ function App() {
           <Route path="/information" element={<InformationPage />} />
           <Route path="/InformationChange" element={<InformationChangePage />} />
           <Route path="/MedicalReception" element={<MedicalReceptionPage />} />
-          <Route path="/Yeongsujeung" element={<Yeongsujeungpage />} />
+          <Route path="/stats" element={<StatsPage />} />
         </Routes>
       </MainLayout>
     </>
