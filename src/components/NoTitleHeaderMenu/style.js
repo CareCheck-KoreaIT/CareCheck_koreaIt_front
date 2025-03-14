@@ -5,8 +5,7 @@ export const header = css`
   align-items: center;
   box-sizing: border-box;
   margin-top: 3rem;
-  margin-left: 3rem;
-  width: 130rem;
+  width: 150rem;
   height: 6rem;
 `;
 
@@ -14,8 +13,8 @@ export const headerMenu = css`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  width: 10rem;
-  height: 3rem;
+  width: 9rem;
+  height: 2rem;
   font-size: 2rem;
 
   & > svg {
@@ -32,8 +31,8 @@ export const logoutBtn = css`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 21.4rem;
-  height: 6.1rem;
+  width: 20rem;
+  height: 5.5rem;
   border-radius: 1.8rem;
   border: none;
   background-color: #464667;
