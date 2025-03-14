@@ -18,6 +18,7 @@ import InformationChangePage from "./pages/InformationChangePage/InformationChan
 import MedicalReceptionPage from "./pages/MedicalReceptionPage/MedicalReceptionPage";
 import { useUserMeQuery } from "./queries/userQuery";
 import AuthRoute from "./routes/AuthRoute/AuthRoute";
+import StatsPage from "./pages/StatsPage/StatsPage";
 
 
 function App() {
@@ -42,6 +43,7 @@ function App() {
           <Route path="/information" element={<InformationPage />} />
           <Route path="/InformationChange" element={<InformationChangePage />} />
           <Route path="/MedicalReception" element={<MedicalReceptionPage />} />
+          <Route path="/stats" element={<StatsPage />} />
         </Routes>
       </MainLayout>
     </>

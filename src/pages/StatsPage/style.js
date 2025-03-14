@@ -6,7 +6,7 @@ export const sidebar = css`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  width: 31rem;
+  width: 36rem;
   height: 100%;
   background-color: #464667;
   border-top-right-radius: 2.8rem;
@@ -61,5 +61,51 @@ export const footer = css`
     color: #273a34;
     cursor: pointer;
   }
+`;
+
+export const layout = css`
+  display: flex;
+  box-sizing: border-box;
+  align-items: center;
+  flex-direction: column;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff;
+`;
+
+export const select = css`
+  display: flex;
+  box-sizing: border-box;
+  justify-content: flex-start;
+  width: 100%;
+
+  & > select {
+    margin-top: 5rem;
+    margin-left: 5.5rem;
+    width: 24rem;
+    height: 3rem;
+    font-size: 1.5rem;
+    color: #aeaeae;
+    outline-color: #aeaeae;
+    border-radius: 0.8rem;
+    background-color: #ffffff;
+  }
+`;
+
+export const mainGroup = css`
+  display: flex;
+  box-sizing: border-box;
+  justify-content: space-around;
+  margin-top: 2rem;
+  width: 100%;
+`;
+
+export const main = css`
+  width: 72rem;
+  height: 70rem;
+  background-color: #464667;
+  border-radius: 2.8rem;
+
 `;
 
