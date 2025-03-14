@@ -13,6 +13,8 @@ import ScorePayPage from "./pages/ScorePayPage/ScorePayPage";
 import EmployeeNumEnrollPage from "./pages/EmployeeNumEnrollPage/EmployeeNumEnrollPage";
 import DetailBillPage from "./pages/DetailBillPage/DetailBillPage";
 import MembershipJoinPage from "./pages/MembershipJoinPage/MembershipJoinPage";
+import InformationPage from "./pages/informationPage/informationPage";
+
 
 function App() {
   return (
@@ -31,6 +33,7 @@ function App() {
           <Route path="/employeenum" element={<EmployeeNumEnrollPage />} />
           <Route path="/detailBill" element={<DetailBillPage />} />
           <Route path="/manager" element={<MembershipJoinPage />} />
+          <Route path="/information" element={<InformationPage />} />
         </Routes>
       </MainLayout>
     </>
