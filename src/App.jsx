@@ -15,6 +15,7 @@ import DetailBillPage from "./pages/DetailBillPage/DetailBillPage";
 import MembershipJoinPage from "./pages/MembershipJoinPage/MembershipJoinPage";
 import InformationPage from "./pages/informationPage/informationPage";
 import InformationChangePage from "./pages/InformationChangePage/InformationChangePage";
+import MedicalReceptionPage from "./pages/MedicalReceptionPage/MedicalReceptionPage";
 
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
           <Route path="/manager" element={<MembershipJoinPage />} />
           <Route path="/information" element={<InformationPage />} />
           <Route path="/InformationChange" element={<InformationChangePage />} />
+          <Route path="/MedicalReception" element={<MedicalReceptionPage />} />
         </Routes>
       </MainLayout>
     </>
