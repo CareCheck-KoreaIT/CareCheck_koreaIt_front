@@ -6,17 +6,18 @@ export const sidebar = css`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
+  width: 31rem;
   height: 100%;
   background-color: #464667;
   border-top-right-radius: 2.8rem;
   border-bottom-right-radius: 2.8rem;
   color: #ffffff;
+  font-weight: bold;
 `;
 
 export const header = css`
   margin-top: 5rem;
-  font-size: 3rem;
+  font-size: 2.6rem;
   font-weight: bold;
   & > h2 {
     color: #ffffff;
@@ -38,6 +39,9 @@ export const section = css`
     background-color: #464667;
     font-size: 2.5rem;
     cursor: pointer;
+    & > span {
+      margin-left: 1rem;
+    }
   }
 `;
 

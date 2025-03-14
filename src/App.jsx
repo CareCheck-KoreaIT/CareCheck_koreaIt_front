@@ -11,12 +11,12 @@ import TablePage from "./pages/TablePage/TablePage";
 import PatientRegistrationPage from "./pages/PatientRegistrationPage/PatientRegistrationPage";
 import ScorePayPage from "./pages/ScorePayPage/ScorePayPage";
 import EmployeeNumEnrollPage from "./pages/EmployeeNumEnrollPage/EmployeeNumEnrollPage";
+import DetailBillPage from "./pages/DetailBillPage/DetailBillPage";
 
 function App() {
   return (
     <>
-
-      <Global styles={global}/>
+      <Global styles={global} />
       <MainLayout>
         <Routes>
           <Route path="/*" element={<MainRoute />} />
@@ -28,6 +28,7 @@ function App() {
           <Route path="/patient" element={<PatientRegistrationPage />} />
           <Route path="/scorepay" element={<ScorePayPage />} />
           <Route path="/employeenum" element={<EmployeeNumEnrollPage />} />
+          <Route path="/detailBill" element={<DetailBillPage />} />
         </Routes>
       </MainLayout>
     </>

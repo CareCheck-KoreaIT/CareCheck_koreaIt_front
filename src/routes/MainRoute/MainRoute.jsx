@@ -1,7 +1,7 @@
 /**@jsxImportSource @emotion/react */
 import * as s from "./style";
 import MainHeader from "../../components/common/MainHeader/MainHeader";
-import DetailBillPage from "../../pages/DetailBillPage/DetailBillPage";
+import MainContainer from "../../components/common/MainContainer/MainContainer";
 
 function MainRoute() {
   return (
@@ -10,7 +10,7 @@ function MainRoute() {
         <MainHeader />
       </div>
       <div css={s.mainContent}>
-        <DetailBillPage />
+        <MainContainer />
       </div>
     </div>
   );
