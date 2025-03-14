@@ -14,7 +14,7 @@ function MedicalReceptionPage(props) {
             <NoTitleHeaderMenu />
         <div css={s.titleGroup}>
             <h1 css={s.title1}>carecheck</h1>
-            <p css={s.title2}>정보변경</p>
+            <p css={s.title2}>진료접수</p>
         </div>
         <main css={s.inputGroup}>
                 <div css={s.input}>
