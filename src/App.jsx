@@ -12,6 +12,7 @@ import PatientRegistrationPage from "./pages/PatientRegistrationPage/PatientRegi
 import ScorePayPage from "./pages/ScorePayPage/ScorePayPage";
 import EmployeeNumEnrollPage from "./pages/EmployeeNumEnrollPage/EmployeeNumEnrollPage";
 import DetailBillPage from "./pages/DetailBillPage/DetailBillPage";
+import MembershipJoinPage from "./pages/MembershipJoinPage/MembershipJoinPage";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route path="/scorepay" element={<ScorePayPage />} />
           <Route path="/employeenum" element={<EmployeeNumEnrollPage />} />
           <Route path="/detailBill" element={<DetailBillPage />} />
+          <Route path="/manager" element={<MembershipJoinPage />} />
         </Routes>
       </MainLayout>
     </>
