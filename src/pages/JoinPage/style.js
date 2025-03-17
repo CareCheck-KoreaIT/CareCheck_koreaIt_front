@@ -71,6 +71,7 @@ export const input = css`
     width: 60rem;
     height: 8.4rem;
     border: none;
+    font-size: 2.5rem;
 
     &:focus {
       outline: none;
@@ -105,6 +106,7 @@ export const input2 = css`
     width: 30rem;
     height: 5rem;
     border-radius: 0.5rem;
+    font-size: 2rem;
   }
 
 `;
