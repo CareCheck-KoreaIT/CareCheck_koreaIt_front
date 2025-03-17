@@ -1,23 +1,20 @@
 /**@jsxImportSource @emotion/react */
 import * as s from "./style";
-import React from "react";
-import MainSidebar from "../../components/common/MainSidebar/MainSidebar";
 import MainHeader from "../../components/common/MainHeader/MainHeader";
 import MainContainer from "../../components/common/MainContainer/MainContainer";
+import { useUserMeQuery } from "../../queries/userQuery";
 
 function MainRoute() {
+
+  useUserMeQuery();
+
   return (
-    <div css={s.layout}>
-      <div css={s.sidebar}>
-        <MainSidebar />
+    <div css={s.container}>
+      <div css={s.header}>
+        <MainHeader />
       </div>
-      <div css={s.container}>
-        <div css={s.header}>
-          <MainHeader />
-        </div>
-        <div css={s.mainContent}>
-          <MainContainer />
-        </div>
+      <div css={s.mainContent}>
+        <MainContainer />
       </div>
     </div>
   );

@@ -1,15 +1,14 @@
 import { css } from "@emotion/react";
 
 export const layout = css`
-    display: flex;
-    box-sizing: border-box;
-    align-items: center;
-    flex-direction: column;
-    margin-top: 5rem;
-    overflow: hidden;
-    width: 100%;
-    height: 100%;
-    background-color: #ffffff;
+  display: flex;
+  box-sizing: border-box;
+  align-items: center;
+  flex-direction: column;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff;
 `;
 
 export const titleGroup = css`
@@ -17,7 +16,7 @@ export const titleGroup = css`
   justify-content: center;
   flex-direction: column;
   box-sizing: border-box;
-  
+  margin-top: 5rem;
 `;
 
 
@@ -25,7 +24,7 @@ export const title1 = css`
     display: flex;
     justify-content: center;
     margin: 0;
-    font-size: 6rem;
+    font-size: 5rem;
     color: #464667;
     cursor: default;
     font-weight: 400;
@@ -35,7 +34,7 @@ export const title2 = css`
     display: flex;
     justify-content: center;
     margin: 0;
-    font-size: 3.6rem;
+    font-size: 3rem;
     color: #464667;
     cursor: default;    
 `;
@@ -71,7 +70,6 @@ export const input = css`
     width: 60rem;
     height: 8.4rem;
     border: none;
-    font-size: 2.5rem;
 
     &:focus {
       outline: none;
@@ -99,31 +97,12 @@ export const input2 = css`
     margin-right: 2rem;
     text-align: left;
     font-size: 2rem;
-
   }
 
   & > select {
     width: 30rem;
     height: 5rem;
     border-radius: 0.5rem;
-    font-size: 2rem;
   }
 
-`;
-
-export const button = css`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 5rem;
-
-  & > button {
-    width: 58rem;
-    height: 9.6rem;
-    background-color: #464667;
-    outline: none;
-    border-radius: 1.5rem;
-    color: #ffffff;
-    font-size: 3.6rem;
-  }
 `;

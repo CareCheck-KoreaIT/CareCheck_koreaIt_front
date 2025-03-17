@@ -72,7 +72,7 @@ export const titleGroup = css`
   justify-content: center;
   flex-direction: column;
   box-sizing: border-box;
-  margin-top: 4.5rem;
+  margin-top: 5rem;
 `;
 
 
@@ -100,7 +100,7 @@ export const inputGroup = css`
   justify-content: center;
   flex-direction: column;
   box-sizing: border-box;
-  margin-top: 6rem;
+  margin-top: 15rem;
   
 `;
 
@@ -114,16 +114,16 @@ export const input = css`
   border-bottom: 0.1rem solid #3283CE;
 
   & > label {
-    width: 18rem;
-    height: 8.6rem;
-    margin-right: 2rem;
+    width: 13rem;
+    height: 6rem;
+    margin-right: 1rem;
     text-align: left;
-    line-height: 8rem;
+    line-height: 6rem;
   }
 
   & > input {
     width: 74.4rem;
-    height: 8.4rem;
+    height: 6rem;
     border: none;
     font-size: 2rem;
 
@@ -132,14 +132,13 @@ export const input = css`
       border: none;
     }
   }
-
 `;
 
 export const button = css`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 15rem;
+  margin-top: 22rem;
 
   & > button {
     width: 58rem;
