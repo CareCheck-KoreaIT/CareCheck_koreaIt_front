@@ -10,7 +10,7 @@ import { usePatientMutation } from '../../mutations/patientMutation';
 function PatientRegistrationPage(props) {
     const queryClient = useQueryClient();
 
-    const { mutate, isLoading, } = usePatientMutation();
+    const patientMutation = usePatientMutation();
 
     const [ patientData, setPatientData ] = useState({
         patientName: "",
@@ -19,42 +19,67 @@ function PatientRegistrationPage(props) {
     });
 
     const handlePatientOnChange = (e) => {
-        const { name, value } = e.target;
-        setPatientData({ ...patientData, [name]: value });
+        setPatientData(prev => ({
+            ...prev,
+            [e.target.name]: e.target.value,
+        }));
     };
 
-    
+    const validateInputs = () => {
+        const regidentNumRegex = /^\d{6}-\d{7}$/; // 주민번호 형식 (6자리-7자리)
+        const phoneNumberRegex = /^\d{3}-\d{3,4}-\d{4}$/; // 휴대폰 번호 형식 (xxx-xxxx-xxxx)
 
-    const handleSubmitOnClick = (e) => {
-        e.preventDefault();
+        if (!regidentNumRegex.test(patientData.regidentNum)) {
+            Swal.fire({
+                icon: 'error',
+                title: '❌ 주민등록번호 형식이 올바르지 않습니다. (예: 990919-1111111)',
+                confirmButtonColor: '#d33',
+                confirmButtonText: '확인',
+            });
+            return false;
+        }
+
+        if (!phoneNumberRegex.test(patientData.phoneNumber)) {
+            Swal.fire({
+                icon: 'error',
+                title: '❌ 휴대폰 번호 형식이 올바르지 않습니다. (예: 010-1234-5678)',
+                confirmButtonColor: '#d33',
+                confirmButtonText: '확인',
+            });
+            return false;
+        }
+
+        return true;
+    }
+
+    const handleSubmitOnClick = async () => {
+        if (!validateInputs()) return;
         
-        // mutate를 사용하여 API 호출
-        mutate(patientData, {
-            onSuccess: () => {
-                Swal.fire({
-                    icon: "success",
-                    title: "✅ 환자 등록 완료!",
-                    text: "환자 정보가 성공적으로 등록되었습니다.",
-                    confirmButtonColor: "#3085d6",
-                    confirmButtonText: "확인",
-                });
+        
+        try {
+            const response = await patientMutation.mutateAsync(newPatient);
+            Swal.fire({
+                icon: "success",
+                title: "✅ 환자 등록 완료!",
+                text: "환자 정보가 성공적으로 등록되었습니다.",
+                confirmButtonColor: "#3085d6",
+                confirmButtonText: "확인",
+            });
 
-                // 환자 목록 새로고침
-                queryClient.invalidateQueries(["patients"]);
+            // 환자 목록 새로고침
+            queryClient.invalidateQueries(["patients"]);
 
                 // 입력 폼 초기화
-                setPatientData({ patientName: "", regidentNum: "", phoneNumber: "" });
-            },
-            onError: (error) => {
+            setPatientData({ patientName: "", regidentNum: "", phoneNumber: "" });
+        } catch (error){
                 Swal.fire({
                     icon: "error",
-                    title: "❌ 오류 발생!",
+                    title: "❌ 환자 등록 실패",
                     text: error.message,
                     confirmButtonColor: "#d33",
                     confirmButtonText: "확인",
                 });
-            },
-        });
+            }
     };
     
 
@@ -107,8 +132,8 @@ function PatientRegistrationPage(props) {
                     </div>
                 </main>
                 <footer css={s.button}>
-                    <button onClick={handleSubmitOnClick} disabled={isLoading}>
-                        {isLoading ? "등록 중..." : "등록"}
+                    <button onClick={handleSubmitOnClick} >
+                        등록
                     </button>
                 </footer>
                 </div>
