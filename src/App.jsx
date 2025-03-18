@@ -9,7 +9,9 @@ import { useUserMeQuery } from "./queries/userQuery";
 
 
 function App() {
+  
   useUserMeQuery();
+
   useEffect(() => {
     // 🔹 Ctrl + 마우스 휠을 이용한 줌 방지
     const disableZoom = (event) => {
