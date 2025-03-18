@@ -18,7 +18,6 @@ import MedicalReceptionPage from "../../pages/MedicalReceptionPage/MedicalRecept
 import { Route, Routes } from "react-router-dom";
 
 function MainRoute() {
-
   useUserMeQuery();
 
   return (
@@ -26,18 +25,27 @@ function MainRoute() {
       <div css={s.containerStyle}>
         <MainSidebar />
         <div css={s.contentStyle}>
-        <NoTitleHeaderMenu />
+          <NoTitleHeaderMenu />
           <Routes>
-              <Route path="/receipt" element={<ReceiptPage />} />
-              <Route path="/order" element={<OrderPage />} />
-              <Route path="/table" element={<TablePage />} />
-              <Route path="/patient" element={<PatientRegistrationPage />} />
-              <Route path="/scorepay" element={<ScorePayPage />} />
-              <Route path="/employeenum" element={<EmployeeNumEnrollPage />} />
-              <Route path="/detailBill" element={<DetailBillPage />} />
-              <Route path="/manager" element={<MembershipJoinPage />} />
-              <Route path="/InformationChange" element={<InformationChangePage />} />
-              <Route path="/MedicalReception" element={<MedicalReceptionPage />} />
+            <Route path="/receipt" element={<ReceiptPage />} />
+            <Route path="/order" element={<OrderPage />} />
+            <Route path="/table" element={<TablePage />} />
+            <Route path="/patient" element={<PatientRegistrationPage />} />
+            <Route path="/scorepay" element={<ScorePayPage />} />
+            <Route path="/employeenum" element={<EmployeeNumEnrollPage />} />
+            <Route
+              path="/admission/:admId/detailBill"
+              element={<DetailBillPage />}
+            />
+            <Route path="/manager" element={<MembershipJoinPage />} />
+            <Route
+              path="/InformationChange"
+              element={<InformationChangePage />}
+            />
+            <Route
+              path="/MedicalReception"
+              element={<MedicalReceptionPage />}
+            />
           </Routes>
         </div>
       </div>
