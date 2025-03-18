@@ -10,16 +10,10 @@ import { css } from "@emotion/react";
 //   width: 34.7rem;
 // `;
 
-export const container = css`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-`;
+// export const header = css`
+//   margin-left: 200rem;
+// `;
 
-export const header = css`
-  height: 15rem;
-`;
-
-export const mainContent = css`
-  flex: 1; /* 남은 공간을 차지하게 설정 */
-`;
+// export const mainContent = css`
+//   flex: 1; /* 남은 공간을 차지하게 설정 */
+// `;

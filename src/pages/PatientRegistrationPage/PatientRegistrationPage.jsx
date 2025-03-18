@@ -85,11 +85,7 @@ function PatientRegistrationPage(props) {
 
     return (
         <>
-            <div>
-                <MainSidebar />
-            </div>
             <div css={s.layout}>
-            <NoTitleHeaderMenu />
                 <div>
                 <header css={s.titleGroup}>
                     <h1 css={s.title1}>CareCheck</h1>

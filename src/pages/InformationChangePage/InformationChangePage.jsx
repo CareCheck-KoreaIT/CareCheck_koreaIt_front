@@ -14,11 +14,7 @@ import NoTitleHeaderMenu from "../../components/NoTitleHeaderMenu/NoTitleHeaderM
 function InformationChangePage(props) {
   return (
     <>
-    <div>
-        <MainSidebar />
-    </div>
     <div css={s.layout}>
-      <NoTitleHeaderMenu />
       <div css={s.titleGroup}>
         <h1 css={s.title1}>carecheck</h1>
         <p css={s.title2}>정보변경</p>

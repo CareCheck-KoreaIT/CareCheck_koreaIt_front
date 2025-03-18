@@ -7,11 +7,7 @@ import NoTitleHeaderMenu from "../../components/NoTitleHeaderMenu/NoTitleHeaderM
 function MedicalReceptionPage(props) {
   return (
     <>
-        <div>
-            <MainSidebar />
-        </div>
         <div css={s.layout}>
-            <NoTitleHeaderMenu />
         <div css={s.titleGroup}>
             <h1 css={s.title1}>carecheck</h1>
             <p css={s.title2}>진료접수</p>

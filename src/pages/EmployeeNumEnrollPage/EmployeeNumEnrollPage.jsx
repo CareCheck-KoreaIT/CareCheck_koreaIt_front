@@ -12,34 +12,6 @@ import HeaderMenu from "../../components/HeaderMenu/HeaderMenu";
 function EmployeeNumEnrollPage(props) {
   return (
     <div css={s.layout}>
-      {/* <header css={s.header}>
-        <h1>CareCheck</h1>
-        <div css={s.headerMenu}>
-          <IoReceipt />
-          접수
-        </div>
-        <div css={s.headerMenu}>
-          <LiaReceiptSolid />
-          수납
-        </div>
-        <div css={s.headerMenu}>
-          <MdOutlineLocalHospital />
-          처방
-        </div>
-        <div css={s.headerMenu}>
-          <ImStatsDots />
-          통계
-        </div>
-        <div css={s.headerMenu}>
-          <RiAdminLine />
-          관리자
-        </div>
-        <button css={s.logoutBtn}>
-          <IoIosLogOut />
-          Logout
-        </button>
-      </header> */}
-      <HeaderMenu />
       <div css={s.titleGroup}>
         <h1 css={s.title1}>carecheck</h1>
         <p css={s.title2}>사번 등록</p>
