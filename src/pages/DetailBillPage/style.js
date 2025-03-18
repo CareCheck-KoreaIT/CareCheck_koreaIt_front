@@ -66,6 +66,17 @@ export const patientTable = css`
     text-align: center;
     font-size: 1.2rem;
   }
+  & input[type="date"] {
+    border: none;
+    width: 95%;
+    margin-left: 0.7rem;
+    font-size: 1.2rem;
+    font-family: "Noto Sans KR", serif;
+    color: #333333;
+    text-align: center;
+    box-sizing: border-box;
+    background-color: transparent;
+  }
 `;
 
 export const billDetailInfo = css`

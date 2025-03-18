@@ -20,9 +20,7 @@ import { useUserMeQuery } from "./queries/userQuery";
 import AuthRoute from "./routes/AuthRoute/AuthRoute";
 import StatsPage from "./pages/StatsPage/StatsPage";
 
-
 function App() {
-
   useUserMeQuery();
 
   return (
@@ -38,10 +36,13 @@ function App() {
           <Route path="/patient" element={<PatientRegistrationPage />} />
           <Route path="/scorepay" element={<ScorePayPage />} />
           <Route path="/employeenum" element={<EmployeeNumEnrollPage />} />
-          <Route path="/detailBill" element={<DetailBillPage />} />
+          <Route path="/admission/:admId/detailBill" element={<DetailBillPage />} />
           <Route path="/manager" element={<MembershipJoinPage />} />
           <Route path="/information" element={<InformationPage />} />
-          <Route path="/InformationChange" element={<InformationChangePage />} />
+          <Route
+            path="/InformationChange"
+            element={<InformationChangePage />}
+          />
           <Route path="/MedicalReception" element={<MedicalReceptionPage />} />
           <Route path="/stats" element={<StatsPage />} />
         </Routes>
