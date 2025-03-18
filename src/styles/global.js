@@ -6,7 +6,7 @@ export const global = css`
   html,
   body,
   #root {
-    height: 100vh;
+    height: 100%;
     margin: 0;
     padding: 0;
     overflow: hidden;

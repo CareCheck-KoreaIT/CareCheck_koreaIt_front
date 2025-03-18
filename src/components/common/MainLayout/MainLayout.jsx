@@ -3,7 +3,11 @@ import * as s from "./style";
 import React from "react";
 
 function MainLayout({ children }) {
-  return <div css={s.container}>{children}</div>;
+    return (
+        <div css={s.container}>
+            {children}
+        </div>
+    );
 }
 
 export default MainLayout;
