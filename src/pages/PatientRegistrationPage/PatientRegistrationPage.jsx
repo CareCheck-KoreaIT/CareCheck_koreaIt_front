@@ -1,7 +1,5 @@
 /**@jsxImportSource @emotion/react */
 import * as s from './style';
-import MainSidebar from '../../components/common/MainSidebar/MainSidebar';
-import NoTitleHeaderMenu from '../../components/NoTitleHeaderMenu/NoTitleHeaderMenu';
 import { useState } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
