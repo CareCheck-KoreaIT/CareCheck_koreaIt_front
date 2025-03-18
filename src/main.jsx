@@ -20,7 +20,7 @@ const queryClient = new QueryClient({
 });
 
 createRoot(document.getElementById("root")).render(
-  <>
+  <> 
     <Global styles={global} />
     <RecoilRoot>
       <QueryClientProvider client={queryClient}>

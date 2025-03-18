@@ -4,7 +4,7 @@ export const header = css`
   justify-content: space-between;
   align-items: center;
   box-sizing: border-box;
-  margin-top: 3rem;
+  margin: 3rem 5rem;
   width: 150rem;
   height: 6rem;
 `;

@@ -5,5 +5,5 @@ export const signupApi = async (signupInfo) => {
 }
 
 export const signinApi = async (signinInfo) => {
-    return await api.post("/user/auth/signin", signinInfo);
+    return await api.post("/auth/signin", signinInfo);
 }

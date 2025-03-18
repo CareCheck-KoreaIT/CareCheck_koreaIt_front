@@ -23,6 +23,33 @@ import StatsPage from "./pages/StatsPage/StatsPage";
 function App() {
   useUserMeQuery();
 
+  useEffect(() => {
+    // 🔹 Ctrl + 마우스 휠을 이용한 줌 방지
+    const disableZoom = (event) => {
+      if (event.ctrlKey) {
+        event.preventDefault();
+      }
+    };
+
+    // 🔹 Ctrl + + / - 키 사용한 줌 방지
+    const disableKeyboardZoom = (event) => {
+      if (
+        event.ctrlKey &&
+        (event.key === "+" || event.key === "-" || event.key === "0")
+      ) {
+        event.preventDefault();
+      }
+    };
+
+    document.addEventListener("wheel", disableZoom, { passive: false });
+    document.addEventListener("keydown", disableKeyboardZoom);
+
+    return () => {
+      document.removeEventListener("wheel", disableZoom);
+      document.removeEventListener("keydown", disableKeyboardZoom);
+    };
+  }, []);
+
   return (
     <>
       <Global styles={global} />
@@ -36,7 +63,10 @@ function App() {
           <Route path="/patient" element={<PatientRegistrationPage />} />
           <Route path="/scorepay" element={<ScorePayPage />} />
           <Route path="/employeenum" element={<EmployeeNumEnrollPage />} />
-          <Route path="/admission/:admId/detailBill" element={<DetailBillPage />} />
+          <Route
+            path="/admission/:admId/detailBill"
+            element={<DetailBillPage />}
+          />
           <Route path="/manager" element={<MembershipJoinPage />} />
           <Route path="/information" element={<InformationPage />} />
           <Route

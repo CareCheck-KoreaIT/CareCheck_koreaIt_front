@@ -1,6 +1,7 @@
 import { css } from "@emotion/react";
 
 export const sidebar = css`
+  position: fixed;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
