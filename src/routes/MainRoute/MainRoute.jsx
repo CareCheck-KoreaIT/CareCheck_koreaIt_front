@@ -23,8 +23,9 @@ function MainRoute() {
 
   return (
     <>
-      <MainSidebar />
-      <div>
+      <div css={s.containerStyle}>
+        <MainSidebar />
+        <div css={s.contentStyle}>
         <NoTitleHeaderMenu />
           <Routes>
               <Route path="/receipt" element={<ReceiptPage />} />
@@ -38,6 +39,7 @@ function MainRoute() {
               <Route path="/InformationChange" element={<InformationChangePage />} />
               <Route path="/MedicalReception" element={<MedicalReceptionPage />} />
           </Routes>
+        </div>
       </div>
     </>
   );
