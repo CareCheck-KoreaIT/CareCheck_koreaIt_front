@@ -3,6 +3,7 @@ import { css } from "@emotion/react";
 export const layout = css`
   box-sizing: border-box;
   display: flex;
+  justify-content: center;
   width: 100%;
   height: auto;
 `;
@@ -21,7 +22,7 @@ export const container = css`
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  margin-top: 10rem;
+  margin-top: 5rem;
   margin-left: 12rem;
   width: 100rem;
   border: 0.1rem solid #000000;

@@ -97,7 +97,6 @@ export const title2 = css`
 
 export const inputGroup = css`
   display: flex;
-  justify-content: center;
   flex-direction: column;
   box-sizing: border-box;
   margin-top: 6rem;
@@ -106,7 +105,7 @@ export const inputGroup = css`
 
 export const input = css`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   box-sizing: border-box;
   width: 60rem;

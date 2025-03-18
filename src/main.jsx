@@ -26,9 +26,7 @@ createRoot(document.getElementById("root")).render(
     <RecoilRoot>
       <QueryClientProvider client={queryClient}>
       <BrowserRouter>
-        {/* <HelmetProvider> */}
         <App />
-        {/* </HelmetProvider> */}
       </BrowserRouter>
       </QueryClientProvider>
     </RecoilRoot>

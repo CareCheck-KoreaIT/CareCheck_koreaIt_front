@@ -3,20 +3,46 @@ import * as s from "./style";
 import MainHeader from "../../components/common/MainHeader/MainHeader";
 import MainContainer from "../../components/common/MainContainer/MainContainer";
 import { useUserMeQuery } from "../../queries/userQuery";
+import MainSidebar from "../../components/common/MainSidebar/MainSidebar";
+import NoTitleHeaderMenu from "../../components/NoTitleHeaderMenu/NoTitleHeaderMenu";
+import ReceiptPage from "../../pages/ReceiptPage/ReceiptPage";
+import OrderPage from "../../pages/OrderPage/OrderPage";
+import TablePage from "../../pages/TablePage/TablePage";
+import PatientRegistrationPage from "../../pages/PatientRegistrationPage/PatientRegistrationPage";
+import ScorePayPage from "../../pages/ScorePayPage/ScorePayPage";
+import EmployeeNumEnrollPage from "../../pages/EmployeeNumEnrollPage/EmployeeNumEnrollPage";
+import DetailBillPage from "../../pages/DetailBillPage/DetailBillPage";
+import MembershipJoinPage from "../../pages/MembershipJoinPage/MembershipJoinPage";
+import InformationPage from "../../pages/informationPage/informationPage";
+import InformationChangePage from "../../pages/InformationChangePage/InformationChangePage";
+import MedicalReceptionPage from "../../pages/MedicalReceptionPage/MedicalReceptionPage";
+import StatsPage from "../../pages/StatsPage/StatsPage";
+import { Route, Routes } from "react-router-dom";
 
 function MainRoute() {
 
   useUserMeQuery();
 
   return (
-    <div css={s.container}>
-      <div css={s.header}>
-        <MainHeader />
+    <>
+      <MainSidebar />
+      <div>
+        <NoTitleHeaderMenu />
+          <Routes>
+              <Route path="/receipt" element={<ReceiptPage />} />
+              <Route path="/order" element={<OrderPage />} />
+              <Route path="/table" element={<TablePage />} />
+              <Route path="/patient" element={<PatientRegistrationPage />} />
+              <Route path="/scorepay" element={<ScorePayPage />} />
+              <Route path="/employeenum" element={<EmployeeNumEnrollPage />} />
+              <Route path="/detailBill" element={<DetailBillPage />} />
+              <Route path="/manager" element={<MembershipJoinPage />} />
+              <Route path="/information" element={<InformationPage />} />
+              <Route path="/InformationChange" element={<InformationChangePage />} />
+              <Route path="/MedicalReception" element={<MedicalReceptionPage />} />
+          </Routes>
       </div>
-      <div css={s.mainContent}>
-        <MainContainer />
-      </div>
-    </div>
+    </>
   );
 }
 

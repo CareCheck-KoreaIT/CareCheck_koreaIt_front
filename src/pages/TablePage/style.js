@@ -14,23 +14,24 @@ export const layout = css`
 
 export const parent = css`
   display: flex; 
-  width: 90%; 
   height: 100%;
   margin-top: 3rem;
   gap: 10rem;
 
   & > div:nth-child(1) {
     flex: 1; 
+    width: 50rem;
     text-align: center;
   }
   
   & > div:nth-child(2) {
-    flex: 1; 
+    flex: 2; 
+    width: 70rem;
     text-align: center;
   }
 `;
 
-export const headerTable = css`
+export const leftTable = css`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -38,7 +39,6 @@ export const headerTable = css`
     box-sizing: border-box;
     border: 0.1rem solid #000000;
 
-    width: 100%;
     height: 8rem;
     background-color: #464667;
 
@@ -66,6 +66,27 @@ export const waitingList = css` /*진료 대기자 명단*/
     color: #ffffff;
     background-color: #464667;
   }
+`;
+
+export const rightTable = css`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    box-sizing: border-box;
+    border: 0.1rem solid #000000;
+
+    height: 7rem;
+    background-color: #464667;
+
+    & > tr, td {
+      font-size: 3rem;
+      font-weight: bold;
+      color: #ffffff;
+      cursor: pointer;
+    }
+
+    margin-bottom: 2rem;
 `;
 
 export const patientInfo = css` /*환자 정보*/

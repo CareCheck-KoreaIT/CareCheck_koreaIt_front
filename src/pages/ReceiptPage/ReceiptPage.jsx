@@ -14,100 +14,94 @@ function ReceiptPage(props) {
     ];
     return (
         <>
-        <div>
-            <MainSidebar />
-        </div>
-        <div css={s.layout}>
-            <NoTitleHeaderMenu />
-                <div css={s.tableContainer}>
-                    <table css={s.table}>
-                        <thead>
-                            <tr>
-                                <th>No.</th>
-                                <th>이름</th>
-                                <th>전화번호</th>
-                                <th>접수날짜</th>
-                                <th>상태</th>
-                            </tr>
-                        </thead>
+            <div css={s.tableContainer}>
+                <table css={s.table}>
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>이름</th>
+                            <th>전화번호</th>
+                            <th>접수날짜</th>
+                            <th>상태</th>
+                        </tr>
+                    </thead>
+            
+            <tbody>
+            {data.map((row) => (
+            <tr key={row.no}>
+                <td>{row.no}</td>
+                <td>{row.name}</td>
+                <td>{row.phone}</td>
+                <td>{row.date}</td>
                 
-                <tbody>
-                {data.map((row) => (
-                <tr key={row.no}>
-                    <td>{row.no}</td>
-                    <td>{row.name}</td>
-                    <td>{row.phone}</td>
-                    <td>{row.date}</td>
-                    
-                    <td>
-                        <button css={s.cancelButton} onClick={() => handleCancel(row.name)}>
-                        {row.status}
-                        </button>
-                    </td>
-                    
-                    </tr>
+                <td>
+                    <button css={s.cancelButton} onClick={() => handleCancel(row.name)}>
+                    {row.status}
+                    </button>
+                </td>
                 
-                ))}
-                <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
                 </tr>
-                <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                </tr>
-                <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                </tr>
-                <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                </tr>
-                <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                </tr>
-                <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                </tr>
-                <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                </tr>
-                <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                </tr>
-                
-                </tbody>
-                    </table>
-                </div>
+            
+            ))}
+            <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            </tr>
+            <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            </tr>
+            <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            </tr>
+            <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            </tr>
+            <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            </tr>
+            <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            </tr>
+            <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            </tr>
+            <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            </tr>
+            
+            </tbody>
+                </table>
             </div>
         </>
     );

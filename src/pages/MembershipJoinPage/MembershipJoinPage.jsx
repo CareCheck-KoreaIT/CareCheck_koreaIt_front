@@ -8,7 +8,6 @@ function MembershipJoinPage(props) {
     return (
         <>
             <div css={s.layout}>
-            <HeaderMenu />
                 <div>
                     <div css={s.button}>
                         <button>사번등록</button>
