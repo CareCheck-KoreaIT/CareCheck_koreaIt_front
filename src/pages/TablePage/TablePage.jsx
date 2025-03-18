@@ -4,11 +4,6 @@ import MainContainer from "../../components/common/MainContainer/MainContainer";
 import MainSidebar from "../../components/common/MainSidebar/MainSidebar";
 import * as s from "./style";
 import React from "react";
-import { LiaReceiptSolid } from "react-icons/lia";
-import { MdOutlineLocalHospital } from "react-icons/md";
-import { RiAdminLine } from "react-icons/ri";
-import { ImStatsDots } from "react-icons/im";
-import { IoIosLogOut } from "react-icons/io";
 import NoTitleHeaderMenu from "../../components/NoTitleHeaderMenu/NoTitleHeaderMenu";
 
 const waitingList = "진료 대기자 명단";
@@ -23,32 +18,6 @@ function TablePage() {
         <MainSidebar />
       </div>
       <div css={s.layout}>
-        {/* <header css={s.header}>
-        <div css={s.headerMenu}>
-          <IoReceipt />
-          접수
-        </div>
-        <div css={s.headerMenu}>
-          <LiaReceiptSolid />
-          수납
-        </div>
-        <div css={s.headerMenu}>
-          <MdOutlineLocalHospital />
-          처방
-        </div>
-        <div css={s.headerMenu}>
-          <ImStatsDots/>
-          통계
-        </div>
-        <div css={s.headerMenu}>
-          <RiAdminLine />
-          관리자
-        </div>
-        <button css={s.logoutBtn}>
-          <IoIosLogOut />
-          Logout
-        </button>
-      </header> */}
         <NoTitleHeaderMenu />
         <div css={s.parent}>
           <div>

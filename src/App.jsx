@@ -1,8 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import MainLayout from "./components/common/MainLayout/MainLayout";
 import MainRoute from "./routes/MainRoute/MainRoute";
-import JoinPage from "./pages/JoinPage/JoinPage";
-import LoginPage from "./pages/LoginPage/LoginPage";
 import { Global } from "@emotion/react";
 import { global } from "./styles/global";
 import ReceiptPage from "./pages/ReceiptPage/ReceiptPage";
@@ -16,14 +14,35 @@ import MembershipJoinPage from "./pages/MembershipJoinPage/MembershipJoinPage";
 import InformationPage from "./pages/informationPage/informationPage";
 import InformationChangePage from "./pages/InformationChangePage/InformationChangePage";
 import MedicalReceptionPage from "./pages/MedicalReceptionPage/MedicalReceptionPage";
-import { useUserMeQuery } from "./queries/userQuery";
 import AuthRoute from "./routes/AuthRoute/AuthRoute";
 import StatsPage from "./pages/StatsPage/StatsPage";
+import { useEffect } from "react";
 
 
 function App() {
+  useEffect(() => {
+    // 🔹 Ctrl + 마우스 휠을 이용한 줌 방지
+    const disableZoom = (event) => {
+      if (event.ctrlKey) {
+        event.preventDefault();
+      }
+    };
 
-  useUserMeQuery();
+    // 🔹 Ctrl + + / - 키 사용한 줌 방지
+    const disableKeyboardZoom = (event) => {
+      if (event.ctrlKey && (event.key === "+" || event.key === "-" || event.key === "0")) {
+        event.preventDefault();
+      }
+    };
+
+    document.addEventListener("wheel", disableZoom, { passive: false });
+    document.addEventListener("keydown", disableKeyboardZoom);
+
+    return () => {
+      document.removeEventListener("wheel", disableZoom);
+      document.removeEventListener("keydown", disableKeyboardZoom);
+    };
+  }, []);
 
   return (
     <>
@@ -48,6 +67,5 @@ function App() {
       </MainLayout>
     </>
   );
-}
-
+}  
 export default App;
