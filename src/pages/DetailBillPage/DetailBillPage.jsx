@@ -7,13 +7,6 @@ import NoTitleHeaderMenu from "../../components/NoTitleHeaderMenu/NoTitleHeaderM
 function DetailBillPage() {
      return (
         <div css={s.layout}>
-            <div>
-                <MainSidebar />
-            </div>
-            <div>
-                <header css={s.header}>
-                    <NoTitleHeaderMenu />
-                </header>
             <div css={s.container}>
                 <main>
                     <h2 css={s.title}>진료비세부내역서</h2>
@@ -101,7 +94,6 @@ function DetailBillPage() {
                     </div>
                 </main>
             </div>
-        </div>
         </div>
   );
 }

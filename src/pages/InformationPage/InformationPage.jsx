@@ -12,7 +12,6 @@ import HeaderMenu from "../../components/HeaderMenu/HeaderMenu";
 function InformationPage(props) {
   return (
     <div css={s.layout}>
-      <HeaderMenu />
       <div css={s.titleGroup}>
         <h1 css={s.title1}>carecheck</h1>
         <p css={s.title2}>정보입력</p>
