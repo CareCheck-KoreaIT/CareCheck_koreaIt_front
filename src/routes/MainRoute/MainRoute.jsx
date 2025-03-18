@@ -13,10 +13,8 @@ import ScorePayPage from "../../pages/ScorePayPage/ScorePayPage";
 import EmployeeNumEnrollPage from "../../pages/EmployeeNumEnrollPage/EmployeeNumEnrollPage";
 import DetailBillPage from "../../pages/DetailBillPage/DetailBillPage";
 import MembershipJoinPage from "../../pages/MembershipJoinPage/MembershipJoinPage";
-import InformationPage from "../../pages/informationPage/informationPage";
 import InformationChangePage from "../../pages/InformationChangePage/InformationChangePage";
 import MedicalReceptionPage from "../../pages/MedicalReceptionPage/MedicalReceptionPage";
-import StatsPage from "../../pages/StatsPage/StatsPage";
 import { Route, Routes } from "react-router-dom";
 
 function MainRoute() {
@@ -37,7 +35,6 @@ function MainRoute() {
               <Route path="/employeenum" element={<EmployeeNumEnrollPage />} />
               <Route path="/detailBill" element={<DetailBillPage />} />
               <Route path="/manager" element={<MembershipJoinPage />} />
-              <Route path="/information" element={<InformationPage />} />
               <Route path="/InformationChange" element={<InformationChangePage />} />
               <Route path="/MedicalReception" element={<MedicalReceptionPage />} />
           </Routes>
