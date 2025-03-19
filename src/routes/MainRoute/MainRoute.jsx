@@ -34,7 +34,7 @@ function MainRoute() {
             <Route path="/scorepay" element={<ScorePayPage />} />
             <Route path="/employeenum" element={<EmployeeNumEnrollPage />} />
             <Route
-              path="/admission/:admId/detailBill"
+              path="/admission/:admissionId/detailBill"
               element={<DetailBillPage />}
             />
             <Route path="/manager" element={<MembershipJoinPage />} />
