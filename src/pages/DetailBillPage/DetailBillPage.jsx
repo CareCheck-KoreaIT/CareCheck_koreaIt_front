@@ -101,7 +101,7 @@ function DetailBillPage() {
             </div>
 
             {detailBillData.length < 1 ? (
-              <div></div>
+              <div css={s.nodata}>입력된 값이 없습니다.</div>
             ) : (
               detailBillData.map((order, index) => (
                 <table key={index} css={s.billDetailTable}>
@@ -135,7 +135,7 @@ function DetailBillPage() {
               따라
             </span>
             <span>진료비 계산서, 영수증 세부내역서를 발급합니다.</span>
-            <span> {dateString}</span>
+            <span> {dateString} </span>
           </div>
         </main>
       </div>

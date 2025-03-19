@@ -4,7 +4,7 @@ export const layout = css`
   box-sizing: border-box;
   display: flex;
   justify-content: center;
-  margin-left: 10rem;
+  margin-left: 32rem;
   width: 100rem;
   height: auto;
 `;
@@ -48,6 +48,7 @@ export const patientInfoHead = css`
 export const patientTable = css`
   box-sizing: border-box;
   width: 50rem;
+  height: 3rem;
   margin-top: 0.8rem;
   border: 0.1rem solid #000000;
   border-collapse: collapse;
@@ -117,6 +118,7 @@ export const billDetailHead = css`
 export const billDetailTable = css`
   box-sizing: border-box;
   width: 50rem;
+  height: 3rem;
   border: 0.1rem solid #000000;
   border-collapse: collapse;
   table-layout: fixed;
@@ -152,6 +154,17 @@ export const billDetailTable = css`
   & td:nth-of-type(6) {
     width: 23rem;
   }
+`;
+
+export const nodata = css`
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  border: 0.1rem solid #000000;
+  width: 92rem;
+  height: 3rem;
 `;
 
 export const script = css`
@@ -194,6 +207,7 @@ export const totalPayHead = css`
 export const totalPayTable = css`
   box-sizing: border-box;
   width: 16.6rem;
+  height: 3rem;
   margin-top: 0.8rem;
   border: 0.1rem solid #000000;
   border-collapse: collapse;
