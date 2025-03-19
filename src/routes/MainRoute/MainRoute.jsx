@@ -19,27 +19,37 @@ import { Route, Routes } from "react-router-dom";
 import UserRoute from "../UserRoute/UserRoute";
 
 function MainRoute() {
-
   useUserMeQuery();
 
   return (
     <>
-      <MainSidebar />
-      <div>
-        <NoTitleHeaderMenu />
+      <div css={s.containerStyle}>
+        <MainSidebar />
+        <div css={s.contentStyle}>
+          <NoTitleHeaderMenu />
           <Routes>
-              <Route path="/admin/*" element={<UserRoute />} />
-              <Route path="/receipt" element={<ReceiptPage />} />
-              <Route path="/order" element={<OrderPage />} />
-              <Route path="/table" element={<TablePage />} />
-              <Route path="/patient" element={<PatientRegistrationPage />} />
-              <Route path="/scorepay" element={<ScorePayPage />} />
-              <Route path="/employeenum" element={<EmployeeNumEnrollPage />} />
-              <Route path="/detailBill" element={<DetailBillPage />} />
-              <Route path="/manager" element={<MembershipJoinPage />} />
-              <Route path="/InformationChange" element={<InformationChangePage />} />
-              <Route path="/MedicalReception" element={<MedicalReceptionPage />} />
+            <Route path="/admin/*" element={<UserRoute />} />
+            <Route path="/receipt" element={<ReceiptPage />} />
+            <Route path="/order" element={<OrderPage />} />
+            <Route path="/table" element={<TablePage />} />
+            <Route path="/patient" element={<PatientRegistrationPage />} />
+            <Route path="/scorepay" element={<ScorePayPage />} />
+            <Route path="/employeenum" element={<EmployeeNumEnrollPage />} />
+            <Route
+              path="/admission/:admId/detailBill"
+              element={<DetailBillPage />}
+            />
+            <Route path="/manager" element={<MembershipJoinPage />} />
+            <Route
+              path="/InformationChange"
+              element={<InformationChangePage />}
+            />
+            <Route
+              path="/MedicalReception"
+              element={<MedicalReceptionPage />}
+            />
           </Routes>
+        </div>
       </div>
     </>
   );

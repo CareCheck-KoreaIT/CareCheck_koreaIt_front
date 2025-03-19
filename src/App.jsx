@@ -7,9 +7,7 @@ import { global } from "./styles/global";
 import { useEffect } from "react";
 import { useUserMeQuery } from "./queries/userQuery";
 
-
 function App() {
-  
   useUserMeQuery();
 
   useEffect(() => {
@@ -22,7 +20,10 @@ function App() {
 
     // 🔹 Ctrl + + / - 키 사용한 줌 방지
     const disableKeyboardZoom = (event) => {
-      if (event.ctrlKey && (event.key === "+" || event.key === "-" || event.key === "0")) {
+      if (
+        event.ctrlKey &&
+        (event.key === "+" || event.key === "-" || event.key === "0")
+      ) {
         event.preventDefault();
       }
     };
@@ -47,5 +48,5 @@ function App() {
       </MainLayout>
     </>
   );
-}  
+}
 export default App;
