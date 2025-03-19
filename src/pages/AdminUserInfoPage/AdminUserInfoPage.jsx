@@ -127,7 +127,7 @@ function AdminUserInfoPage(props) {
                         <div>이메일</div>
                         <div>생성날짜</div>
                         <div>수정날짜</div>
-                        <div>삭제</div>
+                        <div></div>
                     </li>
                     {
                         searchUserList.isLoading ||
