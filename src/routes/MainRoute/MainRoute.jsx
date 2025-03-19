@@ -16,6 +16,7 @@ import MembershipJoinPage from "../../pages/MembershipJoinPage/MembershipJoinPag
 import InformationChangePage from "../../pages/InformationChangePage/InformationChangePage";
 import MedicalReceptionPage from "../../pages/MedicalReceptionPage/MedicalReceptionPage";
 import { Route, Routes } from "react-router-dom";
+import UserRoute from "../UserRoute/UserRoute";
 
 function MainRoute() {
   useUserMeQuery();
@@ -27,6 +28,7 @@ function MainRoute() {
         <div css={s.contentStyle}>
           <NoTitleHeaderMenu />
           <Routes>
+            <Route path="/admin/*" element={<UserRoute />} />
             <Route path="/receipt" element={<ReceiptPage />} />
             <Route path="/order" element={<OrderPage />} />
             <Route path="/table" element={<TablePage />} />
