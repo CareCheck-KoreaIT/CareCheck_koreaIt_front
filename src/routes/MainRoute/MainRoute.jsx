@@ -39,7 +39,7 @@ function MainRoute() {
             <Route path="/noticewrite" element={<NoticeWritePage />} />
 
             <Route
-              path="/admission/:admId/detailBill"
+              path="/admission/:admissionId/detailBill"
               element={<DetailBillPage />}
             />
             <Route path="/manager" element={<MembershipJoinPage />} />
