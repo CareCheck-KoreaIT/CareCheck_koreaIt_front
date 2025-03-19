@@ -6,6 +6,7 @@ import { Global } from "@emotion/react";
 import { global } from "./styles/global";
 import { useEffect } from "react";
 import { useUserMeQuery } from "./queries/userQuery";
+import UserRoute from "./routes/UserRoute/UserRoute";
 
 function App() {
   useUserMeQuery();
@@ -44,6 +45,7 @@ function App() {
         <Routes>
           <Route path="/*" element={<MainRoute />} />
           <Route path="/auth/*" element={<AuthRoute />} />
+          <Route path="/user/*" element={<UserRoute />} />
         </Routes>
       </MainLayout>
     </>
