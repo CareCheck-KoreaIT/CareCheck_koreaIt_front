@@ -1,5 +1,5 @@
 /**@jsxImportSource @emotion/react */
-import { useSignupMutation } from '../../mutations/authMutation';
+import { useSignupMutation } from '../../mutations/userMutation';
 import * as s from './style';
 import React, { useState } from 'react';
 
