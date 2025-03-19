@@ -47,7 +47,6 @@ export const table = css`
 
 `;
 
-
 export const cancelButton = css`
   padding: 0.5rem 1rem;
   font-size: 1rem;
