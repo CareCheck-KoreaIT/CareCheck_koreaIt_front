@@ -55,7 +55,7 @@ function PatientRegistrationPage(props) {
         
         
         try {
-            const response = await patientMutation.mutateAsync(newPatient);
+            await patientMutation.mutateAsync(patientData);
             Swal.fire({
                 icon: "success",
                 title: "✅ 환자 등록 완료!",
