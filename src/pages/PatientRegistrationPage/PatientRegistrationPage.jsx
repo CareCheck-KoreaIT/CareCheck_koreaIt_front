@@ -1,7 +1,5 @@
 /**@jsxImportSource @emotion/react */
 import * as s from './style';
-import MainSidebar from '../../components/common/MainSidebar/MainSidebar';
-import NoTitleHeaderMenu from '../../components/NoTitleHeaderMenu/NoTitleHeaderMenu';
 import { useState } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
@@ -57,7 +55,7 @@ function PatientRegistrationPage(props) {
         
         
         try {
-            const response = await patientMutation.mutateAsync(newPatient);
+            await patientMutation.mutateAsync(patientData);
             Swal.fire({
                 icon: "success",
                 title: "✅ 환자 등록 완료!",
