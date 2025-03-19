@@ -125,6 +125,7 @@ export const userListContainer = css`
             width: 5rem;
 
             & > button {
+                box-sizing: border-box;
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -144,7 +145,12 @@ export const userListContainer = css`
                     }
                 }
                 &:nth-of-type(2) {
-                    background-color: #ff7f7fff;
+                    background-color: #ff6161;
+                    & > svg {
+                        width: 1.5rem;
+                        height: 1.5rem;
+                        color: #ffffff;
+                    }
                 }
             }
         }

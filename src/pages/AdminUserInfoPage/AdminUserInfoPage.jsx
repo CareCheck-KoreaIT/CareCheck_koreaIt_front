@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import { useGetSearchUserList } from '../../queries/userQuery';
 import { GoChevronLeft, GoChevronRight } from 'react-icons/go';
 import { IoSettingsSharp } from 'react-icons/io5';
+import { MdOutlineCancel } from 'react-icons/md';
 
 function AdminUserInfoPage(props) {
 
@@ -141,7 +142,7 @@ function AdminUserInfoPage(props) {
                                 <div>{userList.updatedAt}</div>
                                 <div>
                                     <button><IoSettingsSharp /></button>
-                                    <button></button>
+                                    <button><MdOutlineCancel /></button>
                                 </div>
                             </li>
                         )
