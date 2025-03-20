@@ -17,8 +17,6 @@ import UserRoute from "../UserRoute/UserRoute";
 import NoticeWritePage from "../../pages/NoticeWritePage/NoticeWritePage";
 import NoticeLsitPage from "../../pages/NoticeListPage/NoticeListPage";
 import AccountRoute from "../AccountRoute/AccountRoute";
-import AdmPatientVital from "../../components/TablePageComponents/AdmPatientViatal/AdmPatientVital";
-
 function MainRoute() {
   useUserMeQuery();
 
@@ -38,13 +36,14 @@ function MainRoute() {
             <Route path="/employeenum" element={<EmployeeNumEnrollPage />} />
             <Route path="/notice/write" element={<NoticeWritePage />} />
             <Route path="/notice/list" element={<NoticeLsitPage />} />
-            <Route path="/noticewrite" element={<NoticeWritePage />} 
+            <Route path="/noticewrite" element={<NoticeWritePage />} />
             <Route
               path="/:usercode/admission/:admissionId/detailBill"
               element={<DetailBillPage />}
             />
             <Route path="/:usercode/admission/table" element={<TablePage />} />
             <Route path="/manager" element={<MembershipJoinPage />} />
+
             <Route
               path="/MedicalReception"
               element={<MedicalReceptionPage />}
