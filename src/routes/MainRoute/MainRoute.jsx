@@ -36,19 +36,15 @@ function MainRoute() {
             <Route path="/scorepay" element={<ScorePayPage />} />
             <Route path="/employeenum" element={<EmployeeNumEnrollPage />} />
             <Route path="/noticewrite" element={<NoticeWritePage />} />
-
             <Route
               path="/:usercode/admission/:admissionId/detailBill"
               element={<DetailBillPage />}
             />
+            <Route path="/:usercode/admission/table" element={<TablePage />} />
             <Route path="/manager" element={<MembershipJoinPage />} />
             <Route
               path="/InformationChange"
               element={<InformationChangePage />}
-            />
-            <Route
-              path="/:usercode/admission/:admissionId/table"
-              element={<TablePage />}
             />
             <Route
               path="/MedicalReception"
