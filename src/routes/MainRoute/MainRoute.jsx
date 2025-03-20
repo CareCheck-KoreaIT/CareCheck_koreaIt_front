@@ -55,8 +55,6 @@ function MainRoute() {
               path="/MedicalReception"
               element={<MedicalReceptionPage />}
             />
-            <Route path="/test" element={<AdmPatientVital />} />
-          </Routes>
         </div>
       </div>
     </>
