@@ -5,6 +5,10 @@ import MainSidebar from "../../components/common/MainSidebar/MainSidebar";
 import * as s from "./style";
 import React from "react";
 import NoTitleHeaderMenu from "../../components/NoTitleHeaderMenu/NoTitleHeaderMenu";
+import DiagnosisOrder from "../../components/TablePageComponents/DiagnosisOrder/DiagnosisOrder";
+import AdmPatientVital from "../../components/TablePageComponents/AdmPatientViatal/AdmPatientVital";
+import WaitingList from "../../components/TablePageComponents/WaitingList/WaitingList";
+import DiagnosisDesease from "../../components/TablePageComponents/DiagnosisDesease/DiagnosisDesease";
 
 const waitingList = "진료 대기자 명단";
 const patientInfo = "환자정보";
@@ -30,68 +34,7 @@ function TablePage() {
                 <td>나이</td>
               </tr>
             </table>
-            <table css={s.t1}>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-            </table>
+            <WaitingList />
           </div>
           {/*진료 대기자 명단 끝*/}
           <div css={s.child2}>
@@ -102,7 +45,6 @@ function TablePage() {
                 </tr>
               </table>
             </div>
-
             <div>
               <table>
                 <tr css={s.patientInfo}>
@@ -113,16 +55,7 @@ function TablePage() {
                   <td>몸무게</td>
                 </tr>
               </table>
-
-              <table css={s.t1}>
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-              </table>
+              <AdmPatientVital />
             </div>
             {/*환자정보 끝*/}
             <div>
@@ -142,12 +75,7 @@ function TablePage() {
                   </tr>
                 </table>
 
-                <table css={s.t1}>
-                  <tr>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                </table>
+                <DiagnosisDesease />
               </div>
             </div>
             {/*상병등록 끝*/}
@@ -172,32 +100,7 @@ function TablePage() {
                   </tr>
                 </table>
 
-                <table css={s.t1}>
-                  <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                </table>
+                <DiagnosisOrder />
               </div>
             </div>
           </div>

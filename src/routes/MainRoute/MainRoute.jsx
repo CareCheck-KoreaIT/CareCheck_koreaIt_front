@@ -1,7 +1,5 @@
 /**@jsxImportSource @emotion/react */
 import * as s from "./style";
-import MainHeader from "../../components/common/MainHeader/MainHeader";
-import MainContainer from "../../components/common/MainContainer/MainContainer";
 import { useUserMeQuery } from "../../queries/userQuery";
 import MainSidebar from "../../components/common/MainSidebar/MainSidebar";
 import NoTitleHeaderMenu from "../../components/NoTitleHeaderMenu/NoTitleHeaderMenu";
@@ -19,6 +17,7 @@ import { Route, Routes } from "react-router-dom";
 import UserRoute from "../UserRoute/UserRoute";
 import NoticeWritePage from "../../pages/NoticeWritePage/NoticeWritePage";
 import NoticeLsitPage from "../../pages/NoticeListPage/NoticeListPage";
+import AccountRoute from "../AccountRoute/AccountRoute";
 
 function MainRoute() {
   useUserMeQuery();
@@ -30,10 +29,10 @@ function MainRoute() {
         <div css={s.contentStyle}>
           <NoTitleHeaderMenu />
           <Routes>
+            <Route path="/account/*" element={<AccountRoute />} />
             <Route path="/admin/*" element={<UserRoute />} />
             <Route path="/receipt" element={<ReceiptPage />} />
             <Route path="/order" element={<OrderPage />} />
-            <Route path="/table" element={<TablePage />} />
             <Route path="/patient" element={<PatientRegistrationPage />} />
             <Route path="/scorepay" element={<ScorePayPage />} />
             <Route path="/employeenum" element={<EmployeeNumEnrollPage />} />
@@ -41,13 +40,17 @@ function MainRoute() {
             <Route path="/notice/list" element={<NoticeLsitPage />} />
 
             <Route
-              path="/admission/:admId/detailBill"
+              path="/:usercode/admission/:admissionId/detailBill"
               element={<DetailBillPage />}
             />
             <Route path="/manager" element={<MembershipJoinPage />} />
             <Route
               path="/InformationChange"
               element={<InformationChangePage />}
+            />
+            <Route
+              path="/:usercode/admission/:admissionId/table"
+              element={<TablePage />}
             />
             <Route
               path="/MedicalReception"

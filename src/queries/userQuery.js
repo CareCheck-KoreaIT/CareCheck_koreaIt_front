@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getUserMeApi } from "../apis/userApi";
+import { getSearchUserListApi, getUserMeApi } from "../apis/userApi";
 
 export const useUserMeQuery = () => useQuery({
     queryKey: ["userMeQuery"],
@@ -12,7 +12,7 @@ export const useUserMeQuery = () => useQuery({
 export const useGetSearchUserList = (params) => useQuery({
     queryKey: ["useGetSearchUserList"],
     queryFn: async () => {
-        return await getSearchNoticeListApi(params);
+        return await getSearchUserListApi(params);
     },
     retry: 0,
     staleTime: 1000 * 60 * 10,
