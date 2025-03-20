@@ -2,8 +2,12 @@
 import { BsColumnsGap } from "react-icons/bs";
 import * as s from "./style";
 import React from "react";
+import { useQueryClient } from "@tanstack/react-query";
 
 function MainSidebar() {
+  const queryClient = useQueryClient();
+  const loginUser = queryClient.getQueryData(["userMeQuery"]);
+
   return (
     <div css={s.sidebar}>
       <header css={s.header}>
@@ -24,7 +28,7 @@ function MainSidebar() {
         </div>
       </section>
       <footer css={s.footer}>
-        <div>홍길동님</div>
+        <div>{loginUser?.data?.username}님</div>
       </footer>
     </div>
   );

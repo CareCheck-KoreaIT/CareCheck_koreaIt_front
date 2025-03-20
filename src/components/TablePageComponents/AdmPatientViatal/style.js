@@ -9,11 +9,23 @@ export const list = css`
 
   & > tr,
   td {
-    width: 50rem;
+    width: 10rem;
     height: 5rem;
     box-sizing: border-box;
     border: 0.1rem solid #000000;
     font-size: 2rem;
-    color: #ffffff;
   }
+`;
+
+export const nodata = css`
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  margin: 1rem 0rem;
+  border: 0.1rem solid #000000;
+  width: 80rem;
+  height: 5rem;
+  font-size: 2rem;
 `;
