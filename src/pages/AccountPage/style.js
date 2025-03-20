@@ -1,20 +1,15 @@
 import { css } from "@emotion/react";
 
 export const layout = css`
-    display: flex;
-    box-sizing: border-box;
-    align-items: center;
-    overflow: hidden;
-    width: 100%;
-    height: 100%;
-    background-color: #ffffff;
+    margin-left: 10rem;
+    width: 108rem;
+    height: 70rem;
 `;
 
 export const container = css`
     display: flex;
     flex-direction: column;
-    padding: 0 4rem;
-    margin-top: 4rem;
+    padding: 3rem;
 `;
 
 export const title = css`
@@ -25,7 +20,7 @@ export const title = css`
     font-size: 4rem;
     font-weight: 400;
     color: #464667;
-    border-bottom: 0.1rem solid #3283CE;
+    border-bottom: 0.1rem solid #464667;
 
     cursor: default;
     
@@ -33,174 +28,151 @@ export const title = css`
         margin: 0;
         padding: 0 0 1rem 1.5rem;
     }
-    `;
+`;
+
+export const accountBox = css`
+    display: flex;
+`;
+
+export const profileBox = css`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20rem;
+    height: 20rem;
+
+    & > svg {
+        width: 17rem;
+        height: 17rem;
+        color: #464667;
+    }
+`;
+
+export const userInfoBox = css`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-bottom: 2rem;
+`;
+
+export const userBox = css`
+    display: flex;
+    align-items: flex-end;
+`;
 
 export const usernameBox = css`
+    box-sizing: border-box;
     display: flex;
     align-items: center;
+    margin: 1.5rem 3rem 0;
+    border-bottom: 0.2rem dotted #464667;
     height: 5rem;
-    margin-left: 3rem;
-    margin-bottom: 2rem;
-    font-size: 3.5rem;
-  
+    font-size: 3.8rem;
+    color: #1c1c1c;
+
+    & > span:nth-of-type(2) {
+        padding-left: 1.2rem;
+        color: #464667;
+    }
+`;
+
+export const myNoticeButton = css`
     
-    span:nth-of-type(1) {
-    margin-right: 6rem;
+    & > button {
+        border: 0.2rem solid #464667;
+        border-radius: 0.5rem;
+        width: 12rem;
+        height: 2.5rem;
+        background-color: #bab6dd;
+        text-align: center;
+        font-weight: 600;
+        cursor: pointer;
     }
 `;
 
 export const AccountBox = css`
     display: flex;
+    flex-direction: column;
+`;
+
+export const AccountLine = css`
+    display: flex;
+    align-items: end;
     margin-left: 3rem;
+    border-bottom: 0.2rem dotted #464667;
     font-size: 3rem;
+
+    & > div:nth-of-type(1) {
+        color: #464667;
+    }
+    & > div:nth-of-type(2) {
+        font-size: 2.5rem;
+        color: #1c1c1c;
+    }
 `;
 
-export const userNumber = css`
-    display: flex;
-    margin-right: 3rem;
+export const infoTitle = css`
+    display: inline;
+    margin-right: 4rem;
+    width: 14rem;
+    line-height: 0.2;
+    text-align: justify;
+    &::before, &::after {
+        content: "";
+        display: inline-block;
+        width: 100%;
+    }
 `;
 
-export const authority = css`
+export const elementBox = css`
     display: flex;
-    letter-spacing: 5.5rem;
-    margin-right: -2.5rem;
+    justify-content: space-between;
+    align-items: center;
+`;
+
+export const contentBox = css`
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-left: 2rem;
+    font-size: 3rem;
+
+    & > div:nth-of-type(1) {
+        margin-right: 2rem;
+        width: 25rem;
+        font-size: 3rem;
+    }
+
+    & > span {
+        font-size: 1.7rem;
+        color: #434343;
+        padding-top: 1rem;
+    }
+
+    & > div:nth-of-type(2) {
+        font-size: 2.7rem;
+    }
 `;
 
 export const changeButton = css`
     width: 8rem;
     height: 4rem;
+    border: 0.2rem solid #464667;
+    border-radius: 0.5rem;
     padding: 0.5rem 1rem;
     transform: translateY(-5px);
     font-size: 1.7rem;
-    color: white;
-    background-color: #464667;
-    border: none;
-    border-radius: 0.5rem;
+    font-weight: 600;
+    background-color: #bab6dd;
     cursor: pointer;
-
-    &:hover {
-        background-color: #464667;
-    }
-`;
-
-export const passwordBox = css`
-    display: flex;
-    align-items: center;
-    height: 5rem;
-    margin-left: 3rem;
-    font-size: 3rem;
     
-    span:nth-of-type(1) {
-        margin-right: 47rem;
-    }
-    `;
-
-export const passwordMiddle = css`
-    display: flex;
-    margin-right: 40rem;
-`;
-
-export const emailBox = css`
-    display: flex;
-    align-items: center;
-    height: 5rem;
-    margin-left: 3rem;
-    font-size: 3rem;
-    
-    span:nth-of-type(1) {
-        margin-right: 19.3rem;
-    }
-`;
-
-export const emailMiddle = css`
-    display: flex;
-    margin-right: 4rem;
-`;
-
-export const phoneNumberBox = css`
-    display: flex;
-    align-items: center;
-    height: 5rem;
-    margin-left: 3rem;
-    font-size: 3rem;
-
-    span:nth-of-type(1) {
-        margin-right: 17.8rem;
-    }
-`;
-
-export const middleBox2 = css`
-    display: flex;
-    margin-right: 3rem;
-`;
-export const correctionButton = css`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 10rem;
-    width: 25rem;
-    height: 7rem;
-    outline: none;
-    border-radius: 1rem;
-    font-size: 2rem;
-    background-color: #464667;
-    color: #ffffff;
-`;
-
-export const emailInput = css`
-  font-size: 2.5rem;
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  margin-left: 1rem;
-`;
-
-export const modalOverlay = {
-    position: "fixed",
-    top: 0,
-    left: 0,
-    width: "100%",
-    height: "100%",
-    background: "rgba(0, 0, 0, 0.5)",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-  };
-  
-  export const modalContent = {
-    background: "white",
-    padding: "20px",
-    borderRadius: "8px",
-    textAlign: "center",
-    width: "50rem",
-  };
-  
-  export const modalInput = {
-    width: "90%",
-    padding: "2rem",
-    margin: "8px 0",
-};
-
-export const modalButtons = {
-    display: "flex",
-    padding: "2rem",
-    justifyContent: "space-between",
-};
-  
-export const cancelButton = css`
-    width: 8rem;
-    height: 4rem;
-    padding: 0.5rem 1rem;
-    transform: translateY(-5px);
-    font-size: 1.7rem;
-    color: white;
-    background-color: #464667;
-    border: none;
-    border-radius: 0.5rem;
-    cursor: pointer;
-
     &:hover {
+        background-color: #636394;
+        color: #ffffff;
+    }
+
+    &:active {
         background-color: #464667;
+        color: #ffffff;
     }
 `;
-  
