@@ -1,7 +1,5 @@
 /**@jsxImportSource @emotion/react */
 import * as s from "./style";
-import MainHeader from "../../components/common/MainHeader/MainHeader";
-import MainContainer from "../../components/common/MainContainer/MainContainer";
 import { useUserMeQuery } from "../../queries/userQuery";
 import MainSidebar from "../../components/common/MainSidebar/MainSidebar";
 import NoTitleHeaderMenu from "../../components/NoTitleHeaderMenu/NoTitleHeaderMenu";
@@ -18,6 +16,7 @@ import MedicalReceptionPage from "../../pages/MedicalReceptionPage/MedicalRecept
 import { Route, Routes } from "react-router-dom";
 import UserRoute from "../UserRoute/UserRoute";
 import NoticeWritePage from "../../pages/NoticeWritePage/NoticeWritePage";
+import AccountRoute from "../AccountRoute/AccountRoute";
 
 function MainRoute() {
   useUserMeQuery();
@@ -29,6 +28,7 @@ function MainRoute() {
         <div css={s.contentStyle}>
           <NoTitleHeaderMenu />
           <Routes>
+            <Route path="/account/*" element={<AccountRoute />} />
             <Route path="/admin/*" element={<UserRoute />} />
             <Route path="/receipt" element={<ReceiptPage />} />
             <Route path="/order" element={<OrderPage />} />
