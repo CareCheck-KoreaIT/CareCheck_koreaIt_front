@@ -11,7 +11,6 @@ import ScorePayPage from "../../pages/ScorePayPage/ScorePayPage";
 import EmployeeNumEnrollPage from "../../pages/EmployeeNumEnrollPage/EmployeeNumEnrollPage";
 import DetailBillPage from "../../pages/DetailBillPage/DetailBillPage";
 import MembershipJoinPage from "../../pages/MembershipJoinPage/MembershipJoinPage";
-import InformationChangePage from "../../pages/InformationChangePage/InformationChangePage";
 import MedicalReceptionPage from "../../pages/MedicalReceptionPage/MedicalReceptionPage";
 import { Route, Routes } from "react-router-dom";
 import UserRoute from "../UserRoute/UserRoute";
@@ -46,10 +45,6 @@ function MainRoute() {
             />
             <Route path="/:usercode/admission/table" element={<TablePage />} />
             <Route path="/manager" element={<MembershipJoinPage />} />
-            <Route
-              path="/InformationChange"
-              element={<InformationChangePage />}
-            />
             <Route
               path="/MedicalReception"
               element={<MedicalReceptionPage />}
