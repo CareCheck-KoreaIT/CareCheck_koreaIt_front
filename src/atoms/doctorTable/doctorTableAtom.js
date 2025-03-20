@@ -23,4 +23,4 @@ export const diagnosisDisease = atom({
 export const diagnosisOrders = atom({
   key: "diagnosisOrders",
   default: [],
-})
+});

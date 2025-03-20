@@ -48,21 +48,23 @@ export const useGetSearchTotalPay = (admissionId) => {
 
 export const useGetSelectVital = (admissionId) => {
   console.log("SelectVital 실행", admissionId);
-  console.log(typeof admissionId)
+  console.log(typeof admissionId);
   return useQuery({
     queryKey: ["useGetSelectVital", admissionId],
     queryFn: async () => {
-      return await selectVitalByAdmApi (admissionId);
-      
+      return await selectVitalByAdmApi(admissionId);
+    },
+  });
+};
 export const useGetSearchWaitingList = (usercode) => {
-  console.log("searchWaiting query 실행 : ", usercode)
+  console.log("searchWaiting query 실행 : ", usercode);
   return useQuery({
     queryKey: ["useGetSearchWaitingList", usercode],
-    queryFn : async() => {
+    queryFn: async () => {
       return await searchWaitingListApi(usercode);
     },
     retry: 0,
     staleTime: 1000 * 60 * 5,
     gcTime: 1000 * 60 * 5,
-  })
-}
+  });
+};
