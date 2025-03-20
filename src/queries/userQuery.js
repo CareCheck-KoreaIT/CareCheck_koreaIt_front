@@ -8,3 +8,13 @@ export const useUserMeQuery = () => useQuery({
     staleTime: 1000 * 60 * 20,  // 캐싱
     gcTime: 1000 * 60 * 10,     // refresh 하지 않은 데이터 처리
 });
+
+export const useGetSearchUserList = (params) => useQuery({
+    queryKey: ["useGetSearchUserList"],
+    queryFn: async () => {
+        return await getSearchNoticeListApi(params);
+    },
+    retry: 0,
+    staleTime: 1000 * 60 * 10,
+    gcTime: 1000 * 60 * 5,
+});
