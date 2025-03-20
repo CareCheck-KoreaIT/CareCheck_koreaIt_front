@@ -4,18 +4,9 @@ export const layout = css`
   box-sizing: border-box;
   display: flex;
   justify-content: center;
-  width: 100%;
+  margin-left: 32rem;
+  width: 100rem;
   height: auto;
-`;
-
-export const header = css`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  box-sizing: border-box;
-  margin-top: 3rem;
-  width: 170rem;
-  height: 6rem;
 `;
 
 export const container = css`
@@ -23,8 +14,8 @@ export const container = css`
   display: flex;
   flex-direction: column;
   margin-top: 5rem;
-  margin-left: 12rem;
-  width: 100rem;
+  width: 100%;
+  height: 100%;
   border: 0.1rem solid #000000;
 `;
 export const title = css`
@@ -57,6 +48,7 @@ export const patientInfoHead = css`
 export const patientTable = css`
   box-sizing: border-box;
   width: 50rem;
+  height: 3rem;
   margin-top: 0.8rem;
   border: 0.1rem solid #000000;
   border-collapse: collapse;
@@ -86,6 +78,7 @@ export const billDetailInfo = css`
   flex-direction: column;
   margin-top: 2.5rem;
   margin-left: 4rem;
+  margin-bottom: 0.5rem;
   width: 92.7rem;
   height: auto;
 `;
@@ -93,6 +86,7 @@ export const billDetailInfo = css`
 export const billDetailHead = css`
   box-sizing: border-box;
   display: flex;
+  margin-bottom: 0.8rem;
   gap: 0.1rem;
   & > div {
     height: 2rem;
@@ -101,22 +95,22 @@ export const billDetailHead = css`
     text-align: center;
     font-size: 1.3rem;
   }
-  & > div:nth-child(1) {
+  & > div:nth-of-type(1) {
     width: 23rem;
   }
-  & > div:nth-child(2) {
+  & > div:nth-of-type(2) {
     width: 15.9rem;
   }
-  & > div:nth-child(3) {
+  & > div:nth-of-type(3) {
     width: 9.9rem;
   }
-  & > div:nth-child(4) {
+  & > div:nth-of-type(4) {
     width: 9.9rem;
   }
-  & > div:nth-child(5) {
+  & > div:nth-of-type(5) {
     width: 9.9rem;
   }
-  & > div:nth-child(6) {
+  & > div:nth-of-type(6) {
     width: 23rem;
   }
 `;
@@ -124,7 +118,7 @@ export const billDetailHead = css`
 export const billDetailTable = css`
   box-sizing: border-box;
   width: 50rem;
-  margin-top: 0.8rem;
+  height: 3rem;
   border: 0.1rem solid #000000;
   border-collapse: collapse;
   table-layout: fixed;
@@ -136,30 +130,41 @@ export const billDetailTable = css`
     text-align: center;
     font-size: 1.2rem;
   }
-  & th:nth-child(1),
-  & td:nth-child(1) {
+  & th:nth-of-type(1),
+  & td:nth-of-type(1) {
     width: 23rem;
   }
-  & th:nth-child(2),
-  & td:nth-child(2) {
+  & th:nth-of-type(2),
+  & td:nth-of-type(2) {
     width: 16rem;
   }
-  & th:nth-child(3),
-  & td:nth-child(3) {
+  & th:nth-of-type(3),
+  & td:nth-of-type(3) {
     width: 10rem;
   }
-  & th:nth-child(4),
-  & td:nth-child(4) {
+  & th:nth-of-type(4),
+  & td:nth-of-type(4) {
     width: 10rem;
   }
-  & th:nth-child(5),
-  & td:nth-child(5) {
+  & th:nth-of-type(5),
+  & td:nth-of-type(5) {
     width: 10rem;
   }
-  & th:nth-child(6),
-  & td:nth-child(6) {
+  & th:nth-of-type(6),
+  & td:nth-of-type(6) {
     width: 23rem;
   }
+`;
+
+export const nodata = css`
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  border: 0.1rem solid #000000;
+  width: 92rem;
+  height: 3rem;
 `;
 
 export const script = css`
@@ -202,6 +207,7 @@ export const totalPayHead = css`
 export const totalPayTable = css`
   box-sizing: border-box;
   width: 16.6rem;
+  height: 3rem;
   margin-top: 0.8rem;
   border: 0.1rem solid #000000;
   border-collapse: collapse;
