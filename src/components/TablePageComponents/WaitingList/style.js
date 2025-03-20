@@ -5,13 +5,24 @@ export const list = css`
   width: 100%;
   border: 0.1rem solid #000000;
   border-collapse: collapse;
-  margin: 2rem 0rem 2rem;
-  
-  & > tr, td {
-    width: 50rem;
+  margin: 2rem 0;
+
+  & tr {
+    height: 5rem;
+    box-sizing: border-box;
+    cursor: pointer;
+    &:hover {
+      background-color: #dbdbdb;
+    }
+  }
+
+  & td {
+    width: 33%;
     height: 5rem;
     box-sizing: border-box;
     border: 0.1rem solid #000000;
     font-size: 2rem;
+    color: #000000;
+    text-align: center;
   }
-`; 
+`;
