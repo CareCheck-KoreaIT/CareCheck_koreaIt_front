@@ -55,6 +55,7 @@ function MainRoute() {
               path="/MedicalReception"
               element={<MedicalReceptionPage />}
             />
+          </Routes>
         </div>
       </div>
     </>
