@@ -18,6 +18,7 @@ import MedicalReceptionPage from "../../pages/MedicalReceptionPage/MedicalRecept
 import { Route, Routes } from "react-router-dom";
 import UserRoute from "../UserRoute/UserRoute";
 import NoticeWritePage from "../../pages/NoticeWritePage/NoticeWritePage";
+import NoticePage from "../../pages/NoticePage/NoticePage";
 
 function MainRoute() {
   useUserMeQuery();
@@ -36,7 +37,8 @@ function MainRoute() {
             <Route path="/patient" element={<PatientRegistrationPage />} />
             <Route path="/scorepay" element={<ScorePayPage />} />
             <Route path="/employeenum" element={<EmployeeNumEnrollPage />} />
-            <Route path="/noticewrite" element={<NoticeWritePage />} />
+            <Route path="/notice/write" element={<NoticeWritePage />} />
+            <Route path="/notices/:usercode" element={<NoticePage />} />
 
             <Route
               path="/admission/:admId/detailBill"
