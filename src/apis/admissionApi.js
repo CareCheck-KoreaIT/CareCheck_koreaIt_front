@@ -17,7 +17,9 @@ export const insertVitalByAdmApi = async (admissionId, vitalInfo) => {
 }
 
 export const selectVitalByAdmApi = async (admissionId) => {
-  return await api.get(`admission/${admissionId}/vitals`)
+  console.log("api실행 : ", admissionId)
+  return await api.get(`admission/${admissionId}/vitals` )
+  
 }
 
 export const searchDetailBillByAdmApi = async (admissionId) => {

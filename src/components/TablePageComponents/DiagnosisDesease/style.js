@@ -12,7 +12,6 @@ export const list = css`
     border: 0.1rem solid #000000;
     box-sizing: border-box;
     font-size: 2rem;
-    color: #ffffff;
 
   & > td:nth-of-type(1) {
     width: 20rem;

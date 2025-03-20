@@ -22,25 +22,22 @@ export const global = css`
   }
 
   body {
-    font-size: 16px;
+    font-size: 1.125rem;
   }
 
-  /* 화면 크기가 1024px 이하인 경우 폰트 크기 확대 */
-  @media screen and (max-width: 1024px) {
+  @media screen and (max-width: 64rem) {
     body {
-      font-size: 18px;
+      font-size: 1.125rem;
     }
   }
 
-  /* 화면 크기가 768px 이하인 경우 더 크게 설정 */
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 48rem) {
     body {
-      font-size: 20px;
+      font-size: 1.25rem;
     }
   }
 
-  /* 고령층 사용자를 고려해 버튼 크기 확대 */
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 48rem) {
     button {
       padding: 1rem 2rem;
       font-size: 1.5rem;
