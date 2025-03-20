@@ -18,6 +18,7 @@ import UserRoute from "../UserRoute/UserRoute";
 import NoticeWritePage from "../../pages/NoticeWritePage/NoticeWritePage";
 import NoticeLsitPage from "../../pages/NoticeListPage/NoticeListPage";
 import AccountRoute from "../AccountRoute/AccountRoute";
+import AdmPatientVital from "../../components/TablePageComponents/AdmPatientViatal/AdmPatientVital";
 
 function MainRoute() {
   useUserMeQuery();

@@ -3,6 +3,7 @@ import {
   searchDetailBillByAdmApi,
   searchPatientInfoByAdmApi,
   searchTotalPayByAdmApi,
+  selectVitalByAdmApi,
 } from "../apis/admissionApi";
 
 export const useGetSearchDetailBill = (admissionId) => {
@@ -17,6 +18,7 @@ export const useGetSearchDetailBill = (admissionId) => {
     gcTime: 1000 * 60 * 5,
   });
 };
+
 export const useGetSearchPatientInfo = (admissionId) => {
   console.log("searchPateintInfo 실행", admissionId);
   return useQuery({
@@ -29,6 +31,7 @@ export const useGetSearchPatientInfo = (admissionId) => {
     gcTime: 1000 * 60 * 5,
   });
 };
+
 export const useGetSearchTotalPay = (admissionId) => {
   console.log("searchTotalPay 실행", admissionId);
   return useQuery({
@@ -41,3 +44,17 @@ export const useGetSearchTotalPay = (admissionId) => {
     gcTime: 1000 * 60 * 5,
   });
 };
+
+export const useGetSelectVital = (admissionId) => {
+  console.log("SelectVital 실행", admissionId);
+  console.log(typeof admissionId)
+  return useQuery({
+    queryKey: ["useGetSelectVital", admissionId],
+    queryFn: async () => {
+      return await selectVitalByAdmApi (admissionId);
+    },
+    retry: 0,
+    staleTime: 1000 * 60 * 5,
+    gcTime: 1000 * 60 * 5,
+  })
+}
