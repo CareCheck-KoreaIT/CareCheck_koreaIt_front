@@ -46,7 +46,6 @@ function DetailBillPage() {
     }
   );
   const detailBillData = detailBillAdmId?.data?.data.diagnosisOrder || [];
-  console.log(detailBillData);
 
   const totalPayAdmId = useGetSearchTotalPay(Number(patientData.admissionId), {
     enabled: !!patientData.admissionId,
