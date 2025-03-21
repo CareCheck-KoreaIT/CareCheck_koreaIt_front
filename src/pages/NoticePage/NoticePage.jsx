@@ -102,7 +102,7 @@ function NoticePage(props) {
                                 </div>
                             </li>
                         )
-                        : <div>값이 없음.</div>
+                        : <div>no value</div>
                     }
                 </ul>
             </div>
