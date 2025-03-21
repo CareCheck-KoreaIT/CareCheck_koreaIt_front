@@ -17,7 +17,6 @@ function DetailBillPage() {
     day: "numeric",
   });
   const param = useParams();
-  const queryClient = useQueryClient();
   const [patientData, setPatientData] = useState({
     admissionId: null,
     patientId: null,

@@ -9,35 +9,53 @@ import {
 import { useGetSearchDisease } from "../../../../queries/diseaseQuery";
 import { RiCloseCircleFill, RiSearch2Line } from "react-icons/ri";
 
-function DiseasesModal() {
-  const [setDiseaseModalOpen] = useRecoilState(openDiseaseModal);
+function DiseasesModal({ admissionId }) {
+  const [diseaseModalOpen, setDiseaseModalOpen] =
+    useRecoilState(openDiseaseModal);
   const [listDiagnosisDisease, setListDiagnosisDisease] =
     useRecoilState(diagnosisDisease);
   const [inputKeyword, setInputKeyword] = useState("");
   const [searchKeyword, setSearchKeyword] = useState(null);
   const [selectDiseases, setSelectDiseases] = useState([]);
-  const searchDiseaseByKeyword = useGetSearchDisease(searchKeyword, {
-    enabled: !!searchKeyword,
+  const searchDiseaseByKeyword = useGetSearchDisease(searchKeyword);
+  const [newDiagnosis, setNewDiagnosis] = useState({
+    admId: admissionId,
+    diseaseCode: "",
+    diseaseKName: "",
   });
   const searchDiseases = searchDiseaseByKeyword?.data?.data || [];
-  useEffect(() => {}, [searchKeyword]);
+  useEffect(() => {
+    setNewDiagnosis({
+      admId: admissionId,
+      diseaseCode: "",
+      diseaseKName: "",
+    });
+  }, [searchKeyword]);
+
+  const handleSearchKeywordOnChange = (e) => {
+    setInputKeyword(e.target.value);
+  };
 
   const handleSearchKeywordOnKeyDown = (e) => {
     if (e.keyCode === 13) {
       setSearchKeyword(inputKeyword);
     }
   };
-
-  const handleSearchKeywordOnChange = (e) => {
-    setInputKeyword(e.target.value);
-  };
   const handleSelectDiseases = (disease) => {
+    // 새로운 진단 객체 생성
+    const newDiagnosis = {
+      admId: admissionId,
+      diseaseCode: disease.diseaseCode,
+      diseaseKName: disease.diseaseKName,
+    };
+
+    // 중복 확인 후 상태 배열에 추가
     if (
       !selectDiseases.some(
-        (selected) => selected.diseaseCode === disease.diseaseCode
+        (selected) => selected.diseaseCode === newDiagnosis.diseaseCode
       )
     ) {
-      setSelectDiseases([...selectDiseases, disease]);
+      setSelectDiseases((prev) => [...prev, newDiagnosis]);
     }
   };
 
@@ -45,6 +63,9 @@ function DiseasesModal() {
     setSearchKeyword(inputKeyword);
   };
   const handleSaveDiseasesOnClick = () => {
+    if (selectDiseases.length === 0) {
+      return;
+    }
     setListDiagnosisDisease([...listDiagnosisDisease, ...selectDiseases]);
     setSelectDiseases([]);
   };
@@ -52,7 +73,7 @@ function DiseasesModal() {
     <div css={s.container}>
       <div css={s.header}>
         <h2>상병등록</h2>
-        <div>
+        <div onClick={() => setDiseaseModalOpen(false)}>
           <RiCloseCircleFill />
         </div>
       </div>
@@ -94,7 +115,10 @@ function DiseasesModal() {
       <div css={s.selectField}>
         <div css={s.selectFieldHeader}>
           <h3>선택된 상병 : </h3>{" "}
-          <button onClick={handleSaveDiseasesOnClick}>
+          <button
+            onClick={handleSaveDiseasesOnClick}
+            disabled={selectDiseases.length === 0}
+          >
             <span>전송</span>
           </button>
         </div>

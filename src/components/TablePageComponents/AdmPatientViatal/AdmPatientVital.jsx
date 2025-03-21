@@ -15,7 +15,6 @@ function AdmPatientVital({ admissionId }) {
 
   const admPatientVitalByAdmId = useGetSelectVital(Number(admissionId));
 
-  console.log(admPatientVitalByAdmId?.data?.data);
   const admPatientVitalApi = admPatientVitalByAdmId?.data?.data[0].vital;
 
   useEffect(() => {
@@ -28,9 +27,7 @@ function AdmPatientVital({ admissionId }) {
     }
   }, [admissionId, admPatientVitalApi]);
 
-  const admPatientVitalAdmId = useGetSelectVital(Number(admissionId), {
-    enabled: !!admissionId,
-  });
+  const admPatientVitalAdmId = useGetSelectVital(Number(admissionId));
   const admPatientVitalData = admPatientVitalAdmId?.data?.data[0] || [];
 
   return (
