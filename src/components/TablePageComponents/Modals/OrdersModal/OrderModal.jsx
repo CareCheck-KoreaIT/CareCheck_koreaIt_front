@@ -14,7 +14,7 @@ import { useRecoilState } from "recoil";
 import { useGetSearchOrders } from "../../../../queries/ordersQuery";
 
 function OrderModal({ admissionId }) {
-  const [setOrderModalOpen] = useRecoilState(openOrdersModal);
+  const [orderModalOpen, setOrderModalOpen] = useRecoilState(openOrdersModal);
   const [listDiagnosisOrders, setListDiagnosisOrders] =
     useRecoilState(diagnosisOrders);
   const [inputKeyword, setInputKeyword] = useState("");
@@ -35,7 +35,7 @@ function OrderModal({ admissionId }) {
     orderDays: 1,
     orderMethod: "",
   });
-  // useEffect(() => {}, [searchKeyword]);
+  useEffect(() => {}, [searchKeyword]);
 
   const handleSearchKeywordOnKeyDown = (e) => {
     if (e.keyCode === 13) {
@@ -84,8 +84,19 @@ function OrderModal({ admissionId }) {
     };
 
     setSelectDiagnosisOrders((prevOrders) => [...prevOrders, combinedOrder]);
+    setNewOrder({
+      orderCode: "",
+      orderName: "",
+      orderDose: null,
+      orderCount: 1,
+      orderDays: 1,
+      orderMethod: "",
+    });
   };
   const handleSaveOrdersOnClick = () => {
+    if (selectDiagnosisOrders.length === 0) {
+      return;
+    }
     setListDiagnosisOrders([...listDiagnosisOrders, ...selectDiagnosisOrders]);
     setSelectDiagnosisOrders([]);
   };
@@ -93,7 +104,7 @@ function OrderModal({ admissionId }) {
     <div css={s.container}>
       <div css={s.header}>
         <h2>처방등록</h2>
-        <div>
+        <div onClick={() => setOrderModalOpen(false)}>
           <RiCloseCircleFill />
         </div>
       </div>
@@ -132,14 +143,19 @@ function OrderModal({ admissionId }) {
           </tbody>
         </table>
         <h3>선택 코드 : </h3>
-        <table>
-          <tbody>
-            <tr>
-              <td>{selectOrder.orderCode}</td>
-              <td>{selectOrder.orderName}</td>
-            </tr>
-          </tbody>
-        </table>
+        {selectOrder.length !== 0 ? (
+          <table>
+            <tbody>
+              <tr>
+                <td>{selectOrder.orderCode}</td>
+                <td>{selectOrder.orderName}</td>
+              </tr>
+            </tbody>
+          </table>
+        ) : (
+          <></>
+        )}
+
         <h3>옵션 입력 : </h3>
         <table>
           <thead>

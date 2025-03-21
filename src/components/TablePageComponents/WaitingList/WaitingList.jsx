@@ -8,8 +8,11 @@ import {
   diagnosisOrders,
   waitingLisAdmId,
 } from "../../../atoms/doctorTable/doctorTableAtom";
+import { FaRegCalendarCheck } from "react-icons/fa";
+import { useUpdateStartDateMutation } from "../../../mutations/admissionMutation";
 
 function WaitingList({ usercode }) {
+  const updateStartDateMutation = useUpdateStartDateMutation();
   const [admissionId, setAdmissionId] = useRecoilState(waitingLisAdmId);
   const [diagnosisDiseaseState, setResetDisease] =
     useRecoilState(diagnosisDisease);
@@ -21,33 +24,46 @@ function WaitingList({ usercode }) {
     setResetDisease([]);
     setDiagnosisOrders([]);
   }, [admissionId]);
+
   const handleChangeAdmissionIdOnClick = (admId) => {
     setAdmissionId(admId);
   };
+  const handleUpdateStartDateOnClick = async (admissionId) => {
+    return await updateStartDateMutation.mutateAsync(admissionId);
+  };
   return (
-    <>
-      <table css={s.list}>
-        <tbody>
-          {waitingList.length > 0 ? (
-            waitingList.map((waiting) => (
-              <tr
-                key={waiting.admId}
-                onClick={() => handleChangeAdmissionIdOnClick(waiting.admId)}
-              >
-                <td>{waiting.patientId}</td>
-                <td>{waiting.patientName}</td>
-                <td>{waiting.admDate}</td>
-              </tr>
-            ))
-          ) : (
-            <tr>
-              <td colSpan="3">진료 대기자가 없습니다.</td>
-            </tr>
-          )}
-        </tbody>
-      </table>
-    </>
+    <div css={s.layout}>
+      {waitingList.length > 0 ? (
+        <>
+          <table css={s.list}>
+            <tbody>
+              {waitingList.map((waiting) => (
+                <tr
+                  key={waiting.admId}
+                  onClick={() => handleChangeAdmissionIdOnClick(waiting.admId)}
+                >
+                  <td>{waiting.patientId}</td>
+                  <td>{waiting.patientName}</td>
+                  <td>{waiting.admDate}</td>
+                  <td>
+                    <div
+                      css={s.closeField}
+                      onClick={() =>
+                        handleUpdateStartDateOnClick(waiting.admId)
+                      }
+                    >
+                      <FaRegCalendarCheck />
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </>
+      ) : (
+        <div css={s.nodata}>대기자가 없습니다</div>
+      )}
+    </div>
   );
 }
-
 export default WaitingList;

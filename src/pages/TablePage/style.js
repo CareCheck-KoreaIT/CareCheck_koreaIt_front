@@ -53,20 +53,37 @@ export const leftTable = css`
 `;
 
 export const waitingList = css`
-  /*진료 대기자 명단*/
   width: 100%;
-  border: 0.1rem solid black;
+  border: 0.1rem solid #000000;
   border-collapse: collapse;
   margin-bottom: 2rem;
 
-  > tr,
-  td {
-    width: 40rem;
+  & tbody tr {
+    background-color: #464667;
     height: 4rem;
-    border: 0.1rem solid black;
+  }
+
+  & tbody td {
+    border: 0.2rem solid #dbdbdb;
     font-size: 1.8rem;
     color: #ffffff;
-    background-color: #464667;
+    text-align: center;
+  }
+
+  & tbody td:nth-of-type(1) {
+    width: 6rem;
+  }
+
+  & tbody td:nth-of-type(2) {
+    width: 6rem;
+  }
+
+  & tbody td:nth-of-type(3) {
+    width: 6rem;
+  }
+
+  & tbody td:nth-of-type(4) {
+    width: 3rem;
   }
 `;
 
@@ -134,6 +151,9 @@ export const diagnosisRegister = css`
   & > td:nth-of-type(2) {
     width: 60rem;
   }
+  & > td:nth-of-type(3) {
+    width: 5rem;
+  }
 `;
 
 export const prescriptionRegister = css`
@@ -146,12 +166,32 @@ export const prescriptionRegister = css`
 
   & > tr,
   td {
-    width: 40rem;
     height: 4rem;
     border: 0.1rem solid black;
     font-size: 1.8rem;
     color: #ffffff;
     background-color: #464667;
+  }
+  & > td:nth-of-type(1) {
+    width: 20rem;
+  }
+  & > td:nth-of-type(2) {
+    width: 35rem;
+  }
+  & > td:nth-of-type(3) {
+    width: 5rem;
+  }
+  & > td:nth-of-type(4) {
+    width: 5rem;
+  }
+  & > td:nth-of-type(5) {
+    width: 5rem;
+  }
+  & > td:nth-of-type(6) {
+    width: 5rem;
+  }
+  & > td:nth-of-type(7) {
+    width: 5rem;
   }
 `;
 
@@ -173,8 +213,30 @@ export const t1 = css`
     color: #ffffff;
   }
 `;
-export const footer = css`
+export const tableFooter = css`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: end;
+  margin-bottom: 2rem;
+  & > button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 1rem;
+    box-sizing: border-box;
+    border: 0.1rem solid #9f9f9f;
+    border-radius: 10px;
+
+    width: 10rem;
+    height: 4rem;
+    background-color: #464667;
+    &:hover {
+      background-color: #464457;
+    }
+    & > span {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #ffffff;
+    }
+  }
 `;

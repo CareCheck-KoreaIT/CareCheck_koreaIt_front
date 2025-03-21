@@ -10,7 +10,8 @@ import { useGetSearchDisease } from "../../../../queries/diseaseQuery";
 import { RiCloseCircleFill, RiSearch2Line } from "react-icons/ri";
 
 function DiseasesModal({ admissionId }) {
-  const [setDiseaseModalOpen] = useRecoilState(openDiseaseModal);
+  const [diseaseModalOpen, setDiseaseModalOpen] =
+    useRecoilState(openDiseaseModal);
   const [listDiagnosisDisease, setListDiagnosisDisease] =
     useRecoilState(diagnosisDisease);
   const [inputKeyword, setInputKeyword] = useState("");
@@ -40,7 +41,6 @@ function DiseasesModal({ admissionId }) {
       setSearchKeyword(inputKeyword);
     }
   };
-
   const handleSelectDiseases = (disease) => {
     // 새로운 진단 객체 생성
     const newDiagnosis = {
@@ -73,7 +73,7 @@ function DiseasesModal({ admissionId }) {
     <div css={s.container}>
       <div css={s.header}>
         <h2>상병등록</h2>
-        <div>
+        <div onClick={() => setDiseaseModalOpen(false)}>
           <RiCloseCircleFill />
         </div>
       </div>
