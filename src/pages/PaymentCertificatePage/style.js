@@ -14,9 +14,9 @@ export const layout = css`
 export const table = css`
     width: 73.6rem;
     height: 80rem;
+    table-layout: fixed;
     border-collapse: collapse; /* 테두리 중복 제거 */
     text-align: center;
-    margin-top: 3rem;
 
     font-size: 3rem;
   
@@ -28,75 +28,56 @@ export const table = css`
     }
 `;
 
-export const Yeongsujeung = css`
+export const headerTitle = css`
+    text-align: center;
+    width: 20rem;
     height: 15rem;
     font-size: 3rem;
-    letter-spacing: 5rem; /* 자간을 띄우기 */
+    word-spacing: 8rem;
 `;
 
-export const YeongsujeungDiv = css`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: 4rem;
-`;
-
-
-export const Number = css`
+export const title = css`
+    text-align: center;
     width: 16rem;
     height: 7rem;
     font-size: 3rem;
+    word-spacing: 0.8rem; /* 어간 (단어 사이의 간격) 조절 */
 `;
 
-export const Department = css`
+export const title2 = css`
+    text-align: center;
     width: 16rem;
     height: 7rem;
     font-size: 3rem;
-`;
-
-export const Receipt = css`
-    width: 16rem;
-    height: 7rem;
-    font-size: 3rem;
+    word-spacing: 5rem; /* 어간 (단어 사이의 간격) 조절 */
 `;
 
 export const money = css`
     font-size: 3rem;
-    margin-bottom: 2rem; /* 2번째 p 태그만 마진 바텀 적용 */
-    
+    word-spacing: 10rem; /* 어간 (단어 사이의 간격) 조절 */
+
     span:nth-of-type(2) {
-        margin-left: 18rem;
     }
-
-    span:nth-of-type(4) {
-        margin-left: 18rem;
-    }
-`;
-
-export const Detail = css`
-    height: 7rem;
-    font-size: 3rem;
 `;
 
 export const note = css`
     font-size: 2rem;
-    
-    span:nth-of-type(2) {
-        letter-spacing: 2rem;
-    }
+    word-spacing: 0.5rem;
+`;
 
-    div:nth-last-of-type(2),
-    div:nth-last-of-type(1) {
-        text-align: left;
-        margin-left: 12rem;
-    }
+export const noteNumber = css`
+    font-size: 2rem;
 `;
 
 export const bottomSpace = css`
     font-size: 2rem;
     margin-bottom: 2rem; /* 2번째 p 태그만 마진 바텀 적용 */
-    
-    span:nth-of-type(2) {
-        margin-left: 15rem;
+    word-spacing: 15rem;
+`;
+
+export const left = css`
+    div {
+        text-align: left;
+        margin-left: 11rem;
     }
 `;

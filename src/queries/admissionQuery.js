@@ -21,7 +21,7 @@ export const useGetSearchDetailBill = (admissionId) => {
 };
 
 export const useGetSearchPatientInfo = (admissionId) => {
-  console.log("searchPateintInfo 실행 : ", admissionId);
+  // console.log("searchPateintInfo 실행 : ", admissionId);
   return useQuery({
     queryKey: ["useGetSearchPatientInfo", admissionId],
     queryFn: async () => {
@@ -34,7 +34,7 @@ export const useGetSearchPatientInfo = (admissionId) => {
 };
 
 export const useGetSearchTotalPay = (admissionId) => {
-  console.log("searchTotalPay 실행 : ", admissionId);
+  // console.log("searchTotalPay 실행 : ", admissionId);
   return useQuery({
     queryKey: ["useGetSearchTotalPay", admissionId],
     queryFn: async () => {
@@ -56,6 +56,7 @@ export const useGetSelectVital = (admissionId) => {
     },
   });
 };
+
 export const useGetSearchWaitingList = (usercode) => {
   console.log("searchWaiting query 실행 : ", usercode);
   return useQuery({
