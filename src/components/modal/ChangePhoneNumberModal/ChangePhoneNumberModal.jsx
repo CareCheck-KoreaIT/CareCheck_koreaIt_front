@@ -10,7 +10,6 @@ import { useUserMeQuery } from '../../../queries/userQuery';
 
 function ChangePhoneNumberModal({setOpen}) {
     const queryClient = useQueryClient();
-    const loginUser = queryClient.getQueryData(["userMeQuery"]);
     const updatePhoneNumberMutation = useUpdatePhoneNumberMutation();
 
     const [ phoneNumberValue, setPhoneNumberValue ] = useState("");
@@ -20,15 +19,25 @@ function ChangePhoneNumberModal({setOpen}) {
     }
 
     const handlePhoneNumberChangeButtonOnClick = async () => {
-        let usercode = loginUser?.data.usercode;
-        // console.log(usercode + emailValue);
-        await updatePhoneNumberMutation.mutateAsync({usercode, phoneNumber: phoneNumberValue});
-        await Swal.fire({
-            titleText: "전화번호 변경 완료",
-            confirmButtonText: "확인",
-        })
-        queryClient.invalidateQueries(["userMeQuery"]);
-        setOpen(false);
+        await updatePhoneNumberMutation.mutateAsync(phoneNumberValue)
+        .then(response =>{ 
+            Swal.fire({
+                icon: "success",
+                titleText: "전화번호 변경 완료",
+                confirmButtonText: "확인",
+            }).then(response => {
+                queryClient.invalidateQueries(["userMeQuery"]);
+                setOpen(false);
+            });
+        }).catch(error =>{
+            Swal.fire({
+                icon: "error",
+                titleText: "전화번호 변경 실패",
+                confirmButtonText: "다시 시도하세요",
+            }).then(response => {
+                setPhoneNumberValue("");
+            });
+        });
     }
 
     const handleInputOnKeyDown = async (e) => {

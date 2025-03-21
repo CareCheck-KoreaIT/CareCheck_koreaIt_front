@@ -1,7 +1,8 @@
 import { api } from "../configs/axiosConfig";
 
-export const updateEmailApi = async ({usercode, email}) => await api.put(`/account/users/${usercode}/email`, {email});
-export const updatePhoneNumberApi = async ({usercode, phoneNumber}) => await api.put(`/account/users/${usercode}/phoneNumber`, {phoneNumber});
+export const updatePasswordApi = async ({currentPassword, newPassword}) => await api.put(`/account/users/password`, {currentPassword, newPassword});
+export const updateEmailApi = async (email) => await api.put(`/account/users/email`, {email});
+export const updatePhoneNumberApi = async (phoneNumber) => await api.put(`/account/users/phoneNumber`, {phoneNumber});
 export const getUserMeApi = async () => await api.get("/account/users/me");
 
 export const signupApi = async (signupInfo) => {
