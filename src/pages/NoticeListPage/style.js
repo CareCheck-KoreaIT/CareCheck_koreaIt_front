@@ -59,10 +59,10 @@ export const searchButton = css`
 
 export const main = css`
     padding: 1rem;
-    height: 60rem;
+    height: 50rem;
 `;
 
-export const userListContainer = css`
+export const noticeListContainer = css`
     margin: 0;
     padding: 0;
     list-style-type: none;
@@ -118,6 +118,8 @@ export const userListContainer = css`
 `;
 
 export const footer = css`
+    display: flex;
+    justify-content: center;
     padding: 1rem;
 `;
 
