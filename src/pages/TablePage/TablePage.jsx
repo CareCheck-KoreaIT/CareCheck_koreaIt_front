@@ -18,11 +18,7 @@ import {
 } from "../../atoms/doctorTable/doctorTableAtom";
 import ReactModal from "react-modal";
 import DiseasesModal from "../../components/TablePageComponents/Modals/DiseasesModal/DiseasesModal";
-
-const waitingList = "진료 대기자 명단";
-const patientInfo = "환자정보";
-const diagnosisRegister = "상병 등록";
-const prescriptionRegister = "처방 등록";
+import OrderModal from "../../components/TablePageComponents/Modals/OrdersModal/OrderModal";
 
 function TablePage() {
   const [admissionId, setAdmissionId] = useRecoilState(waitingLisAdmId);
@@ -36,6 +32,9 @@ function TablePage() {
 
   const handleDiseaseModalOpen = () => {
     setDiseaseModalOpen(true);
+  };
+  const handleOrdersModalOpen = () => {
+    setOrdersModalOpen(true);
   };
 
   return (
@@ -82,8 +81,8 @@ function TablePage() {
             {/*환자정보 끝*/}
             <div>
               <div>
-                <table css={s.rightTable}>
-                  <tr onClick={handleDiseaseModalOpen}>
+                <table css={s.rightTable} onClick={handleDiseaseModalOpen}>
+                  <tr>
                     <td>상병 등록</td>
                   </tr>
                 </table>
@@ -102,7 +101,7 @@ function TablePage() {
             {/*상병등록 끝*/}
             <div>
               <div>
-                <table css={s.rightTable}>
+                <table css={s.rightTable} onClick={handleOrdersModalOpen}>
                   <tr>
                     <td>처방 등록</td>
                   </tr>
@@ -120,7 +119,6 @@ function TablePage() {
                     <td>용법</td>
                   </tr>
                 </table>
-
                 <DiagnosisOrder />
               </div>
             </div>
@@ -142,9 +140,33 @@ function TablePage() {
               borderRadius: "1.5rem",
               width: "70rem",
               height: "60rem",
+              overflowX: "hidden",
+              overflowY: "auto",
             },
           }}
           children={<DiseasesModal />}
+        />{" "}
+        <ReactModal
+          isOpen={ordersModalOpen}
+          onRequestClose={() => setOrdersModalOpen(false)}
+          style={{
+            overlay: {
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              backgroundColor: "#00000099",
+            },
+            content: {
+              boxSizing: "border-box",
+              position: "static",
+              borderRadius: "1.5rem",
+              width: "70rem",
+              height: "60rem",
+              overflowX: "hidden",
+              overflowY: "auto",
+            },
+          }}
+          children={<OrderModal />}
         />
       </div>
     </>
