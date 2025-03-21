@@ -66,7 +66,7 @@ export const note = css`
 export const bottomSpace = css`
     font-size: 2rem;
     margin-bottom: 2rem;
-    word-spacing: 15rem;
+    word-spacing: 5rem;
 `;
 
 export const left = css`

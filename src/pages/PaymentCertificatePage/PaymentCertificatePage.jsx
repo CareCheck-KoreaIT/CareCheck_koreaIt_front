@@ -3,19 +3,21 @@ import * as s from './style';
 import React, { useEffect, useState } from 'react';
 import { useGetSearchPatientInfo, useGetSearchTotalPay } from '../../queries/admissionQuery';
 import { useParams } from 'react-router-dom';
+import { useQueryClient } from '@tanstack/react-query';
+import { IoFingerPrintOutline } from 'react-icons/io5';
 
 function PaymentCertificatePage(props) {
+    const queryClient = useQueryClient();
+    const userInfo = queryClient.getQueryData(["userMeQuery"]);
+    console.log(userInfo);
     const param = useParams();
     const [ searchPatientData, setSearchPatientData] = useState({
         admissionId: param.admissionId,
         patientId: null,
         clinicDeft: null,
-        userCode: null, 
     });
     
     const searchPatientInfoByAdmId = useGetSearchPatientInfo(Number(param.admissionId));
-    console.log(searchPatientInfoByAdmId?.data?.data);
-    
     const searchPatientInfoByAdmApi = searchPatientInfoByAdmId?.data?.data;
     
     useEffect(() => {
@@ -25,19 +27,17 @@ function PaymentCertificatePage(props) {
             admissionId: searchPatientInfoByAdmApi.admId,
             patientId: searchPatientInfoByAdmApi.patientId,
             clinicDeft: searchPatientInfoByAdmApi.clinicDeft,
-            userCode: searchPatientInfoByAdmApi.userCode,
         }));
     }
     }, [param.admissionId, searchPatientInfoByAdmApi]);
 
-    const admPatientInfoAdmId = useGetSearchPatientInfo((Number(searchPatientData.admissionId)),
-        {
-            enabled: !!searchPatientData.admissionId,
-        }
-    );
+    const admPatientInfoAdmId = useGetSearchPatientInfo((Number(param.admissionId)),
+    {
+        enabled: !!param.admissionId,
+    }
+);
 
     const admPatientInfoData = admPatientInfoAdmId?.data?.data || {};
-
     const totalPayAdmId = useGetSearchTotalPay(Number(param.admissionId), {
         enabled: !!param.admissionId,
     });
@@ -69,7 +69,7 @@ function PaymentCertificatePage(props) {
                     <tr>
                         <td css={s.title}>영 수 액</td>
                         <td colSpan="3" css={s.money}>
-                            <span>일금 {(totalPayAdmId?.data?.data || "").toLocaleString()}원</span>
+                            <span>일금 {(totalPayAdmId?.data?.data || 0).toLocaleString()}원</span>
                         </td>
                     </tr>
                     <tr>
@@ -83,7 +83,7 @@ function PaymentCertificatePage(props) {
                                 <span> {dateString} </span>
                             </div>
                             <div css={s.bottomSpace}>
-                                <span>담당확인: (인)</span>
+                                <span>담당확인: {userInfo?.data?.username}<IoFingerPrintOutline /></span>
                             </div>
                             <div css={s.left}>
                                 <div>이 계산서는 소득공제 납입 증명서로 사용할 수 있습니다.</div>
