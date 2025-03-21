@@ -7,6 +7,11 @@ export const getSearchNoticeListApi = async (params) =>
     await api.get("/notices", {params});
     console.log(Response.data);
 
+<<<<<<< HEAD
+export const getViewCountApi = async (noticeId) =>
+    await api.post(`/notices/${noticeId}`);
+=======
 // export const getViewCountApi = async (noticeId) =>
 //     await api.patch("/notices/{noticeId}", noticeId);
 
+>>>>>>> c0f6c517419e0ab1f409b6f4725ab237e3cb039f
