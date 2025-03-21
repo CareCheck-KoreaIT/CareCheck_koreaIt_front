@@ -9,7 +9,6 @@ import Swal from 'sweetalert2';
 
 function ChangeEmailModal({setOpen}) {
     const queryClient = useQueryClient();
-    const loginUser = queryClient.getQueryData(["userMeQuery"]);
     const updateEmailMutation = useUpdateEmailMutation();
 
     const [ emailValue, setEmailValue ] = useState("");
@@ -19,15 +18,25 @@ function ChangeEmailModal({setOpen}) {
     }
 
     const handleEmailChangeButtonOnClick = async () => {
-        let usercode = loginUser?.data.usercode;
-        // console.log(usercode + emailValue);
-        await updateEmailMutation.mutateAsync({usercode, email: emailValue});
-        await Swal.fire({
-            titleText: "이메일 변경 완료",
-            confirmButtonText: "확인",
-        })
-        queryClient.invalidateQueries(["userMeQuery"]);
-        setOpen(false);
+        await updateEmailMutation.mutateAsync(emailValue)
+        .then(response => {
+            Swal.fire({
+                icon: "success",
+                titleText: "이메일 변경 완료",
+                confirmButtonText: "확인",
+            }).then(response => {
+                queryClient.invalidateQueries(["userMeQuery"]);
+                setOpen(false);
+            });
+        }).catch(error => {
+            Swal.fire({
+                icon: "error",
+                titleText: "이메일 변경 실패",
+                confirmButtonText: "다시 시도하세요",
+            }).then(response => {
+                setEmailValue("");
+            });
+        });
     }
 
     const handleInputOnKeyDown = async (e) => {

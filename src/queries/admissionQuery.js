@@ -55,6 +55,7 @@ export const useGetSelectVital = (admissionId) => {
     enabled: !!admissionId,
   });
 };
+
 export const useGetSearchWaitingList = (usercode) => {
   return useQuery({
     queryKey: ["useGetSearchWaitingList", usercode],
