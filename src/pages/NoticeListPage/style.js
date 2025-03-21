@@ -120,6 +120,8 @@ export const noticeListContainer = css`
 export const footer = css`
     display: flex;
     justify-content: center;
+    align-items: center;
+    position: relative;
     padding: 1rem;
 `;
 
@@ -162,4 +164,24 @@ export const pageNumbers = css`
 
 export const pageNum = (isSelect) => css`
     background-color: ${isSelect ? "#a4a4ca" : "#ffffff"} !important;
+`;
+
+export const wirteBoxwrapper = css`
+    position: absolute;
+    right: 5rem;
+    top: 50%;
+    transform: translateY(-50%);
+`;
+
+export const writeBox = css`
+    box-sizing: border-box;
+    border-radius: 0.2rem;
+    width: 10rem;
+    border: 1px solid #eeeeee;
+    cursor: pointer;
+
+    &:hover{
+        background-color: #dbdbdb;
+    }
+
 `;

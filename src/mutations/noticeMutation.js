@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import { createNoticeApi } from "../apis/noticeApi";
+import { createNoticeApi, getViewCountApi } from "../apis/noticeApi";
 
 export const useCreateNoticeMutation = () => useMutation({
   mutationKey: ["useCreateNoticeMutation"],
@@ -7,8 +7,8 @@ export const useCreateNoticeMutation = () => useMutation({
   retry: 0,
 })
 
-// export const useViewCountMutation = () => useMutation({
-//   mutationKey: ["useViewCountMutation"],
-//   mutationFn: getViewCountApi,
-//   retry: 0,
-// })
+export const useViewCountMutation = () => useMutation({
+  mutationKey: ["useViewCountMutation"],
+  mutationFn: getViewCountApi,
+  retry: 0,
+})

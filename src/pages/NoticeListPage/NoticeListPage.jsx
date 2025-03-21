@@ -2,18 +2,18 @@
 import Select from 'react-select';
 import * as s from './style';
 import { BiSearch } from 'react-icons/bi';
-import { useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { GoChevronLeft, GoChevronRight } from 'react-icons/go';
 import { IoSettingsSharp } from 'react-icons/io5';
 import { useGetSearchNoticeList } from '../../queries/NoticeQuery';
-// import { useMutation, useQueryClient } from '@tanstack/react-query';
-// import { getViewCountApi } from '../../apis/noticeApi';
-// import { useViewCountMutation } from '../../mutations/noticeMutation';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { getViewCountApi } from '../../apis/noticeApi';
 
 
 function NoticeListPage(props) {
     
+    const navgiate = useNavigate();
     const [ searchParams, setSearchParams ] = useSearchParams();
     const page = parseInt(searchParams.get("page") || "1");
     const order = searchParams.get("order") || "all";
@@ -25,7 +25,7 @@ function NoticeListPage(props) {
         order,
         searchText,
     });
-
+    
     const [ pageNumbers, setPageNumbers ] = useState([]);
     const [ searchValue, setSearchValue ] = useState(searchText);
 
@@ -33,8 +33,8 @@ function NoticeListPage(props) {
         {label: "전체", value: "all"},
         {label: "최근 게시글", value: "recent"},
         {label: "오래된 게시글", value: "oldest"},
-        {label: "조회수 많은 순", value: "viewDesc"},
-        {label: "조회수 적은 순", value: "viewAsc"},
+        {label: "조회수 많은 순", value: "viewsDesc"},
+        {label: "조회수 적은 순", value: "viewsAsc"},
     ];
 
     useEffect(() => {
@@ -84,17 +84,23 @@ function NoticeListPage(props) {
         setSearchParams(searchParams);
     }
 
-    // const queryClient = useQueryClient();
+    const handleWirtePageOnClick = () => {
+        navgiate("/notice/write")
+    }
 
-    // const viewCountMutation = useMutation(getViewCountApi, {    
-    //     onSuccess: () => {
-    //         queryClient.invalidateQueries('searchNoticeList');
-    //     }
-    // });
+    const queryClient = useQueryClient();
 
-    // const handleViewCountOnClick = (noticeId) => {
-    //     viewCountMutation.set(noticeId)
-    // }
+    const viewCountMutation = useMutation({
+        mutationFn: getViewCountApi,
+    });
+    const handleViewCountOnClick = async (noticeId) => {
+        try{
+            await viewCountMutation.mutateAsync(noticeId);
+            queryClient.invalidateQueries('searchNoticeList');
+        } catch (error) {
+            console.error("조회수 증가 실패:", error);
+        }
+    };
 
     return (
         <div css={s.container}>
@@ -165,6 +171,9 @@ function NoticeListPage(props) {
                     }
                     <button disabled={searchNoticeList?.data?.data.lastPage} onClick={() => handlePagenumbersOnClick(page + 1)}><GoChevronRight /></button>
                 </div>
+                <span css={s.wirteBoxwrapper}>
+                    <button css={s.writeBox} onClick={handleWirtePageOnClick}>글작성</button>
+                </span>
             </div>
         </div>
     );
