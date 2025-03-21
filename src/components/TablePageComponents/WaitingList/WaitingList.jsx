@@ -18,7 +18,6 @@ function WaitingList({ usercode }) {
   const waitingListByusercode = useGetSearchWaitingList(usercode);
   const waitingList = waitingListByusercode?.data?.data || [];
   useEffect(() => {
-    console.log("선택된 admid가 변경되었습니다.", admissionId);
     setResetDisease([]);
     setDiagnosisOrders([]);
   }, [admissionId]);

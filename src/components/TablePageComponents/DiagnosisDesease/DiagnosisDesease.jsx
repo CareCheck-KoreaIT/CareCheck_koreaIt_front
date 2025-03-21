@@ -6,10 +6,11 @@ import { diagnosisDisease } from "../../../atoms/doctorTable/doctorTableAtom";
 
 function DiagnosisDesease() {
   const [disease, setDisease] = useRecoilState(diagnosisDisease);
+  console.log("diagnosisDisease", disease);
   return (
     <>
       <table css={s.list}>
-        {disease.length < 1 ? (
+        {disease.length == 0 ? (
           <tr>
             <td></td>
             <td></td>

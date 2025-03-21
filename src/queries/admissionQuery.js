@@ -8,7 +8,7 @@ import {
 } from "../apis/admissionApi";
 
 export const useGetSearchDetailBill = (admissionId) => {
-  console.log("searchDetailBill 실행", admissionId);
+  console.log("detailBill", admissionId);
   return useQuery({
     queryKey: ["useGetSearchDetailBill", admissionId],
     queryFn: async () => {
@@ -21,7 +21,7 @@ export const useGetSearchDetailBill = (admissionId) => {
 };
 
 export const useGetSearchPatientInfo = (admissionId) => {
-  console.log("searchPateintInfo 실행 : ", admissionId);
+  console.log("patientInfo", admissionId);
   return useQuery({
     queryKey: ["useGetSearchPatientInfo", admissionId],
     queryFn: async () => {
@@ -34,7 +34,7 @@ export const useGetSearchPatientInfo = (admissionId) => {
 };
 
 export const useGetSearchTotalPay = (admissionId) => {
-  console.log("searchTotalPay 실행 : ", admissionId);
+  console.log("totalpay", admissionId);
   return useQuery({
     queryKey: ["useGetSearchTotalPay", admissionId],
     queryFn: async () => {
@@ -47,17 +47,15 @@ export const useGetSearchTotalPay = (admissionId) => {
 };
 
 export const useGetSelectVital = (admissionId) => {
-  console.log("SelectVital 실행", admissionId);
-  console.log(typeof admissionId);
   return useQuery({
     queryKey: ["useGetSelectVital", admissionId],
     queryFn: async () => {
       return await selectVitalByAdmApi(admissionId);
     },
+    enabled: !!admissionId,
   });
 };
 export const useGetSearchWaitingList = (usercode) => {
-  console.log("searchWaiting query 실행 : ", usercode);
   return useQuery({
     queryKey: ["useGetSearchWaitingList", usercode],
     queryFn: async () => {

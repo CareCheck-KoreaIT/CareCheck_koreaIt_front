@@ -14,7 +14,7 @@ export const header = css`
   width: 95%;
   height: 5rem;
   & > h2 {
-    width: 40rem;
+    width: 50rem;
     margin-left: 12rem;
     font-size: 2.5rem;
     text-align: center;
@@ -29,7 +29,7 @@ export const searchField = css`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 60rem;
+  width: 73.2rem;
   height: 4rem;
   margin-bottom: 1rem;
   border-bottom: 0.1rem solid #dbdbdb;
@@ -40,7 +40,7 @@ export const searchField = css`
     font-weight: bold;
   }
   & > input {
-    width: 40rem;
+    width: 60rem;
     border: none;
     font-size: 1.9rem;
   }
@@ -54,12 +54,13 @@ export const searchField = css`
   }
 `;
 export const mainField = css`
+  width: 100;
   & > h3 {
     margin-left: 1rem;
     font-size: 2rem;
   }
   & > table {
-    width: 60rem;
+    width: 70rem;
     border: 0.1rem solid #dbdbdb;
     border-collapse: collapse;
     margin: 1rem 0;
@@ -73,7 +74,7 @@ export const mainField = css`
     th,
     td {
       border: 0.1rem solid #dbdbdb;
-      width: 50%;
+      width: 16%;
       text-align: left;
       padding: 1rem;
     }
@@ -98,8 +99,9 @@ export const mainField = css`
   }
 `;
 export const selectField = css`
+  width: 100;
   & > table {
-    width: 60rem;
+    width: 70rem;
     border: 0.1rem solid #dbdbdb;
     border-collapse: collapse;
     margin: 1rem 0;
@@ -113,9 +115,10 @@ export const selectField = css`
     th,
     td {
       border: 0.1rem solid #dbdbdb;
-      width: 50%;
+      width: 16%;
       text-align: left;
       padding: 1rem;
+      overflow-x: hidden;
     }
 
     th {
@@ -162,9 +165,23 @@ export const selectFieldHeader = css`
       font-size: 1.6rem;
       color: #ffffff;
     }
+    &:disabled {
+      background-color: #9f9f9f;
+      color: #d3d3d3;
+      cursor: not-allowed;
+    }
   }
   & > h3 {
     margin-left: 1rem;
     font-size: 2rem;
   }
+`;
+
+export const tableInput = css`
+  width: 100%;
+  height: 2.5rem;
+  border: none;
+  padding: 0.5rem;
+  box-sizing: border-box;
+  font-size: 1.4rem;
 `;

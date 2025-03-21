@@ -5,5 +5,5 @@ export const orderCreateApi = async (order) => {
 };
 
 export const orderSearchApi = async (keyword) => {
-  await api.get(`/orders/list`, { params: { keyword } });
+  return await api.get(`/orders/list`, { params: { keyword } });
 };

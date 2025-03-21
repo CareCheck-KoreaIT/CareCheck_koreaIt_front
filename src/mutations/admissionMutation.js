@@ -1,9 +1,16 @@
 import { useMutation } from "@tanstack/react-query";
+import { insertDiagnosisApi, insertOrdersApi } from "../apis/admissionApi";
 
-export const useDiagnosisOrdeMutation = () => useMutation({
-    mutationKey: ["useDiagnosisOrdeMutation"],
-    mutationFn: diagnosisOrderApi(),
-    retry: 0
-})
+export const useOrdersInAdmIdMutation = () =>
+  useMutation({
+    mutationKey: ["useOrdersInAdmIdMutation"],
+    mutationFn: insertOrdersApi,
+    retry: 0,
+  });
 
-export const useDiagnosisDeseaseMutation = () => useMutation({})
+export const useDiagnosisInAdmIdMutation = () =>
+  useMutation({
+    mutationKey: ["useDiagnosisInAdmIdMutation"],
+    mutationFn: insertDiagnosisApi,
+    retry: 0,
+  });

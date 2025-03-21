@@ -12,6 +12,8 @@ import DiagnosisDesease from "../../components/TablePageComponents/DiagnosisDese
 import { useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import {
+  diagnosisDisease,
+  diagnosisOrders,
   openDiseaseModal,
   openOrdersModal,
   waitingLisAdmId,
@@ -19,16 +21,26 @@ import {
 import ReactModal from "react-modal";
 import DiseasesModal from "../../components/TablePageComponents/Modals/DiseasesModal/DiseasesModal";
 import OrderModal from "../../components/TablePageComponents/Modals/OrdersModal/OrderModal";
+import { buttontest } from "../../styles/button";
+import {
+  useDiagnosisInAdmIdMutation,
+  useOrdersInAdmIdMutation,
+} from "../../mutations/admissionMutation";
 
 function TablePage() {
+  const ordersInAdmIdMutation = useOrdersInAdmIdMutation();
+  const diagnosisInAdmIdMutation = useDiagnosisInAdmIdMutation();
   const [admissionId, setAdmissionId] = useRecoilState(waitingLisAdmId);
   const [diseaseModalOpen, setDiseaseModalOpen] =
     useRecoilState(openDiseaseModal);
   const [ordersModalOpen, setOrdersModalOpen] = useRecoilState(openOrdersModal);
+  const [diagnosisList, setDiagnosisList] = useRecoilState(diagnosisDisease);
+  const [ordersList, setOrdersList] = useRecoilState(diagnosisOrders);
+
+  console.log("tablePage 진단입력", diagnosisList);
+  console.log("tablePage 처방입력", ordersList);
   const param = useParams();
-  useEffect(() => {
-    console.log("메인테이블에서의 admissionId 값 :", admissionId);
-  }, [param.usercode, admissionId]);
+  useEffect(() => {}, [param.usercode, admissionId]);
 
   const handleDiseaseModalOpen = () => {
     setDiseaseModalOpen(true);
@@ -37,6 +49,10 @@ function TablePage() {
     setOrdersModalOpen(true);
   };
 
+  const handleSaveOnClick = () => {
+    diagnosisInAdmIdMutation.mutateAsync(admissionId, diagnosisList);
+    ordersInAdmIdMutation.mutateAsync(admissionId, ordersList);
+  };
   return (
     <>
       <div css={s.layout}>
@@ -121,6 +137,11 @@ function TablePage() {
                 </table>
                 <DiagnosisOrder />
               </div>
+              <div css={s.footer}>
+                <button css={buttontest} onClick={handleSaveOnClick}>
+                  <span>저장</span>
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -144,7 +165,7 @@ function TablePage() {
               overflowY: "auto",
             },
           }}
-          children={<DiseasesModal />}
+          children={<DiseasesModal admissionId={admissionId} />}
         />{" "}
         <ReactModal
           isOpen={ordersModalOpen}
@@ -160,13 +181,13 @@ function TablePage() {
               boxSizing: "border-box",
               position: "static",
               borderRadius: "1.5rem",
-              width: "70rem",
+              width: "80rem",
               height: "60rem",
               overflowX: "hidden",
               overflowY: "auto",
             },
           }}
-          children={<OrderModal />}
+          children={<OrderModal admissionId={admissionId} />}
         />
       </div>
     </>

@@ -8,14 +8,27 @@ function DiagnosisOrder() {
   return (
     <>
       <table css={s.list}>
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
+        {orders.length < 1 ? (
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        ) : (
+          orders.map((order, index) => (
+            <tr key={index}>
+              <td>{order.orderCode}</td>
+              <td>{order.orderName}</td>
+              <td>{order.orderDose}</td>
+              <td>{order.orderCount}</td>
+              <td>{order.orderDays}</td>
+              <td>{order.orderMethod}</td>
+            </tr>
+          ))
+        )}
       </table>
     </>
   );

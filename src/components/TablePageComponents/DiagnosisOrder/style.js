@@ -6,9 +6,10 @@ export const list = css`
   border: 0.1rem solid #000000;
   border-collapse: collapse;
   margin: 2rem 0rem 2rem;
-  
-  & > tr, td {
-    width: 50rem;
+
+  & > tr,
+  td {
+    width: 16%;
     height: 5rem;
     box-sizing: border-box;
     border: 0.1rem solid #000000;
