@@ -7,6 +7,10 @@ import { useEffect, useState } from 'react';
 import { GoChevronLeft, GoChevronRight } from 'react-icons/go';
 import { IoSettingsSharp } from 'react-icons/io5';
 import { useGetSearchNoticeList } from '../../queries/NoticeQuery';
+// import { useMutation, useQueryClient } from '@tanstack/react-query';
+// import { getViewCountApi } from '../../apis/noticeApi';
+// import { useViewCountMutation } from '../../mutations/noticeMutation';
+
 
 function NoticeListPage(props) {
     
@@ -80,6 +84,18 @@ function NoticeListPage(props) {
         setSearchParams(searchParams);
     }
 
+    // const queryClient = useQueryClient();
+
+    // const viewCountMutation = useMutation(getViewCountApi, {    
+    //     onSuccess: () => {
+    //         queryClient.invalidateQueries('searchNoticeList');
+    //     }
+    // });
+
+    // const handleViewCountOnClick = (noticeId) => {
+    //     viewCountMutation.set(noticeId)
+    // }
+
     return (
         <div css={s.container}>
             <div css={s.header}>
@@ -117,7 +133,7 @@ function NoticeListPage(props) {
                 </div>
             </div>
             <div css={s.main}>
-                <ul css={s.userListContainer}>
+                <ul css={s.noticeListContainer}>
                     <li>
                         <div>No.</div>
                         <div>제목</div>
@@ -128,7 +144,7 @@ function NoticeListPage(props) {
                     {
                         searchNoticeList.isLoading ||
                         searchNoticeList?.data?.data.noticeList.map(params =>
-                            <li key={params.noticeId}>
+                            <li key={params.noticeId} onClick={() => handleViewCountOnClick(params.noticeId)}>
                                 <div>{params.noticeId}</div>
                                 <div>{params.title}</div>
                                 <div>{params.username}</div>
@@ -141,13 +157,13 @@ function NoticeListPage(props) {
             </div>
             <div css={s.footer}>
                 <div css={s.pageNumbers}>
-                    <button disabled={searchNoticeList?.data?.data.isfirstPage} onClick={() => handlePagenumbersOnClick(page - 1)}><GoChevronLeft /></button>
+                    <button disabled={searchNoticeList?.data?.data.firstPage} onClick={() => handlePagenumbersOnClick(page - 1)}><GoChevronLeft /></button>
                     {
                         pageNumbers.map(number =>
                             <button key={number} css={s.pageNum(page === number)} onClick={() => handlePagenumbersOnClick(number)}><span>{number}</span></button>
                         )
                     }
-                    <button disabled={searchNoticeList?.data?.data.islastPage} onClick={() => handlePagenumbersOnClick(page + 1)}><GoChevronRight /></button>
+                    <button disabled={searchNoticeList?.data?.data.lastPage} onClick={() => handlePagenumbersOnClick(page + 1)}><GoChevronRight /></button>
                 </div>
             </div>
         </div>

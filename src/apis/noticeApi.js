@@ -5,3 +5,6 @@ export const createNoticeApi = async (notice) => await api.post("/notices", noti
 export const getSearchNoticeListApi = async (params) => 
     await api.get("/notices", {params});
     console.log(Response.data);
+
+// export const getViewCountApi = async (noticeId) =>
+//     await api.patch("/notices/{noticeId}", noticeId);

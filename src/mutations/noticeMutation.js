@@ -6,3 +6,9 @@ export const useCreateNoticeMutation = () => useMutation({
   mutationFn: createNoticeApi,
   retry: 0,
 })
+
+// export const useViewCountMutation = () => useMutation({
+//   mutationKey: ["useViewCountMutation"],
+//   mutationFn: getViewCountApi,
+//   retry: 0,
+// })
