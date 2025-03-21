@@ -56,6 +56,7 @@ export const useGetSelectVital = (admissionId) => {
     },
   });
 };
+
 export const useGetSearchWaitingList = (usercode) => {
   console.log("searchWaiting query 실행 : ", usercode);
   return useQuery({

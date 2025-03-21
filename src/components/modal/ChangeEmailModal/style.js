@@ -50,7 +50,7 @@ export const main = css`
         box-sizing: border-box;
         outline: none;
         margin-right: 1rem;
-        border: 0cap;
+        border: 0;
         border-bottom: 0.2rem dotted #464667;
         /* border-radius: 0.5rem; */
         padding: 0.5rem 1rem;

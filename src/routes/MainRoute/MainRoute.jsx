@@ -17,6 +17,9 @@ import UserRoute from "../UserRoute/UserRoute";
 import NoticeWritePage from "../../pages/NoticeWritePage/NoticeWritePage";
 import NoticeLsitPage from "../../pages/NoticeListPage/NoticeListPage";
 import AccountRoute from "../AccountRoute/AccountRoute";
+import PaymentCertificatePage from "../../pages/PaymentCertificatePage/PaymentCertificatePage";
+
+
 function MainRoute() {
   useUserMeQuery();
 
@@ -36,6 +39,8 @@ function MainRoute() {
             <Route path="/employeenum" element={<EmployeeNumEnrollPage />} />
             <Route path="/notice/write" element={<NoticeWritePage />} />
             <Route path="/notice/list" element={<NoticeLsitPage />} />
+            <Route path="/:usercode/admission/:admissionId/certificate" element={<PaymentCertificatePage />} />
+
             <Route
               path="/:usercode/admission/:admissionId/detailBill"
               element={<DetailBillPage />}
