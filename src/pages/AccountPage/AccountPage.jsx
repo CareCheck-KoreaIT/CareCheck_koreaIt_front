@@ -1,108 +1,185 @@
 /**@jsxImportSource @emotion/react */
 import { useQueryClient } from '@tanstack/react-query';
 import * as s from './style';
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { RiAdminFill } from 'react-icons/ri';
+import { FaUserDoctor, FaUserNurse } from 'react-icons/fa6';
+import { BiSupport } from 'react-icons/bi';
+import ReactModal from 'react-modal';
+import ChangePassrodModal from '../../components/modal/ChangePasswordModal/ChangePasswordModal';
+import ChangeEmailModal from '../../components/modal/ChangeEmailModal/ChangeEmailModal';
+import ChangePhoneNumberModal from '../../components/modal/ChangePhoneNumberModal/ChangePhoneNumberModal';
+import { useNavigate } from 'react-router-dom';
+import { useUserMeQuery } from '../../queries/userQuery';
 
 function AccountPage(props) {
+    const navigate = useNavigate();
     const queryClient = useQueryClient();
     const loginUser = queryClient.getQueryData(["userMeQuery"]);
+    const userme = useUserMeQuery();
 
-    // 비밀번호 변경 모달 상태 관리
-    const [showPasswordModal, setShowPasswordModal] = useState(false);
-    const [newPassword, setNewPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
+    const [ passwordModalOpen, setPasswordModalOpen ] = useState(false);
+    const [ emailModalOpen, setEmailModalOpen ] = useState(false);
+    const [ phoneNumberModalOpen, setPhoneNumberModalOpen ] = useState(false);
 
-    const handleOpenPasswordModal = () => {
-        setShowPasswordModal(true);
-    };
+    const handleMyNoticeButtonOnClick = () => {
+        navigate("/");
+    }
 
-    const handleClosePasswordModal = () => {
-        setShowPasswordModal(false);
-        setNewPassword("");
-        setConfirmPassword("");
-    };
-
-    const handlePasswordChange = () => {
-        if (newPassword !== confirmPassword) {
-            alert("비밀번호가 일치하지 않습니다.");
-            return;
-        }
-        console.log("새 비밀번호:", newPassword);
-        handleClosePasswordModal();
-    };
-
+    const handleChangePasswordButtonOnClick = () => {
+        setPasswordModalOpen(true);
+    }
+    const handleChangeEmailButtonOnClick = () => {
+        setEmailModalOpen(true);
+    }
+    const handleChangePhoneNumberButtonOnClick = () => {
+        setPhoneNumberModalOpen(true);
+    }
+    
     return (
         <>
-            <div css={s.container}>
-                <div css={s.title}>
-                    <p>Account</p>
-                </div>
-                <div>
-                    <div css={s.usernameBox}>
-                        <span>{loginUser?.data?.username} 님</span>
+            <div css={s.layout}>
+                <div css={s.container}>
+                    <div css={s.title}>
+                        <p>Account</p>
                     </div>
-                    <div css={s.AccountBox}>
-                        <div css={s.userNumber}>사원번호 </div>
-                        <div>{loginUser?.data?.usercode}</div>
-                    </div>
-                    <div css={s.AccountBox}>
-                        <div css={s.authority}>권한 </div>
-                        <div>{loginUser?.data?.userRole.role.roleName}</div>
-                    </div>
-                </div>
-            </div>
-            <div css={s.container}>
-                <div css={s.title}>
-                    <p>Account security</p>
-                </div>
-                <div css={s.passwordBox}>
-                    <div css={s.passwordMiddle}>Password</div>
-                    <div>
-                        <button css={s.changeButton} onClick={handleOpenPasswordModal}>변경</button>
-                    </div>
-                </div>
-                <div css={s.emailBox}>
-                    <div css={s.emailMiddle}>Email</div>
-                    <div>{loginUser?.data?.email}</div>
-                    <div>
-                        <button css={s.changeButton}>변경</button>
-                    </div>
-                </div>
-                <div css={s.phoneNumberBox}>
-                    <div css={s.emailMiddle}>Phone-Number</div>
-                    <div>{loginUser?.data?.phoneNumber}</div>
-                    <div>
-                        <button css={s.changeButton}>변경</button>
-                    </div>
-                </div>
-            </div>
-
-            {/* 비밀번호 변경 모달 */}
-            {showPasswordModal && (
-                <div css={s.modalOverlay}>
-                    <div css={s.modalContent}>
-                        <h2>비밀번호 변경</h2>
-                        <input
-                            type="password"
-                            placeholder="새 비밀번호"
-                            value={newPassword}
-                            onChange={(e) => setNewPassword(e.target.value)}
-                            css={s.modalInput}
-                        />
-                        <input
-                            type="password"
-                            placeholder="새 비밀번호 확인"
-                            value={confirmPassword}
-                            onChange={(e) => setConfirmPassword(e.target.value)}
-                            css={s.modalInput}
-                        />
-                        <div css={s.modalButtons}>
-                            <button onClick={handlePasswordChange} css={s.changeButton}>변경</button>
-                            <button onClick={handleClosePasswordModal} css={s.cancelButton}>취소</button>
+                    <div css={s.accountBox}>
+                        <div css={s.profileBox}>
+                            {
+                                loginUser?.data?.userRole.roleId === 1 &&
+                                <RiAdminFill />
+                            }
+                            {
+                                loginUser?.data?.userRole.roleId === 2 &&
+                                <FaUserDoctor />
+                            }
+                            {
+                                loginUser?.data?.userRole.roleId === 3 &&
+                                <FaUserNurse />
+                            }
+                            {
+                                loginUser?.data?.userRole.roleId === 4 &&
+                                <BiSupport />
+                            }
+                        </div>
+                        <div css={s.userInfoBox}>
+                            <div css={s.userBox}>
+                                <div css={s.usernameBox}>
+                                    <span>{loginUser?.data?.username}</span>
+                                    <span> 님</span>
+                                </div>
+                                <div css={s.myNoticeButton}>
+                                    <button>내가 쓴 게시글</button>
+                                </div>
+                            </div>
+                            <div css={s.AccountBox}>
+                                <div css={s.AccountLine}>
+                                    <div css={s.infoTitle}>
+                                        사 원 번 호
+                                    </div>
+                                    <div>{loginUser?.data?.usercode}</div>
+                                </div>
+                                <div css={s.AccountLine}>
+                                    <div css={s.infoTitle}>
+                                        권 한
+                                    </div>
+                                    <div>{loginUser?.data?.userRole.role.roleName}</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            )}
+                <div css={s.container}>
+                    <div css={s.title}>
+                        <p>Account Security</p>
+                    </div>
+                    <div css={s.elementBox}>
+                        <div css={s.contentBox}>
+                            <div>Password</div>
+                            <span>비밀번호를 재설정합니다</span>
+                        </div>
+                        <div>
+                            <button css={s.changeButton} onClick={handleChangePasswordButtonOnClick}>변경</button>
+                        </div>
+                    </div>
+                    <div css={s.elementBox}>
+                        <div css={s.contentBox}>
+                            <div>Email</div>
+                            <div>{loginUser?.data?.email}</div>
+                        </div>
+                        <div>
+                            <button css={s.changeButton} onClick={handleChangeEmailButtonOnClick}>변경</button>
+                        </div>
+                    </div>
+                    <div css={s.elementBox}>
+                        <div css={s.contentBox}>
+                            <div>Phone-Number</div>
+                            <div>{loginUser?.data?.phoneNumber}</div>
+                        </div>
+                        <div>
+                            <button css={s.changeButton} onClick={handleChangePhoneNumberButtonOnClick}>변경</button>
+                        </div>
+                    </div>
+                </div>
+                <ReactModal 
+                    isOpen={passwordModalOpen}
+                    onRequestClose={() => setPasswordModalOpen(false)}
+                    style={{
+                        overlay: {
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            backgroundColor: "#00000088"
+                        },
+                        content: {
+                            position: "static",
+                            boxSizing: "border-box",
+                            borderRadius: "1.5rem",
+                            width: "60rem",
+                        }
+                    }}
+                    children={<ChangePassrodModal setOpen={setPasswordModalOpen} />}
+                />
+                <ReactModal 
+                    ariaHideApp={false}
+                    isOpen={emailModalOpen}
+                    onRequestClose={() => setEmailModalOpen(false)}
+                    style={{
+                        overlay: {
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            backgroundColor: "#00000088"
+                        },
+                        content: {
+                            position: "static",
+                            boxSizing: "border-box",
+                            borderRadius: "1.5rem",
+                            width: "60rem",
+                        }
+                    }}
+                    children={<ChangeEmailModal setOpen={setEmailModalOpen} />}
+                />
+                <ReactModal 
+                    isOpen={phoneNumberModalOpen}
+                    onRequestClose={() => setPhoneNumberModalOpen(false)}
+                    style={{
+                        overlay: {
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            backgroundColor: "#00000088"
+                        },
+                        content: {
+                            position: "static",
+                            boxSizing: "border-box",
+                            borderRadius: "1.5rem",
+                            width: "60rem",
+                        }
+                    }}
+                    children={<ChangePhoneNumberModal setOpen={setPhoneNumberModalOpen} />}
+                />
+            </div>
         </>
     );
 }

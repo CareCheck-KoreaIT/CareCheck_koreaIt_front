@@ -51,7 +51,7 @@ function JoinPage(props) {
       roleId: roleValue,
     }).then(response => {
       console.log(response);
-      alert("환자 등록 완료");
+      alert("직원 등록 완료");
     }).catch(error => {
       console.error(error);
       alert("오류발생");

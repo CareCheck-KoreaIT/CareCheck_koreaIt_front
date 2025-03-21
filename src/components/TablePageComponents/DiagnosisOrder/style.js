@@ -13,5 +13,6 @@ export const list = css`
     box-sizing: border-box;
     border: 0.1rem solid #000000;
     font-size: 2rem;
+    color: #000000;
   }
 `;
