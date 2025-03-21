@@ -59,10 +59,10 @@ export const searchButton = css`
 
 export const main = css`
     padding: 1rem;
-    height: 60rem;
+    height: 50rem;
 `;
 
-export const userListContainer = css`
+export const noticeListContainer = css`
     margin: 0;
     padding: 0;
     list-style-type: none;
@@ -118,6 +118,10 @@ export const userListContainer = css`
 `;
 
 export const footer = css`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
     padding: 1rem;
 `;
 
@@ -160,4 +164,24 @@ export const pageNumbers = css`
 
 export const pageNum = (isSelect) => css`
     background-color: ${isSelect ? "#a4a4ca" : "#ffffff"} !important;
+`;
+
+export const wirteBoxwrapper = css`
+    position: absolute;
+    right: 5rem;
+    top: 50%;
+    transform: translateY(-50%);
+`;
+
+export const writeBox = css`
+    box-sizing: border-box;
+    border-radius: 0.2rem;
+    width: 10rem;
+    border: 1px solid #eeeeee;
+    cursor: pointer;
+
+    &:hover{
+        background-color: #dbdbdb;
+    }
+
 `;

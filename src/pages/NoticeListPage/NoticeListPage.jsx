@@ -2,14 +2,18 @@
 import Select from 'react-select';
 import * as s from './style';
 import { BiSearch } from 'react-icons/bi';
-import { useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { GoChevronLeft, GoChevronRight } from 'react-icons/go';
 import { IoSettingsSharp } from 'react-icons/io5';
 import { useGetSearchNoticeList } from '../../queries/NoticeQuery';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { getViewCountApi } from '../../apis/noticeApi';
+
 
 function NoticeListPage(props) {
     
+    const navgiate = useNavigate();
     const [ searchParams, setSearchParams ] = useSearchParams();
     const page = parseInt(searchParams.get("page") || "1");
     const order = searchParams.get("order") || "all";
@@ -21,7 +25,7 @@ function NoticeListPage(props) {
         order,
         searchText,
     });
-
+    
     const [ pageNumbers, setPageNumbers ] = useState([]);
     const [ searchValue, setSearchValue ] = useState(searchText);
 
@@ -29,8 +33,8 @@ function NoticeListPage(props) {
         {label: "전체", value: "all"},
         {label: "최근 게시글", value: "recent"},
         {label: "오래된 게시글", value: "oldest"},
-        {label: "조회수 많은 순", value: "viewDesc"},
-        {label: "조회수 적은 순", value: "viewAsc"},
+        {label: "조회수 많은 순", value: "viewsDesc"},
+        {label: "조회수 적은 순", value: "viewsAsc"},
     ];
 
     useEffect(() => {
@@ -80,6 +84,24 @@ function NoticeListPage(props) {
         setSearchParams(searchParams);
     }
 
+    const handleWirtePageOnClick = () => {
+        navgiate("/notice/write")
+    }
+
+    const queryClient = useQueryClient();
+
+    const viewCountMutation = useMutation({
+        mutationFn: getViewCountApi,
+    });
+    const handleViewCountOnClick = async (noticeId) => {
+        try{
+            await viewCountMutation.mutateAsync(noticeId);
+            queryClient.invalidateQueries('searchNoticeList');
+        } catch (error) {
+            console.error("조회수 증가 실패:", error);
+        }
+    };
+
     return (
         <div css={s.container}>
             <div css={s.header}>
@@ -117,7 +139,7 @@ function NoticeListPage(props) {
                 </div>
             </div>
             <div css={s.main}>
-                <ul css={s.userListContainer}>
+                <ul css={s.noticeListContainer}>
                     <li>
                         <div>No.</div>
                         <div>제목</div>
@@ -128,7 +150,7 @@ function NoticeListPage(props) {
                     {
                         searchNoticeList.isLoading ||
                         searchNoticeList?.data?.data.noticeList.map(params =>
-                            <li key={params.noticeId}>
+                            <li key={params.noticeId} onClick={() => handleViewCountOnClick(params.noticeId)}>
                                 <div>{params.noticeId}</div>
                                 <div>{params.title}</div>
                                 <div>{params.username}</div>
@@ -141,14 +163,17 @@ function NoticeListPage(props) {
             </div>
             <div css={s.footer}>
                 <div css={s.pageNumbers}>
-                    <button disabled={searchNoticeList?.data?.data.isfirstPage} onClick={() => handlePagenumbersOnClick(page - 1)}><GoChevronLeft /></button>
+                    <button disabled={searchNoticeList?.data?.data.firstPage} onClick={() => handlePagenumbersOnClick(page - 1)}><GoChevronLeft /></button>
                     {
                         pageNumbers.map(number =>
                             <button key={number} css={s.pageNum(page === number)} onClick={() => handlePagenumbersOnClick(number)}><span>{number}</span></button>
                         )
                     }
-                    <button disabled={searchNoticeList?.data?.data.islastPage} onClick={() => handlePagenumbersOnClick(page + 1)}><GoChevronRight /></button>
+                    <button disabled={searchNoticeList?.data?.data.lastPage} onClick={() => handlePagenumbersOnClick(page + 1)}><GoChevronRight /></button>
                 </div>
+                <span css={s.wirteBoxwrapper}>
+                    <button css={s.writeBox} onClick={handleWirtePageOnClick}>글작성</button>
+                </span>
             </div>
         </div>
     );
