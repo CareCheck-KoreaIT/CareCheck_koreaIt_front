@@ -17,14 +17,12 @@ export const table = css`
     table-layout: fixed;
     border-collapse: collapse; /* 테두리 중복 제거 */
     text-align: center;
-
     font-size: 3rem;
-  
     border: 2px solid #000; /* 테이블 외부 테두리 */
 
     td {
-    border: 1px solid #000; /* 셀 테두리 */
-    padding: 1rem;
+        border: 1px solid #000; /* 셀 테두리 */
+        padding: 1rem;
     }
 `;
 
@@ -49,12 +47,12 @@ export const title2 = css`
     width: 16rem;
     height: 7rem;
     font-size: 3rem;
-    word-spacing: 5rem; /* 어간 (단어 사이의 간격) 조절 */
+    word-spacing: 5rem;
 `;
 
 export const money = css`
     font-size: 3rem;
-    word-spacing: 10rem; /* 어간 (단어 사이의 간격) 조절 */
+    word-spacing: 10rem;
 
     span:nth-of-type(2) {
     }
@@ -65,13 +63,9 @@ export const note = css`
     word-spacing: 0.5rem;
 `;
 
-export const noteNumber = css`
-    font-size: 2rem;
-`;
-
 export const bottomSpace = css`
     font-size: 2rem;
-    margin-bottom: 2rem; /* 2번째 p 태그만 마진 바텀 적용 */
+    margin-bottom: 2rem;
     word-spacing: 15rem;
 `;
 

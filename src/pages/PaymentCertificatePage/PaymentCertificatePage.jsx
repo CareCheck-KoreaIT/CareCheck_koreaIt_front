@@ -79,7 +79,7 @@ function PaymentCertificatePage(props) {
                     <tr>
                         <td colSpan="4" css={s.note}>
                             <span>위 금액을 영수함</span>
-                            <div css={s.noteNumber}>
+                            <div css={s.note}>
                                 <span> {dateString} </span>
                             </div>
                             <div css={s.bottomSpace}>
