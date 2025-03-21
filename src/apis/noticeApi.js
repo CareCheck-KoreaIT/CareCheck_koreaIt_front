@@ -9,6 +9,5 @@ export const getSearchNoticeListApi = async (params) =>
 
 export const getViewCountApi = async (noticeId) =>
     await api.post(`/notices/${noticeId}`);
-// export const getViewCountApi = async (noticeId) =>
-//     await api.patch("/notices/{noticeId}", noticeId);
+
 

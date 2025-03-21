@@ -9,6 +9,8 @@ import { IoSettingsSharp } from 'react-icons/io5';
 import { useGetSearchNoticeList } from '../../queries/NoticeQuery';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { getViewCountApi } from '../../apis/noticeApi';
+import ReactModal from 'react-modal';
+import NoticeModal from '../../components/modal/NoticeModal/NoticeModal';
 
 
 function NoticeListPage(props) {
@@ -25,7 +27,7 @@ function NoticeListPage(props) {
         order,
         searchText,
     });
-    
+
     const [ pageNumbers, setPageNumbers ] = useState([]);
     const [ searchValue, setSearchValue ] = useState(searchText);
 
@@ -93,14 +95,20 @@ function NoticeListPage(props) {
     const viewCountMutation = useMutation({
         mutationFn: getViewCountApi,
     });
-    const handleViewCountOnClick = async (noticeId) => {
+    const handleViewCountOnClick = async (noticeId, notice) => {
         try{
             await viewCountMutation.mutateAsync(noticeId);
             queryClient.invalidateQueries('searchNoticeList');
+            setSelectedNotice(notice);
+            setIsModalOpen(true);
         } catch (error) {
             console.error("조회수 증가 실패:", error);
         }
+        
     };
+
+    const [ selectedNotice, setSelectedNotice ] = useState(null);
+    const [ isModalOpen, setIsModalOpen ] = useState(false);
 
     return (
         <div css={s.container}>
@@ -114,7 +122,7 @@ function NoticeListPage(props) {
                         styles={{
                             control: (style) => ({
                                 ...style,
-                                width: "11rem",
+                                width: "15rem",
                                 minHeight: "3.2rem",
                                 fontSize: 15,
                             }),
@@ -150,7 +158,7 @@ function NoticeListPage(props) {
                     {
                         searchNoticeList.isLoading ||
                         searchNoticeList?.data?.data.noticeList.map(params =>
-                            <li key={params.noticeId} onClick={() => handleViewCountOnClick(params.noticeId)}>
+                            <li key={params.noticeId} onClick={() => handleViewCountOnClick(params.noticeId, params)}>
                                 <div>{params.noticeId}</div>
                                 <div>{params.title}</div>
                                 <div>{params.username}</div>
@@ -161,6 +169,11 @@ function NoticeListPage(props) {
                     }
                 </ul>
             </div>
+            <NoticeModal
+                isOpen={isModalOpen} 
+                setIsOpen={setIsModalOpen} 
+                notice={selectedNotice} 
+            />
             <div css={s.footer}>
                 <div css={s.pageNumbers}>
                     <button disabled={searchNoticeList?.data?.data.firstPage} onClick={() => handlePagenumbersOnClick(page - 1)}><GoChevronLeft /></button>
@@ -172,7 +185,7 @@ function NoticeListPage(props) {
                     <button disabled={searchNoticeList?.data?.data.lastPage} onClick={() => handlePagenumbersOnClick(page + 1)}><GoChevronRight /></button>
                 </div>
                 <span css={s.wirteBoxwrapper}>
-                    <button css={s.writeBox} onClick={handleWirtePageOnClick}>글작성</button>
+                    <button css={s.writeBox} onClick={handleWirtePageOnClick}>글쓰기</button>
                 </span>
             </div>
         </div>
