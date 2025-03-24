@@ -1,7 +1,5 @@
 /**@jsxImportSource @emotion/react */
 import * as s from "./style";
-import MainHeader from "../../components/common/MainHeader/MainHeader";
-import MainContainer from "../../components/common/MainContainer/MainContainer";
 import { useUserMeQuery } from "../../queries/userQuery";
 import MainSidebar from "../../components/common/MainSidebar/MainSidebar";
 import NoTitleHeaderMenu from "../../components/NoTitleHeaderMenu/NoTitleHeaderMenu";
@@ -13,12 +11,15 @@ import ScorePayPage from "../../pages/ScorePayPage/ScorePayPage";
 import EmployeeNumEnrollPage from "../../pages/EmployeeNumEnrollPage/EmployeeNumEnrollPage";
 import DetailBillPage from "../../pages/DetailBillPage/DetailBillPage";
 import MembershipJoinPage from "../../pages/MembershipJoinPage/MembershipJoinPage";
-import InformationChangePage from "../../pages/InformationChangePage/InformationChangePage";
 import MedicalReceptionPage from "../../pages/MedicalReceptionPage/MedicalReceptionPage";
 import { Route, Routes } from "react-router-dom";
 import UserRoute from "../UserRoute/UserRoute";
 import NoticeWritePage from "../../pages/NoticeWritePage/NoticeWritePage";
 import NoticePage from "../../pages/NoticePage/NoticePage";
+import NoticeLsitPage from "../../pages/NoticeListPage/NoticeListPage";
+import AccountRoute from "../AccountRoute/AccountRoute";
+import AdmPatientVital from "../../components/TablePageComponents/AdmPatientViatal/AdmPatientVital";
+
 
 function MainRoute() {
   useUserMeQuery();
@@ -30,25 +31,24 @@ function MainRoute() {
         <div css={s.contentStyle}>
           <NoTitleHeaderMenu />
           <Routes>
+            <Route path="/account/*" element={<AccountRoute />} />
             <Route path="/admin/*" element={<UserRoute />} />
             <Route path="/receipt" element={<ReceiptPage />} />
             <Route path="/order" element={<OrderPage />} />
-            <Route path="/table" element={<TablePage />} />
             <Route path="/patient" element={<PatientRegistrationPage />} />
             <Route path="/scorepay" element={<ScorePayPage />} />
             <Route path="/employeenum" element={<EmployeeNumEnrollPage />} />
             <Route path="/notice/write" element={<NoticeWritePage />} />
             <Route path="/notices/:usercode" element={<NoticePage />} />
+            <Route path="/notice/list" element={<NoticeLsitPage />} />
+            <Route path="/noticewrite" element={<NoticeWritePage />} 
 
             <Route
-              path="/admission/:admId/detailBill"
+              path="/:usercode/admission/:admissionId/detailBill"
               element={<DetailBillPage />}
             />
+            <Route path="/:usercode/admission/table" element={<TablePage />} />
             <Route path="/manager" element={<MembershipJoinPage />} />
-            <Route
-              path="/InformationChange"
-              element={<InformationChangePage />}
-            />
             <Route
               path="/MedicalReception"
               element={<MedicalReceptionPage />}

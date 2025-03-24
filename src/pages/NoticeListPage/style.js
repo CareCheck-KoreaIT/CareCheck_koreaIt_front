@@ -53,6 +53,7 @@ export const searchButton = css`
         height: 2rem;
         margin: 0;
         padding: 0;
+        cursor: pointer;
     }
 `;
 
@@ -87,72 +88,31 @@ export const userListContainer = css`
         }
 
         & > div {
+            display: flex;
+            justify-content: center;
             box-sizing: border-box;
             font-size: 1.5rem;
         }
         & > div:not(& > div:nth-last-of-type(1)) {
-            margin: 0 1rem 0 0.5rem;
             border-right: 0.1rem solid #dbdbdb;
         }
         & > div:nth-of-type(1) {
             padding-left: 0.5rem;
-            width: 18rem;
+            width: 20rem;
+            
         }
         & > div:nth-of-type(2) {
-            width: 18rem;
+            flex-grow: 1;
         }
         & > div:nth-of-type(3) {
-            width: 15rem;
+            width: 18rem;
         }
         & > div:nth-of-type(4) {
             width: 24rem;
         }
         & > div:nth-of-type(5) {
-            flex-grow: 1;
-        }
-
-        & > div:nth-of-type(6) {
-            width: 16.5rem;
-        }
-
-        & > div:nth-of-type(7) {
-            width: 16.5rem;
-        }
-
-        & > div:nth-of-type(8) {
             display: flex;
-            align-items: center;
             width: 5rem;
-
-            & > button {
-                box-sizing: border-box;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                margin-right: 0.5rem;
-                border: none;
-                border-radius: 0.5rem;
-                padding: 0;
-                width: 2rem;
-                height: 2rem;
-                cursor: pointer;
-                &:nth-of-type(1) {
-                    background-color: #464667;
-                    & > svg {
-                        width: 1.5rem;
-                        height: 1.5rem;
-                        color: #ffffff;
-                    }
-                }
-                &:nth-of-type(2) {
-                    background-color: #ff6161;
-                    & > svg {
-                        width: 1.5rem;
-                        height: 1.5rem;
-                        color: #ffffff;
-                    }
-                }
-            }
         }
     }
 `;
@@ -164,7 +124,7 @@ export const footer = css`
 export const pageNumbers = css`
     display: flex;
     width: 25rem;
-
+    
     & > button {
         display: flex;
         justify-content: center;

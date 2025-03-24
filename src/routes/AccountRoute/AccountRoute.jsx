@@ -6,7 +6,7 @@ function AccountRoute(props) {
     return (
         <>
             <Routes>
-                <Route path='/account' element={<AccountPage />} />
+                <Route path='/info' element={<AccountPage />} />
             </Routes>
         </>
     );
