@@ -40,7 +40,7 @@ function MainRoute() {
             <Route path="/employeenum" element={<EmployeeNumEnrollPage />} />
             <Route path="/notice/write" element={<NoticeWritePage />} />
             <Route path="/notice/list" element={<NoticeLsitPage />} />
-            <Route path="/notice:usercode" element={<NoticeMyListPage />} />
+            <Route path="/notice/:usercode" element={<NoticeMyListPage />} />
             <Route path="/:usercode/admission/:admissionId/certificate" element={<PaymentCertificatePage />} />
 
             <Route

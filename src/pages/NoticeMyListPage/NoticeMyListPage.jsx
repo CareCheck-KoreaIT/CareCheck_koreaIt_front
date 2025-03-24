@@ -16,10 +16,10 @@ const [searchText, setSearchText] = useState(searchParams.get("searchText") || "
 const order = searchParams.get("order") || "default";
 
 const searchNoticeList = useGetUsercodeNoticeList(usercode, {
-page,
-limitCount: 15,
-order,
-searchText,
+    page,
+    limitCount: 15,
+    order,
+    searchText,
 });
 
 const [pageNumbers, setPageNumbers] = useState([]);
