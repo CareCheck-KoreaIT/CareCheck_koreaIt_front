@@ -1,7 +1,7 @@
 /**@jsxImportSource @emotion/react */
 import { useSignupMutation } from '../../mutations/userMutation';
 import * as s from './style';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 function JoinPage(props) {
   const signupMutation = useSignupMutation();
@@ -14,6 +14,12 @@ function JoinPage(props) {
     phoneNumber: "",
     roleId: roleValue,
   });
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  const phoneNumberRegex = /^010-\d{4}-\d{4}$/;
+  const passwordRegex = /^.{4,}$/;
+  const [ emailValidMessage, setEmailValidMessage ] = useState("");
+  const [ phoneNumberValidMessage, setPhoneNumberValidMessage ] = useState("");
+  const [ passwordValidMessage, setPasswordValidMessage ] = useState("");
   
   const isError = () => {
     const isEmpty = Object.values(inputValue).map(value => !!value).includes(false); // 필요한 값 모두 작성하였는지 확인 (숫자 타입인 roleId 는 0 인 경우 빈 값으로 처리됨)
@@ -26,6 +32,34 @@ function JoinPage(props) {
       [e.target.name]: e.target.value,
     }));
   }
+
+  useEffect(() => {
+    if (!inputValue.email) {
+      setEmailValidMessage(""); // 빈 값이면 에러 메시지 제거
+    } else if (!emailRegex.test(inputValue.email)) {
+      setEmailValidMessage("올바른 이메일 형식이 아닙니다.");
+    } else {
+      setEmailValidMessage(""); // 올바른 값이면 에러 메시지 제거
+    }
+  }, [inputValue.email]);
+  useEffect(() => {
+    if (!inputValue.phoneNumber) {
+      setPhoneNumberValidMessage("");
+    } else if (!phoneNumberRegex.test(inputValue.phoneNumber)) {
+      setPhoneNumberValidMessage("올바른 전화번호 형식이 아닙니다. 010-0000-0000 형식으로 작성해주세요.");
+    } else {
+      setPhoneNumberValidMessage("");
+    }
+  }, [inputValue.phoneNumber]);
+  useEffect(() => {
+    if(!inputValue.password) {
+      setPasswordValidMessage("");
+    } else if (!passwordRegex.test(inputValue.password)) {
+      setPasswordValidMessage("4자리 이상 입력해주세요.")
+    } else {
+      setPasswordValidMessage("");
+    }
+  })
 
   const handleSelectRoleOnChange = (e) => {
     const getRoleId = Number(e.target.value); // e.target.value 는 String 으로 받아오기 때문에 숫자로 저장하기 위해서는 Number 로 강제 지정해줘야함
@@ -68,19 +102,30 @@ function JoinPage(props) {
         <main css={s.inputGroup}>
           <div css={s.input}>
             <label htmlFor="name">이름</label>
-            <input type="text" name='username' value={inputValue.username} onChange={handleInputValueOnChange} />
+            <div>
+              <input type="text" name='username' value={inputValue.username} onChange={handleInputValueOnChange} />
+            </div>
           </div>
           <div css={s.input}>
             <label htmlFor="password">비밀번호</label>
-            <input type="password" name='password' value={inputValue.password} onChange={handleInputValueOnChange} />
+            <div>
+              <input type="password" name='password' value={inputValue.password} onChange={handleInputValueOnChange} />
+              {!!passwordValidMessage && <p>{passwordValidMessage}</p>}
+            </div>
           </div>
           <div css={s.input}>
             <label htmlFor="email">이메일</label>
-            <input type="email" name='email' value={inputValue.email} onChange={handleInputValueOnChange} />
+            <div>
+              <input type="email" name='email' value={inputValue.email} onChange={handleInputValueOnChange} />
+              {!!emailValidMessage && <p>{emailValidMessage}</p>}
+            </div>
           </div>
           <div css={s.input}>
             <label htmlFor="phoneNumber">휴대전화</label>
-            <input type="text" name='phoneNumber' value={inputValue.phoneNumber} onChange={handleInputValueOnChange} placeholder='010-1234-5678' />
+            <div>
+              <input type="text" name='phoneNumber' value={inputValue.phoneNumber} onChange={handleInputValueOnChange} placeholder='010-1234-5678' />
+              {!!phoneNumberValidMessage && <p>{phoneNumberValidMessage}</p>}
+            </div>
           </div>
           <div css={s.input2}>
             <label htmlFor="authority">권한</label>
