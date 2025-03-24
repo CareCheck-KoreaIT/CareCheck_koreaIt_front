@@ -7,29 +7,41 @@ import { MdOutlineLocalHospital } from "react-icons/md";
 import { ImStatsDots } from "react-icons/im";
 import { RiAdminLine } from "react-icons/ri";
 import { IoIosLogOut } from "react-icons/io";
+import { NavLink } from "react-router-dom";
+
 
 function NoTitleHeaderMenu() {
   return (
     <header css={s.header}>
-      <div css={s.headerMenu}>
-        <IoReceipt />
-        접수
+      <div css={s.headerMenu} className={({ isActive }) => (isActive ? "active" : "")}>
+        <NavLink to="/patient" >
+            <div css={s.lconStyle}><IoReceipt /></div>
+            <span css={s.titleStyle}>접수</span>
+        </NavLink>
       </div>
       <div css={s.headerMenu}>
-        <LiaReceiptSolid />
-        수납
+        <NavLink to="/receipt/" className={({ isActive }) => (isActive ? "active" : "")} >
+        <div css={s.lconStyle}><LiaReceiptSolid /></div>
+        <span css={s.titleStyle}>수납</span>
+        </NavLink>
       </div>
       <div css={s.headerMenu}>
-        <MdOutlineLocalHospital />
-        처방
+        <NavLink to="/" className={({ isActive }) => (isActive ? "active" : "")}>
+          <div css={s.lconStyle}><MdOutlineLocalHospital /></div>
+          <span css={s.titleStyle}>처방</span>
+        </NavLink>
       </div>
       <div css={s.headerMenu}>
-        <ImStatsDots />
-        통계
+        <NavLink to="/" className={({ isActive }) => (isActive ? "active" : "")}>
+        <div css={s.lconStyle}><ImStatsDots /></div> 
+        <span css={s.titleStyle}>통계</span>
+        </NavLink>
       </div>
       <div css={s.headerMenu}>
-        <RiAdminLine />
-        관리자
+        <NavLink to="/notice/write" className={({ isActive }) => (isActive ? "active" : "")}>
+        <div css={s.lconStyle}><RiAdminLine /></div>
+        <span css={s.titleStyle}>관리자</span>
+        </NavLink>
       </div>
       <button css={s.logoutBtn}>
         <IoIosLogOut />
