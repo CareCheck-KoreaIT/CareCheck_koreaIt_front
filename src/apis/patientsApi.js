@@ -5,5 +5,4 @@ import { api } from "../configs/axiosConfig";
 export const addPatientApi = async (newPatient) => {
   const response = await api.post("/patient/registration", newPatient);
   return response.data;
-  
 };

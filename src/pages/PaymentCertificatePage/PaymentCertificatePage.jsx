@@ -36,8 +36,8 @@ function PaymentCertificatePage(props) {
         enabled: !!param.admissionId,
     }
 );
-
     const admPatientInfoData = admPatientInfoAdmId?.data?.data || {};
+
     const totalPayAdmId = useGetSearchTotalPay(Number(param.admissionId), {
         enabled: !!param.admissionId,
     });
@@ -52,7 +52,7 @@ function PaymentCertificatePage(props) {
     return (
         <>
         <div css={s.layout}>
-        {admPatientInfoData.patientId}
+        <div>
             <table css={s.table}>
                 <tbody>
                     <tr>
@@ -93,6 +93,9 @@ function PaymentCertificatePage(props) {
                     </tr>
                 </tbody>
             </table>
+                <button>세부내역서</button>
+                <button>이전</button>
+            </div>
         </div>
         </>
     );

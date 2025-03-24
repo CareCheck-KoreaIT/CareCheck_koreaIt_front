@@ -41,3 +41,10 @@ export const updateStartDate = async (admissionId) => {
 export const updateEndDate = async (admissionId) => {
   return await api.put(`admission/${admissionId}/complete`);
 };
+
+export const searchAllWaitingListApi = async (keyword) => {
+  console.log(keyword);
+  return await api.get("/admission/allWaitings", {
+    params: { keyword: keyword },
+  });
+};

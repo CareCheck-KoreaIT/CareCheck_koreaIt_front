@@ -25,7 +25,7 @@ export const global = css`
     font-size: 1.125rem;
   }
 
-  @media screen and (max-width: 64rem) {
+  /* @media screen and (max-width: 64rem) {
     body {
       font-size: 1.125rem;
     }
@@ -42,5 +42,5 @@ export const global = css`
       padding: 1rem 2rem;
       font-size: 1.5rem;
     }
-  }
+  } */
 `;

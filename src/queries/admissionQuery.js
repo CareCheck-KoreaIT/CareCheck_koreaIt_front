@@ -5,6 +5,7 @@ import {
   searchTotalPayByAdmApi,
   selectVitalByAdmApi,
   searchWaitingListApi,
+  searchAllWaitingListApi,
 } from "../apis/admissionApi";
 
 export const useGetSearchDetailBill = (admissionId) => {
@@ -65,5 +66,18 @@ export const useGetSearchWaitingList = (usercode) => {
     retry: 0,
     staleTime: 0,
     gcTime: 0,
+  });
+};
+
+export const useGetSearchAllWaitingList = (keyword) => {
+  // console.log("searchAllWaiting query 실행 : ", keyword);
+  return useQuery({
+    queryKey: ["useGetSearchAllWaitingList", keyword],
+    queryFn: async () => {
+      return await searchAllWaitingListApi(keyword);
+    },
+    retry: 0,
+    staleTime: 1000 * 60 * 5,
+    gcTime: 1000 * 60 * 5,
   });
 };
