@@ -11,17 +11,25 @@ export const header = css`
     align-items: center;
     border-bottom: 0.1rem solid #464667;
     padding: 1rem;
-`;
-
-export const title = css`
-    display: flex;
 
     & > h2 {
         margin: 0.5rem 0;
         font-size: 2.5rem;
         font-weight: 400;
         color: #2c2c43;
+
+        & > span {
+            margin-left: 1rem;
+            font-size: 1.2rem;
+        }
     }
+
+`;
+
+export const title = css`
+    display: flex;
+
+    
 `;
 
 export const searchItems = css`
@@ -59,7 +67,7 @@ export const searchButton = css`
 
 export const main = css`
     padding: 1rem;
-    height: 60rem;
+    height: 55rem;
 `;
 
 export const noticeList = css`
@@ -138,6 +146,9 @@ export const noticeList = css`
 `;
 
 export const footer = css`
+    display: flex;
+    box-sizing: border-box;
+    justify-content: center;
     padding: 1rem;
 `;
 
@@ -180,4 +191,24 @@ export const pageNumbers = css`
 
 export const pageNum = (isSelect) => css`
     background-color: ${isSelect ? "#a4a4ca" : "#ffffff"} !important;
+`;
+
+export const writeLayout = css`
+    position: relative;
+`;
+
+export const writeButton = css`
+    position: absolute;
+    left: 55rem;
+    width: 8rem;
+    height: 2.5rem;
+    border: none;
+    border-radius: 0.5rem;
+    background-color: #464667;
+    color: #fafafa;
+    cursor: pointer;
+
+    &:hover {
+        background-color: #3A3A4B;
+    }
 `;

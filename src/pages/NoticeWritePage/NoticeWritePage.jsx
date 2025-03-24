@@ -55,9 +55,20 @@ function NoticeWritePage(props) {
       return;
     }
 
+     // 모든 HTML 태그 제거
+    const plainTextContent = quillContent.replace(/<\/?[^>]+(>|$)/g, "");
+
+    if (!plainTextContent.trim()) {
+      await Swal.fire({
+        titleText: "게시글 내용이 비어있습니다.",
+        confirmButtonText: "확인",
+      });
+      return;
+    }
+
     const notice = {
       title,
-      content: quillContent,
+      content: plainTextContent,
     };
 
     const response = await createNoticeMutation.mutateAsync(notice);

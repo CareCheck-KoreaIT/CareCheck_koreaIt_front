@@ -12,3 +12,5 @@ export const useGetUsercodeNoticeList = (usercode, params) => {
     cacheTime: 1000 * 60 * 5,
   });
 };
+
+
