@@ -18,7 +18,8 @@ export const headerMenu = css`
   height: 3rem;
   font-size: 2rem;
   /* transition: all 0.2s ease-in-out; */
-  
+  cursor: pointer;
+
   & > a {
     text-decoration: none;
     color:black;
