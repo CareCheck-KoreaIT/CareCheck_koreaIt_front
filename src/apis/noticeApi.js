@@ -17,3 +17,5 @@ export const getUsercodeBoardListApi = async (usercode, params) => {
 
 export const deleteNoticeApi = async(noticeId) => await api.delete(`/notices/${noticeId}`);
 
+export const updateNoticeApi = async(noticeId, notice) => 
+  await api.put(`/notices/${noticeId}`, {notice});

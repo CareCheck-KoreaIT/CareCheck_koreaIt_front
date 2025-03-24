@@ -19,6 +19,7 @@ import NoticeLsitPage from "../../pages/NoticeListPage/NoticeListPage";
 import AccountRoute from "../AccountRoute/AccountRoute";
 import PaymentCertificatePage from "../../pages/PaymentCertificatePage/PaymentCertificatePage";
 import NoticeMyListPage from "../../pages/NoticeMyListpage/NoticeMyListPage";
+import NoticeModifyPage from "../../pages/NoticeModifyPage/NoticeModifyPage";
 
 
 function MainRoute() {
@@ -41,6 +42,7 @@ function MainRoute() {
             <Route path="/notice/write" element={<NoticeWritePage />} />
             <Route path="/notice/list" element={<NoticeLsitPage />} />
             <Route path="/notice/:usercode" element={<NoticeMyListPage />} />
+            <Route path="/notice/:usercode/modify/:noticeId" element={<NoticeModifyPage />} />
             <Route path="/:usercode/admission/:admissionId/certificate" element={<PaymentCertificatePage />} />
 
             <Route
