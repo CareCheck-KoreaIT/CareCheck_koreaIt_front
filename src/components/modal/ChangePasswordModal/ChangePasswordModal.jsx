@@ -35,7 +35,7 @@ function ChangePasswordModal({setOpen}) {
         } else {
           setPasswordValidMessage("");
         }
-      })
+    });
 
     const isError = () => {
         const isEmpty = Object.values(inputValue).map(value => !!value).includes(false);
