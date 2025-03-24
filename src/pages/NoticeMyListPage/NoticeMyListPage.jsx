@@ -7,7 +7,7 @@ import { BiSearch } from 'react-icons/bi';
 import * as s from './style';
 import { useDeleteNoticeMutation } from '../../mutations/noticeMutation';
 import DeleteNoticeModal from '../../components/modal/DeleteNoticeModal/DeleteNoticeModal';
-import NoticeModal from '../../components/modal/NoticeModal/NoticeModal';
+import NoticeMyListModal from '../../components/modal/NoticeMyListModal/NoticeMyListModal';
 import Swal from 'sweetalert2';
 
 function NoticeMyListPage() {
@@ -208,7 +208,7 @@ return (
             <button css={s.writeButton} onClick={handleWritePageOnClick}>글쓰기</button>
         </div>
     </div>
-    <NoticeModal 
+    <NoticeMyListModal
         isOpen={isNoticeModalOpen}
         setIsOpen={setIsNoticeModalOpen}
         notice={selectedNotice}
