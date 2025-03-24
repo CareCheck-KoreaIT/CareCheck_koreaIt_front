@@ -59,7 +59,7 @@ function JoinPage(props) {
     } else {
       setPasswordValidMessage("");
     }
-  })
+  }, [inputValue.password]);
 
   const handleSelectRoleOnChange = (e) => {
     const getRoleId = Number(e.target.value); // e.target.value 는 String 으로 받아오기 때문에 숫자로 저장하기 위해서는 Number 로 강제 지정해줘야함
