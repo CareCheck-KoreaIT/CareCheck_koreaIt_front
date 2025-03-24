@@ -29,12 +29,12 @@ const NoticeModal = ({ isOpen, setIsOpen, notice }) => {
                     padding: '2rem',
                     height: '75rem',
                     overflowY: 'auto',
+                    fontSize: '1.5rem',
                 },
             }}
         >
             <div>
-                <h2>공지사항</h2>
-                <p><strong>제목:</strong> {notice?.title}</p>
+                <h2>제목: {notice?.title}</h2>
                 <p><strong>작성자:</strong> {notice?.username}</p>
                 <p><strong>등록일:</strong> {notice?.createdAt}</p>
                 <p><strong>내용:</strong> {notice?.content}</p>

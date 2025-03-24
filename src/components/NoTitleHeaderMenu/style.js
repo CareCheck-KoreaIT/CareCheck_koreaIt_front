@@ -5,8 +5,9 @@ export const header = css`
   align-items: center;
   box-sizing: border-box;
   margin: 3rem 5rem;
-  width: 150rem;
+  width: 150rem; // 150rem
   height: 6rem;
+  position: relative;
 `;
 
 export const headerMenu = css`
@@ -14,17 +15,51 @@ export const headerMenu = css`
   justify-content: space-around;
   align-items: center;
   width: 9rem;
-  height: 2rem;
+  height: 3rem;
   font-size: 2rem;
+  /* transition: all 0.2s ease-in-out; */
+  
+  & > a {
+    text-decoration: none;
+    color:black;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 2rem;
+    white-space: nowrap;
+  }
 
   & > svg {
-    width: 3rem;
-    height: 3rem;
+    width: 3.5rem;
+    height: 3rem;  
 
     & > path {
       color: #404040;
     }
   }
+
+  .active {
+    color: #464667;
+    font-weight: bold;
+    border-bottom: 3px solid #464667;  
+    padding-bottom: 0.5rem;
+    width: 100%;
+
+    /* &::after {
+      content: '';
+      position: absolute;
+      bottom: -2rem;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background-color: #464667;
+    } */
+  }
+
+  & > a:visited {
+    color: black; 
+  }
+
 `;
 
 export const logoutBtn = css`
@@ -38,6 +73,7 @@ export const logoutBtn = css`
   background-color: #464667;
   font-size: 2rem;
   color: #fafafa;
+  cursor: pointer;
 
   & > svg {
     width: 2rem;
@@ -48,4 +84,12 @@ export const logoutBtn = css`
       color: #fafafa;
     }
   }
+`;
+
+export const lconStyle = css`
+  margin-right: 0.7rem;
+`;
+
+export const titleStyle = css`
+  display: inline-block;
 `;
