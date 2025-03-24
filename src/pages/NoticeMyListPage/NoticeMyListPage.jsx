@@ -6,6 +6,9 @@ import { useEffect, useState } from 'react';
 import { BiSearch } from 'react-icons/bi';
 import * as s from './style';
 import { useDeleteNoticeMutation } from '../../mutations/noticeMutation';
+import DeleteNoticeModal from '../../components/modal/DeleteNoticeModal/DeleteNoticeModal';
+import NoticeModal from '../../components/modal/NoticeModal/NoticeModal';
+import Swal from 'sweetalert2';
 
 function NoticeMyListPage() {
 const navigate = useNavigate();
@@ -14,6 +17,11 @@ const { usercode } = useParams();
 const page = parseInt(searchParams.get("page") || "1");
 const [searchText, setSearchText] = useState(searchParams.get("searchText") || "");
 const order = searchParams.get("order") || "default";
+const [ isModalOpen, setIsModalOpen ] = useState(false);
+const [ selectedNoticeId, setSelectedNoticeId ] = useState(null);
+
+const [ isNoticeModalOpen, setIsNoticeModalOpen ] = useState(false);
+const [ selectedNotice, setSelectedNotice ] = useState(null);
 
 const searchNoticeList = useGetUsercodeNoticeList(usercode, {
     page,
@@ -70,17 +78,49 @@ const handleWritePageOnClick = () => {
     navigate("/notice/write")
 }
 
+
 const handleDeleteNoticeOnClick = (noticeId) => {
-    deleteNotice(noticeId, {
-        onSuccess: () => {
-            alert("삭제 완료");
+    // 삭제 확인 모달 띄우기
+    setSelectedNoticeId(noticeId);
+    setIsModalOpen(true);
+};
+
+const handleTitleOnClick = (notice) => {
+    setSelectedNotice(notice);
+    setIsNoticeModalOpen(true);
+}
+
+const handleConfirmDeleteOnClick = async () => {
+    if (selectedNoticeId) {
+      deleteNotice(selectedNoticeId, {
+        onSuccess: async () => {
+            setIsModalOpen(false);
+            await Swal.fire({
+                titleText: "삭제가 완료되었습니다.",
+                icon: "success",
+                confirmButtonText: "확인"
+            });
             searchNoticeList.refetch();
         },
-        onError: () => {
-            alert("삭제 실패");
+        onError: async () => {
+          setIsModalOpen(false);
+          await Swal.fire({
+            titleText: "삭제 실패",
+            icon: "error",
+            confirmButtonText: "확인"
+        });
         }
-    });
-};
+      });
+    }
+  };
+
+const handleCancelDeleteOnClick = () => {
+    setIsModalOpen(false);
+}
+
+const handleCloseModalOnClick = () => {
+    setIsModalOpen(false);
+  };
 
 
 return (
@@ -119,7 +159,7 @@ return (
             searchNoticeList.data?.data.noticeList.map((param, index) => (
                 <li key={param.noticeId}>
                 <div>{(page - 1) * 15 + (index + 1)}</div>
-                <div>{param.title}</div>
+                <div onClick={() => handleTitleOnClick(param)}>{param.title}</div>
                 <div>{param.username}</div>
                 <div>{param.createdAt}</div>
                 <div>
@@ -168,6 +208,18 @@ return (
             <button css={s.writeButton} onClick={handleWritePageOnClick}>글쓰기</button>
         </div>
     </div>
+    <NoticeModal 
+        isOpen={isNoticeModalOpen}
+        setIsOpen={setIsNoticeModalOpen}
+        notice={selectedNotice}
+    />
+
+    <DeleteNoticeModal 
+        isOpen={isModalOpen}
+        onCancel={handleCancelDeleteOnClick}
+        onConfirm={handleConfirmDeleteOnClick}
+        onClose={handleCloseModalOnClick} 
+    />
 
 </div>
 );

@@ -110,6 +110,7 @@ export const noticeList = css`
         }
         & > div:nth-of-type(2) {
             flex-grow: 1;
+            cursor: pointer;
         }
         & > div:nth-of-type(3) {
             width: 18rem;
