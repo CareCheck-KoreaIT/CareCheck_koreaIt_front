@@ -10,9 +10,9 @@ import { useDeleteNoticeMutation } from '../../mutations/noticeMutation';
 function NoticePage() {
 const navigate = useNavigate();
 const [searchParams, setSearchParams] = useSearchParams();
-const { usercode } = useParams(); // URL 파라미터에서 usercode 가져오기
+const { usercode } = useParams();
 const page = parseInt(searchParams.get("page") || "1");
-const [searchText, setSearchText] = useState(searchParams.get("searchText") || ""); // 로컬 상태로 searchText 관리
+const [searchText, setSearchText] = useState(searchParams.get("searchText") || "");
 const order = searchParams.get("order") || "default";
 
 const searchNoticeList = useGetUsercodeNoticeList(usercode, {
