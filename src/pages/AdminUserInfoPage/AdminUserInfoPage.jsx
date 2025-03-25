@@ -131,7 +131,6 @@ function AdminUserInfoPage(props) {
             }
           });
           if (password) {
-            // password 정규식 추가
             await updateUserPasswordMutation.mutateAsync({usercode: usercode, password: password});
             Swal.fire({
                 icon: "success",
