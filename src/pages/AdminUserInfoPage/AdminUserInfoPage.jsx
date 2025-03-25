@@ -137,7 +137,10 @@ function AdminUserInfoPage(props) {
                 icon: "success",
                 titleText: "비밀번호가 초기화 되었습니다",
                 confirmButtonText: "<div style='font-size: 1.5rem'>확인</div>"
-            }).then(response => {queryClient.invalidateQueries(["userMeQuery"])});
+            }).then(response => {
+                queryClient.invalidateQueries(["useGetSearchUserList"]);
+                queryClient.invalidateQueries(["userMeQuery"]);
+            });
           }
     }
     const handleDeleteButtonOnClick = async (usercode) => {
@@ -166,7 +169,10 @@ function AdminUserInfoPage(props) {
                 icon: "success",
                 titleText: "삭제되었습니다",
                 confirmButtonText: "<div style='font-size: 1.5rem'>확인</div>"
-            }).then(response => {queryClient.invalidateQueries(["userMeQuery"])});
+            }).then(response => {
+                queryClient.invalidateQueries(["useGetSearchUserList"]);
+                queryClient.invalidateQueries(["userMeQuery"]);
+            });
         }
     }
     
