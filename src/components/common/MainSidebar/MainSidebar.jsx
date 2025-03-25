@@ -5,6 +5,7 @@ import React, { useEffect } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { useRecoilState } from "recoil";
 import { headerMenuState } from "../../../atoms/Header/headerMenu";
+import { NavLink } from "react-router-dom";
 
 function MainSidebar() {
 
@@ -17,6 +18,8 @@ function MainSidebar() {
     const savedState = sessionStorage.getItem("headerState");
     if(savedState) {
       setHeaderState(savedState);
+    } else {
+      setHeaderState("접수메뉴변경") //
     }
   },[setHeaderState]);
 
@@ -26,12 +29,27 @@ function MainSidebar() {
 
   const renderSidebarMenu = () => {
     switch(headerState) {
+      case "메인메뉴":
+        return (
+          <>
+            <div><BsColumnsGap/><span>테스트1</span></div>
+            <div><BsColumnsGap/><span>테스트2</span></div>
+            <div><BsColumnsGap/><span>테스트3</span></div>
+          </>
+        )
+
       case "접수메뉴변경":
         return (
           <>
-            <div><BsColumnsGap /><span>환자 등록</span></div>
-            <div><BsColumnsGap /><span>접수 확인</span></div>
-            <div><BsColumnsGap /><span>환자 리스트</span></div>
+            <div><BsColumnsGap />
+            <span>환자 등록</span>
+            </div>
+            <div><BsColumnsGap />
+            <span>접수 확인</span>
+            </div>
+            <div><BsColumnsGap />
+            <span>환자 리스트</span>
+            </div>
           </>
         );
       case "수납메뉴변경":
@@ -66,8 +84,11 @@ function MainSidebar() {
   }
   return (
     <div css={s.sidebar}>
-      <header css={s.header}>
+      <header css={s.header} >
+        <NavLink to="/" className={({ isActive }) => (isActive ? undefined : "")}
+        onClick={()=>setHeaderState("메인메뉴")}>
         <h2>CareCheck</h2>
+        </NavLink>
       </header>
       <section css={s.section}>
           {renderSidebarMenu()}

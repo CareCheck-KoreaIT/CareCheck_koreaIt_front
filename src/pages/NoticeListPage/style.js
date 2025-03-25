@@ -184,7 +184,7 @@ export const writeBox = css`
     cursor: pointer;
 
     &:hover{
-        background-color: #dbdbdb;
+        background-color: #3A3A4B;
     }
 
 `;
