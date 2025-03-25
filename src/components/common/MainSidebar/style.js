@@ -1,26 +1,40 @@
 import { css } from "@emotion/react";
 
 export const sidebar = css`
+  position: fixed;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
+  width: 31rem;
   height: 100%;
   background-color: #464667;
   border-top-right-radius: 2.8rem;
   border-bottom-right-radius: 2.8rem;
   color: #ffffff;
+  font-weight: bold;
 `;
 
 export const header = css`
   margin-top: 5rem;
-  font-size: 3rem;
+  font-size: 2.6rem;
   font-weight: bold;
   & > h2 {
     color: #ffffff;
   }
+
+  & > a {
+    text-decoration: none;
+    color:white;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 2rem;
+    white-space: nowrap;
+  }
+
+  
 `;
 
 export const section = css`
@@ -30,14 +44,27 @@ export const section = css`
   gap: 4.5rem;
   & > div {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     width: 21.2rem;
-    height: 5rem;
+    height: 3rem;
     color: #ffffff;
     background-color: #464667;
-    font-size: 2.5rem;
+    font-size: 2rem;
     cursor: pointer;
+
+    & > span {
+      margin-left: 1rem;
+    }
+  }
+
+  .activ {
+    color: #464667;
+    font-weight: bold;
+    border-bottom: 3px solid #464667;  
+    padding-bottom: 0.5rem;
+    width: 100%;
+
   }
 `;
 
@@ -57,3 +84,5 @@ export const footer = css`
     cursor: pointer;
   }
 `;
+
+

@@ -1,37 +1,54 @@
 import { Route, Routes } from "react-router-dom";
 import MainLayout from "./components/common/MainLayout/MainLayout";
 import MainRoute from "./routes/MainRoute/MainRoute";
-import JoinPage from "./pages/JoinPage/JoinPage";
-import LoginPage from "./pages/LoginPage/LoginPage";
+import AuthRoute from "./routes/AuthRoute/AuthRoute";
 import { Global } from "@emotion/react";
 import { global } from "./styles/global";
-import ReceiptPage from "./pages/ReceiptPage/ReceiptPage";
-import OrderPage from "./pages/OrderPage/OrderPage";
-import TablePage from "./pages/TablePage/TablePage";
-import PatientRegistrationPage from "./pages/PatientRegistrationPage/PatientRegistrationPage";
-import ScorePayPage from "./pages/ScorePayPage/ScorePayPage";
-import EmployeeNumEnrollPage from "./pages/EmployeeNumEnrollPage/EmployeeNumEnrollPage";
+import { useEffect } from "react";
+import { useUserMeQuery } from "./queries/userQuery";
+import UserRoute from "./routes/UserRoute/UserRoute";
 
 function App() {
+  useUserMeQuery();
+
+  useEffect(() => {
+    // 🔹 Ctrl + 마우스 휠을 이용한 줌 방지
+    const disableZoom = (event) => {
+      if (event.ctrlKey) {
+        event.preventDefault();
+      }
+    };
+
+    // 🔹 Ctrl + + / - 키 사용한 줌 방지
+    const disableKeyboardZoom = (event) => {
+      if (
+        event.ctrlKey &&
+        (event.key === "+" || event.key === "-" || event.key === "0")
+      ) {
+        event.preventDefault();
+      }
+    };
+
+    document.addEventListener("wheel", disableZoom, { passive: false });
+    document.addEventListener("keydown", disableKeyboardZoom);
+
+    return () => {
+      document.removeEventListener("wheel", disableZoom);
+      document.removeEventListener("keydown", disableKeyboardZoom);
+    };
+  }, []);
+
   return (
     <>
-
-      <Global styles={global}/>
+      <Global styles={global} />
       <MainLayout>
         <Routes>
           <Route path="/*" element={<MainRoute />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/receipt" element={<ReceiptPage />} />
-          <Route path="/join" element={<JoinPage />} />
-          <Route path="/order" element={<OrderPage />} />
-          <Route path="/table" element={<TablePage />} />
-          <Route path="/patient" element={<PatientRegistrationPage />} />
-          <Route path="/scorepay" element={<ScorePayPage />} />
-          <Route path="/employeenum" element={<EmployeeNumEnrollPage />} />
+          <Route path="/auth/*" element={<AuthRoute />} />
+          <Route path="/user/*" element={<UserRoute />} />
         </Routes>
       </MainLayout>
     </>
   );
 }
-
 export default App;

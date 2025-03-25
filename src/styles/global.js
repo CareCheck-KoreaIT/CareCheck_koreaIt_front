@@ -3,14 +3,10 @@ import { css } from "@emotion/react";
 export const global = css`
   @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap");
 
-  * {
-    color: #333333;
-  }
-
   html,
   body,
   #root {
-    height: 100vh;
+    height: 100%;
     margin: 0;
     padding: 0;
     overflow: hidden;
@@ -24,4 +20,27 @@ export const global = css`
     align-items: center;
     background-color: #fafafa;
   }
+
+  body {
+    font-size: 1.125rem;
+  }
+
+  /* @media screen and (max-width: 64rem) {
+    body {
+      font-size: 1.125rem;
+    }
+  }
+
+  @media screen and (max-width: 48rem) {
+    body {
+      font-size: 1.25rem;
+    }
+  }
+
+  @media screen and (max-width: 48rem) {
+    button {
+      padding: 1rem 2rem;
+      font-size: 1.5rem;
+    }
+  } */
 `;

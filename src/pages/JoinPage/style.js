@@ -55,34 +55,52 @@ export const input = css`
   align-items: center;
   box-sizing: border-box;
   width: 60rem;
+  height: 8.3rem;
   font-size: 2rem;
   border-bottom: 0.1rem solid #3283CE;
 
   & > label {
     width: 10rem;
-    height: 8.6rem;
     margin-right: 2rem;
     text-align: left;
     line-height: 8rem;
 
   }
 
-  & > input {
-    width: 60rem;
-    height: 8.4rem;
-    border: none;
+  & > div:nth-of-type(1) {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 50rem;
 
-    &:focus {
-      outline: none;
+    & > input {
+      position: absolute;
+      transform: translateY(-50%);
+      width: 60rem;
       border: none;
+      font-size: 2.5rem;
+  
+      &:focus {
+        outline: none;
+        border: none;
+      }
+  
+      &::placeholder{
+      font-size: 2rem;
+      color: #9F9F9F;
+      }
     }
-
-    &::placeholder{
-    font-size: 2rem;
-    color: #9F9F9F;
+  
+    & > p {
+      position: absolute;
+      transform: translateY(100%);
+      margin: 0;
+      height: 1.2rem;
+      font-size: 1.2rem;
+      color: #ff4949;
+      visibility: visible;
     }
   }
-
 `;
 
 export const input2 = css`
@@ -105,6 +123,7 @@ export const input2 = css`
     width: 30rem;
     height: 5rem;
     border-radius: 0.5rem;
+    font-size: 2rem;
   }
 
 `;
