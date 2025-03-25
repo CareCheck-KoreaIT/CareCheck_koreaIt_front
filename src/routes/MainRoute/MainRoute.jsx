@@ -19,6 +19,7 @@ import NoticeLsitPage from "../../pages/NoticeListPage/NoticeListPage";
 import AccountRoute from "../AccountRoute/AccountRoute";
 import PaymentCertificatePage from "../../pages/PaymentCertificatePage/PaymentCertificatePage";
 import SummaryChartPage from "../../pages/SummaryChartPage/SummaryChartPage";
+import SummaryChartUsercodePage from "../../pages/SummaryChartUsercodePage/SummaryChartUsercodePage";
 
 function MainRoute() {
   useUserMeQuery();
@@ -55,6 +56,10 @@ function MainRoute() {
               element={<MedicalReceptionPage />}
             />
             <Route path="/summary" element={<SummaryChartPage />} />
+            <Route
+              path="/summary/usercode"
+              element={<SummaryChartUsercodePage />}
+            />
           </Routes>
         </div>
       </div>
