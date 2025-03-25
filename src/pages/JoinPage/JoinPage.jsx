@@ -1,4 +1,5 @@
 /**@jsxImportSource @emotion/react */
+import Swal from 'sweetalert2';
 import { useSignupMutation } from '../../mutations/userMutation';
 import * as s from './style';
 import React, { useEffect, useState } from 'react';
@@ -70,14 +71,17 @@ function JoinPage(props) {
     }));
   }
 
-  const handleJoinButtonOnClick = () => {
+  const handleJoinButtonOnClick = async () => {
     if(isError()) {
-      console.log(inputValue);
-      alert("사원 등록 정보를 입력해주세요.");
+      Swal.fire({
+        icon: "error",
+        titleText: "사원 등록 정보를 입력해주세요.",
+        confirmButtonText: "<div style='font-size: 1.5rem'>확인</div>"
+      });
       return;
     }
 
-    signupMutation.mutateAsync({
+    await signupMutation.mutateAsync({
       username: inputValue.username,
       password: inputValue.password,
       email: inputValue.email,
@@ -85,10 +89,19 @@ function JoinPage(props) {
       roleId: roleValue,
     }).then(response => {
       console.log(response);
-      alert("직원 등록 완료");
+      Swal.fire({
+        icon: "success",
+        titleText: "직원 등록 완료",
+        confirmButtonText: "<div style='font-size: 1.5rem'>확인</div>"
+      });
     }).catch(error => {
       console.error(error);
-      alert("오류발생");
+      Swal.fire({
+        icon: "error",
+        titleText: "직원 등록 실패",
+        text: "오류가 발생했습니다. 다시 시도해주세요.",
+        confirmButtonText: "<div style='font-size: 1.5rem'>확인</div>"
+      });
     })
   }
 

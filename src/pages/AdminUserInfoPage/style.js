@@ -122,21 +122,23 @@ export const userListContainer = css`
         & > div:nth-of-type(8) {
             display: flex;
             align-items: center;
-            width: 5rem;
+            width: 11rem;
+            font-size: 1.1rem;
 
             & > button {
                 box-sizing: border-box;
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                margin-right: 0.5rem;
+                margin-right: 1rem;
                 border: none;
                 border-radius: 0.5rem;
                 padding: 0;
-                width: 2rem;
+                width: 4rem;
                 height: 2rem;
                 cursor: pointer;
-                &:nth-of-type(1) {
+                &:nth-of-type(1),
+                &:nth-of-type(2) {
                     background-color: #464667;
                     & > svg {
                         width: 1.5rem;
@@ -144,7 +146,7 @@ export const userListContainer = css`
                         color: #ffffff;
                     }
                 }
-                &:nth-of-type(2) {
+                &:nth-of-type(3) {
                     background-color: #ff6161;
                     & > svg {
                         width: 1.5rem;
