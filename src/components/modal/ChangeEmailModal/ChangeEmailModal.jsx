@@ -1,5 +1,5 @@
 /**@jsxImportSource @emotion/react */
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import * as s from './style';
 import { useQueryClient } from '@tanstack/react-query';
 import { RiCloseCircleFill } from 'react-icons/ri';
@@ -12,12 +12,32 @@ function ChangeEmailModal({setOpen}) {
     const updateEmailMutation = useUpdateEmailMutation();
 
     const [ emailValue, setEmailValue ] = useState("");
+    const [ emailValidMessage, setEmailValidMessage ] = useState("");
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
     const handleEmailInputOnChange = (e) => {
         setEmailValue(e.target.value);
     }
+    useEffect(() => {
+        if(!emailValue) {
+            setEmailValidMessage("");
+        } else if(!emailRegex.test(emailValue)) {
+            setEmailValidMessage("올바른 이메일 형식이 아닙니다.");
+        } else {
+            setEmailValidMessage("");
+        }
+    }, [emailValue]);
 
     const handleEmailChangeButtonOnClick = async () => {
+        if(!emailValue) {
+            Swal.fire({
+                icon: "error",
+                titleText: "이메일 변경 실패",
+                text: "변경할 이메일을 입력해주세요.",
+                confirmButtonText: "확인",
+            });
+            return;
+        }
         await updateEmailMutation.mutateAsync(emailValue)
         .then(response => {
             Swal.fire({
@@ -60,8 +80,16 @@ function ChangeEmailModal({setOpen}) {
                 <p css={s.headerMessage}>변경할 이메일 주소를 입력하세요.</p>
             </div>
             <div css={s.main}>
-                <input type="email" name='newEmail' value={emailValue} onChange={handleEmailInputOnChange} onKeyDown={handleInputOnKeyDown} placeholder='Set your email...' />
-                <button onClick={handleEmailChangeButtonOnClick}>변경</button>
+                <div>
+                    <input type="email" name='newEmail' 
+                        value={emailValue} 
+                        onChange={handleEmailInputOnChange} 
+                        onKeyDown={handleInputOnKeyDown} 
+                        placeholder='Set your email...' 
+                    />
+                    {!!emailValidMessage && <p>{emailValidMessage}</p>}
+                </div>
+                <button onClick={handleEmailChangeButtonOnClick} disabled={!!emailValidMessage}>변경</button>
             </div>
         </div>
     );

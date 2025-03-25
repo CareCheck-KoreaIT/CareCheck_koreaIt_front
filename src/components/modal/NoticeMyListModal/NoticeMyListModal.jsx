@@ -2,11 +2,18 @@
 import ReactModal from 'react-modal';
 import * as s from './style';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';  // useNavigate 추가
 
-const NoticeModal = ({ isOpen, setIsOpen, notice }) => {
+const NoticeMyListModal = ({ isOpen, setIsOpen, notice }) => {
+    const navigate = useNavigate();  // useNavigate 훅 사용
+
     const handleCloseModal = () => {
         setIsOpen(false);
-        console.log(notice);
+    };
+
+    const handleModifyButtonClick = () => {
+        // 수정 버튼 클릭 시 NoticeModifyPage로 이동
+        navigate(`/notice/${notice.usercode}/modify/${notice.noticeId}`);
     };
 
     return (
@@ -29,20 +36,21 @@ const NoticeModal = ({ isOpen, setIsOpen, notice }) => {
                     padding: '2rem',
                     height: '75rem',
                     overflowY: 'auto',
-                    fontSize: '1.5rem',
                 },
             }}
         >
-            <div>
-                <h2>제목: {notice?.title}</h2>
+            <div css={s.mainlayout}>
+                <h1><strong>제목:</strong> {notice?.title}</h1>
                 <p><strong>작성자:</strong> {notice?.username}</p>
                 <p><strong>등록일:</strong> {notice?.createdAt}</p>
                 <p><strong>내용:</strong> {notice?.content}</p>
-                <div>
-                    <button css={s.style} onClick={handleCloseModal}>닫기</button>
+                <button css={s.headerCloseButton} onClick={handleCloseModal}>×</button>
+                <div css={s.buttonLayout}>
+                    <button css={s.modifyButton} onClick={handleModifyButtonClick}>수정</button>
+                    <button css={s.closeButton} onClick={handleCloseModal}>닫기</button>
                 </div>
             </div>
         </ReactModal>
     );
 };
-export default NoticeModal;
+export default NoticeMyListModal;
