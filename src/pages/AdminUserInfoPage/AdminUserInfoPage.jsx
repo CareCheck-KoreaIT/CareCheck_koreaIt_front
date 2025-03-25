@@ -60,9 +60,6 @@ function AdminUserInfoPage(props) {
     const [ foundUser, setFoundUser ] = useState({});
     const [ isOpen, setIsOpen ] = useState(false);
 
-    const [ foundUser, setFoundUser ] = useState({});
-    const [ isOpen, setIsOpen ] = useState(false);
-
     useEffect(() => {
         if(!searchUserList.isLoading) {
             const currentPage = searchUserList?.data?.data.page || 1;
@@ -234,7 +231,6 @@ function AdminUserInfoPage(props) {
                                 <div>{userList.updatedAt}</div>
                                 <div>
                                     <button onClick={() => handleChangeInfoButtonOnClick(userList.usercode)}><IoSettingsSharp /></button>
-
                                     <button onClick={() => handleChangePasswordButtonOnClick(userList.usercode)}><CgPassword /></button>
                                     <button onClick={() => handleDeleteButtonOnClick(userList.usercode)}><MdOutlineCancel /></button>
                                 </div>

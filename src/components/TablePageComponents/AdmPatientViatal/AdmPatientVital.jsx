@@ -33,7 +33,17 @@ function AdmPatientVital({ admissionId }) {
   return (
     <>
       {admPatientVitalData.length < 1 ? (
-        <div css={s.nodata}>입력된 값이 없습니다.</div>
+        <table css={s.list}>
+          <tbody>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
       ) : (
         admPatientVitalApi.map((patientVital) => (
           <table css={s.list} key={patientVitalData}>

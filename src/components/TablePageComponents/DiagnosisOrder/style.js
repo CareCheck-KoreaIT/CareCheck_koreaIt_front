@@ -14,6 +14,7 @@ export const list = css`
 
   & tbody td {
     border: 0.1rem solid #000000; /* 셀 테두리 */
+    height: 5rem;
     font-size: 1.8rem; /* 폰트 크기 */
     text-align: center; /* 텍스트 가운데 정렬 */
   }

@@ -91,11 +91,11 @@ export const rightTable = css`
   display: flex;
   justify-content: center;
   align-items: center;
-  box-sizing: border-box;
   border: 0.1rem solid #000000;
   height: 7rem;
   background-color: #464667;
   margin-bottom: 2rem;
+  overflow-y: auto;
 
   & > tr {
     font-size: 3rem;
@@ -108,15 +108,13 @@ export const rightTable = css`
 export const cord = css`
   width: 1rem;
 `;
-
 export const patientInfo = css`
   /*환자 정보*/
+  box-sizing: border-box;
   justify-content: center;
   width: 100%;
   border: 0.1rem solid black;
   border-collapse: collapse;
-  margin-bottom: 2rem;
-
   & > tr,
   td {
     width: 40rem;
@@ -127,7 +125,16 @@ export const patientInfo = css`
     background-color: #464667;
   }
 `;
+export const lefttableLayout = css`
+  height: 70rem;
+  overflow-y: auto;
+`;
 
+export const tableLayout = css`
+  height: 15rem;
+  overflow-x: hidden;
+  overflow-y: auto;
+`;
 export const diagnosisRegister = css`
   /*상병 등록*/
   justify-content: center;
