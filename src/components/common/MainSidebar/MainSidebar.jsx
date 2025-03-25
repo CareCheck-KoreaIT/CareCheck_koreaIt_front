@@ -1,7 +1,7 @@
 /**@jsxImportSource @emotion/react */
 import { BsColumnsGap } from "react-icons/bs";
 import * as s from "./style";
-import React from "react";
+import React, { useEffect } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { useRecoilState } from "recoil";
 import { headerMenuState } from "../../../atoms/Header/headerMenu";
@@ -12,6 +12,17 @@ function MainSidebar() {
   const loginUser = queryClient.getQueryData(["userMeQuery"]);
   const [headerState, setHeaderState] = useRecoilState(headerMenuState)
   console.log("mainsidebar", headerState)
+
+  useEffect(() => {
+    const savedState = sessionStorage.getItem("headerState");
+    if(savedState) {
+      setHeaderState(savedState);
+    }
+  },[setHeaderState]);
+
+  useEffect(() => {
+    sessionStorage.setItem("headerState", headerState);
+  },[headerState]);
 
   const renderSidebarMenu = () => {
     switch(headerState) {
