@@ -8,6 +8,8 @@ import { useGetSearchUserList } from '../../queries/userQuery';
 import { GoChevronLeft, GoChevronRight } from 'react-icons/go';
 import { IoSettingsSharp } from 'react-icons/io5';
 import { MdOutlineCancel } from 'react-icons/md';
+import ReactModal from 'react-modal';
+import ChangeUserModal from '../../components/modal/Admin/ChangeUserModal/ChangeUserModal';
 
 function AdminUserInfoPage(props) {
 
@@ -33,6 +35,9 @@ function AdminUserInfoPage(props) {
         {label: "간호사", value: "간호사"},
         {label: "원무", value: "원무"},
     ];
+
+    const [ foundUser, setFoundUser ] = useState({});
+    const [ isOpen, setIsOpen ] = useState(false);
 
     useEffect(() => {
         if(!searchUserList.isLoading) {
@@ -81,6 +86,12 @@ function AdminUserInfoPage(props) {
         setSearchParams(searchParams);
     }
 
+    const handleChangeInfoButtonOnClick = (usercode) => {
+        console.log(searchUserList?.data?.data.userSearchList.find(user => user.usercode === usercode));
+        setFoundUser(searchUserList?.data?.data.userSearchList.find(user => user.usercode === usercode));
+        setIsOpen(true);
+    }
+    
     return (
         <div css={s.container}>
             <div css={s.header}>
@@ -141,7 +152,7 @@ function AdminUserInfoPage(props) {
                                 <div>{userList.createdAt}</div>
                                 <div>{userList.updatedAt}</div>
                                 <div>
-                                    <button><IoSettingsSharp /></button>
+                                    <button onClick={() => handleChangeInfoButtonOnClick(userList.usercode)}><IoSettingsSharp /></button>
                                     <button><MdOutlineCancel /></button>
                                 </div>
                             </li>
@@ -160,6 +171,25 @@ function AdminUserInfoPage(props) {
                     <button disabled={searchUserList?.data?.data.lastPage} onClick={() => handlePagenumbersOnClick(page + 1)}><GoChevronRight /></button>
                 </div>
             </div>
+            <ReactModal 
+                isOpen={isOpen}
+                onRequestClose={() => setIsOpen(false)}
+                style={{
+                    overlay: {
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        backgroundColor: "#00000088"
+                    },
+                    content: {
+                        position: "static",
+                        boxSizing: "border-box",
+                        borderRadius: "1.5rem",
+                        width: "60rem",
+                    }
+                }}
+                children={<ChangeUserModal setOpen={setIsOpen} user={foundUser} />}
+            />
         </div>
     );
 }

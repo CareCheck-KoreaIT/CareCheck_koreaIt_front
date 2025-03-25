@@ -2,7 +2,7 @@
 import { CgPassword } from 'react-icons/cg';
 import * as s from './style';
 import { RiCloseCircleFill } from 'react-icons/ri';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
 import { useUpdatePasswordMutation } from '../../../mutations/userMutation';
 import Swal from 'sweetalert2';
@@ -17,6 +17,9 @@ function ChangePasswordModal({setOpen}) {
         newPasswordCheck: "",
     });
 
+    const passwordRegex = /^.{4,}$/;
+    const [ passwordValidMessage, setPasswordValidMessage ] = useState("");
+
     const handleInputOnChange = (e) => {
         setInputValue(prev => ({
             ...prev,
@@ -24,11 +27,21 @@ function ChangePasswordModal({setOpen}) {
         }))
     }
 
+    useEffect(() => {
+        if(!inputValue.newPassword) {
+          setPasswordValidMessage("");
+        } else if (!passwordRegex.test(inputValue.newPassword)) {
+          setPasswordValidMessage("4자리 이상 입력해주세요.")
+        } else {
+          setPasswordValidMessage("");
+        }
+    });
+
     const isError = () => {
         const isEmpty = Object.values(inputValue).map(value => !!value).includes(false);
         const notSame = inputValue.newPassword !== inputValue.newPasswordCheck;
 
-        return isEmpty || notSame;
+        return isEmpty || notSame || !!passwordValidMessage;
     }
 
     const handlePasswordChangeButtonOnClick = async () => {
@@ -78,13 +91,19 @@ function ChangePasswordModal({setOpen}) {
                 <p css={s.headerMessage}>변경할 비밀번호를 입력하세요.</p>
             </div>
             <div css={s.main}>
-                <div>
+                <div css={s.passwordBox}>
                     <input type="password" name='currentPassword' value={inputValue.currentPassword} onChange={handleInputOnChange} placeholder='현재 비밀번호' />
                 </div>
-                <div>
+                <div css={s.passwordBox}>
                     <input type="password" name='newPassword' value={inputValue.newPassword} onChange={handleInputOnChange} placeholder='새 비밀번호' />
                 </div>
-                <div>
+                {
+                    !!passwordValidMessage &&
+                    <div css={s.errorMessage}>
+                        <p>{passwordValidMessage}</p>
+                    </div>
+                }
+                <div css={s.newPasswordCheckBox}>
                     <input type="password" name='newPasswordCheck' value={inputValue.newPasswordCheck} onChange={handleInputOnChange} onKeyDown={handleInputOnKeyDown} placeholder='새 비밀번호 확인' />
                     <button onClick={handlePasswordChangeButtonOnClick} disabled={isError()}>변경</button>
                 </div>
@@ -94,6 +113,7 @@ function ChangePasswordModal({setOpen}) {
                         <p>새 비밀번호와 일치하지 않습니다</p>
                     </div>
                 }
+                
             </div>
         </div>
     );
