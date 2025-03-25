@@ -23,4 +23,4 @@ export const useModifyNoticeMutation = () => useMutation({
   mutationKey: ["useModifyNoticeMutation"],
   mutationFn: updateNoticeApi,
   retry: 0,
-})
+});
