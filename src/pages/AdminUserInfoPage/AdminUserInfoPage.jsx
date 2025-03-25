@@ -236,7 +236,6 @@ function AdminUserInfoPage(props) {
                                 <div>{userList.updatedAt}</div>
                                 <div>
                                     <button onClick={() => handleChangeInfoButtonOnClick(userList.usercode)}><IoSettingsSharp /></button>
-
                                     <button onClick={() => handleChangePasswordButtonOnClick(userList.usercode)}><CgPassword /></button>
                                     <button onClick={() => handleDeleteButtonOnClick(userList.usercode)}><MdOutlineCancel /></button>
                                 </div>

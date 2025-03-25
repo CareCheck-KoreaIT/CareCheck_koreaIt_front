@@ -109,10 +109,12 @@ function TablePage() {
                 </tr>
               </tbody>
             </table>
-            <WaitingList usercode={param.usercode} />
+            <div css={s.lefttableLayout}>
+              <WaitingList usercode={param.usercode} />
+            </div>
           </div>
           {/*진료 대기자 명단 끝*/}
-          <div css={s.child2}>
+          <div>
             <div>
               <table css={s.rightTable}>
                 <tr>
@@ -130,7 +132,9 @@ function TablePage() {
                   <td>몸무게</td>
                 </tr>
               </table>
-              <AdmPatientVital admissionId={admissionId} />
+              <div css={s.tableLayout}>
+                <AdmPatientVital admissionId={admissionId} />
+              </div>
             </div>
             {/*환자정보 끝*/}
             <div>
@@ -150,7 +154,9 @@ function TablePage() {
                     <td>삭제</td>
                   </tr>
                 </table>
-                <DiagnosisDesease />{" "}
+                <div css={s.tableLayout}>
+                  <DiagnosisDesease />{" "}
+                </div>
                 <div css={s.tableFooter}>
                   <button onClick={handleSaveDiagnosisOnClick}>
                     <span>상병전송</span>
@@ -180,7 +186,9 @@ function TablePage() {
                     <td>삭제</td>
                   </tr>
                 </table>
-                <DiagnosisOrder />
+                <div css={s.tableLayout}>
+                  <DiagnosisOrder />
+                </div>
                 <div css={s.tableFooter}>
                   <button onClick={handleSaveOrdersOnClick}>
                     <span>오더전송</span>
