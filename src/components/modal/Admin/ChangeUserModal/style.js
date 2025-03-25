@@ -91,10 +91,27 @@ export const changeButtonBox = css`
 `;
 
 export const changeButton = css`
-    background-color: #464667;
-    outline: none;
-    border: 0;
+    box-sizing: border-box;
+    border: 0.2rem solid #464667;
     border-radius: 0.5rem;
+    background-color: #8f87dc;
     color: #ffffff;
     font-size: 1.8rem;
+    cursor: pointer;
+
+    &:disabled {
+        border: 0.2rem solid #dbdbdb;
+        background-color: #dbdbdb;
+        color: #949494;
+        pointer-events: none;
+    }
+
+    &:hover {
+        background-color: #636394;
+        color: #ffffff;
+    }
+    &:active {
+        background-color: #464667;
+        color: #ffffff;
+    
 `;
