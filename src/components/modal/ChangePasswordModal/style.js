@@ -78,12 +78,13 @@ export const newPasswordCheckBox = css`
         border: 0.2rem solid #464667;
         border-radius: 0.5rem;
         padding: 0.5rem 1.5rem;
-        background-color: #bab6dd;
+        background-color: #8f87dc;
         cursor: pointer;
 
         &:disabled {
-            border: 0.2rem solid #cdcdcd;
-            background-color: #cdcdcd;
+            border: 0.2rem solid #dbdbdb;
+            background-color: #dbdbdb;
+            color: #949494;
             pointer-events: none;
         }
         &:hover {

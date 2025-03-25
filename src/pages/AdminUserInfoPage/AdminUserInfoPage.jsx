@@ -10,8 +10,15 @@ import { IoSettingsSharp } from 'react-icons/io5';
 import { MdOutlineCancel } from 'react-icons/md';
 import ReactModal from 'react-modal';
 import ChangeUserModal from '../../components/modal/Admin/ChangeUserModal/ChangeUserModal';
+import { CgPassword } from 'react-icons/cg';
+import { useDeleteUserMutation, useUpdateUserPasswordMutation } from '../../mutations/userMutation';
+import Swal from 'sweetalert2';
+import { useQueryClient } from '@tanstack/react-query';
 
 function AdminUserInfoPage(props) {
+    const queryClient = useQueryClient();
+    const updateUserPasswordMutation = useUpdateUserPasswordMutation();
+    const deleteUserMutation = useDeleteUserMutation();
 
     const [ searchParams, setSearchParams ] = useSearchParams();
     const page = parseInt(searchParams.get("page") || "1");
@@ -25,6 +32,19 @@ function AdminUserInfoPage(props) {
         searchName,
     });
 
+    // roleName 바꾸는 함수
+    const roleName = (list) => {
+        if(list.userRole.role.roleName === "ROLE_ADMIN") {
+            return "관리자";
+        } else if(list.userRole.role.roleName === "ROLE_DOCTOR") {
+            return "의사";
+        } else if(list.userRole.role.roleName === "ROLE_NURSE") {
+            return "간호사";
+        } else if(list.userRole.role.roleName === "ROLE_STAFF") {
+            return "원무";
+        }
+    }
+
     const [ pageNumbers, setPageNumbers ] = useState([]);
     const [ searchValue, setSearchValue ] = useState(searchName);
 
@@ -35,6 +55,10 @@ function AdminUserInfoPage(props) {
         {label: "간호사", value: "간호사"},
         {label: "원무", value: "원무"},
     ];
+    
+    // ChangeUserModal 을 위한 값
+    const [ foundUser, setFoundUser ] = useState({});
+    const [ isOpen, setIsOpen ] = useState(false);
 
     const [ foundUser, setFoundUser ] = useState({});
     const [ isOpen, setIsOpen ] = useState(false);
@@ -87,9 +111,66 @@ function AdminUserInfoPage(props) {
     }
 
     const handleChangeInfoButtonOnClick = (usercode) => {
-        console.log(searchUserList?.data?.data.userSearchList.find(user => user.usercode === usercode));
         setFoundUser(searchUserList?.data?.data.userSearchList.find(user => user.usercode === usercode));
         setIsOpen(true);
+    }    
+    const handleChangePasswordButtonOnClick = async (usercode) => {
+        const passwordRegex = /^.{4,}$/;
+        const { value: password } = await Swal.fire({
+            titleText: "초기화 비밀번호 설정",
+            html: "<div style='font-size: 1.5rem'>초기화 비밀번호를 입력해주세요</div>",
+            input: "text",
+            inputValue: "",
+            showCancelButton: true,
+            confirmButtonText: "<div style='font-size: 1.5rem'>확인</div>",
+            cancelButtonText: "<div style='font-size: 1.5rem'>취소</div>",
+            inputValidator: (value) => {
+              if (!value) {
+                return "<div style='font-size: 1.2rem'>초기화 비밀번호를 입력해주세요.</div>";
+              }
+              if (!passwordRegex.test(value)) {
+                return "<div style='font-size: 1.2rem'>4자리 이상 입력해주세요.</div>"
+              }
+            }
+          });
+          if (password) {
+            // password 정규식 추가
+            await updateUserPasswordMutation.mutateAsync({usercode: usercode, password: password});
+            Swal.fire({
+                icon: "success",
+                titleText: "비밀번호가 초기화 되었습니다",
+                confirmButtonText: "<div style='font-size: 1.5rem'>확인</div>"
+            }).then(response => {queryClient.invalidateQueries(["userMeQuery"])});
+          }
+    }
+    const handleDeleteButtonOnClick = async (usercode) => {
+        const { value: accept } = await Swal.fire({
+            icon: "warning",
+            titleText: "삭제하시겠습니까?",
+            input: "checkbox",
+            inputValue: 0,
+            inputPlaceholder: `
+                <div style='font-size: 1.5rem'>
+                ${usercode} 직원을 삭제합니다.
+                </div>
+            `,
+            confirmButtonText: `
+                <div style='font-size: 1.5rem'>
+                Continue&nbsp;<i class="fa fa-arrow-right"></i>
+                </div>
+            `,
+            inputValidator: (result) => {
+              return !result && "<div style='font-size: 1.2rem'>삭제하시려면 체크해주세요.</div>";
+            }
+        });
+        if (accept) {
+            await deleteUserMutation.mutateAsync({usercode});
+            Swal.fire({
+                icon: "success",
+                titleText: "삭제되었습니다",
+                confirmButtonText: "<div style='font-size: 1.5rem'>확인</div>"
+            }).then(response => {queryClient.invalidateQueries(["userMeQuery"])});
+        }
     }
     
     return (
@@ -138,7 +219,7 @@ function AdminUserInfoPage(props) {
                         <div>이메일</div>
                         <div>생성날짜</div>
                         <div>수정날짜</div>
-                        <div></div>
+                        <div>수정/PW초기화/삭제</div>
                     </li>
                     {
                         searchUserList.isLoading ||
@@ -146,14 +227,16 @@ function AdminUserInfoPage(props) {
                             <li key={userList.index}>
                                 <div>{userList.usercode}</div>
                                 <div>{userList.username}</div>
-                                <div>{userList.userRole.role.roleName}</div>
+                                <div>{roleName(userList)}</div>
                                 <div>{userList.phoneNumber}</div>
                                 <div>{userList.email}</div>
                                 <div>{userList.createdAt}</div>
                                 <div>{userList.updatedAt}</div>
                                 <div>
                                     <button onClick={() => handleChangeInfoButtonOnClick(userList.usercode)}><IoSettingsSharp /></button>
-                                    <button><MdOutlineCancel /></button>
+
+                                    <button onClick={() => handleChangePasswordButtonOnClick(userList.usercode)}><CgPassword /></button>
+                                    <button onClick={() => handleDeleteButtonOnClick(userList.usercode)}><MdOutlineCancel /></button>
                                 </div>
                             </li>
                         )

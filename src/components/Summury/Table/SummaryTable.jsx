@@ -1,0 +1,39 @@
+/** @jsxImportSource @emotion/react */
+import { tableContainer, summaryTable } from "./style.js";
+
+function SummaryTable({ summaryData }) {
+  console.log("summaryTable의 props", summaryData);
+  return (
+    <div css={tableContainer}>
+      <h3>분기별 요약</h3>
+      <table css={summaryTable}>
+        <thead>
+          <tr>
+            <th>분기</th>
+            <th>금액</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1분기</td>
+            <td>{summaryData["1분기"] || 0}</td>
+          </tr>
+          <tr>
+            <td>2분기</td>
+            <td>{summaryData["2분기"] || 0}</td>
+          </tr>
+          <tr>
+            <td>3분기</td>
+            <td>{summaryData["3분기"] || 0}</td>
+          </tr>
+          <tr>
+            <td>4분기</td>
+            <td>{summaryData["4분기"] || 0}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+export default SummaryTable;

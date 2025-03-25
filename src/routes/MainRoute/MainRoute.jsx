@@ -18,6 +18,8 @@ import NoticeWritePage from "../../pages/NoticeWritePage/NoticeWritePage";
 import NoticeLsitPage from "../../pages/NoticeListPage/NoticeListPage";
 import AccountRoute from "../AccountRoute/AccountRoute";
 import PaymentCertificatePage from "../../pages/PaymentCertificatePage/PaymentCertificatePage";
+import SummaryChartPage from "../../pages/SummaryChartPage/SummaryChartPage";
+import SummaryChartUsercodePage from "../../pages/SummaryChartUsercodePage/SummaryChartUsercodePage";
 import NoticeMyListPage from "../../pages/NoticeMyListpage/NoticeMyListPage";
 import NoticeModifyPage from "../../pages/NoticeModifyPage/NoticeModifyPage";
 
@@ -55,6 +57,11 @@ function MainRoute() {
             <Route
               path="/MedicalReception"
               element={<MedicalReceptionPage />}
+            />
+            <Route path="/summary" element={<SummaryChartPage />} />
+            <Route
+              path="/summary/usercode"
+              element={<SummaryChartUsercodePage />}
             />
           </Routes>
         </div>

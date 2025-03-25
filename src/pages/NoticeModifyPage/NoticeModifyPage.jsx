@@ -14,13 +14,13 @@ function NoticeModifyPage() {
 
   const modifyNoticeMutation = useModifyNoticeMutation();
 
-  const [title, setTitle] = useState("");  // 제목 상태
-  const [quillContent, setQuillContent] = useState("");  // 내용 상태
+  const [title, setTitle] = useState("");
+  const [quillContent, setQuillContent] = useState(""); // 초기 상태를 빈 문자열로 설정
 
-  const containerRef = useRef();  // Quill 에디터 컨테이너 참조
-  const quillInstanceRef = useRef(null);  // Quill 인스턴스를 저장할 ref
+  const containerRef = useRef();
+  const quillInstanceRef = useRef(null);
 
-  // usercode에 해당하는 공지사항 목록을 가져오는 훅
+  // usercode에 해당하는 공지사항 목록을 가져옴
   const noticeList = useGetUsercodeNoticeList(usercode);
 
   // useEffect: noticeId와 usercode에 해당하는 공지사항 데이터를 가져오기
@@ -36,14 +36,15 @@ function NoticeModifyPage() {
         );
 
         if (!notice) {
-          throw new Error("게시글을 찾을 수 없습니다.");
+          alert("게시글을 찾을 수 없습니다.");
         }
 
         setTitle(notice.title);
-        setQuillContent(notice.content);  // 내용도 state로 설정
+        setQuillContent(notice.content);
       } catch (error) {
         Swal.fire({
           titleText: error.message || "게시글을 불러오는데 실패했습니다.",
+          icon: error,
           confirmButtonText: "확인",
         });
       }
@@ -54,9 +55,7 @@ function NoticeModifyPage() {
     }
   }, [noticeId, usercode, noticeList?.data?.data?.noticeList]);
 
-  // Quill 에디터 초기화 및 내용 설정
   useEffect(() => {
-    // Quill 인스턴스가 이미 초기화되었으면 다시 초기화하지 않도록 방지
     if (quillInstanceRef.current) return;
 
     const toolbarOptions = [
@@ -71,64 +70,85 @@ function NoticeModifyPage() {
         toolbar: toolbarOptions,
       },
       theme: 'snow',
-      placeholder: '내용을 입력하세요.',
     });
 
-    quillInstanceRef.current = quillInstance; // quillInstance를 ref에 저장
+    quillInstanceRef.current = quillInstance;
 
-    // quill 인스턴스에서 변경된 내용을 반영
+    // 변경된 내용을 반영
     quillInstance.on('text-change', () => {
-      setQuillContent(quillInstance.root.innerHTML); // 내용이 변경될 때마다 외부 상태를 업데이트
+      setQuillContent(quillInstance.root.innerHTML);
     });
-  }, []);  // 한 번만 초기화되도록 빈 배열을 사용
+  }, []);
 
-  // Quill에 내용 반영
   useEffect(() => {
-    if (quillInstanceRef.current && quillContent) {
+    if (quillInstanceRef.current) {
       const quill = quillInstanceRef.current;
-      quill.root.innerHTML = quillContent; // 내부 HTML을 직접 설정
+
+      const currentContent = quill.root.innerHTML;
+
+      if (currentContent !== quillContent) {
+        const cursorPosition = quill.getSelection()?.index || 0;
+        quill.root.innerHTML = quillContent;
+        quill.update();
+        quill.setSelection(cursorPosition);
+      }
     }
   }, [quillContent]);
 
-  // 제목 변경 핸들러
+  const removeHtmlTags = (html) => {
+    const doc = new DOMParser().parseFromString(html, 'text/html');
+    return doc.body.textContent || "";
+  };
+
   const handleTitleOnChange = (e) => {
     setTitle(e.target.value);
   };
 
-  // 저장 버튼 클릭 시 처리
   const handleSaveOnClick = async () => {
     if (!title.trim()) {
       await Swal.fire({
-        titleText: "제목을 입력하세요.",
-        confirmButtonText: "확인",
+        titleText: '제목을 입력하세요.',
+        icon: 'warning',
+        confirmButtonText: '확인',
       });
       return;
     }
-    if (!quillContent.trim()) {
+
+    if (!quillContent.trim() || quillContent === "<p><br></p>") {
       await Swal.fire({
-        titleText: "게시글 내용을 입력하세요.",
-        confirmButtonText: "확인",
+        titleText: '게시글 내용을 입력하세요.',
+        icon: 'warning',
+        confirmButtonText: '확인',
       });
       return;
     }
 
-    const notice = {
-      title,
-      content: quillContent,
-    };
+    const plainContent = removeHtmlTags(quillContent);
 
+    const notice = { title, content: plainContent };
+    const parsedNoticeId = parseInt(noticeId, 10);
+  
     try {
-      await modifyNoticeMutation.mutateAsync({ noticeId, notice });
-
+      console.log('보낼 데이터:', parsedNoticeId, usercode, notice);
+  
+      await modifyNoticeMutation.mutateAsync({ 
+        noticeId: parsedNoticeId, 
+        usercode: usercode,
+        notice: notice
+      });
+  
       await Swal.fire({
-        titleText: "게시글 수정 완료",
-        confirmButtonText: "확인",
+        titleText: '게시글 수정 완료',
+        icon: 'success',
+        confirmButtonText: '확인',
       });
       navigate(`/notice/${usercode}`);
     } catch (error) {
+      console.error('에러 발생:', error);
       await Swal.fire({
-        titleText: "게시글 수정에 실패했습니다.",
-        confirmButtonText: "확인",
+        titleText: '게시글 수정에 실패했습니다.',
+        icon: 'error',
+        confirmButtonText: '확인',
       });
     }
   };
@@ -138,13 +158,12 @@ function NoticeModifyPage() {
       <div css={s.quillTop}>
         <input
           type="text"
-          placeholder="제목을 입력해주세요."
           value={title}
           onChange={handleTitleOnChange}
         />
         <button css={s.saveButton} onClick={handleSaveOnClick}>저장</button>
       </div>
-      <div ref={containerRef} />  {/* Quill 에디터 컨테이너 */}
+      <div ref={containerRef} /> 
     </div>
   );
 }

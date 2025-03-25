@@ -10,3 +10,6 @@ export const signupApi = async (signupInfo) => {
 }
 
 export const getSearchUserListApi = async (params) => await api.get("/admin/users", {params});
+export const updateUserApi = async ({usercode, username, email, phoneNumber}) => await api.put(`/admin/users/${usercode}`, {username, email, phoneNumber});
+export const updateUserPasswordApi = async ({usercode, password}) => await api.put(`/admin/users/${usercode}/password`, {password});
+export const deleteUserApi = async ({usercode}) => await api.delete(`/admin/users/${usercode}`);
