@@ -20,7 +20,6 @@ export const mainlayout = css`
     & > p:nth-of-type(3) {
         height: 50rem;
         flex-grow: 1;
-        
     }
 `;
 

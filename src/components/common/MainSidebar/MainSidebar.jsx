@@ -13,17 +13,6 @@ function MainSidebar() {
   const [headerState, setHeaderState] = useRecoilState(headerMenuState)
   console.log("mainsidebar", headerState)
 
-  useEffect(() => {
-    const savedState = sessionStorage.getItem("headerState");
-    if(savedState) {
-      setHeaderState(savedState);
-    }
-  },[setHeaderState]);
-
-  useEffect(() => {
-    sessionStorage.setItem("headerState", headerState);
-  },[headerState]);
-
   const renderSidebarMenu = () => {
     switch(headerState) {
       case "접수메뉴변경":

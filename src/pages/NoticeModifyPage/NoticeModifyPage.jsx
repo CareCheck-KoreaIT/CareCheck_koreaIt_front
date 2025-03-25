@@ -10,7 +10,6 @@ import { useGetUsercodeNoticeList } from '../../queries/noticeQuery';  // 기존
 
 function NoticeModifyPage() {
   const { noticeId, usercode } = useParams(); // URL에서 noticeId와 usercode를 받음
-  console.log(noticeId, usercode); 
   const navigate = useNavigate();
 
   const modifyNoticeMutation = useModifyNoticeMutation();
