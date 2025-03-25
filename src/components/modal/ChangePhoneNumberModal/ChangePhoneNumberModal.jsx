@@ -35,8 +35,8 @@ function ChangePhoneNumberModal({setOpen}) {
             Swal.fire({
                 icon: "error",
                 titleText: "전화번호 변경 실패",
-                text: "변경할 전화번호를 입력해주세요.",
-                confirmButtonText: "확인",
+                html: "<div style='font-size: 1.5rem'>변경할 전화번호를 입력해주세요.</div>",
+                confirmButtonText: "<div style='font-size: 1.3rem'>확인</div>",
             });
             return;
         }
@@ -45,7 +45,7 @@ function ChangePhoneNumberModal({setOpen}) {
             Swal.fire({
                 icon: "success",
                 titleText: "전화번호 변경 완료",
-                confirmButtonText: "확인",
+                confirmButtonText: "<div style='font-size: 1.3rem'>확인</div>",
             }).then(response => {
                 queryClient.invalidateQueries(["userMeQuery"]);
                 setOpen(false);
@@ -54,7 +54,8 @@ function ChangePhoneNumberModal({setOpen}) {
             Swal.fire({
                 icon: "error",
                 titleText: "전화번호 변경 실패",
-                confirmButtonText: "다시 시도하세요",
+                html: "<div style='font-size: 1.5rem'>오류가 발생했습니다. 다시 시도해주세요.</div>",
+                confirmButtonText: "<div style='font-size: 1.3rem'>확인</div>",
             }).then(response => {
                 setPhoneNumberValue("");
             });

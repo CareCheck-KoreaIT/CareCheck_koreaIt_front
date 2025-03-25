@@ -78,7 +78,7 @@ export const main = css`
         border: 0.2rem solid #464667;
         border-radius: 0.5rem;
         padding: 0.5rem 1.5rem;
-        background-color: #bab6dd;
+        background-color: #8f87dc;
         cursor: pointer;
 
         &:disabled {
