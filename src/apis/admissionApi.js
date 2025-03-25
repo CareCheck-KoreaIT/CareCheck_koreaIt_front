@@ -43,8 +43,13 @@ export const updateEndDate = async (admissionId) => {
 };
 
 export const searchAllWaitingListApi = async (keyword) => {
-  console.log(keyword);
   return await api.get("/admission/allWaitings", {
     params: { keyword: keyword },
   });
 };
+
+export const deleteReceiptApi = async(admissionId) => {
+  console.log(admissionId);
+  
+  await api.delete(`/admission/${admissionId}`);}
+

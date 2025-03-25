@@ -4,17 +4,18 @@ export const layout = css`
     display: flex;
     box-sizing: border-box;
     align-items: center;
-    flex-direction: column;
+    justify-content: center;
+    /* flex-direction: column; */
     overflow: hidden;
-    width: 100%;
-    height: 100%;
+    /* width: 100%; */
+    height: 90%;
     background-color: #ffffff;
 `;
 
 export const table = css`
-    width: 73.6rem;
-    height: 80rem;
-    table-layout: fixed;
+    width: 63.6rem;
+    height: 70rem;
+    table-layout: fixed; /* 고정 */
     border-collapse: collapse; /* 테두리 중복 제거 */
     text-align: center;
     font-size: 3rem;
@@ -63,7 +64,7 @@ export const note = css`
     word-spacing: 0.5rem;
 `;
 
-export const bottomSpace = css`
+export const checkSpace = css`
     font-size: 2rem;
     margin-bottom: 2rem;
     word-spacing: 5rem;
@@ -74,4 +75,28 @@ export const left = css`
         text-align: left;
         margin-left: 11rem;
     }
+`;
+
+// export const buttonContainer = css`
+//     display: flex;
+//     align-self: flex-start;
+//     justify-content: flex-end;
+// `;
+
+export const button = css`
+  display: flex;
+  justify-content: flex-end;
+  align-self: flex-end;
+  margin: 0rem 0rem 6rem 5rem;
+  gap: 1rem;
+
+  & > button {
+    width: 10rem;
+    height: 5rem;
+    background-color: #464667;
+    outline: none;
+    border-radius: 1rem;
+    color: #ffffff;
+    font-size: 1.5rem;
+  }
 `;

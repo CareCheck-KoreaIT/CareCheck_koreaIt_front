@@ -1,11 +1,15 @@
 /**@jsxImportSource @emotion/react */
 import { useGetSearchAllWaitingList, useGetSearchPatientInfo } from '../../queries/admissionQuery';
 import * as s from './style';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BiSearch } from 'react-icons/bi';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import { useDeleteReceiptMutation } from '../../mutations/admissionMutation';
+import DeleteReceiptModal from '../../components/modal/DeleteReceiptModal/DeleteReceiptModal';
+import { useQueryClient } from '@tanstack/react-query';
 
 function ReceiptPage() {
+    const queryClient = useQueryClient();
     const [keyword, setKeyword] = useState("테스트");
     const [searchTerm, setSearchTerm] = useState(""); // 사용자 입력을 받는 값
     const [filteredWaitingList, setFilteredWaitingList] = useState([]); // 필터링된 리스트를 저장할 상태
@@ -13,9 +17,11 @@ function ReceiptPage() {
     const allWaitingList = allWaitingListBykeyword?.data?.data || [];
     const [searchParams, setSearchParams] = useSearchParams();
     const navigate = useNavigate();
-console.log(keyword);
 
-const handleSearchButtonOnClick = () => {
+    const [ isModalOpen, setIsModalOpen ] = useState(false);
+    const [ selectedReceipt, setSelectedReceipt ] = useState(null);
+
+    const handleSearchButtonOnClick = () => {
     // 검색어가 비어 있지 않으면 필터링 수행
     if (!searchTerm.trim()) { 
         setFilteredWaitingList([]);  // 공백일 경우 필터링된 대기 리스트 비우기
@@ -34,11 +40,64 @@ const handleSearchButtonOnClick = () => {
     const newSearchParams = new URLSearchParams(searchParams);
     newSearchParams.set("searchText", searchTerm);
     setSearchParams(newSearchParams);
-};
+    };
 
+    // const deleteReceiptMutation = useDeleteReceiptMutation();
+    const { mutate: deleteReceipt } = useDeleteReceiptMutation();
 
-    const handleCancel = (name) => {
-        console.log(`${name}의 대기 상태를 취소합니다.`);
+    const handleDeleteReceiptOnClick = (admissionId) => {
+        // 삭제 확인 모달 띄우기
+        if (!admissionId) {
+            console.error("❌ admissionId가 undefined입니다.");
+            return;
+        }
+        // console.log(admissionId);
+        setSelectedReceipt(admissionId);
+        setIsModalOpen(true);
+    };
+
+    useEffect(() => {
+    }, [isModalOpen]);
+
+    useEffect(() => {
+        allWaitingListBykeyword.refetch()
+    }, [searchParams]);
+
+    const handleConfirmDeleteOnClick = async () => {
+        // await deleteReceiptMutation.mutateAsync(admissionId)
+
+        if (selectedReceipt) {
+            deleteReceipt(selectedReceipt, {
+                onSuccess: async () => {
+                    console.log("취소성공");
+                    setIsModalOpen(false);
+                    await Swal.fire({
+                        titleText: "취소가 완료되었습니다.",
+                        icon: "success",
+                        confirmButtonText: "확인"
+                    });
+                    await allWaitingListBykeyword.refetch();
+                    queryClient.invalidateQueries(["useGetSearchAllWaitingList"])
+                },
+                onError: async (error) => {
+                    console.log("취소실패", error);
+                    setIsModalOpen(false);
+                    await Swal.fire({
+                        titleText: "취소 실패",
+                        icon: "error",
+                        confirmButtonText: "확인"
+                    });
+                }
+            });
+        }
+    };
+
+    const handleCancelDeleteOnClick = () => {
+        setIsModalOpen(false);
+    }
+    
+    const handleCloseModalOnClick = () => {
+        setIsModalOpen(false);
     };
 
     const handlePayment = (usercode, admissionId) =>{
@@ -87,9 +146,18 @@ const handleSearchButtonOnClick = () => {
                                         <td>{allWaiting.phoneNum}</td>
                                         <td>{allWaiting.admDate}</td>
                                         <td>
-                                            <button css={s.cancelButton} onClick={() => handleCancel(allWaiting.name)}>
+                                            <button css={s.cancelButton}
+                                                    onClick={() => {
+                                                    handleDeleteReceiptOnClick(allWaiting.admId)}}>
                                             접수취소
                                             </button>
+                                            {isModalOpen &&
+                                            <DeleteReceiptModal
+                                            isOpen={isModalOpen}
+                                            onCancel={handleCancelDeleteOnClick}
+                                            onConfirm={handleConfirmDeleteOnClick}
+                                            onClose={handleCloseModalOnClick}
+                                            />}
                                         </td>
                                         <td>
                                             <button css={s.PaymentButton} onClick={() => handlePayment(allWaiting.usercode, allWaiting.admissionId)}>

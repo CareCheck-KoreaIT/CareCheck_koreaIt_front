@@ -92,27 +92,27 @@ const handleTitleOnClick = (notice) => {
 
 const handleConfirmDeleteOnClick = async () => {
     if (selectedNoticeId) {
-      deleteNotice(selectedNoticeId, {
-        onSuccess: async () => {
-            setIsModalOpen(false);
-            await Swal.fire({
-                titleText: "삭제가 완료되었습니다.",
-                icon: "success",
-                confirmButtonText: "확인"
-            });
-            searchNoticeList.refetch();
-        },
-        onError: async () => {
-          setIsModalOpen(false);
-          await Swal.fire({
-            titleText: "삭제 실패",
-            icon: "error",
-            confirmButtonText: "확인"
+        deleteNotice(selectedNoticeId, {
+            onSuccess: async () => {
+                setIsModalOpen(false);
+                await Swal.fire({
+                    titleText: "삭제가 완료되었습니다.",
+                    icon: "success",
+                    confirmButtonText: "확인"
+                });
+                searchNoticeList.refetch();
+                },
+            onError: async () => {
+                setIsModalOpen(false);
+                await Swal.fire({
+                    titleText: "삭제 실패",
+                    icon: "error",
+                    confirmButtonText: "확인"
+                });
+            }
         });
-        }
-      });
     }
-  };
+};
 
 const handleCancelDeleteOnClick = () => {
     setIsModalOpen(false);
@@ -120,7 +120,7 @@ const handleCancelDeleteOnClick = () => {
 
 const handleCloseModalOnClick = () => {
     setIsModalOpen(false);
-  };
+};
 
 
 return (
