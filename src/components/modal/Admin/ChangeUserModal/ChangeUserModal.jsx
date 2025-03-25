@@ -3,13 +3,22 @@ import { useEffect, useState } from 'react';
 import * as s from './style';
 import { RiCloseCircleFill } from 'react-icons/ri';
 import { CgUserlane } from 'react-icons/cg';
+import { useUpdateUserMutation } from '../../../../mutations/userMutation';
+import Swal from 'sweetalert2';
+import { useQueryClient } from '@tanstack/react-query';
 
 function ChangeUserModal({setOpen, user}) {
+    const queryClient = useQueryClient();
+    const updateUserMutation = useUpdateUserMutation();
+
     const [ inputValue, setInputValue ] = useState({
+        usercode: "",
         username: "",
         email: "",
         phoneNumber: "",
     });
+
+    // user 값이 바뀔 때 마다 바뀐 user 값으로 렌더링
     useEffect(() => {
         setInputValue(prev => ({
             ...prev,
@@ -29,7 +38,17 @@ function ChangeUserModal({setOpen, user}) {
         setInputValue(prev => ({
             ...prev,
             [e.target.name]: e.target.value,
-        }))
+        }));
+    }
+
+    // 변경 버튼 disabled 를 위한 함수 - 변경사항이 없으면 변경 X, 이메일과 전화번호가 정규형에 맞지 않으면 변경 X
+    const isDisabled = () => {
+        // keys: 해당 객체의 키값 찾는 Object의 메서드
+        // some: 찾고자 하는 값이 있는지 boolean 타입으로 반환
+        // isChanged: inputValue의 key값으로 user와 값을 각각 비교하여 변경된 값이 하나라도 있으면 true, 없으면 false 반환
+        const isChanged = Object.keys(inputValue).some(key => inputValue[key] !== user[key]);
+        const isInValid = !!emailValidMessage || !!phoneNumberValidMessage; // 이메일, 전화번호 둘 중 하나라도 invalid 값이면 true 반환
+        return !isChanged || isInValid;
     }
 
     useEffect(() => {
@@ -40,17 +59,62 @@ function ChangeUserModal({setOpen, user}) {
         } else {
           setEmailValidMessage(""); // 올바른 값이면 에러 메시지 제거
         }
-      }, [inputValue.email]);
-      useEffect(() => {
+    }, [inputValue.email]);
+    useEffect(() => {
         if (!inputValue.phoneNumber) {
-          setPhoneNumberValidMessage("");
+            setPhoneNumberValidMessage("");
         } else if (!phoneNumberRegex.test(inputValue.phoneNumber)) {
-          setPhoneNumberValidMessage("올바른 전화번호 형식이 아닙니다. 010-0000-0000 형식으로 작성해주세요.");
+            setPhoneNumberValidMessage("올바른 전화번호 형식이 아닙니다. 010-0000-0000 형식으로 작성해주세요.");
         } else {
-          setPhoneNumberValidMessage("");
+            setPhoneNumberValidMessage("");
         }
-      }, [inputValue.phoneNumber]);
+    }, [inputValue.phoneNumber]);
       
+    const handleChangeButtonOnClick = async () => {
+        // 빈 값인 경우 return
+        if(Object.values(inputValue).map(value => !!value).includes(false)) {
+            Swal.fire({
+                icon: "error",
+                title: "빈 값은 존재할 수 없습니다.",
+                confirmButtonText: "<div style='font-size: 1.3rem'>확인</div>",
+            });
+            return;
+        }
+
+        Swal.fire({
+            icon: "warning",
+            title: "정말 바꾸시겠습니까?",
+            showDenyButton: true,
+            confirmButtonText: "<div style='font-size: 1.3rem'>변경</div>",
+            denyButtonText: "<div style='font-size: 1.3rem'>취소</div>",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                updateUserMutation.mutateAsync({
+                    usercode: inputValue.usercode, 
+                    username: inputValue.username, 
+                    email: inputValue.email,
+                    phoneNumber: inputValue.phoneNumber
+                }).then(response => {
+                    Swal.fire({
+                        icon: "success",
+                        titleText: "변경 완료",
+                        confirmButtonText: "<div style='font-size: 1.3rem'>확인</div>"
+                    }).then(response => {
+                        queryClient.invalidateQueries(["userMeQuery"]);
+                        setOpen(false);
+                    });
+                }).catch(error => {
+                    Swal.fire({
+                        icon: "error",
+                        titleText: "변경 실패",
+                        html: "<div style='font-size: 1.5rem'>오류가 발생했습니다. 다시 시도해주세요.</div>",
+                        confirmButtonText: "<div style='font-size: 1.3rem'>확인</div>",
+                    });
+                });
+            };
+        });
+        
+    }
 
     const handleCloseButtonOnClick = () => {
         setOpen(false);
@@ -69,15 +133,16 @@ function ChangeUserModal({setOpen, user}) {
             <div css={s.main}>
                 <div css={s.inputBox}>
                     <label htmlFor="usercode">사원번호</label>
+                    {/* 사원번호는 변경할 수 없도록 input에 disabled 걸어주었음 */}
                     <input type="text" name='usercode' value={inputValue.usercode} disabled={true} />
                 </div>
                 <div css={s.inputBox}>
                     <label htmlFor="username">직원이름</label>
-                    <input type="text" name='username' value={inputValue.username} />
+                    <input type="text" name='username' value={inputValue.username} onChange={handleInputOnChange} />
                 </div>
                 <div css={s.inputBox}>
                     <label htmlFor="email">이메일</label>
-                    <input type="text" name='email' value={inputValue.email} />
+                    <input type="text" name='email' value={inputValue.email} onChange={handleInputOnChange} />
                 </div>
                 {
                     !!emailValidMessage &&
@@ -87,7 +152,7 @@ function ChangeUserModal({setOpen, user}) {
                 }
                 <div css={s.inputBox}>
                     <label htmlFor="phoneNumber">휴대전화</label>
-                    <input type="text" name='phoneNumber' value={inputValue.phoneNumber} />
+                    <input type="text" name='phoneNumber' value={inputValue.phoneNumber} onChange={handleInputOnChange} />
                 </div>
                 {
                     !!phoneNumberValidMessage &&
@@ -96,7 +161,7 @@ function ChangeUserModal({setOpen, user}) {
                     </div>
                 }
                 <div css={s.changeButtonBox}>
-                    <button css={s.changeButton}>변경</button>
+                    <button css={s.changeButton} onClick={handleChangeButtonOnClick} disabled={isDisabled()}>변경</button>
                 </div>
             </div>
         </div>
