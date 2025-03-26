@@ -24,7 +24,6 @@ import NoticeMyListPage from "../../pages/NoticeMyListpage/NoticeMyListPage";
 import AdmPatientVital from "../../components/TablePageComponents/AdmPatientViatal/AdmPatientVital";
 import NoticeModifyPage from "../../pages/NoticeModifyPage/NoticeModifyPage";
 
-
 function MainRoute() {
   useUserMeQuery();
 
@@ -44,14 +43,17 @@ function MainRoute() {
             <Route path="/notice/write" element={<NoticeWritePage />} />
             <Route path="/notice/list" element={<NoticeLsitPage />} />
             <Route path="/notice/:usercode" element={<NoticeMyListPage />} />
-            <Route path="/notice/:usercode/modify/:noticeId" element={<NoticeModifyPage />} />
-            <Route path="/:usercode/admission/:admissionId/certificate" element={<PaymentCertificatePage />} />
-
-            <Route 
-              path="/receipt" element={<ReceiptPage />} 
-            
+            <Route
+              path="/notice/:usercode/modify/:noticeId"
+              element={<NoticeModifyPage />}
             />
-            
+            <Route
+              path="/:usercode/admission/:admissionId/certificate"
+              element={<PaymentCertificatePage />}
+            />
+
+            <Route path="/receipt" element={<ReceiptPage />} />
+
             <Route
               path="/:usercode/admission/:admissionId/detailBill"
               element={<DetailBillPage />}
@@ -63,8 +65,7 @@ function MainRoute() {
               path="/MedicalReception"
               element={<MedicalReceptionPage />}
             />
-            <Route path="/test" element={<AdmPatientVital />} />
-            <Route path="/summary" element={<SummaryChartPage />} />
+            <Route path="/summary/total" element={<SummaryChartPage />} />
             <Route
               path="/summary/usercode"
               element={<SummaryChartUsercodePage />}

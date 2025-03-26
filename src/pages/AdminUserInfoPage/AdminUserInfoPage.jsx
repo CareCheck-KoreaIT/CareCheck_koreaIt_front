@@ -60,9 +60,6 @@ function AdminUserInfoPage(props) {
     const [ foundUser, setFoundUser ] = useState({});
     const [ isOpen, setIsOpen ] = useState(false);
 
-    const [ foundUser, setFoundUser ] = useState({});
-    const [ isOpen, setIsOpen ] = useState(false);
-
     useEffect(() => {
         if(!searchUserList.isLoading) {
             const currentPage = searchUserList?.data?.data.page || 1;
@@ -134,13 +131,15 @@ function AdminUserInfoPage(props) {
             }
           });
           if (password) {
-            // password 정규식 추가
             await updateUserPasswordMutation.mutateAsync({usercode: usercode, password: password});
             Swal.fire({
                 icon: "success",
                 titleText: "비밀번호가 초기화 되었습니다",
                 confirmButtonText: "<div style='font-size: 1.5rem'>확인</div>"
-            }).then(response => {queryClient.invalidateQueries(["userMeQuery"])});
+            }).then(response => {
+                queryClient.invalidateQueries(["useGetSearchUserList"]);
+                queryClient.invalidateQueries(["userMeQuery"]);
+            });
           }
     }
     const handleDeleteButtonOnClick = async (usercode) => {
@@ -169,7 +168,10 @@ function AdminUserInfoPage(props) {
                 icon: "success",
                 titleText: "삭제되었습니다",
                 confirmButtonText: "<div style='font-size: 1.5rem'>확인</div>"
-            }).then(response => {queryClient.invalidateQueries(["userMeQuery"])});
+            }).then(response => {
+                queryClient.invalidateQueries(["useGetSearchUserList"]);
+                queryClient.invalidateQueries(["userMeQuery"]);
+            });
         }
     }
     
@@ -234,7 +236,6 @@ function AdminUserInfoPage(props) {
                                 <div>{userList.updatedAt}</div>
                                 <div>
                                     <button onClick={() => handleChangeInfoButtonOnClick(userList.usercode)}><IoSettingsSharp /></button>
-
                                     <button onClick={() => handleChangePasswordButtonOnClick(userList.usercode)}><CgPassword /></button>
                                     <button onClick={() => handleDeleteButtonOnClick(userList.usercode)}><MdOutlineCancel /></button>
                                 </div>

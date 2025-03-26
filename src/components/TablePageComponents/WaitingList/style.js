@@ -13,7 +13,9 @@ export const closeField = css`
 `;
 export const list = css`
   justify-content: center;
-  width: 100%;
+  width: 40rem;
+  height: 70rem;
+  overflow-y: auto;
   border: 0.1rem solid #000000;
   border-collapse: collapse;
 

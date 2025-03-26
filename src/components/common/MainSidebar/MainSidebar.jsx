@@ -5,94 +5,130 @@ import React, { useEffect } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { useRecoilState } from "recoil";
 import { headerMenuState } from "../../../atoms/Header/headerMenu";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 function MainSidebar() {
-
   const queryClient = useQueryClient();
   const loginUser = queryClient.getQueryData(["userMeQuery"]);
-  const [headerState, setHeaderState] = useRecoilState(headerMenuState)
-  console.log("mainsidebar", headerState)
-
+  const [headerState, setHeaderState] = useRecoilState(headerMenuState);
+  console.log("mainsidebar", headerState);
+  const navigate = useNavigate();
   useEffect(() => {
     const savedState = sessionStorage.getItem("headerState");
-    if(savedState) {
+    if (savedState) {
       setHeaderState(savedState);
     } else {
-      setHeaderState("접수메뉴변경") //
+      setHeaderState("접수메뉴변경"); //
     }
-  },[setHeaderState]);
+  }, [setHeaderState]);
 
   useEffect(() => {
     sessionStorage.setItem("headerState", headerState);
-  },[headerState]);
+  }, [headerState]);
 
   const renderSidebarMenu = () => {
-    switch(headerState) {
+    switch (headerState) {
       case "메인메뉴":
         return (
           <>
-            <div><BsColumnsGap/><span>테스트1</span></div>
-            <div><BsColumnsGap/><span>테스트2</span></div>
-            <div><BsColumnsGap/><span>테스트3</span></div>
+            <div>
+              <BsColumnsGap />
+              <span>테스트1</span>
+            </div>
+            <div>
+              <BsColumnsGap />
+              <span>테스트2</span>
+            </div>
+            <div>
+              <BsColumnsGap />
+              <span>테스트3</span>
+            </div>
           </>
-        )
+        );
 
       case "접수메뉴변경":
         return (
           <>
-            <div><BsColumnsGap />
-            <span>환자 등록</span>
+            <div>
+              <BsColumnsGap />
+              <span>환자 등록</span>
             </div>
-            <div><BsColumnsGap />
-            <span>접수 확인</span>
+            <div>
+              <BsColumnsGap />
+              <span>접수 확인</span>
             </div>
-            <div><BsColumnsGap />
-            <span>환자 리스트</span>
+            <div>
+              <BsColumnsGap />
+              <span>환자 리스트</span>
             </div>
           </>
         );
       case "수납메뉴변경":
-      return (
-        <>
-          <div><BsColumnsGap /><span>수납 신청</span></div>
-          <div><BsColumnsGap /><span>수납 확인</span></div>
-        </>
-      );
+        return (
+          <>
+            <div>
+              <BsColumnsGap />
+              <span>수납 신청</span>
+            </div>
+            <div>
+              <BsColumnsGap />
+              <span>수납 확인</span>
+            </div>
+          </>
+        );
       case "처방메뉴변경":
-      return (
-        <>
-          <div><BsColumnsGap /><span>처방 신청</span></div>
-          <div><BsColumnsGap /><span>처방 확인</span></div>
-        </>
-      );
+        return (
+          <>
+            <div>
+              <BsColumnsGap />
+              <span>처방 신청</span>
+            </div>
+            <div>
+              <BsColumnsGap />
+              <span>처방 확인</span>
+            </div>
+          </>
+        );
       case "통계메뉴변경":
-      return (
-        <>
-          <div><BsColumnsGap /><span>통계표</span></div>
-          <div><BsColumnsGap /><span>통계 확인</span></div>
-        </>
-      );
+        return (
+          <>
+            <div onClick={() => navigate("/summary/total")}>
+              <BsColumnsGap />
+              <span>병원 전체 통계</span>
+            </div>
+            <div onClick={() => navigate("/summary/usercode")}>
+              <BsColumnsGap />
+              <span>진료과장별 통계</span>
+            </div>
+          </>
+        );
       case "관리자메뉴변경":
-      return (
-        <>
-          <div><BsColumnsGap /><span>관리자 설정</span></div>
-          <div><BsColumnsGap /><span>관리자 테스트</span></div>
-        </>
-      );
+        return (
+          <>
+            <div>
+              <BsColumnsGap />
+              <span>관리자 설정</span>
+            </div>
+            <div>
+              <BsColumnsGap />
+              <span>관리자 테스트</span>
+            </div>
+          </>
+        );
     }
-  }
+  };
   return (
     <div css={s.sidebar}>
-      <header css={s.header} >
-        <NavLink to="/" className={({ isActive }) => (isActive ? undefined : "")}
-        onClick={()=>setHeaderState("메인메뉴")}>
-        <h2>CareCheck</h2>
+      <header css={s.header}>
+        <NavLink
+          to="/"
+          className={({ isActive }) => (isActive ? undefined : "")}
+          onClick={() => setHeaderState("메인메뉴")}
+        >
+          <h2>CareCheck</h2>
         </NavLink>
       </header>
-      <section css={s.section}>
-          {renderSidebarMenu()}
-      </section>
+      <section css={s.section}>{renderSidebarMenu()}</section>
       <footer css={s.footer}>
         <div>{loginUser?.data?.username}님</div>
       </footer>

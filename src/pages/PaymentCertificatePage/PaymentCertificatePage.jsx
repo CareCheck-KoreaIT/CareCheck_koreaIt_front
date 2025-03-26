@@ -5,9 +5,12 @@ import { useGetSearchPatientInfo, useGetSearchTotalPay } from '../../queries/adm
 import { useNavigate, useParams } from 'react-router-dom';
 import { useQueryClient } from '@tanstack/react-query';
 import { IoFingerPrintOutline } from 'react-icons/io5';
+import { useRecoilState } from 'recoil';
+import { waitingLisAdmId } from '../../atoms/doctorTable/doctorTableAtom';  // Recoil 상태를 정의한 곳
 
-function PaymentCertificatePage(props) {
+function PaymentCertificatePage() {
     const queryClient = useQueryClient();
+    const [ admId, setAdmId ] = useRecoilState(["admissionId"]);
     const userInfo = queryClient.getQueryData(["userMeQuery"]);
     const navigate = useNavigate();
     const param = useParams();
