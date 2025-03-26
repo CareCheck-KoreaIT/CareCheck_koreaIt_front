@@ -12,7 +12,6 @@ function MainSidebar() {
   const queryClient = useQueryClient();
   const loginUser = queryClient.getQueryData(["userMeQuery"]);
   const [headerState, setHeaderState] = useRecoilState(headerMenuState)
-  console.log("mainsidebar", headerState)
 
   useEffect(() => {
     const savedState = sessionStorage.getItem("headerState");
