@@ -65,8 +65,7 @@ function MainRoute() {
               path="/MedicalReception"
               element={<MedicalReceptionPage />}
             />
-            <Route path="/test" element={<AdmPatientVital />} />
-            <Route path="/summary" element={<SummaryChartPage />} />
+            <Route path="/summary/total" element={<SummaryChartPage />} />
             <Route
               path="/summary/usercode"
               element={<SummaryChartUsercodePage />}
