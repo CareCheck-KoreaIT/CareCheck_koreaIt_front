@@ -3,7 +3,7 @@ import { useGetSearchAllWaitingList } from '../../queries/admissionQuery';
 import * as s from './style';
 import React, { useEffect, useState } from 'react';
 import { BiSearch } from 'react-icons/bi';
-import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useDeleteReceiptMutation } from '../../mutations/admissionMutation';
 import DeleteReceiptModal from '../../components/modal/DeleteReceiptModal/DeleteReceiptModal';
 import { useQueryClient } from '@tanstack/react-query';
@@ -11,6 +11,7 @@ import Swal from 'sweetalert2';
 
 function ReceiptPage() {
     const queryClient = useQueryClient();
+    const loginUser = queryClient.getQueryData(["userMeQuery"]);
     const [keyword, setKeyword] = useState("");
     const [searchTerm, setSearchTerm] = useState(""); // 사용자 입력을 받는 값
     const [filteredWaitingList, setFilteredWaitingList] = useState([]); // 필터링된 리스트를 저장할 상태
@@ -105,8 +106,8 @@ function ReceiptPage() {
         setIsModalOpen(false);
     };
 
-    const handlePayment = (usercode, admissionId) =>{
-        navigate(`/${usercode}/admission/${admissionId}/certificate`);
+    const handlePayment = (admId) => {
+        navigate(`/${loginUser?.data?.usercode}/admission/${admId}/detailBill`);
     };
 
     return (
@@ -165,8 +166,8 @@ function ReceiptPage() {
                                             />}
                                         </td>
                                         <td>
-                                            <button css={s.PaymentButton} onClick={() => handlePayment(allWaiting.usercode, allWaiting.admissionId)}>
-                                            영수증
+                                            <button css={s.PaymentButton} onClick={() => handlePayment(allWaiting.admId)}>
+                                            결제
                                             </button>
                                         </td>
                                     </tr>
