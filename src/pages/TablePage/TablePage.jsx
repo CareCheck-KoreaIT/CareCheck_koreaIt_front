@@ -87,6 +87,7 @@ function TablePage() {
       position: "center",
     });
     qureyClient.invalidateQueries(["useGetSearchWaitingList", param.usercode]);
+    setAdmissionId("");
   };
   return (
     <>
