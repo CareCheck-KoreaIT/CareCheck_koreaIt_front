@@ -2,7 +2,6 @@
 import { tableContainer, summaryTable } from "./style.js";
 
 function SummaryTable({ summaryData }) {
-  console.log("summaryTable의 props", summaryData);
   return (
     <div css={tableContainer}>
       <h3>분기별 요약</h3>

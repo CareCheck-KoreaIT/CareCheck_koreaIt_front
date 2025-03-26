@@ -17,13 +17,13 @@ export const parent = css`
   margin-top: 3rem;
   gap: 10rem;
 
-  & > div:nth-child(1) {
+  & > div:nth-of-type(1) {
     flex: 1;
     width: 50rem;
     text-align: center;
   }
 
-  & > div:nth-child(2) {
+  & > div:nth-of-type(2) {
     flex: 2;
     width: 70rem;
     text-align: center;
@@ -41,7 +41,7 @@ export const leftTable = css`
   height: 8rem;
   background-color: #464667;
 
-  & > tr,
+  & tbody > tr,
   td {
     font-size: 3rem;
     font-weight: bold;
@@ -97,7 +97,7 @@ export const rightTable = css`
   margin-bottom: 2rem;
   overflow-y: auto;
 
-  & > tr {
+  & > tbody > tr {
     font-size: 3rem;
     font-weight: bold;
     color: #ffffff;

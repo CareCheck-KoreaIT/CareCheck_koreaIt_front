@@ -17,23 +17,25 @@ function DiagnosisDesease() {
   return (
     <>
       <table css={s.list}>
-        {disease.length == 0 ? (
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-        ) : (
-          disease.map((disease, index) => (
-            <tr key={index}>
-              <td>{disease.diseaseCode}</td>
-              <td>{disease.diseaseKName}</td>
-              <td onClick={() => handleRemoveDisease(disease)}>
-                <FaMinus />
-              </td>
+        <tbody>
+          {disease.length == 0 ? (
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
             </tr>
-          ))
-        )}
+          ) : (
+            disease.map((disease, index) => (
+              <tr key={index}>
+                <td>{disease.diseaseCode}</td>
+                <td>{disease.diseaseKName}</td>
+                <td onClick={() => handleRemoveDisease(disease)}>
+                  <FaMinus />
+                </td>
+              </tr>
+            ))
+          )}
+        </tbody>
       </table>
     </>
   );
