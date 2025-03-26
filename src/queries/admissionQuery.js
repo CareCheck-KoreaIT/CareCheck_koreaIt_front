@@ -70,7 +70,6 @@ export const useGetSearchWaitingList = (usercode) => {
 };
 
 export const useGetSearchAllWaitingList = (keyword) => {
-  // console.log("searchAllWaiting query 실행 : ", keyword);
   return useQuery({
     queryKey: ["useGetSearchAllWaitingList", keyword],
     queryFn: async () => {

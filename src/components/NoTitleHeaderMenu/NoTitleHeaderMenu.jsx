@@ -18,10 +18,9 @@ function NoTitleHeaderMenu() {
   const loginUser = queryClient.getQueryData(["userMeQuery"]);
   console.log(loginUser);
   const navigate = useNavigate();
-  const [headerState, setHeaderState] = useRecoilState(headerMenuState);
-  useEffect(() => {
-    console.log("test값 변경", headerState);
-  }, [headerState]);
+  const [ headerState, setHeaderState] = useRecoilState(headerMenuState)
+  useEffect(()=>{
+  },[headerState])
 
   const handleLogout = () => {
     Swal.fire({

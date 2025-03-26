@@ -131,13 +131,15 @@ function AdminUserInfoPage(props) {
             }
           });
           if (password) {
-            // password 정규식 추가
             await updateUserPasswordMutation.mutateAsync({usercode: usercode, password: password});
             Swal.fire({
                 icon: "success",
                 titleText: "비밀번호가 초기화 되었습니다",
                 confirmButtonText: "<div style='font-size: 1.5rem'>확인</div>"
-            }).then(response => {queryClient.invalidateQueries(["userMeQuery"])});
+            }).then(response => {
+                queryClient.invalidateQueries(["useGetSearchUserList"]);
+                queryClient.invalidateQueries(["userMeQuery"]);
+            });
           }
     }
     const handleDeleteButtonOnClick = async (usercode) => {
@@ -166,7 +168,10 @@ function AdminUserInfoPage(props) {
                 icon: "success",
                 titleText: "삭제되었습니다",
                 confirmButtonText: "<div style='font-size: 1.5rem'>확인</div>"
-            }).then(response => {queryClient.invalidateQueries(["userMeQuery"])});
+            }).then(response => {
+                queryClient.invalidateQueries(["useGetSearchUserList"]);
+                queryClient.invalidateQueries(["userMeQuery"]);
+            });
         }
     }
     
