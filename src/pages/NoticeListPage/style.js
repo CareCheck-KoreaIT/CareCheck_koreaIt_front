@@ -176,12 +176,15 @@ export const wirteBoxwrapper = css`
 export const writeBox = css`
     box-sizing: border-box;
     border-radius: 0.2rem;
-    width: 10rem;
+    width: 8rem;
+    height: 2.5rem;
     border: 1px solid #eeeeee;
+    background-color: #464667;
+    color: #dbdbdb;
     cursor: pointer;
 
     &:hover{
-        background-color: #dbdbdb;
+        background-color: #3A3A4B;
     }
 
 `;

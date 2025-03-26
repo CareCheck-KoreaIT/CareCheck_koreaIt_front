@@ -15,7 +15,6 @@ function AdmPatientVital({ admissionId }) {
 
   const admPatientVitalByAdmId = useGetSelectVital(Number(admissionId));
 
-  console.log(admPatientVitalByAdmId?.data?.data);
   const admPatientVitalApi = admPatientVitalByAdmId?.data?.data[0].vital;
 
   useEffect(() => {
@@ -28,15 +27,23 @@ function AdmPatientVital({ admissionId }) {
     }
   }, [admissionId, admPatientVitalApi]);
 
-  const admPatientVitalAdmId = useGetSelectVital(Number(admissionId), {
-    enabled: !!admissionId,
-  });
+  const admPatientVitalAdmId = useGetSelectVital(Number(admissionId));
   const admPatientVitalData = admPatientVitalAdmId?.data?.data[0] || [];
 
   return (
     <>
       {admPatientVitalData.length < 1 ? (
-        <div css={s.nodata}>입력된 값이 없습니다.</div>
+        <table css={s.list}>
+          <tbody>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
       ) : (
         admPatientVitalApi.map((patientVital) => (
           <table css={s.list} key={patientVitalData}>

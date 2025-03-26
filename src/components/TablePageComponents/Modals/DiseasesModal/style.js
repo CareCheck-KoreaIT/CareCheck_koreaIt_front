@@ -162,6 +162,11 @@ export const selectFieldHeader = css`
       font-size: 1.6rem;
       color: #ffffff;
     }
+    &:disabled {
+      background-color: #9f9f9f;
+      color: #d3d3d3;
+      cursor: not-allowed;
+    }
   }
   & > h3 {
     margin-left: 1rem;

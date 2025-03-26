@@ -10,7 +10,7 @@ function NoticeWritePage(props) {
   const createNoticeMutation = useCreateNoticeMutation();
   
   const [title, setTitle] = useState("");
-  const [ quillContent, setQuillContent ] = useState("");
+  const [quillContent, setQuillContent] = useState("");
 
   const containerRef = useRef();
 
@@ -39,6 +39,11 @@ function NoticeWritePage(props) {
     setTitle(e.target.value);
   };
 
+  const removeHtmlTags = (html) => {
+    const doc = new DOMParser().parseFromString(html, 'text/html');
+    return doc.body.textContent || "";
+  };
+
   const handleSaveOnClick = async () => {
     if (!title.trim()) {
       await Swal.fire({
@@ -55,9 +60,12 @@ function NoticeWritePage(props) {
       return;
     }
 
+    // HTML 태그를 제거하고 텍스트만 남기기
+    const plainContent = removeHtmlTags(quillContent);
+
     const notice = {
       title,
-      content: quillContent,
+      content: plainContent,
     };
 
     const response = await createNoticeMutation.mutateAsync(notice);

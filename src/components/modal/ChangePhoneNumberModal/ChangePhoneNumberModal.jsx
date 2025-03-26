@@ -10,25 +10,56 @@ import { useUserMeQuery } from '../../../queries/userQuery';
 
 function ChangePhoneNumberModal({setOpen}) {
     const queryClient = useQueryClient();
-    const loginUser = queryClient.getQueryData(["userMeQuery"]);
     const updatePhoneNumberMutation = useUpdatePhoneNumberMutation();
 
     const [ phoneNumberValue, setPhoneNumberValue ] = useState("");
+    const [ phoneNumberValidMessage, setPhoneNumberValidMessage ] = useState("");
+    const [ isValid, setIsValid ] = useState(false);
+    const phoneNumberRegex = /^010-\d{4}-\d{4}$/;
 
     const handlePhoneNumberInputOnChange = (e) => {
         setPhoneNumberValue(e.target.value);
     }
+    useEffect(() => {
+        if(!phoneNumberValue) {
+            setPhoneNumberValidMessage("");
+        } else if(!phoneNumberRegex.test(phoneNumberValue)) {
+            setPhoneNumberValidMessage("올바른 전화번호 형식이 아닙니다. 010-0000-0000 형식으로 작성해주세요.");
+        } else {
+            setPhoneNumberValidMessage("");
+        }
+    }, [phoneNumberValue]);
 
     const handlePhoneNumberChangeButtonOnClick = async () => {
-        let usercode = loginUser?.data.usercode;
-        // console.log(usercode + emailValue);
-        await updatePhoneNumberMutation.mutateAsync({usercode, phoneNumber: phoneNumberValue});
-        await Swal.fire({
-            titleText: "전화번호 변경 완료",
-            confirmButtonText: "확인",
-        })
-        queryClient.invalidateQueries(["userMeQuery"]);
-        setOpen(false);
+        if (!phoneNumberValue) {
+            Swal.fire({
+                icon: "error",
+                titleText: "전화번호 변경 실패",
+                html: "<div style='font-size: 1.5rem'>변경할 전화번호를 입력해주세요.</div>",
+                confirmButtonText: "<div style='font-size: 1.3rem'>확인</div>",
+            });
+            return;
+        }
+        await updatePhoneNumberMutation.mutateAsync(phoneNumberValue)
+        .then(response =>{ 
+            Swal.fire({
+                icon: "success",
+                titleText: "전화번호 변경 완료",
+                confirmButtonText: "<div style='font-size: 1.3rem'>확인</div>",
+            }).then(response => {
+                queryClient.invalidateQueries(["userMeQuery"]);
+                setOpen(false);
+            });
+        }).catch(error =>{
+            Swal.fire({
+                icon: "error",
+                titleText: "전화번호 변경 실패",
+                html: "<div style='font-size: 1.5rem'>오류가 발생했습니다. 다시 시도해주세요.</div>",
+                confirmButtonText: "<div style='font-size: 1.3rem'>확인</div>",
+            }).then(response => {
+                setPhoneNumberValue("");
+            });
+        });
     }
 
     const handleInputOnKeyDown = async (e) => {
@@ -52,8 +83,11 @@ function ChangePhoneNumberModal({setOpen}) {
                 <p css={s.headerMessage}>변경할 전화번호를 입력하세요.</p>
             </div>
             <div css={s.main}>
-                <input type="text" name='newPhoneNumber' value={phoneNumberValue} onChange={handlePhoneNumberInputOnChange} onKeyDown={handleInputOnKeyDown} placeholder='ex) 010-1234-5678' />
-                <button onClick={handlePhoneNumberChangeButtonOnClick}>변경</button>
+                <div>
+                    <input type="text" name='newPhoneNumber' value={phoneNumberValue} onChange={handlePhoneNumberInputOnChange} onKeyDown={handleInputOnKeyDown} placeholder='ex) 010-1234-5678' />
+                    {!!phoneNumberValidMessage && <p>{phoneNumberValidMessage}</p>}
+                </div>
+                <button onClick={handlePhoneNumberChangeButtonOnClick} disabled={!!phoneNumberValidMessage}>변경</button>
             </div>
         </div>
     );

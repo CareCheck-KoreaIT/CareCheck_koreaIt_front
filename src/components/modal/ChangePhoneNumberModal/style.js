@@ -46,18 +46,31 @@ export const main = css`
     align-items: center;
     padding: 0 5rem;
 
-    & > input {
-        box-sizing: border-box;
-        outline: none;
-        margin-right: 1rem;
-        border: 0cap;
-        border-bottom: 0.2rem dotted #464667;
-        /* border-radius: 0.5rem; */
-        padding: 0.5rem 1rem;
+    & > div {
         flex-grow: 1;
-        font-size: 1.5rem;
-        color: #666666;
-        background-color: #ffffff;
+        display: flex;
+        flex-direction: column;
+
+        & > input {
+            box-sizing: border-box;
+            outline: none;
+            margin-right: 1rem;
+            border: 0;
+            border-bottom: 0.2rem dotted #464667;
+            padding: 0.5rem 1rem;
+            flex-grow: 1;
+            font-size: 1.5rem;
+            color: #666666;
+            background-color: #ffffff;
+        }
+    
+        & > p {
+          margin: 0;
+          height: 1.2rem;
+          font-size: 1.2rem;
+          color: #ff4949;
+          visibility: visible;
+        }
     }
 
     & > button {
@@ -65,8 +78,16 @@ export const main = css`
         border: 0.2rem solid #464667;
         border-radius: 0.5rem;
         padding: 0.5rem 1.5rem;
-        background-color: #bab6dd;
+        background-color: #8f87dc;
         cursor: pointer;
+
+        
+        &:disabled {
+            border: 0.2rem solid #dbdbdb;
+            background-color: #dbdbdb;
+            color: #949494;
+            pointer-events: none;
+        }
 
         &:hover {
             background-color: #636394;
