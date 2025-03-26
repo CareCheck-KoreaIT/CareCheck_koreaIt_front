@@ -85,4 +85,17 @@ export const footer = css`
   }
 `;
 
-
+export const menuItem = css`
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  font-size: 2.5rem;
+  text-decoration: none;
+  color: black;
+  
+  &.active {
+    font-weight: bold;
+    text-decoration: underline;
+    color: blue;
+  }
+`;
