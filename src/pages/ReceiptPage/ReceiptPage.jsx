@@ -1,5 +1,5 @@
 /**@jsxImportSource @emotion/react */
-import { useGetSearchAllWaitingList, useGetSearchPatientInfo } from '../../queries/admissionQuery';
+import { useGetSearchAllWaitingList } from '../../queries/admissionQuery';
 import * as s from './style';
 import React, { useEffect, useState } from 'react';
 import { BiSearch } from 'react-icons/bi';
@@ -7,10 +7,11 @@ import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { useDeleteReceiptMutation } from '../../mutations/admissionMutation';
 import DeleteReceiptModal from '../../components/modal/DeleteReceiptModal/DeleteReceiptModal';
 import { useQueryClient } from '@tanstack/react-query';
+import Swal from 'sweetalert2';
 
 function ReceiptPage() {
     const queryClient = useQueryClient();
-    const [keyword, setKeyword] = useState("테스트");
+    const [keyword, setKeyword] = useState("");
     const [searchTerm, setSearchTerm] = useState(""); // 사용자 입력을 받는 값
     const [filteredWaitingList, setFilteredWaitingList] = useState([]); // 필터링된 리스트를 저장할 상태
     const allWaitingListBykeyword = useGetSearchAllWaitingList(keyword);
@@ -24,13 +25,14 @@ function ReceiptPage() {
     const handleSearchButtonOnClick = () => {
     // 검색어가 비어 있지 않으면 필터링 수행
     if (!searchTerm.trim()) { 
-        setFilteredWaitingList([]);  // 공백일 경우 필터링된 대기 리스트 비우기
+        setFilteredWaitingList([]); // 공백일 경우 필터링된 대기 리스트 비우기
+        setSearchTerm("");  
         return;
     }
 
     // 검색어가 있을 경우 필터링 수행
     const filtered = allWaitingList.filter(item => 
-        item.patientName.toLowerCase().includes(searchTerm.toLowerCase())
+        (item.patientName || ``).toLowerCase().includes(searchTerm.toLowerCase())
     );
     
     // 필터링된 리스트 상태 업데이트
@@ -57,30 +59,33 @@ function ReceiptPage() {
     };
 
     useEffect(() => {
+        // 초기 렌더링 시 전체 대기자 목록을 보여줌
+        setFilteredWaitingList(allWaitingList.slice(0, 10));
+    }, [allWaitingList]);
+
+    useEffect(() => {
     }, [isModalOpen]);
 
     useEffect(() => {
         allWaitingListBykeyword.refetch()
     }, [searchParams]);
 
+    const updatedData = allWaitingList.filter(item => item.admId !== selectedReceipt);
     const handleConfirmDeleteOnClick = async () => {
         // await deleteReceiptMutation.mutateAsync(admissionId)
 
         if (selectedReceipt) {
             deleteReceipt(selectedReceipt, {
                 onSuccess: async () => {
-                    console.log("취소성공");
                     setIsModalOpen(false);
                     await Swal.fire({
                         titleText: "취소가 완료되었습니다.",
                         icon: "success",
                         confirmButtonText: "확인"
                     });
-                    await allWaitingListBykeyword.refetch();
                     queryClient.invalidateQueries(["useGetSearchAllWaitingList"])
                 },
-                onError: async (error) => {
-                    console.log("취소실패", error);
+                onError: async () => {
                     setIsModalOpen(false);
                     await Swal.fire({
                         titleText: "취소 실패",
@@ -140,7 +145,7 @@ function ReceiptPage() {
                         <tbody>
                             {filteredWaitingList.length > 0 ? (
                                 filteredWaitingList.map((allWaiting) => (
-                                    <tr key={allWaiting.patientId}>
+                                    <tr key={allWaiting.admId}>
                                         <td>{allWaiting.patientId}</td>
                                         <td>{allWaiting.patientName}</td>
                                         <td>{allWaiting.phoneNum}</td>

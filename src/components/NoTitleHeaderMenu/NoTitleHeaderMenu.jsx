@@ -16,7 +16,6 @@ function NoTitleHeaderMenu() {
   const navigate = useNavigate();
   const [ headerState, setHeaderState] = useRecoilState(headerMenuState)
   useEffect(()=>{
-    console.log("test값 변경", headerState)
   },[headerState])
 
   const handleLogout = ()=> {
