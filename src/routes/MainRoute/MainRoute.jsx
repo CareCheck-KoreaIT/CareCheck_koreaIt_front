@@ -48,17 +48,17 @@ function MainRoute() {
               element={<NoticeModifyPage />}
             />
             <Route
-              path="/admission/:usercode/:admissionId/certificate"
+              path="/admission/:admissionId/certificate"
               element={<PaymentCertificatePage />}
             />
 
-            <Route path="/receipt" element={<ReceiptPage />} />
-
             <Route
-              path={`/admission/:usercode/:admissionId/detailbill`}
+              path={`/admission/:admissionId/detailbill`}
               element={<DetailBillPage />}
             />
-            <Route path="/:usercode/admission/table" element={<TablePage />} />
+            <Route path="/receipt" element={<ReceiptPage />} />
+
+            <Route path="/admission/table" element={<TablePage />} />
             <Route path="/manager" element={<MembershipJoinPage />} />
 
             <Route

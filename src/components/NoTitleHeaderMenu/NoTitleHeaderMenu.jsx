@@ -68,7 +68,7 @@ function NoTitleHeaderMenu() {
       </div>
       <div css={s.headerMenu}>
         <NavLink
-          to={`/${2025020003}/admission/table`}
+          to={`/admission/table`}
           className={({ isActive }) => (isActive ? "active" : "")}
           onClick={() => setHeaderState("처방메뉴변경")}
         >
