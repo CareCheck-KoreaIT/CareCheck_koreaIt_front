@@ -35,9 +35,10 @@ function TablePage() {
   const [ordersModalOpen, setOrdersModalOpen] = useRecoilState(openOrdersModal);
   const [diagnosisList, setDiagnosisList] = useRecoilState(diagnosisDisease);
   const [ordersList, setOrdersList] = useRecoilState(diagnosisOrders);
-  const qureyClient = useQueryClient();
+  const queryClient = useQueryClient();
+  const loginUser = queryClient.getQueryData(["userMeQuery"]);
   const param = useParams();
-  useEffect(() => {}, [param.usercode, admissionId]);
+  useEffect(() => {}, [loginUser?.data?.usercode, admissionId]);
 
   const handleDiseaseModalOpen = () => {
     setDiseaseModalOpen(true);
@@ -86,7 +87,10 @@ function TablePage() {
       timer: 1000,
       position: "center",
     });
-    qureyClient.invalidateQueries(["useGetSearchWaitingList", param.usercode]);
+    queryClient.invalidateQueries([
+      "useGetSearchWaitingList",
+      loginUser?.data?.usercode,
+    ]);
     setAdmissionId("");
   };
   return (
@@ -113,7 +117,7 @@ function TablePage() {
               </tbody>
             </table>
             <div css={s.lefttableLayout}>
-              <WaitingList usercode={param.usercode} />
+              <WaitingList usercode={loginUser?.data?.usercode} />
             </div>
           </div>
           {/*진료 대기자 명단 끝*/}
