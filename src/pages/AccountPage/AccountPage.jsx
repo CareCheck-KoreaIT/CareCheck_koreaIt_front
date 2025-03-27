@@ -23,7 +23,7 @@ function AccountPage(props) {
     const [ phoneNumberModalOpen, setPhoneNumberModalOpen ] = useState(false);
 
     const handleMyNoticeButtonOnClick = () => {
-        navigate("/");
+        navigate(`/notice/${loginUser?.data?.usercode}`);
     }
 
     const handleChangePasswordButtonOnClick = () => {
@@ -69,7 +69,7 @@ function AccountPage(props) {
                                     <span> 님</span>
                                 </div>
                                 <div css={s.myNoticeButton}>
-                                    <button>내가 쓴 게시글</button>
+                                    <button onClick={handleMyNoticeButtonOnClick}>내가 쓴 게시글</button>
                                 </div>
                             </div>
                             <div css={s.AccountBox}>

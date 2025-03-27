@@ -7,7 +7,6 @@ import {
   useGetSearchPatientInfo,
   useGetSearchTotalPay,
 } from "../../queries/admissionQuery";
-import { useQueryClient } from "@tanstack/react-query";
 
 function DetailBillPage() {
   const navigate = useNavigate();
@@ -42,23 +41,11 @@ function DetailBillPage() {
   }, [param.admissionId, patientInfoApi]);
 
   const detailBillAdmId = useGetSearchDetailBill(
-    Number(patientData.admissionId),
-    {
-      enabled: !!patientData.admissionId,
-    }
+    Number(patientData.admissionId)
   );
   const detailBillData = detailBillAdmId?.data?.data.diagnosisOrder || [];
 
-  const totalPayAdmId = useGetSearchTotalPay(Number(patientData.admissionId), {
-    enabled: !!patientData.admissionId,
-  });
-
-  const handleDateOnChange = (e) => {
-    setPatientData((prev) => ({
-      ...prev,
-      admDate: e.target.value,
-    }));
-  };
+  const totalPayAdmId = useGetSearchTotalPay(Number(patientData.admissionId));
 
   const handlePaymentCertificate = (admId) => {
     navigate(`/${loginUser?.data?.usercode}/admission/${admId}/certificate`);

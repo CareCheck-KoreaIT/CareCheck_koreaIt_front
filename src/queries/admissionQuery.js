@@ -18,6 +18,7 @@ export const useGetSearchDetailBill = (admissionId) => {
     retry: 0,
     staleTime: 1000 * 60 * 5,
     gcTime: 1000 * 60 * 5,
+    enabled: !!admissionId
   });
 };
 
@@ -44,6 +45,7 @@ export const useGetSearchTotalPay = (admissionId) => {
     retry: 0,
     staleTime: 1000 * 60 * 5,
     gcTime: 1000 * 60 * 5,
+    enabled: !!admissionId,
   });
 };
 
