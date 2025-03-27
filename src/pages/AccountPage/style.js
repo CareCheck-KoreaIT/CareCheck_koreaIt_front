@@ -34,7 +34,7 @@ export const accountBox = css`
     display: flex;
 `;
 
-export const profileBox = css`
+export const profileImgBox = css`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -90,12 +90,12 @@ export const myNoticeButton = css`
     }
 `;
 
-export const AccountBox = css`
+export const accountLayout = css`
     display: flex;
     flex-direction: column;
 `;
 
-export const AccountLine = css`
+export const accountLine = css`
     display: flex;
     align-items: end;
     margin-left: 3rem;
