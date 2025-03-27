@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import * as s from './style';
 import React, { useEffect, useState } from 'react';
 import { FaPlus } from "react-icons/fa6";
-import { useGetSearchNoticeList } from '../../queries/noticeQuery';
-import NoticeModal from '../../components/modal/NoticeModal/NoticeModal';
 import { useQueryClient } from '@tanstack/react-query';
+import { useGetSearchNoticeList } from '../../../queries/noticeQuery';
+import NoticeModal from "../../../components/modal/NoticeModal/NoticeModal";
 
 function NoticeLayout(props) { 
   const navigate = useNavigate();
@@ -40,9 +40,8 @@ function NoticeLayout(props) {
     setIsModalOpen(false);
   }, [navigate]);
   return (
-    <div css={s.layout}>
+    <>
       <div>
-        <div css={s.accountLayout}></div>
         <div css={s.noticeLayout}>
           <div css={s.miniHeader}>
             <h3>공지사항</h3>
@@ -75,8 +74,8 @@ function NoticeLayout(props) {
             />
         </div>
       </div>
-      <div css={s.calendarLayout}></div>
-    </div>
+
+    </>
   );
 }
 

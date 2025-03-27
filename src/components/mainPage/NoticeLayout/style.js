@@ -99,11 +99,3 @@ export const mininoticeListContainer = css`
         }
     }
 `;
-
-export const calendarLayout = css`
-  display: flex;
-  box-sizing: border-box;
-  width: 70rem;
-  height: 76rem;
-  background-color: darkcyan;
-`;
