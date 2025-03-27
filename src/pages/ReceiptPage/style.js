@@ -97,13 +97,13 @@ export const PaymentButton = css`
 `;
 
 
-// export const footer = css`
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//     position: relative;
-//     padding: 1rem;
-// `;
+export const footer = css`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 1rem;
+`;
 
 // export const pageNumbers = css`
 //     display: flex;
