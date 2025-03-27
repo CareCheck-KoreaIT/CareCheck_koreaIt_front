@@ -87,7 +87,7 @@ function TablePage() {
       timer: 1000,
       position: "center",
     });
-    qureyClient.invalidateQueries([
+    queryClient.invalidateQueries([
       "useGetSearchWaitingList",
       loginUser?.data?.usercode,
     ]);

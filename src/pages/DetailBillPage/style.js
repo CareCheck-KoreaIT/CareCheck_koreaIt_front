@@ -163,8 +163,9 @@ export const nodata = css`
   justify-content: center;
   text-align: center;
   border: 0.1rem solid #000000;
-  width: 92rem;
-  height: 3rem;
+  font-size: 2rem;
+  width: 100%;
+  height: 4rem;
 `;
 
 export const script = css`
