@@ -7,6 +7,7 @@ import {
   searchWaitingListApi,
   searchAllWaitingListApi,
   searchAdmissionListApi,
+  getAllWaitingTotalCountApi,
 } from "../apis/admissionApi";
 
 export const useGetSearchDetailBill = (admissionId) => {
@@ -19,6 +20,7 @@ export const useGetSearchDetailBill = (admissionId) => {
     retry: 0,
     staleTime: 1000 * 60 * 5,
     gcTime: 1000 * 60 * 5,
+    enabled: !!admissionId
   });
 };
 
@@ -45,6 +47,7 @@ export const useGetSearchTotalPay = (admissionId) => {
     retry: 0,
     staleTime: 1000 * 60 * 5,
     gcTime: 1000 * 60 * 5,
+    enabled: !!admissionId,
   });
 };
 
@@ -71,7 +74,6 @@ export const useGetSearchWaitingList = (usercode) => {
 };
 
 export const useGetSearchAllWaitingList = (keyword) => {
-  // console.log("searchAllWaiting query 실행 : ", keyword);
   return useQuery({
     queryKey: ["useGetSearchAllWaitingList", keyword],
     queryFn: async () => {
@@ -82,6 +84,18 @@ export const useGetSearchAllWaitingList = (keyword) => {
     gcTime: 1000 * 60 * 5,
   });
 };
+
+export const useGetAllWaitingTotalCount = (keyword) => {
+  return useQuery({
+    queryKey: ["useGetAllWaitingTotalCount", keyword],
+    queryFn: async () => {
+      return await getAllWaitingTotalCountApi(keyword);
+    },
+    retry: 0,
+    staleTime: 1000 * 60 * 5,
+    gcTime: 1000 * 60 * 5,
+  })
+}
 
 export const useGetSearchAdmissionListByPatientName = (patientName) => {
   return useQuery({

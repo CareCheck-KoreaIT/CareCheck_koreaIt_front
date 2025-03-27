@@ -44,28 +44,37 @@ export const section = css`
   gap: 4.5rem;
   & > div {
     display: flex;
-    justify-content: flex-start;
     align-items: center;
-    width: 21.2rem;
+    width: 25rem;
     height: 3rem;
     color: #ffffff;
     background-color: #464667;
-    font-size: 2rem;
+    font-size: 2.5rem;
     cursor: pointer;
 
+    .NavLinkStyle {
+    text-decoration: none; 
+    color: inherit;
+    background-color: transparent; 
+    border: none;
+    margin-left: 1rem; 
+    
     & > span {
-      margin-left: 1rem;
+        &:hover{
+          color: black;
+          font-weight: bold;
+          font-size: 2.5rem;
+          white-space: nowrap;
+        }
+      }
     }
   }
 
-  .activ {
-    color: #464667;
-    font-weight: bold;
-    border-bottom: 3px solid #464667;  
-    padding-bottom: 0.5rem;
-    width: 100%;
+  
+`;
 
-  }
+export const font = css`
+  font-size: 2.1rem;
 `;
 
 export const footer = css`
@@ -84,5 +93,4 @@ export const footer = css`
     cursor: pointer;
   }
 `;
-
 

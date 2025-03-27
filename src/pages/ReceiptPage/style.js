@@ -4,7 +4,6 @@ export const searchItems = css`
     display: flex;
     justify-content: flex-end;
     margin: 4rem 16rem 0rem;
-    
 
     & > Select {
         font-size: 1.5rem;
@@ -38,37 +37,31 @@ export const searchButton = css`
 export const tableContainer = css`
     display: flex;
     justify-content: center;
-    align-items: center;
-    width: 100%;
 `;
 
 export const table = css`
-    width: 80%;
-    border-collapse: collapse; /* 테두리 중복 제거 */
+    width: 128rem;
     text-align: center;
     margin-top: 1rem;
-
     font-size: 1.5rem;
-    
-    border: 2px solid #000; /* 테이블 외부 테두리 */
+    border-collapse: collapse;
+    border: 0.2rem solid #000000;
+    box-sizing: border-box; /* 테이블 외부 테두리 */
 
-    thead {
-        background-color: #464667;
-    }
-
-    th,
     td {
-        border: 1px solid #000; /* 셀 테두리 */
-        padding: 0.5rem;
-        height: 4rem;
+        border: 0.1rem solid #000000;
     }
 
-    th {
-        font-weight: bold;
-        color: #ffffff;
-    }
+`;
 
+export const trHeader = css`
+    background-color: #464667;
+    height: 5rem; /* 차트번호 행 높이 설정 */
+    color: white;
+`;
 
+export const trData = css`
+    height: 5rem; /* 데이터 행 높이 설정 */
 `;
 
 export const cancelButton = css`
@@ -102,3 +95,53 @@ export const PaymentButton = css`
         background-color: #464667;
     }
 `;
+
+
+export const footer = css`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 1rem;
+`;
+
+// export const pageNumbers = css`
+//     display: flex;
+//     width: 25rem;
+    
+//     & > button {
+//         display: flex;
+//         justify-content: center;
+//         align-items: center;
+//         box-sizing: border-box;
+//         margin-right: 0.5rem;
+//         border: 0.1rem solid #dbdbdb;
+//         border-radius: 0.5rem;
+//         width: 2.5rem;
+//         height: 2.5rem;
+//         font-weight: 600;
+//         font-size: 1.2rem;
+//         cursor: pointer;
+//         background-color: #ffffff;
+
+//         &:hover {
+//             background-color: #d2d2d3;
+//         }
+//         &:active {
+//             background-color: #a4a4ca;
+//         }
+
+//         &:disabled {
+//             background-color: #dbdbdb;
+//             cursor: default;
+//         }
+
+//         & > span {
+//             margin-bottom: 0.1rem;
+//         }
+//     }
+// `;
+
+// export const pageNum = (isSelect) => css`
+//     background-color: ${isSelect ? "#a4a4ca" : "#ffffff"} !important;
+// `;
