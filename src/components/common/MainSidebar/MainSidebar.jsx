@@ -12,7 +12,7 @@ function MainSidebar() {
   const queryClient = useQueryClient();
   const loginUser = queryClient.getQueryData(["userMeQuery"]);
   const [headerState, setHeaderState] = useRecoilState(headerMenuState)
-  console.log("mainsidebar", headerState)
+  // console.log("mainsidebar", headerState)
   const location = useLocation();
 
   const handleAccountPage = () => {

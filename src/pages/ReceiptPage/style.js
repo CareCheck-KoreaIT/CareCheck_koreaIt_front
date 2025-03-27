@@ -105,43 +105,43 @@ export const footer = css`
     padding: 1rem;
 `;
 
-// export const pageNumbers = css`
-//     display: flex;
-//     width: 25rem;
+export const pageNumbers = css`
+    display: flex;
+    width: 25rem;
     
-//     & > button {
-//         display: flex;
-//         justify-content: center;
-//         align-items: center;
-//         box-sizing: border-box;
-//         margin-right: 0.5rem;
-//         border: 0.1rem solid #dbdbdb;
-//         border-radius: 0.5rem;
-//         width: 2.5rem;
-//         height: 2.5rem;
-//         font-weight: 600;
-//         font-size: 1.2rem;
-//         cursor: pointer;
-//         background-color: #ffffff;
+    & > button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-sizing: border-box;
+        margin-right: 0.5rem;
+        border: 0.1rem solid #dbdbdb;
+        border-radius: 0.5rem;
+        width: 2.5rem;
+        height: 2.5rem;
+        font-weight: 600;
+        font-size: 1.2rem;
+        cursor: pointer;
+        background-color: #ffffff;
 
-//         &:hover {
-//             background-color: #d2d2d3;
-//         }
-//         &:active {
-//             background-color: #a4a4ca;
-//         }
+        &:hover {
+            background-color: #d2d2d3;
+        }
+        &:active {
+            background-color: #a4a4ca;
+        }
 
-//         &:disabled {
-//             background-color: #dbdbdb;
-//             cursor: default;
-//         }
+        &:disabled {
+            background-color: #dbdbdb;
+            cursor: default;
+        }
 
-//         & > span {
-//             margin-bottom: 0.1rem;
-//         }
-//     }
-// `;
+        & > span {
+            margin-bottom: 0.1rem;
+        }
+    }
+`;
 
-// export const pageNum = (isSelect) => css`
-//     background-color: ${isSelect ? "#a4a4ca" : "#ffffff"} !important;
-// `;
+export const pageNum = (isSelect) => css`
+    background-color: ${isSelect ? "#a4a4ca" : "#ffffff"} !important;
+`;
