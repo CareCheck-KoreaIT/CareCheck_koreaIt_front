@@ -75,7 +75,7 @@ function ReceiptPage() {
     };
 
     const handlePayment = (admId) => {
-        navigate(`/${loginUser?.data?.usercode}/admission/${admId}/detailBill`);
+        navigate(`/admission/${admId}/detailBill`);
     };
 
     return (
