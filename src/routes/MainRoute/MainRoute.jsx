@@ -23,6 +23,7 @@ import SummaryChartUsercodePage from "../../pages/SummaryChartUsercodePage/Summa
 import NoticeMyListPage from "../../pages/NoticeMyListpage/NoticeMyListPage";
 import AdmPatientVital from "../../components/TablePageComponents/AdmPatientViatal/AdmPatientVital";
 import NoticeModifyPage from "../../pages/NoticeModifyPage/NoticeModifyPage";
+import MainPage from "../../pages/MainPage/MainPage";
 
 function MainRoute() {
   useUserMeQuery();
@@ -34,6 +35,7 @@ function MainRoute() {
         <div css={s.contentStyle}>
           <NoTitleHeaderMenu />
           <Routes>
+            <Route path="/" element={<MainPage />} />
             <Route path="/account/*" element={<AccountRoute />} />
             <Route path="/admin/*" element={<UserRoute />} />
             <Route path="/order" element={<OrderPage />} />
