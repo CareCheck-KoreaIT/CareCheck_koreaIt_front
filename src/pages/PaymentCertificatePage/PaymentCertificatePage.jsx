@@ -2,21 +2,20 @@
 import * as s from './style';
 import React, { useEffect, useState } from 'react';
 import { useGetSearchPatientInfo, useGetSearchTotalPay } from '../../queries/admissionQuery';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useQueryClient } from '@tanstack/react-query';
 import { IoFingerPrintOutline } from 'react-icons/io5';
+import { waitingLisAdmId } from '../../atoms/doctorTable/doctorTableAtom';  // Recoil 상태를 정의한 곳
 
-function PaymentCertificatePage(props) {
+function PaymentCertificatePage() {
     const queryClient = useQueryClient();
     const userInfo = queryClient.getQueryData(["userMeQuery"]);
-    const navigate = useNavigate();
     const param = useParams();
     const [ searchPatientData, setSearchPatientData] = useState({
         admissionId: param.admissionId,
         patientId: null,
         clinicDeft: null,
     });
-    
     const searchPatientInfoByAdmId = useGetSearchPatientInfo(Number(param.admissionId));
     const searchPatientInfoByAdmApi = searchPatientInfoByAdmId?.data?.data;
     
@@ -48,12 +47,6 @@ function PaymentCertificatePage(props) {
         month: "long",
         day: "numeric",
     });
-
-    const handleDetailBill = (usercode, admissionId) =>{
-        navigate(`/${usercode}/admission/${admissionId}/detailBill`);
-    };
-
-    const handleReceipt = () => navigate(`/receipt`);
 
     return (
         <>
@@ -98,12 +91,6 @@ function PaymentCertificatePage(props) {
                         </tr>
                     </tbody>
                 </table>
-                <div css={s.button}>
-                    <button onClick={() => handleDetailBill(admPatientInfoData.usercode, admPatientInfoData.admissionId)}>
-                    세부내역서
-                    </button>
-                    <button onClick={handleReceipt}>접수취소</button>
-                </div>
             </div>
         </>
     );

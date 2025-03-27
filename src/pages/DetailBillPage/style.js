@@ -219,3 +219,21 @@ export const totalPayTable = css`
     font-size: 1.2rem;
   }
 `;
+
+export const button = css`
+  display: flex;
+  justify-content: flex-end;
+  align-self: flex-end;
+  margin: 0rem 0rem 6rem 5rem;
+  gap: 1rem;
+
+  & > button {
+    width: 10rem;
+    height: 5rem;
+    background-color: #464667;
+    outline: none;
+    border-radius: 1rem;
+    color: #ffffff;
+    font-size: 1.5rem;
+  }
+`;

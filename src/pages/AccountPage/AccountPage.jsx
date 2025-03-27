@@ -1,7 +1,7 @@
 /**@jsxImportSource @emotion/react */
 import { useQueryClient } from '@tanstack/react-query';
 import * as s from './style';
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { RiAdminFill } from 'react-icons/ri';
 import { FaUserDoctor, FaUserNurse } from 'react-icons/fa6';
 import { BiSupport } from 'react-icons/bi';
@@ -10,20 +10,31 @@ import ChangePassrodModal from '../../components/modal/ChangePasswordModal/Chang
 import ChangeEmailModal from '../../components/modal/ChangeEmailModal/ChangeEmailModal';
 import ChangePhoneNumberModal from '../../components/modal/ChangePhoneNumberModal/ChangePhoneNumberModal';
 import { useNavigate } from 'react-router-dom';
-import { useUserMeQuery } from '../../queries/userQuery';
 
 function AccountPage(props) {
     const navigate = useNavigate();
     const queryClient = useQueryClient();
     const loginUser = queryClient.getQueryData(["userMeQuery"]);
-    const userme = useUserMeQuery();
 
     const [ passwordModalOpen, setPasswordModalOpen ] = useState(false);
     const [ emailModalOpen, setEmailModalOpen ] = useState(false);
     const [ phoneNumberModalOpen, setPhoneNumberModalOpen ] = useState(false);
 
+    // roleName 바꾸는 함수
+    const roleName = (loginUser) => {
+        if(loginUser?.data?.userRole.role.roleName === "ROLE_ADMIN") {
+            return "관리자";
+        } else if(loginUser?.data?.userRole.role.roleName === "ROLE_DOCTOR") {
+            return "의사";
+        } else if(loginUser?.data?.userRole.role.roleName === "ROLE_NURSE") {
+            return "간호사";
+        } else if(loginUser?.data?.userRole.role.roleName === "ROLE_STAFF") {
+            return "원무";
+        }
+    }
+
     const handleMyNoticeButtonOnClick = () => {
-        navigate("/");
+        navigate(`/notice/${loginUser?.data?.usercode}`);
     }
 
     const handleChangePasswordButtonOnClick = () => {
@@ -69,7 +80,7 @@ function AccountPage(props) {
                                     <span> 님</span>
                                 </div>
                                 <div css={s.myNoticeButton}>
-                                    <button>내가 쓴 게시글</button>
+                                    <button onClick={handleMyNoticeButtonOnClick}>내가 쓴 게시글</button>
                                 </div>
                             </div>
                             <div css={s.AccountBox}>
@@ -83,7 +94,7 @@ function AccountPage(props) {
                                     <div css={s.infoTitle}>
                                         권 한
                                     </div>
-                                    <div>{loginUser?.data?.userRole.role.roleName}</div>
+                                    <div>{roleName(loginUser)}</div>
                                 </div>
                             </div>
                         </div>
