@@ -38,7 +38,7 @@ function MainRoute() {
             <Route path="/" element={<MainPage />} />
             <Route path="/account/*" element={<AccountRoute />} />
             <Route path="/admin/*" element={<UserRoute />} />
-            <Route path="/order" element={<OrderPage />} />
+            <Route path="/patient/order" element={<OrderPage />} />
 
             {/* 환자 등록 */}
             <Route path="/patient" element={<PatientRegistrationPage />} />
