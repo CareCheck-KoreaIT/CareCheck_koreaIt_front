@@ -7,6 +7,7 @@ import {
   useGetSearchPatientInfo,
   useGetSearchTotalPay,
 } from "../../queries/admissionQuery";
+import { useQueryClient } from "@tanstack/react-query";
 
 function DetailBillPage() {
   const navigate = useNavigate();
@@ -48,7 +49,7 @@ function DetailBillPage() {
   const totalPayAdmId = useGetSearchTotalPay(Number(patientData.admissionId));
 
   const handlePaymentCertificate = (admId) => {
-    navigate(`/${loginUser?.data?.usercode}/admission/${admId}/certificate`);
+    navigate(`/admission/${admId}/certificate`);
 };
 
   return (
