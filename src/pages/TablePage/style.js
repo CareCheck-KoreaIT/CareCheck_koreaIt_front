@@ -6,8 +6,8 @@ export const layout = css`
   align-items: center;
   flex-direction: column;
   overflow: hidden;
-  width: 100%;
-  height: 100%;
+  width: 130rem;
+  height: 75rem;
   background-color: #ffffff;
 `;
 
@@ -37,8 +37,7 @@ export const leftTable = css`
 
   box-sizing: border-box;
   border: 0.1rem solid #000000;
-
-  height: 8rem;
+  height: 5rem;
   background-color: #464667;
 
   & tbody > tr,
@@ -49,18 +48,18 @@ export const leftTable = css`
     cursor: pointer;
   }
 
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 `;
 
 export const waitingList = css`
   width: 100%;
   border: 0.1rem solid #000000;
   border-collapse: collapse;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 
   & tbody tr {
     background-color: #464667;
-    height: 4rem;
+    height: 1.5rem;
   }
 
   & tbody td {
@@ -92,13 +91,13 @@ export const rightTable = css`
   justify-content: center;
   align-items: center;
   border: 0.1rem solid #000000;
-  height: 7rem;
+  height: 5rem;
   background-color: #464667;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   overflow-y: auto;
 
   & > tbody > tr {
-    font-size: 3rem;
+    font-size: 1.7rem;
     font-weight: bold;
     color: #ffffff;
     cursor: pointer;
@@ -126,12 +125,12 @@ export const patientInfo = css`
   }
 `;
 export const lefttableLayout = css`
-  height: 70rem;
+  height: 60rem;
   overflow-y: auto;
 `;
 
 export const tableLayout = css`
-  height: 15rem;
+  height: 10rem;
   overflow-x: hidden;
   overflow-y: auto;
 `;
@@ -169,7 +168,7 @@ export const prescriptionRegister = css`
   width: 100%;
   border: 0.1rem solid black;
   border-collapse: collapse;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 
   & > tr,
   td {
@@ -224,7 +223,7 @@ export const tableFooter = css`
   display: flex;
   align-items: center;
   justify-content: end;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   & > button {
     display: flex;
     justify-content: center;
