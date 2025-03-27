@@ -50,21 +50,25 @@ export const section = css`
     height: 3rem;
     color: #ffffff;
     background-color: #464667;
-    font-size: 2rem;
+    font-size: 2.5rem;
     cursor: pointer;
 
-    & > span {
-      margin-left: 1rem;
-    }
   }
 
-  .activ {
-    color: #464667;
-    font-weight: bold;
-    border-bottom: 3px solid #464667;  
-    padding-bottom: 0.5rem;
-    width: 100%;
-
+  .NavLinkStyle {
+  text-decoration: none; 
+  color: inherit;
+  background-color: transparent; 
+  border: none;
+  margin-left: 1rem; 
+  
+  & > span {
+      &:active{
+        color: black;
+        font-weight: bold;
+        font-size: 2.8rem;
+      }
+    }
   }
 `;
 
@@ -85,17 +89,3 @@ export const footer = css`
   }
 `;
 
-export const menuItem = css`
-  display: flex;
-  align-items: center;
-  padding: 10px;
-  font-size: 2.5rem;
-  text-decoration: none;
-  color: black;
-  
-  &.active {
-    font-weight: bold;
-    text-decoration: underline;
-    color: blue;
-  }
-`;

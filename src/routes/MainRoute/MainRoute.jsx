@@ -24,7 +24,6 @@ import NoticeMyListPage from "../../pages/NoticeMyListpage/NoticeMyListPage";
 import AdmPatientVital from "../../components/TablePageComponents/AdmPatientViatal/AdmPatientVital";
 import NoticeModifyPage from "../../pages/NoticeModifyPage/NoticeModifyPage";
 
-
 function MainRoute() {
   useUserMeQuery();
 
@@ -38,33 +37,35 @@ function MainRoute() {
             <Route path="/account/*" element={<AccountRoute />} />
             <Route path="/admin/*" element={<UserRoute />} />
             <Route path="/order" element={<OrderPage />} />
+
+            {/* 환자 등록 */}
             <Route path="/patient" element={<PatientRegistrationPage />} />
+            {/* 환자 진료접수 */}
+            <Route path="/patient/medical-reception" element={<MedicalReceptionPage />}/>
+            {/* 접수된 환자 리스트 */}
+            <Route path="/patient/admission-list" element={<ReceiptPage />} />
+            <Route
+              path="/admission/:usercode/:admissionId/certificate"
+              element={<PaymentCertificatePage />}
+            />
+
+            <Route
+              path="/admission/:usercode/:admissionId/detailBill"
+              element={<DetailBillPage />}
+            />
+
             <Route path="/scorepay" element={<ScorePayPage />} />
             <Route path="/employeenum" element={<EmployeeNumEnrollPage />} />
             <Route path="/notice/write" element={<NoticeWritePage />} />
             <Route path="/notice/list" element={<NoticeLsitPage />} />
             <Route path="/notice/:usercode" element={<NoticeMyListPage />} />
-            <Route path="/notice/:usercode/modify/:noticeId" element={<NoticeModifyPage />} />
-            <Route path="/:usercode/admission/:admissionId/certificate" element={<PaymentCertificatePage />} />
-
-            <Route 
-              path="/receipt" element={<ReceiptPage />} 
-            
-            />
-            
             <Route
-              path="/:usercode/admission/:admissionId/detailBill"
-              element={<DetailBillPage />}
+              path="/notice/:usercode/modify/:noticeId"
+              element={<NoticeModifyPage />}
             />
-            <Route path="/:usercode/admission/table" element={<TablePage />} />
+            <Route path="/admission/:usercode/table" element={<TablePage />} />
             <Route path="/manager" element={<MembershipJoinPage />} />
-
-            <Route
-              path="/MedicalReception"
-              element={<MedicalReceptionPage />}
-            />
-            <Route path="/test" element={<AdmPatientVital />} />
-            <Route path="/summary" element={<SummaryChartPage />} />
+            <Route path="/summary/" element={<SummaryChartPage />} />
             <Route
               path="/summary/usercode"
               element={<SummaryChartUsercodePage />}

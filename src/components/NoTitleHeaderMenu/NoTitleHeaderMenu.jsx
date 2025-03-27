@@ -11,8 +11,11 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { headerMenuState } from "../../atoms/Header/headerMenu";
 import Swal from "sweetalert2";
+import { QueryClient, useQueryClient } from "@tanstack/react-query";
 
 function NoTitleHeaderMenu() {
+  const queryClient = useQueryClient();
+  const loginUser = queryClient.getQueryData(["userMeQuery"]);
   const navigate = useNavigate();
   const [ headerState, setHeaderState] = useRecoilState(headerMenuState)
   useEffect(()=>{
@@ -55,14 +58,14 @@ function NoTitleHeaderMenu() {
         </NavLink>
       </div>
       <div css={s.headerMenu} >
-        <NavLink to="/notice/write" className={({ isActive }) => (isActive ? "active" : "")}
+        <NavLink to="/admission" className={({ isActive }) => (isActive ? "active" : "")}
         onClick={()=>setHeaderState("처방메뉴변경")}>
           <div css={s.lconStyle}><MdOutlineLocalHospital /></div>
           <span css={s.titleStyle}>처방</span>
         </NavLink>
       </div>
       <div css={s.headerMenu} >
-        <NavLink to="/order" className={({ isActive }) => (isActive ? "active" : "")}
+        <NavLink to="/summary" className={({ isActive }) => (isActive ? "active" : "")}
         onClick={()=>setHeaderState("통계메뉴변경")}>
         <div css={s.lconStyle}><ImStatsDots /></div> 
         <span css={s.titleStyle}>통계</span>

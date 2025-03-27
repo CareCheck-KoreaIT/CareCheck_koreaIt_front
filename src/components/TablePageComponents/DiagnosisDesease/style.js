@@ -6,7 +6,7 @@ export const list = css`
   border-collapse: collapse;
   margin: 2rem 0rem 2rem;
 
-  & > tr,
+  & > tbody > tr,
   td {
     width: 20rem;
     height: 5rem;
