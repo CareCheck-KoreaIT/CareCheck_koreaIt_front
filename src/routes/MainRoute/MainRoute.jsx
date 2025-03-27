@@ -21,8 +21,8 @@ import PaymentCertificatePage from "../../pages/PaymentCertificatePage/PaymentCe
 import SummaryChartPage from "../../pages/SummaryChartPage/SummaryChartPage";
 import SummaryChartUsercodePage from "../../pages/SummaryChartUsercodePage/SummaryChartUsercodePage";
 import NoticeMyListPage from "../../pages/NoticeMyListpage/NoticeMyListPage";
-import AdmPatientVital from "../../components/TablePageComponents/AdmPatientViatal/AdmPatientVital";
 import NoticeModifyPage from "../../pages/NoticeModifyPage/NoticeModifyPage";
+import ReceiptListPage from "../../pages/ReceiptListPage/ReceiptListPage";
 import MainPage from "../../pages/MainPage/MainPage";
 
 function MainRoute() {
@@ -47,14 +47,18 @@ function MainRoute() {
             {/* 접수된 환자 리스트 */}
             <Route path="/patient/admission-list" element={<ReceiptPage />} />
             <Route
-              path="/admission/:usercode/:admissionId/certificate"
+              path="/admission/:admissionId/certificate"
               element={<PaymentCertificatePage />}
             />
 
             <Route
-              path="/admission/:usercode/:admissionId/detailBill"
+              path={`/admission/:admissionId/detailbill`}
               element={<DetailBillPage />}
             />
+            <Route path="/receipt" element={<ReceiptPage />} />
+
+            <Route path="/admission/table" element={<TablePage />} />
+            <Route path="/manager" element={<MembershipJoinPage />} />
 
             <Route path="/scorepay" element={<ScorePayPage />} />
             <Route path="/employeenum" element={<EmployeeNumEnrollPage />} />
@@ -72,6 +76,7 @@ function MainRoute() {
               path="/summary/usercode"
               element={<SummaryChartUsercodePage />}
             />
+            <Route path="/paymentlist" element={<ReceiptListPage />} />
           </Routes>
         </div>
       </div>

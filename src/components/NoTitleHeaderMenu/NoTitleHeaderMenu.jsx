@@ -50,13 +50,19 @@ function NoTitleHeaderMenu() {
             <span css={s.titleStyle}>접수</span>
         </NavLink>
       </div>
-      <div css={s.headerMenu} >
-        <NavLink to="/receipt" className={({ isActive }) => (isActive ? "active" : "")} 
-        onClick={()=>setHeaderState("수납메뉴변경")}>
-        <div css={s.lconStyle}><LiaReceiptSolid /></div>
-        <span css={s.titleStyle}>수납</span>
+      <div css={s.headerMenu}>
+        <NavLink
+          to="/paymentlist"
+          className={({ isActive }) => (isActive ? "active" : "")}
+          onClick={() => setHeaderState("수납메뉴변경")}
+        >
+          <div css={s.lconStyle}>
+            <LiaReceiptSolid />
+          </div>
+          <span css={s.titleStyle}>수납</span>
         </NavLink>
       </div>
+
       <div css={s.headerMenu} >
         <NavLink to={`/admission/${loginUser?.data?.usercode}`} className={({ isActive }) => (isActive ? "active" : "")}
         onClick={()=>setHeaderState("처방메뉴변경")}>

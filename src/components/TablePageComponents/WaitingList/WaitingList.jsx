@@ -36,8 +36,8 @@ function WaitingList({ usercode }) {
       {waitingList.length > 0 ? (
         <>
           <table css={s.list}>
-            <tbody>
-              {waitingList.map((waiting) => (
+            {waitingList.map((waiting) => (
+              <tbody>
                 <tr
                   key={waiting.admId}
                   onClick={() => handleChangeAdmissionIdOnClick(waiting.admId)}
@@ -56,8 +56,8 @@ function WaitingList({ usercode }) {
                     </div>
                   </td>
                 </tr>
-              ))}
-            </tbody>
+              </tbody>
+            ))}
           </table>
         </>
       ) : (

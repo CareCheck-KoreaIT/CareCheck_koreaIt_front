@@ -48,8 +48,14 @@ export const searchAllWaitingListApi = async (keyword) => {
   });
 };
 
-export const deleteReceiptApi = async(admissionId) => {
+export const deleteReceiptApi = async (admissionId) => {
   console.log(admissionId);
-  
-  await api.delete(`/admission/${admissionId}`);}
 
+  await api.delete(`/admission/${admissionId}`);
+};
+
+export const searchAdmissionListApi = async (patientName) => {
+  return await api.get("/admission/searchAdmissionList", {
+    params: { patientName },
+  });
+};

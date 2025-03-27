@@ -4,7 +4,6 @@ export const searchItems = css`
     display: flex;
     justify-content: flex-end;
     margin: 4rem 16rem 0rem;
-    
 
     & > Select {
         font-size: 1.5rem;
@@ -47,9 +46,7 @@ export const table = css`
     border-collapse: collapse; /* 테두리 중복 제거 */
     text-align: center;
     margin-top: 1rem;
-
     font-size: 1.5rem;
-    
     border: 2px solid #000; /* 테이블 외부 테두리 */
 
     thead {
