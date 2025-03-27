@@ -50,10 +50,10 @@ function AdminUserInfoPage(props) {
 
     const orderSelectOptions = [
         {label: "전체", value: "all"},
-        {label: "관리자", value: "관리자"},
-        {label: "의사", value: "의사"},
-        {label: "간호사", value: "간호사"},
-        {label: "원무", value: "원무"},
+        {label: "관리자", value: "ROLE_ADMIN"},
+        {label: "의사", value: "ROLE_DOCTOR"},
+        {label: "간호사", value: "ROLE_NURSE"},
+        {label: "원무", value: "ROLE_STAFF"},
     ];
     
     // ChangeUserModal 을 위한 값
