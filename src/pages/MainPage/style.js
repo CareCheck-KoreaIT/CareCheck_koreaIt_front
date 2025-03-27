@@ -27,83 +27,9 @@ export const noticeLayout = css`
   background-color: #fcfcfc;
 `;
 
-export const miniHeader = css`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0.4rem 1.5rem;
-    border-bottom: 0.1rem solid #464667;
-    padding: 0.5rem;
-    & > h3 {
-      font-size: large;
-    }
-    & > button {
-      border: none;
-      background: none;
-      padding: 0;
-      font-size: 2rem;
-      cursor: pointer;
-    }
-
-`;
-
-export const miniMain = css`
-    padding: 1rem;
-    height: 27rem;
-`;
-
-export const mininoticeListContainer = css`
-    margin: 0.5rem;
-    padding: 0;
-    list-style-type: none;
-    width: 67rem;
-
-    & > li:nth-of-type(1) {
-        background-color: #a4a4ca;
-        & > div:not(& > div:nth-last-of-type(1)) {
-            border-right: 0.1rem solid #ffffff;
-        }
-    }
-
-    & > li {
-        display: flex;
-        align-items: center;
-        height: 3rem;
-        cursor: default;
-
-        &:not(:nth-of-type(1)):hover {
-            border-radius: 0.7rem;
-            background-color: #eeeeee;
-            cursor: default;
-        }
-
-        & > div {
-            display: flex;
-            justify-content: center;
-            box-sizing: border-box;
-            font-size: 1.5rem;
-        }
-        & > div:not(& > div:nth-last-of-type(1)) {
-            border-right: 0.1rem solid #dbdbdb;
-        }
-        & > div:nth-of-type(1) {
-            padding-left: 0.5rem;
-            width: 4rem;
-            
-        }
-        & > div:nth-of-type(2) {
-            flex-grow: 1;
-        }
-        & > div:nth-of-type(3) {
-            width: 20rem;
-        }
-    }
-`;
-
 export const calendarLayout = css`
   display: flex;
   box-sizing: border-box;
   width: 70rem;
   height: 76rem;
-  background-color: darkcyan;
 `;

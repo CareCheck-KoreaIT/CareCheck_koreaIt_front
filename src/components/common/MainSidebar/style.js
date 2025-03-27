@@ -44,32 +44,37 @@ export const section = css`
   gap: 4.5rem;
   & > div {
     display: flex;
-    justify-content: flex-start;
     align-items: center;
-    width: 21.2rem;
+    width: 25rem;
     height: 3rem;
     color: #ffffff;
     background-color: #464667;
     font-size: 2.5rem;
     cursor: pointer;
 
-  }
-
-  .NavLinkStyle {
-  text-decoration: none; 
-  color: inherit;
-  background-color: transparent; 
-  border: none;
-  margin-left: 1rem; 
-  
-  & > span {
-      &:hover{
-        color: black;
-        font-weight: bold;
-        font-size: 2.8rem;
+    .NavLinkStyle {
+    text-decoration: none; 
+    color: inherit;
+    background-color: transparent; 
+    border: none;
+    margin-left: 1rem; 
+    
+    & > span {
+        &:hover{
+          color: black;
+          font-weight: bold;
+          font-size: 2.5rem;
+          white-space: nowrap;
+        }
       }
     }
   }
+
+  
+`;
+
+export const font = css`
+  font-size: 2.1rem;
 `;
 
 export const footer = css`

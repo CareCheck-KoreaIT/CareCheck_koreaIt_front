@@ -52,7 +52,7 @@ function MainSidebar() {
             <NavLink to="/patient" className="NavLinkStyle" ><span>환자 등록</span></NavLink>
             </div>
             <div><BsColumnsGap />
-            <NavLink to="/patient/medical-reception" className="NavLinkStyle"><span>접수 확인</span></NavLink>
+            <NavLink to="/patient/medical-reception" className="NavLinkStyle"><span>진료 접수</span></NavLink>
             </div>
             <div><BsColumnsGap />
             <NavLink to="/patient/admission-list" className="NavLinkStyle"><span>환자 리스트</span></NavLink>
@@ -62,18 +62,27 @@ function MainSidebar() {
       case "수납메뉴변경":
       return (
         <>
-          <div><BsColumnsGap /><span>수납 신청</span></div>
-          <div><BsColumnsGap /><span>수납 확인</span></div>
+          <div><BsColumnsGap />
+          <NavLink to="/paymentlist" className="NavLinkStyle"><span>수납 신청</span></NavLink>
+          </div>
+          <div><BsColumnsGap />
+          <span>수납 확인</span></div>
         </>
       );
       case "처방메뉴변경":
       return (
         <>
           <div><BsColumnsGap />
-          <NavLink to={`/admission/${loginUser?.data?.usercode}/table`} className="NavLinkStyle"><span>처방 신청</span></NavLink>
+          <NavLink to={`/admission/table`} className="NavLinkStyle"><span>처방 신청</span></NavLink>
           </div>
           <div><BsColumnsGap />
           <NavLink to={`/admission/${loginUser?.data?.usercode}`} className="NavLinkStyle"><span>처방 확인</span></NavLink>
+          </div>
+          <div><BsColumnsGap />
+          <NavLink to={`/admission/${loginUser?.data?.usercode}/certificate`} className="NavLinkStyle"><span>영수증</span></NavLink>
+          </div>
+          <div><BsColumnsGap />
+          <NavLink to={`/admission/${loginUser?.data?.usercode}/detailbill`} className="NavLinkStyle"><span css={s.font}>진료비 세부내역서</span></NavLink>
           </div>
         </>
       );
