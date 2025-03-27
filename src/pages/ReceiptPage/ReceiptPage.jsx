@@ -1,5 +1,5 @@
 /**@jsxImportSource @emotion/react */
-import { useGetSearchAllWaitingList } from '../../queries/admissionQuery';
+import { useGetAllWaitingTotalCount, useGetSearchAllWaitingList } from '../../queries/admissionQuery';
 import * as s from './style';
 import React, { useEffect, useState } from 'react';
 import { BiSearch } from 'react-icons/bi';
@@ -24,9 +24,41 @@ function ReceiptPage() {
     const [ isModalOpen, setIsModalOpen ] = useState(false);
     const [ selectedReceipt, setSelectedReceipt ] = useState(null);
 
+    const [ page, setPage ] = useState(1);
+    const [ pageNumbers, setPageNumbers ] = useState([]);
+    const [ searchAllWaitingList, setsearchAllWaitingList ] = useState(null);
+    
+    const searchTotalCount = useGetAllWaitingTotalCount({
+        startIndex: (page - 1) * 10,
+        limitCount: 10,
+    });
+
     useEffect(() => {
-        setFilteredWaitingList(allWaitingList.slice(0, 10)); //  초기 렌더링 시 전체 대기자 목록을 10개 까지 보여줌
-    }, [allWaitingList]);
+        if (searchTotalCount?.data) {
+            const currentPage = searchTotalCount.data.page || 1;
+            const totalPages = searchTotalCount.data.totalPages || 1;
+            const startIndex = Math.floor((currentPage - 1) / 5) * 5 + 1;
+            const endIndex = startIndex + 4 > totalPages ? totalPages : startIndex + 4;
+
+            let newPageNumbers = [];
+            for (let i = startIndex; i <= endIndex; i++) {
+                newPageNumbers.push(i);
+            }
+
+            setPageNumbers(newPageNumbers);
+            setsearchAllWaitingList(searchTotalCount);
+        }
+    }, [searchTotalCount, page]);
+
+    const handlePagenumbersOnClick = (number) => {
+        setPage(number); // 페이지 변경
+    };
+
+    // useEffect(() => {
+    //     if (allWaitingList) {
+    //     setFilteredWaitingList(allWaitingList.slice(0, 10)); //  초기 렌더링 시 전체 대기자 목록을 10개 까지 보여줌
+    //     }
+    // }, [allWaitingList]);
 
     const handleSearchButtonOnClick = () => {
     if (!searchTerm.trim()) { 
@@ -144,17 +176,32 @@ function ReceiptPage() {
                         </tbody>
                     </table>
                 </div>
-                {/* <div css={s.footer}>
-                    <div css={s.pageNumbers}>
-                        <button disabled={searchNoticeList?.data?.data.firstPage} onClick={() => handlePagenumbersOnClick(page - 1)}><GoChevronLeft /></button>
-                        {
-                            pageNumbers.map(number =>
-                                <button key={number} css={s.pageNum(page === number)} onClick={() => handlePagenumbersOnClick(number)}><span>{number}</span></button>
-                            )
-                        }
-                        <button disabled={searchNoticeList?.data?.data.lastPage} onClick={() => handlePagenumbersOnClick(page + 1)}><GoChevronRight /></button>
-                    </div>
-                </div> */}
+                {/* 페이지네이션 */}
+                <div css={s.footer}>
+            <div css={s.pageNumbers}>
+                <button
+                    disabled={page === 1} // 첫 페이지에서는 왼쪽 버튼 비활성화
+                    onClick={() => handlePagenumbersOnClick(page - 1)}
+                >
+                    <GoChevronLeft />
+                </button>
+                {pageNumbers.map((number) => (
+                    <button
+                        key={number}
+                        css={s.pageNum(page === number)}
+                        onClick={() => handlePagenumbersOnClick(number)}
+                    >
+                        <span>{number}</span>
+                    </button>
+                ))}
+                <button
+                    disabled={page === searchTotalCount?.data?.totalPages} // 마지막 페이지에서는 오른쪽 버튼 비활성화
+                    onClick={() => handlePagenumbersOnClick(page + 1)}
+                >
+                    <GoChevronRight />
+                </button>
+            </div>
+        </div>
             </div>
         </>
     );
