@@ -1,15 +1,17 @@
 /**@jsxImportSource @emotion/react */
 import * as s from "./style";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   useGetSearchDetailBill,
   useGetSearchPatientInfo,
   useGetSearchTotalPay,
 } from "../../queries/admissionQuery";
-import { useQueryClient } from "@tanstack/react-query";
 
 function DetailBillPage() {
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
+  const loginUser = queryClient.getQueryData(["userMeQuery"]);
   const today = new Date();
   const dateString = today.toLocaleDateString("ko-KR", {
     year: "numeric",
@@ -39,23 +41,15 @@ function DetailBillPage() {
   }, [param.admissionId, patientInfoApi]);
 
   const detailBillAdmId = useGetSearchDetailBill(
-    Number(patientData.admissionId),
-    {
-      enabled: !!patientData.admissionId,
-    }
+    Number(patientData.admissionId)
   );
   const detailBillData = detailBillAdmId?.data?.data.diagnosisOrder || [];
 
-  const totalPayAdmId = useGetSearchTotalPay(Number(patientData.admissionId), {
-    enabled: !!patientData.admissionId,
-  });
+  const totalPayAdmId = useGetSearchTotalPay(Number(patientData.admissionId));
 
-  const handleDateOnChange = (e) => {
-    setPatientData((prev) => ({
-      ...prev,
-      admDate: e.target.value,
-    }));
-  };
+  const handlePaymentCertificate = (admId) => {
+    navigate(`/${loginUser?.data?.usercode}/admission/${admId}/certificate`);
+};
 
   return (
     <div css={s.layout}>
@@ -136,6 +130,11 @@ function DetailBillPage() {
             <span> {dateString} </span>
           </div>
         </main>
+      </div>
+      <div css={s.button}>
+        <button onClick={() => handlePaymentCertificate(patientInfoByAdmId?.data?.data.admId)}>
+        영수증
+        </button>
       </div>
     </div>
   );

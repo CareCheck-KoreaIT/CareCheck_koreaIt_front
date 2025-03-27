@@ -100,6 +100,7 @@ function ChangeUserModal({setOpen, user}) {
                         titleText: "변경 완료",
                         confirmButtonText: "<div style='font-size: 1.3rem'>확인</div>"
                     }).then(response => {
+                        queryClient.invalidateQueries(["useGetSearchUserList"]);
                         queryClient.invalidateQueries(["userMeQuery"]);
                         setOpen(false);
                     });

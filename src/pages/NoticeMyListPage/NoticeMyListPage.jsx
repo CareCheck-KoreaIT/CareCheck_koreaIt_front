@@ -9,12 +9,14 @@ import { useDeleteNoticeMutation } from '../../mutations/noticeMutation';
 import DeleteNoticeModal from '../../components/modal/DeleteNoticeModal/DeleteNoticeModal';
 import NoticeMyListModal from '../../components/modal/NoticeMyListModal/NoticeMyListModal';
 import Swal from 'sweetalert2';
+import { useQueryClient } from '@tanstack/react-query';
 
 function NoticeMyListPage() {
 const navigate = useNavigate();
 const [searchParams, setSearchParams] = useSearchParams();
 const { usercode } = useParams();
 const page = parseInt(searchParams.get("page") || "1");
+const [ inputText, setInputText ] = useState("")
 const [searchText, setSearchText] = useState(searchParams.get("searchText") || "");
 const order = searchParams.get("order") || "default";
 const [ isModalOpen, setIsModalOpen ] = useState(false);
@@ -22,7 +24,7 @@ const [ selectedNoticeId, setSelectedNoticeId ] = useState(null);
 
 const [ isNoticeModalOpen, setIsNoticeModalOpen ] = useState(false);
 const [ selectedNotice, setSelectedNotice ] = useState(null);
-
+const queryClient = useQueryClient();
 const searchNoticeList = useGetUsercodeNoticeList(usercode, {
     page,
     limitCount: 15,
@@ -54,11 +56,12 @@ useEffect(() => {
 }, [searchParams]);
 
 const searchOnChange = (e) => {
-setSearchText(e.target.value);
+setInputText(e.target.value);
 };
 
 const handleSearchInputOnKeyDown = (e) => {
     if(e.key === "Enter") {
+        setSearchText(inputText)
         handleSearchButtonOnClick();
     }
 }
@@ -92,27 +95,27 @@ const handleTitleOnClick = (notice) => {
 
 const handleConfirmDeleteOnClick = async () => {
     if (selectedNoticeId) {
-        deleteNotice(selectedNoticeId, {
-            onSuccess: async () => {
-                setIsModalOpen(false);
-                await Swal.fire({
-                    titleText: "삭제가 완료되었습니다.",
-                    icon: "success",
-                    confirmButtonText: "확인"
-                });
-                searchNoticeList.refetch();
-                },
-            onError: async () => {
-                setIsModalOpen(false);
-                await Swal.fire({
-                    titleText: "삭제 실패",
-                    icon: "error",
-                    confirmButtonText: "확인"
-                });
-            }
+      deleteNotice(selectedNoticeId, {
+        onSuccess: async () => {
+            setIsModalOpen(false);
+            await Swal.fire({
+                titleText: "삭제가 완료되었습니다.",
+                icon: "success",
+                confirmButtonText: "확인"
+            });
+            queryClient.invalidateQueries(["searchNoticeList"]);
+        },
+        onError: async () => {
+          setIsModalOpen(false);
+          await Swal.fire({
+            titleText: "삭제 실패",
+            icon: "error",
+            confirmButtonText: "확인"
         });
+        }
+      });
     }
-};
+  };
 
 const handleCancelDeleteOnClick = () => {
     setIsModalOpen(false);
@@ -120,7 +123,7 @@ const handleCancelDeleteOnClick = () => {
 
 const handleCloseModalOnClick = () => {
     setIsModalOpen(false);
-};
+  };
 
 
 return (
@@ -134,7 +137,7 @@ return (
             <input
             css={s.searchInput}
             type="text"
-            value={searchText}
+            value={inputText}
             onChange={searchOnChange}
             onKeyDown={handleSearchInputOnKeyDown}
             />

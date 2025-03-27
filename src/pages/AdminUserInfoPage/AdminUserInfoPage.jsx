@@ -50,10 +50,10 @@ function AdminUserInfoPage(props) {
 
     const orderSelectOptions = [
         {label: "전체", value: "all"},
-        {label: "관리자", value: "관리자"},
-        {label: "의사", value: "의사"},
-        {label: "간호사", value: "간호사"},
-        {label: "원무", value: "원무"},
+        {label: "관리자", value: "ROLE_ADMIN"},
+        {label: "의사", value: "ROLE_DOCTOR"},
+        {label: "간호사", value: "ROLE_NURSE"},
+        {label: "원무", value: "ROLE_STAFF"},
     ];
     
     // ChangeUserModal 을 위한 값
@@ -131,13 +131,15 @@ function AdminUserInfoPage(props) {
             }
           });
           if (password) {
-            // password 정규식 추가
             await updateUserPasswordMutation.mutateAsync({usercode: usercode, password: password});
             Swal.fire({
                 icon: "success",
                 titleText: "비밀번호가 초기화 되었습니다",
                 confirmButtonText: "<div style='font-size: 1.5rem'>확인</div>"
-            }).then(response => {queryClient.invalidateQueries(["userMeQuery"])});
+            }).then(response => {
+                queryClient.invalidateQueries(["useGetSearchUserList"]);
+                queryClient.invalidateQueries(["userMeQuery"]);
+            });
           }
     }
     const handleDeleteButtonOnClick = async (usercode) => {
@@ -166,7 +168,10 @@ function AdminUserInfoPage(props) {
                 icon: "success",
                 titleText: "삭제되었습니다",
                 confirmButtonText: "<div style='font-size: 1.5rem'>확인</div>"
-            }).then(response => {queryClient.invalidateQueries(["userMeQuery"])});
+            }).then(response => {
+                queryClient.invalidateQueries(["useGetSearchUserList"]);
+                queryClient.invalidateQueries(["userMeQuery"]);
+            });
         }
     }
     
