@@ -24,6 +24,7 @@ import NoticeMyListPage from "../../pages/NoticeMyListpage/NoticeMyListPage";
 import NoticeModifyPage from "../../pages/NoticeModifyPage/NoticeModifyPage";
 import ReceiptListPage from "../../pages/ReceiptListPage/ReceiptListPage";
 import MainPage from "../../pages/MainPage/MainPage";
+import PaymentTestPage from "../../pages/PaymentTestPage/PaymentTestPage";
 
 function MainRoute() {
   useUserMeQuery();
@@ -76,6 +77,7 @@ function MainRoute() {
               element={<SummaryChartUsercodePage />}
             />
             <Route path="/paymentlist" element={<ReceiptListPage />} />
+            <Route path="/payment/test" element={<PaymentTestPage />} />
           </Routes>
         </div>
       </div>
