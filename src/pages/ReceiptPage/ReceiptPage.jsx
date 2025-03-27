@@ -3,7 +3,7 @@ import { useGetSearchAllWaitingList } from '../../queries/admissionQuery';
 import * as s from './style';
 import React, { useEffect, useState } from 'react';
 import { BiSearch } from 'react-icons/bi';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useDeleteReceiptMutation } from '../../mutations/admissionMutation';
 import DeleteReceiptModal from '../../components/modal/DeleteReceiptModal/DeleteReceiptModal';
 import { useQueryClient } from '@tanstack/react-query';
@@ -12,69 +12,41 @@ import Swal from 'sweetalert2';
 function ReceiptPage() {
     const queryClient = useQueryClient();
     const loginUser = queryClient.getQueryData(["userMeQuery"]);
-    const [keyword, setKeyword] = useState("");
-    const [searchTerm, setSearchTerm] = useState(""); // 사용자 입력을 받는 값
-    const [filteredWaitingList, setFilteredWaitingList] = useState([]); // 필터링된 리스트를 저장할 상태
+    const navigate = useNavigate();
+    
+    const [ keyword, setKeyword ] = useState("");
+    const [ searchTerm, setSearchTerm ] = useState("");
+    const [ filteredWaitingList, setFilteredWaitingList ] = useState([]); 
     const allWaitingListBykeyword = useGetSearchAllWaitingList(keyword);
     const allWaitingList = allWaitingListBykeyword?.data?.data || [];
-    const [searchParams, setSearchParams] = useSearchParams();
-    const navigate = useNavigate();
 
     const [ isModalOpen, setIsModalOpen ] = useState(false);
     const [ selectedReceipt, setSelectedReceipt ] = useState(null);
 
+    useEffect(() => {
+        setFilteredWaitingList(allWaitingList.slice(0, 10)); //  초기 렌더링 시 전체 대기자 목록을 10개 까지 보여줌
+    }, [allWaitingList]);
+
     const handleSearchButtonOnClick = () => {
-    // 검색어가 비어 있지 않으면 필터링 수행
     if (!searchTerm.trim()) { 
-        setFilteredWaitingList([]); // 공백일 경우 필터링된 대기 리스트 비우기
-        setSearchTerm("");  
-        return;
-    }
+        setFilteredWaitingList(allWaitingList.slice(0, 10)); // 공백일 경우 전체 리스트 10개까지 표출
+    } else {
+        const filtered = allWaitingList.filter(item =>       
+            (item.patientName || ``).includes(searchTerm)    // 환자이름이 없다면 공백을 띄우고 검색어에 맞는 환자 검색
+        );
+        setFilteredWaitingList(filtered); // 검색어에 맞는 환자가 화면에 뜸
+    }};
 
-    // 검색어가 있을 경우 필터링 수행
-    const filtered = allWaitingList.filter(item => 
-        (item.patientName || ``).toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    
-    // 필터링된 리스트 상태 업데이트
-    setFilteredWaitingList(filtered);
-
-    // searchParams 업데이트 (검색어 반영)
-    const newSearchParams = new URLSearchParams(searchParams);
-    newSearchParams.set("searchText", searchTerm);
-    setSearchParams(newSearchParams);
-    };
-
-    // const deleteReceiptMutation = useDeleteReceiptMutation();
     const { mutate: deleteReceipt } = useDeleteReceiptMutation();
 
     const handleDeleteReceiptOnClick = (admissionId) => {
         // 삭제 확인 모달 띄우기
-        if (!admissionId) {
-            console.error("❌ admissionId가 undefined입니다.");
-            return;
-        }
-        // console.log(admissionId);
+        if (!admissionId) return;
         setSelectedReceipt(admissionId);
         setIsModalOpen(true);
     };
 
-    useEffect(() => {
-        // 초기 렌더링 시 전체 대기자 목록을 보여줌
-        setFilteredWaitingList(allWaitingList.slice(0, 10));
-    }, [allWaitingList]);
-
-    useEffect(() => {
-    }, [isModalOpen]);
-
-    useEffect(() => {
-        allWaitingListBykeyword.refetch()
-    }, [searchParams]);
-
-    const updatedData = allWaitingList.filter(item => item.admId !== selectedReceipt);
     const handleConfirmDeleteOnClick = async () => {
-        // await deleteReceiptMutation.mutateAsync(admissionId)
-
         if (selectedReceipt) {
             deleteReceipt(selectedReceipt, {
                 onSuccess: async () => {
@@ -84,7 +56,7 @@ function ReceiptPage() {
                         icon: "success",
                         confirmButtonText: "확인"
                     });
-                    queryClient.invalidateQueries(["useGetSearchAllWaitingList"])
+                    queryClient.invalidateQueries(["useGetSearchAllWaitingList"]) // 대기자 목록 새로고침
                 },
                 onError: async () => {
                     setIsModalOpen(false);
@@ -98,11 +70,7 @@ function ReceiptPage() {
         }
     };
 
-    const handleCancelDeleteOnClick = () => {
-        setIsModalOpen(false);
-    }
-    
-    const handleCloseModalOnClick = () => {
+    const handleCloseModal = () => {
         setIsModalOpen(false);
     };
 
@@ -120,11 +88,8 @@ function ReceiptPage() {
                         value={searchTerm} 
                         onChange={(e) => setSearchTerm(e.target.value)} // 텍스트 변경만 처리
                         onKeyDown={(e) => {
-                            if (e.key === "Enter") {
-                                handleSearchButtonOnClick();
-                            }
-                        }}
-                        placeholder="이름으로 검색"  // 검색 placeholder 추가
+                            if (e.key === "Enter") { handleSearchButtonOnClick(); }}}
+                        placeholder="이름으로 검색"
                     />
                     <button css={s.searchButton} onClick={handleSearchButtonOnClick}>
                         <BiSearch />
@@ -134,10 +99,10 @@ function ReceiptPage() {
                     <table css={s.table}>
                         <thead>
                             <tr>
-                                <th>No.</th>
+                                <th>차트번호</th> {/* 환자번호 */}
                                 <th>이름</th>
                                 <th>전화번호</th>
-                                <th>접수날짜</th>
+                                <th>접수시간</th>
                                 <th>접수상태</th>
                                 <th>계산</th>
                             </tr>
@@ -160,9 +125,9 @@ function ReceiptPage() {
                                             {isModalOpen &&
                                             <DeleteReceiptModal
                                             isOpen={isModalOpen}
-                                            onCancel={handleCancelDeleteOnClick}
+                                            onCancel={handleCloseModal}
                                             onConfirm={handleConfirmDeleteOnClick}
-                                            onClose={handleCloseModalOnClick}
+                                            onClose={handleCloseModal}
                                             />}
                                         </td>
                                         <td>
