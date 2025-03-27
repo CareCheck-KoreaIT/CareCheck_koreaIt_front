@@ -8,6 +8,7 @@ import { useDeleteReceiptMutation } from '../../mutations/admissionMutation';
 import DeleteReceiptModal from '../../components/modal/DeleteReceiptModal/DeleteReceiptModal';
 import { useQueryClient } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
+import { GoChevronLeft, GoChevronRight } from 'react-icons/go';
 
 function ReceiptPage() {
     const queryClient = useQueryClient();
@@ -97,21 +98,19 @@ function ReceiptPage() {
                 </div>
                 <div css={s.tableContainer}>
                     <table css={s.table}>
-                        <thead>
-                            <tr>
-                                <th>차트번호</th> {/* 환자번호 */}
-                                <th>이름</th>
-                                <th>전화번호</th>
-                                <th>접수시간</th>
-                                <th>접수상태</th>
-                                <th>계산</th>
-                            </tr>
-                        </thead>
+                        <tr css={s.trHeader}>
+                            <td>차트번호</td> {/* 환자번호 */}
+                            <td>이름</td>
+                            <td>전화번호</td>
+                            <td>접수시간</td>
+                            <td>접수상태</td>
+                            <td>계산</td>
+                        </tr>
 
-                        <tbody>
+                        <tbody css={s.body}>
                             {filteredWaitingList.length > 0 ? (
                                 filteredWaitingList.map((allWaiting) => (
-                                    <tr key={allWaiting.admId}>
+                                    <tr key={allWaiting.admId} css={s.trData}>
                                         <td>{allWaiting.patientId}</td>
                                         <td>{allWaiting.patientName}</td>
                                         <td>{allWaiting.phoneNum}</td>
@@ -145,6 +144,17 @@ function ReceiptPage() {
                         </tbody>
                     </table>
                 </div>
+                {/* <div css={s.footer}>
+                    <div css={s.pageNumbers}>
+                        <button disabled={searchNoticeList?.data?.data.firstPage} onClick={() => handlePagenumbersOnClick(page - 1)}><GoChevronLeft /></button>
+                        {
+                            pageNumbers.map(number =>
+                                <button key={number} css={s.pageNum(page === number)} onClick={() => handlePagenumbersOnClick(number)}><span>{number}</span></button>
+                            )
+                        }
+                        <button disabled={searchNoticeList?.data?.data.lastPage} onClick={() => handlePagenumbersOnClick(page + 1)}><GoChevronRight /></button>
+                    </div>
+                </div> */}
             </div>
         </>
     );
