@@ -5,15 +5,19 @@ import React, { useEffect } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { useRecoilState } from "recoil";
 import { headerMenuState } from "../../../atoms/Header/headerMenu";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 
 function MainSidebar() {
-
+  const navigate = useNavigate();
   const queryClient = useQueryClient();
   const loginUser = queryClient.getQueryData(["userMeQuery"]);
   const [headerState, setHeaderState] = useRecoilState(headerMenuState)
   console.log("mainsidebar", headerState)
   const location = useLocation();
+
+  const handleAccountPage = () => {
+    navigate("/account/info");
+  }
 
   useEffect(() => {
     const savedState = sessionStorage.getItem("headerState");
@@ -45,7 +49,7 @@ function MainSidebar() {
         return (
           <>
             <div><BsColumnsGap />
-            <NavLink to="/patient" className="NavLinkStyle"><span>환자 등록</span></NavLink>
+            <NavLink to="/patient" className="NavLinkStyle" ><span>환자 등록</span></NavLink>
             </div>
             <div><BsColumnsGap />
             <NavLink to="/patient/medical-reception" className="NavLinkStyle"><span>접수 확인</span></NavLink>
@@ -87,8 +91,12 @@ function MainSidebar() {
       case "관리자메뉴변경":
       return (
         <>
-          <div><BsColumnsGap /><span>관리자 설정</span></div>
-          <div><BsColumnsGap /><span>관리자 테스트</span></div>
+          <div><BsColumnsGap />
+          <NavLink to="/admin/users/" className="NavLinkStyle"><span>직원 관리</span></NavLink>
+          </div>
+          <div><BsColumnsGap />
+          <NavLink to="/admin/users/signup" className="NavLinkStyle"><span>사원 등록</span></NavLink>
+          </div>
         </>
       );
     }
@@ -105,7 +113,7 @@ function MainSidebar() {
           {renderSidebarMenu()}
       </section>
       <footer css={s.footer}>
-        <div>{loginUser?.data?.username}님</div>
+        <div onClick={handleAccountPage}>{loginUser?.data?.username}님</div>
       </footer>
     </div>
   );

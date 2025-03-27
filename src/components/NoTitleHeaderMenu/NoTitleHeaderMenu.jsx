@@ -62,15 +62,11 @@ function NoTitleHeaderMenu() {
           <span css={s.titleStyle}>수납</span>
         </NavLink>
       </div>
-      <div css={s.headerMenu}>
-        <NavLink
-          to={`/admission/table`}
-          className={({ isActive }) => (isActive ? "active" : "")}
-          onClick={() => setHeaderState("처방메뉴변경")}
-        >
-          <div css={s.lconStyle}>
-            <MdOutlineLocalHospital />
-          </div>
+
+      <div css={s.headerMenu} >
+        <NavLink to={`/admission/${loginUser?.data?.usercode}`} className={({ isActive }) => (isActive ? "active" : "")}
+        onClick={()=>setHeaderState("처방메뉴변경")}>
+          <div css={s.lconStyle}><MdOutlineLocalHospital /></div>
           <span css={s.titleStyle}>처방</span>
         </NavLink>
       </div>
@@ -82,7 +78,7 @@ function NoTitleHeaderMenu() {
         </NavLink>
       </div>
       <div css={s.headerMenu} >
-        <NavLink to="/admin/" className={({ isActive }) => (isActive ? "active" : "")}
+        <NavLink to="/admin/users" className={({ isActive }) => (isActive ? "active" : "")}
         onClick={()=>setHeaderState("관리자메뉴변경")}>
         <div css={s.lconStyle}><RiAdminLine /></div>
         <span css={s.titleStyle}>관리자</span>

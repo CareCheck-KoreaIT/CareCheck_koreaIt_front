@@ -69,7 +69,7 @@ function MainRoute() {
               path="/notice/:usercode/modify/:noticeId"
               element={<NoticeModifyPage />}
             />
-            <Route path="/admission/:usercode/table" element={<TablePage />} />
+            <Route path="/admission/:usercode/" element={<TablePage />} />
             <Route path="/manager" element={<MembershipJoinPage />} />
             <Route path="/summary/" element={<SummaryChartPage />} />
             <Route
