@@ -48,14 +48,14 @@ function MainRoute() {
               element={<NoticeModifyPage />}
             />
             <Route
-              path="/:usercode/admission/:admissionId/certificate"
+              path="/admission/:usercode/:admissionId/certificate"
               element={<PaymentCertificatePage />}
             />
 
             <Route path="/receipt" element={<ReceiptPage />} />
 
             <Route
-              path={`/:usercode/admission/:admissionId/detailbill`}
+              path={`/admission/:usercode/:admissionId/detailbill`}
               element={<DetailBillPage />}
             />
             <Route path="/:usercode/admission/table" element={<TablePage />} />

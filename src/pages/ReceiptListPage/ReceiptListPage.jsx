@@ -110,7 +110,7 @@ function ReceiptListPage() {
                     <button
                       onClick={() =>
                         navigate(
-                          `/${loginUser?.data.usercode}/admission/${item.admId}/certificate`
+                          `/admission/${loginUser?.data.usercode}/${item.admId}/certificate`
                         )
                       }
                     >
@@ -121,7 +121,7 @@ function ReceiptListPage() {
                     <button
                       onClick={() =>
                         navigate(
-                          `/${loginUser?.data.usercode}/admission/${item.admId}/detailbill`
+                          `/admission/${loginUser?.data.usercode}/${item.admId}/detailbill`
                         )
                       }
                     >
