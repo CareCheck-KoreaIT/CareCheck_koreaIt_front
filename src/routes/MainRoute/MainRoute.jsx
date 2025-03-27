@@ -52,7 +52,7 @@ function MainRoute() {
             />
 
             <Route
-              path="/admission/:usercode/:admissionId/detailBill"
+              path={`/admission/:usercode/:admissionId/detailbill`}
               element={<DetailBillPage />}
             />
 
