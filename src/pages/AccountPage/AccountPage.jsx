@@ -55,7 +55,7 @@ function AccountPage(props) {
                         <p>Account</p>
                     </div>
                     <div css={s.accountBox}>
-                        <div css={s.profileBox}>
+                        <div css={s.profileImgBox}>
                             {
                                 loginUser?.data?.userRole.roleId === 1 &&
                                 <RiAdminFill />
@@ -83,14 +83,14 @@ function AccountPage(props) {
                                     <button onClick={handleMyNoticeButtonOnClick}>내가 쓴 게시글</button>
                                 </div>
                             </div>
-                            <div css={s.AccountBox}>
-                                <div css={s.AccountLine}>
+                            <div css={s.accountLayout}>
+                                <div css={s.accountLine}>
                                     <div css={s.infoTitle}>
                                         사 원 번 호
                                     </div>
                                     <div>{loginUser?.data?.usercode}</div>
                                 </div>
-                                <div css={s.AccountLine}>
+                                <div css={s.accountLine}>
                                     <div css={s.infoTitle}>
                                         권 한
                                     </div>
