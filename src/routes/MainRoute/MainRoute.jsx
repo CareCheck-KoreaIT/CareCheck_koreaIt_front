@@ -70,7 +70,7 @@ function MainRoute() {
             />
             <Route path="/admission/:usercode/" element={<TablePage />} />
             <Route path="/manager" element={<MembershipJoinPage />} />
-            <Route path="/summary/" element={<SummaryChartPage />} />
+            <Route path="/summary" element={<SummaryChartPage />} />
             <Route
               path="/summary/usercode"
               element={<SummaryChartUsercodePage />}
