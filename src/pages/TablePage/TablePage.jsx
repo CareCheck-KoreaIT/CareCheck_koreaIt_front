@@ -87,6 +87,7 @@ function TablePage() {
       position: "center",
     });
     qureyClient.invalidateQueries(["useGetSearchWaitingList", param.usercode]);
+    setAdmissionId("");
   };
   return (
     <>
@@ -94,9 +95,11 @@ function TablePage() {
         <div css={s.parent}>
           <div>
             <table css={s.leftTable}>
-              <tr onClick={handleRefetchOnClick}>
-                <td>진료 대기자 명단</td>
-              </tr>
+              <tbody>
+                <tr onClick={handleRefetchOnClick}>
+                  <td>진료 대기자 명단</td>
+                </tr>
+              </tbody>
             </table>
 
             <table css={s.waitingList}>
@@ -109,48 +112,62 @@ function TablePage() {
                 </tr>
               </tbody>
             </table>
-            <WaitingList usercode={param.usercode} />
+            <div css={s.lefttableLayout}>
+              <WaitingList usercode={param.usercode} />
+            </div>
           </div>
           {/*진료 대기자 명단 끝*/}
-          <div css={s.child2}>
+          <div>
             <div>
               <table css={s.rightTable}>
-                <tr>
-                  <td>환자정보</td>
-                </tr>
+                <tbody>
+                  <tr>
+                    <td>환자정보</td>
+                  </tr>
+                </tbody>
               </table>
             </div>
             <div>
               <table>
-                <tr css={s.patientInfo}>
-                  <td>차트번호</td>
-                  <td>환자명</td>
-                  <td>나이</td>
-                  <td>키</td>
-                  <td>몸무게</td>
-                </tr>
+                <tbody css={s.patientInfo}>
+                  <tr>
+                    <td>차트번호</td>
+                    <td>환자명</td>
+                    <td>나이</td>
+                    <td>키</td>
+                    <td>몸무게</td>
+                  </tr>
+                </tbody>
               </table>
-              <AdmPatientVital admissionId={admissionId} />
+              <div css={s.tableLayout}>
+                <AdmPatientVital admissionId={admissionId} />
+              </div>
             </div>
             {/*환자정보 끝*/}
             <div>
               <div>
                 <table css={s.rightTable} onClick={handleDiseaseModalOpen}>
-                  <tr>
-                    <td>상병 등록</td>
-                  </tr>
+                  <tbody>
+                    <tr>
+                      <td>상병 등록</td>
+                    </tr>
+                  </tbody>
                 </table>
               </div>
 
               <div>
                 <table>
-                  <tr css={s.diagnosisRegister}>
-                    <td>상병코드</td>
-                    <td>병명</td>
-                    <td>삭제</td>
-                  </tr>
+                  <tbody>
+                    <tr css={s.diagnosisRegister}>
+                      <td>상병코드</td>
+                      <td>병명</td>
+                      <td>삭제</td>
+                    </tr>
+                  </tbody>
                 </table>
-                <DiagnosisDesease />{" "}
+                <div css={s.tableLayout}>
+                  <DiagnosisDesease />{" "}
+                </div>
                 <div css={s.tableFooter}>
                   <button onClick={handleSaveDiagnosisOnClick}>
                     <span>상병전송</span>
@@ -162,25 +179,31 @@ function TablePage() {
             <div>
               <div>
                 <table css={s.rightTable} onClick={handleOrdersModalOpen}>
-                  <tr>
-                    <td>처방 등록</td>
-                  </tr>
+                  <tbody>
+                    <tr>
+                      <td>처방 등록</td>
+                    </tr>
+                  </tbody>
                 </table>
               </div>
 
               <div>
                 <table>
-                  <tr css={s.prescriptionRegister}>
-                    <td>처방코드</td>
-                    <td>처방명</td>
-                    <td>용량</td>
-                    <td>횟수</td>
-                    <td>일수</td>
-                    <td>용법</td>
-                    <td>삭제</td>
-                  </tr>
+                  <tbody>
+                    <tr css={s.prescriptionRegister}>
+                      <td>처방코드</td>
+                      <td>처방명</td>
+                      <td>용량</td>
+                      <td>횟수</td>
+                      <td>일수</td>
+                      <td>용법</td>
+                      <td>삭제</td>
+                    </tr>
+                  </tbody>
                 </table>
-                <DiagnosisOrder />
+                <div css={s.tableLayout}>
+                  <DiagnosisOrder />
+                </div>
                 <div css={s.tableFooter}>
                   <button onClick={handleSaveOrdersOnClick}>
                     <span>오더전송</span>

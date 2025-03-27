@@ -7,14 +7,16 @@ import { BiSearch } from 'react-icons/bi';
 import * as s from './style';
 import { useDeleteNoticeMutation } from '../../mutations/noticeMutation';
 import DeleteNoticeModal from '../../components/modal/DeleteNoticeModal/DeleteNoticeModal';
-import NoticeModal from '../../components/modal/NoticeModal/NoticeModal';
+import NoticeMyListModal from '../../components/modal/NoticeMyListModal/NoticeMyListModal';
 import Swal from 'sweetalert2';
+import { useQueryClient } from '@tanstack/react-query';
 
 function NoticeMyListPage() {
 const navigate = useNavigate();
 const [searchParams, setSearchParams] = useSearchParams();
 const { usercode } = useParams();
 const page = parseInt(searchParams.get("page") || "1");
+const [ inputText, setInputText ] = useState("")
 const [searchText, setSearchText] = useState(searchParams.get("searchText") || "");
 const order = searchParams.get("order") || "default";
 const [ isModalOpen, setIsModalOpen ] = useState(false);
@@ -22,7 +24,7 @@ const [ selectedNoticeId, setSelectedNoticeId ] = useState(null);
 
 const [ isNoticeModalOpen, setIsNoticeModalOpen ] = useState(false);
 const [ selectedNotice, setSelectedNotice ] = useState(null);
-
+const queryClient = useQueryClient();
 const searchNoticeList = useGetUsercodeNoticeList(usercode, {
     page,
     limitCount: 15,
@@ -54,11 +56,12 @@ useEffect(() => {
 }, [searchParams]);
 
 const searchOnChange = (e) => {
-setSearchText(e.target.value);
+setInputText(e.target.value);
 };
 
 const handleSearchInputOnKeyDown = (e) => {
     if(e.key === "Enter") {
+        setSearchText(inputText)
         handleSearchButtonOnClick();
     }
 }
@@ -100,7 +103,7 @@ const handleConfirmDeleteOnClick = async () => {
                 icon: "success",
                 confirmButtonText: "확인"
             });
-            searchNoticeList.refetch();
+            queryClient.invalidateQueries(["searchNoticeList"]);
         },
         onError: async () => {
           setIsModalOpen(false);
@@ -134,7 +137,7 @@ return (
             <input
             css={s.searchInput}
             type="text"
-            value={searchText}
+            value={inputText}
             onChange={searchOnChange}
             onKeyDown={handleSearchInputOnKeyDown}
             />
@@ -208,7 +211,7 @@ return (
             <button css={s.writeButton} onClick={handleWritePageOnClick}>글쓰기</button>
         </div>
     </div>
-    <NoticeModal 
+    <NoticeMyListModal
         isOpen={isNoticeModalOpen}
         setIsOpen={setIsNoticeModalOpen}
         notice={selectedNotice}

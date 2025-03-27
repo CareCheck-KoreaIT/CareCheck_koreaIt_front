@@ -1,7 +1,7 @@
 /**@jsxImportSource @emotion/react */
 import * as s from "./style";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   useGetSearchDetailBill,
   useGetSearchPatientInfo,
@@ -10,6 +10,9 @@ import {
 import { useQueryClient } from "@tanstack/react-query";
 
 function DetailBillPage() {
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
+  const loginUser = queryClient.getQueryData(["userMeQuery"]);
   const today = new Date();
   const dateString = today.toLocaleDateString("ko-KR", {
     year: "numeric",
@@ -56,6 +59,10 @@ function DetailBillPage() {
       admDate: e.target.value,
     }));
   };
+
+  const handlePaymentCertificate = (admId) => {
+    navigate(`/${loginUser?.data?.usercode}/admission/${admId}/certificate`);
+};
 
   return (
     <div css={s.layout}>
@@ -136,6 +143,11 @@ function DetailBillPage() {
             <span> {dateString} </span>
           </div>
         </main>
+      </div>
+      <div css={s.button}>
+        <button onClick={() => handlePaymentCertificate(patientInfoByAdmId?.data?.data.admId)}>
+        영수증
+        </button>
       </div>
     </div>
   );

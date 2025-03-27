@@ -18,8 +18,11 @@ import NoticeWritePage from "../../pages/NoticeWritePage/NoticeWritePage";
 import NoticeLsitPage from "../../pages/NoticeListPage/NoticeListPage";
 import AccountRoute from "../AccountRoute/AccountRoute";
 import PaymentCertificatePage from "../../pages/PaymentCertificatePage/PaymentCertificatePage";
+import SummaryChartPage from "../../pages/SummaryChartPage/SummaryChartPage";
+import SummaryChartUsercodePage from "../../pages/SummaryChartUsercodePage/SummaryChartUsercodePage";
 import NoticeMyListPage from "../../pages/NoticeMyListpage/NoticeMyListPage";
-
+import AdmPatientVital from "../../components/TablePageComponents/AdmPatientViatal/AdmPatientVital";
+import NoticeModifyPage from "../../pages/NoticeModifyPage/NoticeModifyPage";
 
 function MainRoute() {
   useUserMeQuery();
@@ -33,7 +36,6 @@ function MainRoute() {
           <Routes>
             <Route path="/account/*" element={<AccountRoute />} />
             <Route path="/admin/*" element={<UserRoute />} />
-            <Route path="/receipt" element={<ReceiptPage />} />
             <Route path="/order" element={<OrderPage />} />
             <Route path="/patient" element={<PatientRegistrationPage />} />
             <Route path="/scorepay" element={<ScorePayPage />} />
@@ -41,7 +43,16 @@ function MainRoute() {
             <Route path="/notice/write" element={<NoticeWritePage />} />
             <Route path="/notice/list" element={<NoticeLsitPage />} />
             <Route path="/notice/:usercode" element={<NoticeMyListPage />} />
-            <Route path="/:usercode/admission/:admissionId/certificate" element={<PaymentCertificatePage />} />
+            <Route
+              path="/notice/:usercode/modify/:noticeId"
+              element={<NoticeModifyPage />}
+            />
+            <Route
+              path="/:usercode/admission/:admissionId/certificate"
+              element={<PaymentCertificatePage />}
+            />
+
+            <Route path="/receipt" element={<ReceiptPage />} />
 
             <Route
               path="/:usercode/admission/:admissionId/detailBill"
@@ -53,6 +64,11 @@ function MainRoute() {
             <Route
               path="/MedicalReception"
               element={<MedicalReceptionPage />}
+            />
+            <Route path="/summary/total" element={<SummaryChartPage />} />
+            <Route
+              path="/summary/usercode"
+              element={<SummaryChartUsercodePage />}
             />
           </Routes>
         </div>

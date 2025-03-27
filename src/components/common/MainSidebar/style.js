@@ -23,6 +23,18 @@ export const header = css`
   & > h2 {
     color: #ffffff;
   }
+
+  & > a {
+    text-decoration: none;
+    color:white;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 2rem;
+    white-space: nowrap;
+  }
+
+  
 `;
 
 export const section = css`
@@ -45,6 +57,15 @@ export const section = css`
       margin-left: 1rem;
     }
   }
+
+  .activ {
+    color: #464667;
+    font-weight: bold;
+    border-bottom: 3px solid #464667;  
+    padding-bottom: 0.5rem;
+    width: 100%;
+
+  }
 `;
 
 export const footer = css`
@@ -63,4 +84,5 @@ export const footer = css`
     cursor: pointer;
   }
 `;
+
 

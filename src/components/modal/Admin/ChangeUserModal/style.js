@@ -113,5 +113,5 @@ export const changeButton = css`
     &:active {
         background-color: #464667;
         color: #ffffff;
-    }
+    
 `;

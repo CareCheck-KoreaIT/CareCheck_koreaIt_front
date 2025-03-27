@@ -18,7 +18,8 @@ export const headerMenu = css`
   height: 3rem;
   font-size: 2rem;
   /* transition: all 0.2s ease-in-out; */
-  
+  cursor: pointer;
+
   & > a {
     text-decoration: none;
     color:black;
@@ -45,15 +46,6 @@ export const headerMenu = css`
     padding-bottom: 0.5rem;
     width: 100%;
 
-    /* &::after {
-      content: '';
-      position: absolute;
-      bottom: -2rem;
-      left: 0;
-      width: 100%;
-      height: 4px;
-      background-color: #464667;
-    } */
   }
 
   & > a:visited {

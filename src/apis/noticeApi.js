@@ -17,3 +17,10 @@ export const getUsercodeBoardListApi = async (usercode, params) => {
 
 export const deleteNoticeApi = async(noticeId) => await api.delete(`/notices/${noticeId}`);
 
+export const updateNoticeApi = async (params) => {
+  const { usercode, noticeId, notice } = params;
+
+  console.log(`/notices/${usercode}/${noticeId}`, notice);
+
+  return await api.put(`/notices/${usercode}/${noticeId}`, notice);
+};
