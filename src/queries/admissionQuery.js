@@ -6,6 +6,7 @@ import {
   selectVitalByAdmApi,
   searchWaitingListApi,
   searchAllWaitingListApi,
+  searchAdmissionListApi,
 } from "../apis/admissionApi";
 
 export const useGetSearchDetailBill = (admissionId) => {
@@ -80,5 +81,18 @@ export const useGetSearchAllWaitingList = (keyword) => {
     retry: 0,
     staleTime: 1000 * 60 * 5,
     gcTime: 1000 * 60 * 5,
+  });
+};
+
+export const useGetSearchAdmissionListByPatientName = (patientName) => {
+  return useQuery({
+    queryKey: ["useGetSearchAdmissionListByPatientName", patientName],
+    queryFn: async () => {
+      return await searchAdmissionListApi(patientName);
+    },
+    retry: 0,
+    staleTime: 1000 * 60 * 5,
+    gcTime: 1000 * 60 * 5,
+    enabled: !!patientName,
   });
 };
