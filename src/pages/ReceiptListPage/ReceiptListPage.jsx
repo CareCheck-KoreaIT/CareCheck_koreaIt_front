@@ -109,8 +109,9 @@ function ReceiptListPage() {
                   <td>
                     <button
                       onClick={() =>
-                        navigate(
-                          `/admission/${loginUser?.data.usercode}/${item.admId}/certificate`
+                        window.open(
+                          `/admission/${item.admId}/certificate`,
+                          "_blank"
                         )
                       }
                     >
@@ -120,8 +121,9 @@ function ReceiptListPage() {
                   <td>
                     <button
                       onClick={() =>
-                        navigate(
-                          `/admission/${loginUser?.data.usercode}/${item.admId}/detailbill`
+                        window.open(
+                          `/admission/${item.admId}/detailbill`,
+                          "_blank"
                         )
                       }
                     >

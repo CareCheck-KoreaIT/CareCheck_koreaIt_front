@@ -47,14 +47,18 @@ function MainRoute() {
             {/* 접수된 환자 리스트 */}
             <Route path="/patient/admission-list" element={<ReceiptPage />} />
             <Route
-              path="/admission/:usercode/:admissionId/certificate"
+              path="/admission/:admissionId/certificate"
               element={<PaymentCertificatePage />}
             />
 
             <Route
-              path={`/admission/:usercode/:admissionId/detailbill`}
+              path={`/admission/:admissionId/detailbill`}
               element={<DetailBillPage />}
             />
+            <Route path="/receipt" element={<ReceiptPage />} />
+
+            <Route path="/admission/table" element={<TablePage />} />
+            <Route path="/manager" element={<MembershipJoinPage />} />
 
             <Route path="/scorepay" element={<ScorePayPage />} />
             <Route path="/employeenum" element={<EmployeeNumEnrollPage />} />
