@@ -63,7 +63,7 @@ export const section = css`
   margin-left: 1rem; 
   
   & > span {
-      &:active{
+      &:hover{
         color: black;
         font-weight: bold;
         font-size: 2.8rem;
