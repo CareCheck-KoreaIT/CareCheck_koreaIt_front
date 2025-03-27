@@ -55,7 +55,6 @@ function MainRoute() {
               path={`/admission/:admissionId/detailbill`}
               element={<DetailBillPage />}
             />
-            <Route path="/receipt" element={<ReceiptPage />} />
 
             <Route path="/admission/table" element={<TablePage />} />
             <Route path="/manager" element={<MembershipJoinPage />} />
