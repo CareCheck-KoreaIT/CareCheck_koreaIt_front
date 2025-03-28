@@ -3,46 +3,64 @@ import { useGetAllWaitingTotalCount, useGetSearchAllWaitingList } from '../../qu
 import * as s from './style';
 import React, { useEffect, useState } from 'react';
 import { BiSearch } from 'react-icons/bi';
-import { Await, useNavigate } from 'react-router-dom';
 import { useDeleteReceiptMutation } from '../../mutations/admissionMutation';
 import DeleteReceiptModal from '../../components/modal/DeleteReceiptModal/DeleteReceiptModal';
 import Swal from 'sweetalert2';
 import { GoChevronLeft, GoChevronRight } from 'react-icons/go';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 function ReceiptPage() {
     const navigate = useNavigate();
+    const [ searchParams, setSearchParams ] = useSearchParams();
+    const page = parseInt(searchParams.get("page") || "1");
+    const keyword = searchParams.get("keyword") || "";
+    const searchAllList = useGetSearchAllWaitingList();
+    const [ pageNumbers, setPageNumbers ] = useState([]);
+    const [ searchValue, setSearchValue ] = useState(keyword);
     
-    const [ keyword, setKeyword ] = useState("");
-    const [ page, setPage ] = useState(1);
-    const [ limit ] = useState(10);
-    const [waitingList, setWaitingList] = useState([]);
-    const { data: totalCountData } = useGetAllWaitingTotalCount(keyword);
-    console.log("totalCountData:", totalCountData); 
-    const totalCount = totalCountData?.data || 0;
-
-    const { data: waitingListData } = useGetSearchAllWaitingList(keyword, page, limit);  // 대기자 목록을 받아옴
-    // const waitingList = waitingListData?.data || [];  // 대기자 목록
-    const totalPages = Math.ceil(totalCount / limit) || 1;
+    const { data } = useGetSearchAllWaitingList(keyword, startIndex, limitCount);
     
-    const [ isModalOpen, setIsModalOpen ] = useState(false);
-    const [ selectedReceipt, setSelectedReceipt ] = useState(null);
-
-    const handlePageChange = (newPage) => {
-        if (newPage < 1 || newPage > totalPages) return;  // 페이지가 1보다 작거나 totalPages보다 큰 경우 방지
-        setPage(newPage);  // 페이지 상태 업데이트
-    };
-
+    console.log(data);
+    
     useEffect(() => {
-        if (waitingListData?.data) {
-            setWaitingList(waitingListData.data); // 대기자 목록 상태 업데이트
+        if(!searchAllList.isLoading) {
+            const currentPage = searchAllList?.data?.data.page || 1;
+            const totalPages = searchAllList?.data?.data.totalPages || 1;
+            const startIndex = (Math.floor((currentPage - 1) / 5) * 5) + 1;
+            const endIndex = startIndex + 4 > totalPages ? totalPages : startIndex + 4;
+
+            let newPageNumbers = [];
+            for(let i = startIndex; i <= endIndex; i++) {
+                newPageNumbers = [...newPageNumbers, i];
+            }
+            setPageNumbers(newPageNumbers);
         }
-    }, [waitingListData]);
-    
+    },[searchAllList.data])
+
     useEffect(() => {
-        console.log("totalCount:", totalCount);
-        console.log("현재 페이지: ", totalPages);
-        console.log("대기자 목록:", waitingListData);
-    }, [page, waitingList]);
+        searchAllList.refetch();
+    }, [searchParams]);
+    
+    const handleSearchInputOnChange = (e) => {
+        setSearchValue(e.target.value);
+    }
+    
+    const handleSearchInputOnKeyDown = (e) => {
+        if(e.key === "Enter") {
+            handleSearchButtonOnClick();
+        }
+    }
+    
+    const handleSearchButtonOnClick = () => {
+        searchParams.set("searchText", searchValue);
+        searchParams.set("page", 1);
+        setSearchParams(searchParams);
+    }
+
+    const handlePageNumbersOnClick = (pageNumber) => {
+        searchParams.set("page", pageNumber);
+        setSearchParams(searchParams);
+    }
 
     const mutation = useDeleteReceiptMutation();
     const handleDeleteReceiptOnClick = (admissionId) => {
@@ -56,6 +74,7 @@ function ReceiptPage() {
         if (selectedReceipt) {
             mutation.mutate(selectedReceipt, {
                 onSuccess: async () => {
+                    setWaitingList((prevList) => prevList.filter(item => item.admId != selectedReceipt))
                     setIsModalOpen(false);
                     await Swal.fire({
                         titleText: "취소가 완료되었습니다.",
@@ -76,6 +95,9 @@ function ReceiptPage() {
         }
     };
 
+    const [ selectedNotice, setSelectedNotice ] = useState(null);
+    const [ isModalOpen, setIsModalOpen ] = useState(false);
+
     const handleCloseModal = () => {
         setIsModalOpen(false);
     };
@@ -84,10 +106,6 @@ function ReceiptPage() {
         navigate(`/admission/${admId}/detailBill`);
     };
 
-    const handleSearchButtonOnClick = () => {
-        setPage(1); // 검색 시 첫 페이지로 돌아가도록 설정
-      };
-
     return (
         <>
             <div>
@@ -95,9 +113,9 @@ function ReceiptPage() {
                     <input 
                         css={s.searchInput} 
                         type="text" 
-                        value={keyword} 
-                        onChange={(e) => setKeyword(e.target.value)} // 텍스트 변경만 처리
-                        onKeyDown={(e) => { if (e.key === "Enter") { handleSearchButtonOnClick(); }}}
+                        value={searchValue}
+                        onChange={handleSearchInputOnChange} // 텍스트 변경만 처리
+                        onKeyDown={handleSearchInputOnKeyDown}
                         placeholder="이름으로 검색"
                     />
                     <button css={s.searchButton} onClick={handleSearchButtonOnClick}>
@@ -118,8 +136,8 @@ function ReceiptPage() {
                     </thead>
 
                     <tbody css={s.body}>
-                        {waitingList.length > 0 ? (
-                            waitingList.map((allWaiting) => (
+                        {searchAllList.length > 0 ? (
+                            searchAllList.map((allWaiting) => (
                                 <tr key={allWaiting.admId} css={s.trData}>
                                     <td>{allWaiting.patientId}</td>
                                     <td>{allWaiting.patientName}</td>
@@ -162,30 +180,13 @@ function ReceiptPage() {
                 {/* 페이지네이션 */}
                 <div css={s.footer}>
                     <div css={s.pageNumbers}>
-                        <button
-                            disabled={page === 1} // 첫 페이지에서는 왼쪽 버튼 비활성화
-                            onClick={() => handlePageChange(page - 1)}>
-                            <GoChevronLeft />
-                        </button>
-                        {(() => {
-                            const pageButtons = [];
-                            for (let i = 0; i < totalPages; i++) {
-                                pageButtons.push(
-                                    <button
-                                        key={i}
-                                        css={s.pageNum(page === i + 1)}
-                                        onClick={() => handlePageChange(i + 1)}>
-                                        <span>{i + 1}</span>
-                                    </button>
-                                );
-                            }
-                            return pageButtons;
-                        })()}
-                        <button
-                            disabled={page === totalPages}  // 마지막 페이지에서는 오른쪽 버튼 비활성화
-                            onClick={() => handlePageChange(page + 1)}>
-                            <GoChevronRight />
-                        </button>
+                        <button disabled={searchAllList?.data?.data.firstPage} onClick={() => handlePageNumbersOnClick(page - 1)}><GoChevronLeft /></button>
+                        {
+                            pageNumbers.map(number =>
+                                <button key={number} css={s.pageNum(page === number)} onClick={() => handlePageNumbersOnClick(number)}><span>{number}</span></button>
+                            )
+                        }
+                        <button disabled={searchAllList?.data?.data.lastPage} onClick={() => handlePageNumbersOnClick(page + 1)}><GoChevronRight /></button>
                     </div>
                 </div>
             </div>

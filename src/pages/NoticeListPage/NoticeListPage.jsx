@@ -11,6 +11,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { getViewCountApi } from '../../apis/noticeApi';
 import ReactModal from 'react-modal';
 import NoticeModal from '../../components/modal/NoticeModal/NoticeModal';
+import { constSelector } from 'recoil';
 
 
 function NoticeListPage(props) {
