@@ -3,15 +3,12 @@ import * as s from "./style";
 import { useUserMeQuery } from "../../queries/userQuery";
 import MainSidebar from "../../components/common/MainSidebar/MainSidebar";
 import NoTitleHeaderMenu from "../../components/NoTitleHeaderMenu/NoTitleHeaderMenu";
-import ReceiptPage from "../../pages/ReceiptPage/ReceiptPage";
 import OrderPage from "../../pages/OrderPage/OrderPage";
 import TablePage from "../../pages/TablePage/TablePage";
-import PatientRegistrationPage from "../../pages/PatientRegistrationPage/PatientRegistrationPage";
 import ScorePayPage from "../../pages/ScorePayPage/ScorePayPage";
 import EmployeeNumEnrollPage from "../../pages/EmployeeNumEnrollPage/EmployeeNumEnrollPage";
 import DetailBillPage from "../../pages/DetailBillPage/DetailBillPage";
 import MembershipJoinPage from "../../pages/MembershipJoinPage/MembershipJoinPage";
-import MedicalReceptionPage from "../../pages/MedicalReceptionPage/MedicalReceptionPage";
 import { Route, Routes } from "react-router-dom";
 import UserRoute from "../UserRoute/UserRoute";
 import NoticeWritePage from "../../pages/NoticeWritePage/NoticeWritePage";
@@ -24,7 +21,8 @@ import NoticeMyListPage from "../../pages/NoticeMyListpage/NoticeMyListPage";
 import NoticeModifyPage from "../../pages/NoticeModifyPage/NoticeModifyPage";
 import ReceiptListPage from "../../pages/ReceiptListPage/ReceiptListPage";
 import MainPage from "../../pages/MainPage/MainPage";
-import PaymentTestPage from "../../pages/PaymentTestPage/PaymentTestPage";
+import PaymentRoute from "../PaymentRoute/PaymentRoute";
+import PatientRoute from "../PatientRoute/PatientRoute";
 
 function MainRoute() {
   useUserMeQuery();
@@ -39,14 +37,9 @@ function MainRoute() {
             <Route path="/" element={<MainPage />} />
             <Route path="/account/*" element={<AccountRoute />} />
             <Route path="/admin/*" element={<UserRoute />} />
-            <Route path="/patient/order" element={<OrderPage />} />
-
-            {/* 환자 등록 */}
-            <Route path="/patient" element={<PatientRegistrationPage />} />
-            {/* 환자 진료접수 */}
-            <Route path="/patient/medical-reception" element={<MedicalReceptionPage />}/>
-            {/* 접수된 환자 리스트 */}
-            <Route path="/patient/admission-list" element={<ReceiptPage />} />
+            <Route path="/order" element={<OrderPage />} />
+            <Route path="/payment" element={<PaymentRoute />} /> 
+            <Route path="/patient" element={<PatientRoute />} />
             <Route
               path="/admission/:admissionId/certificate"
               element={<PaymentCertificatePage />}
@@ -76,8 +69,7 @@ function MainRoute() {
               path="/summary/usercode"
               element={<SummaryChartUsercodePage />}
             />
-            <Route path="/paymentlist" element={<ReceiptListPage />} />
-            <Route path="/payment/test" element={<PaymentTestPage />} />
+            <Route path="/payment/list" element={<ReceiptListPage />} />
           </Routes>
         </div>
       </div>
