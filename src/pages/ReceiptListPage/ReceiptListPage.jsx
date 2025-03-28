@@ -55,7 +55,6 @@ function ReceiptListPage() {
     }
   }, [searchRegidentNumValue, getAdmissionList?.data]);
 
-  const navigate = useNavigate();
   return (
     <div css={s.layout}>
       <div css={s.header}>
@@ -90,13 +89,7 @@ function ReceiptListPage() {
           <tbody>
             {getAdmissionList?.data?.isLoading ? (
               <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td colSpan="7">로딩 중...</td>
               </tr>
             ) : (
               admissionData?.map((item) => (

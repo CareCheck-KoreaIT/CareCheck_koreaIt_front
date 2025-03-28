@@ -15,6 +15,8 @@ export const getUsercodeBoardListApi = async (usercode, params) => {
   return await api.get(`/notices/${usercode}`, { params });
 };
 
+export const getUsercodeNoticeListApi = async ({params}) => await api.get("/notices/mylist", {params});
+
 export const deleteNoticeApi = async(noticeId) => await api.delete(`/notices/${noticeId}`);
 
 export const updateNoticeApi = async (params) => {

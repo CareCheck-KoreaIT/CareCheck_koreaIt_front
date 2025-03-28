@@ -1,5 +1,7 @@
 /**@jsxImportSource @emotion/react */
 import AccountLayout from '../../components/mainPage/AccountLayout/AccountLayout';
+import CalendarLayout from '../../components/mainPage/CalendarLayout/CalendarLayout';
+import NoticeLayout from '../../components/mainPage/NoticeLayout/NoticeLayout';
 import * as s from './style';
 import React from 'react';
 
@@ -10,9 +12,13 @@ function MainPage(props) {
         <div css={s.accountLayout}>
           <AccountLayout />
         </div>
-        <div css={s.noticeLayout}></div>
+        <div css={s.noticeLayout}>
+          <NoticeLayout />
+        </div>
       </div>
-      <div css={s.calendarLayout}></div>
+      <div css={s.calendarLayout}>
+        <CalendarLayout />
+      </div>
     </div>
   );
 }

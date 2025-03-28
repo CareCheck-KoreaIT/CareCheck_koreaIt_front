@@ -20,10 +20,11 @@ export const accountLayout = css`
 
 export const noticeLayout = css`
   display: flex;
+  flex-direction: column;
   box-sizing: border-box;
   width: 70rem;
   height: 38rem;
-  background-color: coral;
+  background-color: #fcfcfc;
 `;
 
 export const calendarLayout = css`
@@ -31,5 +32,4 @@ export const calendarLayout = css`
   box-sizing: border-box;
   width: 70rem;
   height: 76rem;
-  background-color: darkcyan;
 `;

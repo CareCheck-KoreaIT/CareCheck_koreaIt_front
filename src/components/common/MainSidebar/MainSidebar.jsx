@@ -5,15 +5,19 @@ import React, { useEffect } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { useRecoilState } from "recoil";
 import { headerMenuState } from "../../../atoms/Header/headerMenu";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 
 function MainSidebar() {
-
+  const navigate = useNavigate();
   const queryClient = useQueryClient();
   const loginUser = queryClient.getQueryData(["userMeQuery"]);
   const [headerState, setHeaderState] = useRecoilState(headerMenuState)
-  console.log("mainsidebar", headerState)
+  // console.log("mainsidebar", headerState)
   const location = useLocation();
+
+  const handleAccountPage = () => {
+    navigate("/account/info");
+  }
 
   useEffect(() => {
     const savedState = sessionStorage.getItem("headerState");
@@ -34,9 +38,9 @@ function MainSidebar() {
         return (
           <>
             <div><BsColumnsGap/>
-            <NavLink to="/manager" className="NavLinkStyle"><span>테스트1</span></NavLink>
+            <NavLink to="/account/info" className="NavLinkStyle"><span>내 정보</span></NavLink>
             </div>
-            <div><BsColumnsGap/><span>테스트2</span></div>
+            <div><BsColumnsGap/><span>공지사항</span></div>
             <div><BsColumnsGap/><span>테스트3</span></div>
           </>
         )
@@ -45,10 +49,10 @@ function MainSidebar() {
         return (
           <>
             <div><BsColumnsGap />
-            <NavLink to="/patient" className="NavLinkStyle"><span>환자 등록</span></NavLink>
+            <NavLink to="/patient" className="NavLinkStyle" ><span>환자 등록</span></NavLink>
             </div>
             <div><BsColumnsGap />
-            <NavLink to="/patient/medical-reception" className="NavLinkStyle"><span>접수 확인</span></NavLink>
+            <NavLink to="/patient/medical-reception" className="NavLinkStyle"><span>진료 접수</span></NavLink>
             </div>
             <div><BsColumnsGap />
             <NavLink to="/patient/admission-list" className="NavLinkStyle"><span>환자 리스트</span></NavLink>
@@ -58,18 +62,26 @@ function MainSidebar() {
       case "수납메뉴변경":
       return (
         <>
-          <div><BsColumnsGap /><span>수납 신청</span></div>
-          <div><BsColumnsGap /><span>수납 확인</span></div>
+          <div><BsColumnsGap />
+          <NavLink to="/payment/list" className="NavLinkStyle"><span>수납 관리</span></NavLink>
+          </div>
+
         </>
       );
       case "처방메뉴변경":
       return (
         <>
           <div><BsColumnsGap />
-          <NavLink to={`/admission/${loginUser?.data?.usercode}/table`} className="NavLinkStyle"><span>처방 신청</span></NavLink>
+          <NavLink to={`/admission/table`} className="NavLinkStyle"><span>처방 관리</span></NavLink>
           </div>
           <div><BsColumnsGap />
           <NavLink to={`/admission/${loginUser?.data?.usercode}`} className="NavLinkStyle"><span>처방 확인</span></NavLink>
+          </div>
+          <div><BsColumnsGap />
+          <NavLink to={`/admission/${loginUser?.data?.usercode}/certificate`} className="NavLinkStyle"><span>영수증</span></NavLink>
+          </div>
+          <div><BsColumnsGap />
+          <NavLink to={`/admission/${loginUser?.data?.usercode}/detailbill`} className="NavLinkStyle"><span css={s.font}>진료비 세부내역서</span></NavLink>
           </div>
         </>
       );
@@ -87,8 +99,12 @@ function MainSidebar() {
       case "관리자메뉴변경":
       return (
         <>
-          <div><BsColumnsGap /><span>관리자 설정</span></div>
-          <div><BsColumnsGap /><span>관리자 테스트</span></div>
+          <div><BsColumnsGap />
+          <NavLink to="/admin/users/" className="NavLinkStyle"><span>직원 관리</span></NavLink>
+          </div>
+          <div><BsColumnsGap />
+          <NavLink to="/admin/users/signup" className="NavLinkStyle"><span>사원 등록</span></NavLink>
+          </div>
         </>
       );
     }
@@ -105,7 +121,7 @@ function MainSidebar() {
           {renderSidebarMenu()}
       </section>
       <footer css={s.footer}>
-        <div>{loginUser?.data?.username}님</div>
+        <div onClick={handleAccountPage}>{loginUser?.data?.username}님</div>
       </footer>
     </div>
   );

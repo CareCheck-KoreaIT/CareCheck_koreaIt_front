@@ -19,7 +19,7 @@ function NoTitleHeaderMenu() {
   const navigate = useNavigate();
   const [ headerState, setHeaderState] = useRecoilState(headerMenuState)
   useEffect(()=>{
-    console.log("test값 변경", headerState)
+    // console.log("test값 변경", headerState)
   },[headerState])
 
   const handleLogout = ()=> {
@@ -52,7 +52,7 @@ function NoTitleHeaderMenu() {
       </div>
       <div css={s.headerMenu}>
         <NavLink
-          to="/paymentlist"
+          to="/payment/list"
           className={({ isActive }) => (isActive ? "active" : "")}
           onClick={() => setHeaderState("수납메뉴변경")}
         >
@@ -62,15 +62,11 @@ function NoTitleHeaderMenu() {
           <span css={s.titleStyle}>수납</span>
         </NavLink>
       </div>
-      <div css={s.headerMenu}>
-        <NavLink
-          to={`/admission/table`}
-          className={({ isActive }) => (isActive ? "active" : "")}
-          onClick={() => setHeaderState("처방메뉴변경")}
-        >
-          <div css={s.lconStyle}>
-            <MdOutlineLocalHospital />
-          </div>
+
+      <div css={s.headerMenu} >
+        <NavLink to="/admission" className={({ isActive }) => (isActive ? "active" : "")}
+        onClick={()=>setHeaderState("처방메뉴변경")}>
+          <div css={s.lconStyle}><MdOutlineLocalHospital /></div>
           <span css={s.titleStyle}>처방</span>
         </NavLink>
       </div>
@@ -82,7 +78,7 @@ function NoTitleHeaderMenu() {
         </NavLink>
       </div>
       <div css={s.headerMenu} >
-        <NavLink to="/admin/" className={({ isActive }) => (isActive ? "active" : "")}
+        <NavLink to="/admin/users" className={({ isActive }) => (isActive ? "active" : "")}
         onClick={()=>setHeaderState("관리자메뉴변경")}>
         <div css={s.lconStyle}><RiAdminLine /></div>
         <span css={s.titleStyle}>관리자</span>
