@@ -6,11 +6,11 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { GoChevronLeft, GoChevronRight } from 'react-icons/go';
 import { IoSettingsSharp } from 'react-icons/io5';
-import { useGetSearchNoticeList } from '../../queries/NoticeQuery';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { getViewCountApi } from '../../apis/noticeApi';
 import ReactModal from 'react-modal';
 import NoticeModal from '../../components/modal/NoticeModal/NoticeModal';
+import { useGetSearchNoticeList } from '../../queries/noticeQuery';
 
 
 function NoticeListPage(props) {
