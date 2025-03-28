@@ -142,7 +142,7 @@ function NoticeModifyPage() {
         icon: 'success',
         confirmButtonText: '확인',
       });
-      navigate(`/notice/${usercode}`);
+      navigate("/notice/mylist");
     } catch (error) {
       console.error('에러 발생:', error);
       await Swal.fire({

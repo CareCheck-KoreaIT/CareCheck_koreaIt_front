@@ -12,8 +12,6 @@ export const getViewCountApi = async (noticeId) =>
 
 export const getUsercodeNoticeListApi = async (params) => await api.get("/notices/mylist", {params});
 
-export const getUsercodeBoardListApi = async (params) => await api.get("/notices/", {params});
-
 export const deleteNoticeApi = async(noticeId) => await api.delete(`/notices/${noticeId}`);
 
 export const updateNoticeApi = async (params) => {
