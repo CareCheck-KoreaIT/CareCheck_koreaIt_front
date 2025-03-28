@@ -5,10 +5,11 @@ import Quill from 'quill';
 import "quill/dist/quill.snow.css";
 import { useCreateNoticeMutation } from '../../mutations/noticeMutation';
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 function NoticeWritePage(props) {
+  const navigate = useNavigate();
   const createNoticeMutation = useCreateNoticeMutation();
-  
   const [title, setTitle] = useState("");
   const [quillContent, setQuillContent] = useState("");
 
@@ -48,13 +49,16 @@ function NoticeWritePage(props) {
     if (!title.trim()) {
       await Swal.fire({
         titleText: "제목을 입력하세요.",
+        icon: "warning",
         confirmButtonText: "확인",
       });
       return;
     }
+
     if (!quillContent.trim()) {
       await Swal.fire({
         titleText: "게시글 내용을 입력하세요.",
+        icon: "warning",
         confirmButtonText: "확인",
       });
       return;
@@ -68,11 +72,26 @@ function NoticeWritePage(props) {
       content: plainContent,
     };
 
-    const response = await createNoticeMutation.mutateAsync(notice);
-    await Swal.fire({
-      titleText: "게시글 작성 완료",
-      confirmButtonText: "확인",
-    });
+    try {
+      await createNoticeMutation.mutateAsync(notice);
+      await Swal.fire({
+          titleText: "게시글 작성 완료",
+          icon: "success",
+          confirmButtonText: "확인",
+      });
+
+      setTitle(""); 
+      setQuillContent("");
+
+      containerRef.current.firstChild.innerHTML = ""; // Quill 에디터 초기화
+    } catch (error) {
+      await Swal.fire({
+          titleText: "작성 실패",
+          icon: "error",
+          confirmButtonText: "확인",
+      });
+    }
+    navigate("/notice/list");
   };
 
   return (

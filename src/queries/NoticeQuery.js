@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getSearchNoticeListApi, getUsercodeBoardListApi, getUsercodeNoticeListApi } from "../apis/noticeApi";
+import { getSearchNoticeListApi, getUsercodeNoticeListApi } from "../apis/noticeApi";
 
 
 export const useGetSearchNoticeList = (params) => useQuery({

@@ -34,7 +34,7 @@ function AccountPage(props) {
     }
 
     const handleMyNoticeButtonOnClick = () => {
-        navigate(`/notice/${loginUser?.data?.usercode}`);
+        navigate("/notice/mylist");
     }
 
     const handleChangePasswordButtonOnClick = () => {
