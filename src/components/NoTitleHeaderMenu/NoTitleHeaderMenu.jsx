@@ -64,7 +64,7 @@ function NoTitleHeaderMenu() {
       </div>
 
       <div css={s.headerMenu} >
-        <NavLink to={"/admission"} className={({ isActive }) => (isActive ? "active" : "")}
+        <NavLink to="/admission" className={({ isActive }) => (isActive ? "active" : "")}
         onClick={()=>setHeaderState("처방메뉴변경")}>
           <div css={s.lconStyle}><MdOutlineLocalHospital /></div>
           <span css={s.titleStyle}>처방</span>
