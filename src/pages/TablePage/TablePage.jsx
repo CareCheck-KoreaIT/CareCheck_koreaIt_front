@@ -1,18 +1,17 @@
 /**@jsxImportSource @emotion/react */
 import * as s from "./style";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import DiagnosisOrder from "../../components/TablePageComponents/DiagnosisOrder/DiagnosisOrder";
 import AdmPatientVital from "../../components/TablePageComponents/AdmPatientViatal/AdmPatientVital";
 import WaitingList from "../../components/TablePageComponents/WaitingList/WaitingList";
 import DiagnosisDesease from "../../components/TablePageComponents/DiagnosisDesease/DiagnosisDesease";
-import { useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import {
   diagnosisDisease,
   diagnosisOrders,
   openDiseaseModal,
   openOrdersModal,
-  waitingLisAdmId,
+  waitingListAdmId,
 } from "../../atoms/doctorTable/doctorTableAtom";
 import ReactModal from "react-modal";
 import DiseasesModal from "../../components/TablePageComponents/Modals/DiseasesModal/DiseasesModal";
@@ -22,14 +21,14 @@ import {
   useOrdersInAdmIdMutation,
   useUpdateEndDateMutation,
 } from "../../mutations/admissionMutation";
-import { QueryClient, useQueryClient } from "@tanstack/react-query";
+import { useQueryClient } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 
 function TablePage() {
   const ordersInAdmIdMutation = useOrdersInAdmIdMutation();
   const diagnosisInAdmIdMutation = useDiagnosisInAdmIdMutation();
   const updateEndDateMutation = useUpdateEndDateMutation();
-  const [admissionId, setAdmissionId] = useRecoilState(waitingLisAdmId);
+  const [admissionId, setAdmissionId] = useRecoilState(waitingListAdmId);
   const [diseaseModalOpen, setDiseaseModalOpen] =
     useRecoilState(openDiseaseModal);
   const [ordersModalOpen, setOrdersModalOpen] = useRecoilState(openOrdersModal);
@@ -37,7 +36,6 @@ function TablePage() {
   const [ordersList, setOrdersList] = useRecoilState(diagnosisOrders);
   const queryClient = useQueryClient();
   const loginUser = queryClient.getQueryData(["userMeQuery"]);
-  const param = useParams();
   useEffect(() => {}, [loginUser?.data?.usercode, admissionId]);
 
   const handleDiseaseModalOpen = () => {
@@ -48,7 +46,7 @@ function TablePage() {
   };
 
   const handleRefetchOnClick = () => {
-    qureyClient.invalidateQueries(["useGetSearchWaitingList", param.usercode]);
+    queryClient.invalidateQueries(["useGetSearchWaitingList"]);
   };
   const handleSaveDiagnosisOnClick = async () => {
     await diagnosisInAdmIdMutation.mutateAsync({
@@ -87,10 +85,7 @@ function TablePage() {
       timer: 1000,
       position: "center",
     });
-    queryClient.invalidateQueries([
-      "useGetSearchWaitingList",
-      loginUser?.data?.usercode,
-    ]);
+    queryClient.invalidateQueries(["useGetSearchWaitingList"]);
     setAdmissionId("");
   };
   return (
