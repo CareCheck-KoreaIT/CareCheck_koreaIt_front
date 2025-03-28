@@ -38,9 +38,9 @@ function MainSidebar() {
         return (
           <>
             <div><BsColumnsGap/>
-            <NavLink to="/manager" className="NavLinkStyle"><span>테스트1</span></NavLink>
+            <NavLink to="/account/info" className="NavLinkStyle"><span>내 정보</span></NavLink>
             </div>
-            <div><BsColumnsGap/><span>테스트2</span></div>
+            <div><BsColumnsGap/><span>공지사항</span></div>
             <div><BsColumnsGap/><span>테스트3</span></div>
           </>
         )
@@ -63,17 +63,16 @@ function MainSidebar() {
       return (
         <>
           <div><BsColumnsGap />
-          <NavLink to="/paymentlist" className="NavLinkStyle"><span>수납 신청</span></NavLink>
+          <NavLink to="/payment/list" className="NavLinkStyle"><span>수납 관리</span></NavLink>
           </div>
-          <div><BsColumnsGap />
-          <span>수납 확인</span></div>
+
         </>
       );
       case "처방메뉴변경":
       return (
         <>
           <div><BsColumnsGap />
-          <NavLink to={`/admission/table`} className="NavLinkStyle"><span>처방 신청</span></NavLink>
+          <NavLink to={`/admission/table`} className="NavLinkStyle"><span>처방 관리</span></NavLink>
           </div>
           <div><BsColumnsGap />
           <NavLink to={`/admission/${loginUser?.data?.usercode}`} className="NavLinkStyle"><span>처방 확인</span></NavLink>

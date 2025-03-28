@@ -24,6 +24,8 @@ import NoticeMyListPage from "../../pages/NoticeMyListpage/NoticeMyListPage";
 import NoticeModifyPage from "../../pages/NoticeModifyPage/NoticeModifyPage";
 import ReceiptListPage from "../../pages/ReceiptListPage/ReceiptListPage";
 import MainPage from "../../pages/MainPage/MainPage";
+import PatientRoute from "../PatientRoute/PatientRoute";
+import PaymentRoute from "../PaymentRoute/PaymentRoute";
 
 function MainRoute() {
   useUserMeQuery();
@@ -38,14 +40,9 @@ function MainRoute() {
             <Route path="/" element={<MainPage />} />
             <Route path="/account/*" element={<AccountRoute />} />
             <Route path="/admin/*" element={<UserRoute />} />
-            <Route path="/patient/order" element={<OrderPage />} />
-
-            {/* 환자 등록 */}
-            <Route path="/patient" element={<PatientRegistrationPage />} />
-            {/* 환자 진료접수 */}
-            <Route path="/patient/medical-reception" element={<MedicalReceptionPage />}/>
-            {/* 접수된 환자 리스트 */}
-            <Route path="/patient/admission-list" element={<ReceiptPage />} />
+            <Route path="/order" element={<OrderPage />} />
+            <Route path="/payment" element={<PaymentRoute />} /> 
+            <Route path="/patient" element={<PatientRoute />} />
             <Route
               path="/admission/:admissionId/certificate"
               element={<PaymentCertificatePage />}
@@ -75,7 +72,7 @@ function MainRoute() {
               path="/summary/usercode"
               element={<SummaryChartUsercodePage />}
             />
-            <Route path="/paymentlist" element={<ReceiptListPage />} />
+            
           </Routes>
         </div>
       </div>
