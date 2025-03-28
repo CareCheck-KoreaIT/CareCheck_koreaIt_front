@@ -61,11 +61,11 @@ export const useGetSelectVital = (admissionId) => {
   });
 };
 
-export const useGetSearchWaitingList = (usercode) => {
+export const useGetSearchWaitingList = () => {
   return useQuery({
-    queryKey: ["useGetSearchWaitingList", usercode],
+    queryKey: ["useGetSearchWaitingList"],
     queryFn: async () => {
-      return await searchWaitingListApi(usercode);
+      return await searchWaitingListApi();
     },
     retry: 0,
     staleTime: 0,

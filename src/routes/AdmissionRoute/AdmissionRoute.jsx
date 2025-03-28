@@ -1,11 +1,14 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
+import TablePage from '../../pages/TablePage/TablePage';
+import PaymentCertificatePage from '../../pages/PaymentCertificatePage/PaymentCertificatePage'
+import DetailBillPage from '../../pages/DetailBillPage/DetailBillPage';
 
 function AdmissionRoute(props) {
     return (
         <>
             <Routes>
-                <Route path="/:usercode/" element={<TablePage />} />    
+                <Route path="/table" element={<TablePage />} />    
                 <Route
                 path="/:admissionId/certificate"
                 element={<PaymentCertificatePage />}
