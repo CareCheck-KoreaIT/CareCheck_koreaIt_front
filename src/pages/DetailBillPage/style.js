@@ -223,6 +223,7 @@ export const totalPayTable = css`
 
 export const button = css`
   display: flex;
+  flex-direction: column;
   justify-content: flex-end;
   align-self: flex-end;
   margin: 0rem 0rem 6rem 5rem;
@@ -233,8 +234,18 @@ export const button = css`
     height: 5rem;
     background-color: #464667;
     outline: none;
+    border: none;
     border-radius: 1rem;
     color: #ffffff;
     font-size: 1.5rem;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #373750;
+    }
+
+    &:active {
+      background-color: #2a2a3d;
+    }
   }
 `;

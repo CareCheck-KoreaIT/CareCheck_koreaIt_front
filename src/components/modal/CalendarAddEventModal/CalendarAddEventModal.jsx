@@ -6,7 +6,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { ko } from "date-fns/locale"
 
 
-function CanlendarAddEventModal({ newEvent, setNewEvent, onClose, onSave }) {
+function CalendarAddEventModal({ newEvent, setNewEvent, onClose, onSave }) {
 
   const handleStartDateChange = (date) => {
     setNewEvent({ ...newEvent, start: date });
@@ -71,4 +71,4 @@ function CanlendarAddEventModal({ newEvent, setNewEvent, onClose, onSave }) {
   );
 }
 
-export default CanlendarAddEventModal;
+export default CalendarAddEventModal;
