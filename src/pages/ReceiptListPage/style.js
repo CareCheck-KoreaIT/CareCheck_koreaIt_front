@@ -5,7 +5,6 @@ export const layout = css`
   width: 100%;
   max-width: 150rem;
   height: 70rem;
-  justify-content: center;
   align-items: center;
   flex-direction: column;
 `;
@@ -29,20 +28,19 @@ export const main = css`
   display: flex;
   justify-content: center;
   width: 85rem;
-  height: 50rem;
+  max-height: 50rem;
   margin-top: 2rem;
+  padding: 1rem;
   overflow-y: auto;
   border: 0.1rem solid #dbdbdb;
   box-sizing: border-box;
 `;
 export const bodytable = css`
   box-sizing: border-box;
-  padding: 1rem;
-  overflow-y: auto;
   border: 0.1rem solid #dbdbdb;
   border-collapse: collapse;
   font-size: 1.6rem;
-  color: #333;
+  color: #000000;
 
   thead {
     background-color: #f5f5f5;
@@ -51,17 +49,12 @@ export const bodytable = css`
     z-index: 1;
   }
 
-  th,
+  tr,
   td {
     border: 0.1rem solid #dbdbdb;
     text-align: center;
     padding: 1rem;
-  }
-
-  th {
-    text-transform: uppercase;
-    font-weight: bold;
-    background-color: #fafafa;
+    height: 4rem;
   }
 
   tr:nth-of-type(odd) {

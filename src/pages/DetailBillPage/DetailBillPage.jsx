@@ -50,7 +50,7 @@ function DetailBillPage() {
 
   const handlePaymentCertificate = (admId) => {
     navigate(`/admission/${admId}/certificate`);
-};
+  };
 
   return (
     <div css={s.layout}>
@@ -133,8 +133,12 @@ function DetailBillPage() {
         </main>
       </div>
       <div css={s.button}>
-        <button onClick={() => handlePaymentCertificate(patientInfoByAdmId?.data?.data.admId)}>
-        영수증
+        <button
+          onClick={() =>
+            handlePaymentCertificate(patientInfoByAdmId?.data?.data.admId)
+          }
+        >
+          영수증
         </button>
       </div>
     </div>

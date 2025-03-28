@@ -27,7 +27,7 @@ function PaymentCertificatePage(props) {
     Number(param.admissionId)
   );
   const handleOpenPDF = () => {
-    const newWindow = window.open("", "_blank", "width=800,height=600");
+    const newWindow = window.open("", "_blank", "width=1000,height=900");
 
     const container = newWindow.document.createElement("div");
     newWindow.document.body.appendChild(container);
@@ -35,7 +35,12 @@ function PaymentCertificatePage(props) {
     const root = createRoot(container);
     root.render(
       <PDFViewer width="100%" height="100%">
-        <PaymentDocument />
+        <PaymentDocument
+          searchPatientData={searchPatientData}
+          dateString={dateString}
+          totalPayAdmId={totalPayAdmId?.data?.data || 0}
+          username={userInfo?.data?.username}
+        />
       </PDFViewer>
     );
   };
@@ -70,11 +75,9 @@ function PaymentCertificatePage(props) {
     day: "numeric",
   });
 
-  const handleDetailBill = (usercode, admissionId) => {
-    navigate(`/${usercode}/admission/${admissionId}/detailBill`);
+  const handleDetailBill = (admissionId) => {
+    navigate(`/admission/${admissionId}/detailBill`);
   };
-
-  const handleReceipt = () => navigate(`/receipt`);
 
   return (
     <>
@@ -127,14 +130,7 @@ function PaymentCertificatePage(props) {
           </tbody>
         </table>
         <div css={s.button}>
-          <button
-            onClick={() =>
-              handleDetailBill(
-                admPatientInfoData.usercode,
-                admPatientInfoData.admissionId
-              )
-            }
-          >
+          <button onClick={() => handleDetailBill(param.admissionId)}>
             세부내역서
           </button>
           <button onClick={handleOpenPDF}>PDF 출력</button>
