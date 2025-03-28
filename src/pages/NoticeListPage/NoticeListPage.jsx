@@ -10,7 +10,8 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { getViewCountApi } from '../../apis/noticeApi';
 import ReactModal from 'react-modal';
 import NoticeModal from '../../components/modal/NoticeModal/NoticeModal';
-import { useGetSearchNoticeList } from '../../queries/noticeQuery';
+import { useGetSearchNoticeList } from '../../queries/NoticeQuery';
+
 
 
 function NoticeListPage(props) {

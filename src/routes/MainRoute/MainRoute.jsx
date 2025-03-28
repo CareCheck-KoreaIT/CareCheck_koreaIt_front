@@ -13,7 +13,6 @@ import NoticeLsitPage from "../../pages/NoticeListPage/NoticeListPage";
 import AccountRoute from "../AccountRoute/AccountRoute";
 import SummaryChartPage from "../../pages/SummaryChartPage/SummaryChartPage";
 import SummaryChartUsercodePage from "../../pages/SummaryChartUsercodePage/SummaryChartUsercodePage";
-import NoticeMyListPage from "../../pages/NoticeMyListpage/NoticeMyListPage";
 import NoticeModifyPage from "../../pages/NoticeModifyPage/NoticeModifyPage";
 import ReceiptListPage from "../../pages/ReceiptListPage/ReceiptListPage";
 import MainPage from "../../pages/MainPage/MainPage";
@@ -22,7 +21,6 @@ import PatientRoute from "../PatientRoute/PatientRoute";
 import AdmissionRoute from "../AdmissionRoute/AdmissionRoute";
 import SummaryRoute from "../SummaryRoute/SummaryRoute";
 import NoticeRoute from "../NoticeRoute/NoticeRoute";
-import NoticeTestPage from "../../pages/NoticeTestPage/NoticeTestPage";
 
 function MainRoute() {
   useUserMeQuery();
@@ -45,7 +43,6 @@ function MainRoute() {
             <Route path="/notice/*" element={<NoticeRoute />} />
             <Route path="/scorepay" element={<ScorePayPage />} />
             <Route path="/employeenum" element={<EmployeeNumEnrollPage />} />
-            <Route path="/noticeTest" element={<NoticeTestPage />} />
           </Routes>
         </div>
       </div>
