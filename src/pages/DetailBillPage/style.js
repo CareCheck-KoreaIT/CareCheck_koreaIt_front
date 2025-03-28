@@ -2,10 +2,11 @@ import { css } from "@emotion/react";
 
 export const layout = css`
   box-sizing: border-box;
+  margin-top: 5rem;
   display: flex;
   justify-content: center;
-  margin-left: 32rem;
-  width: 100rem;
+  align-items: center;
+  width: 100%;
   height: auto;
 `;
 
@@ -13,8 +14,9 @@ export const container = css`
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  margin-top: 5rem;
-  width: 100%;
+  justify-content: center;
+  padding: 3rem;
+  width: 98rem;
   height: 100%;
   border: 0.1rem solid #000000;
 `;
@@ -27,8 +29,7 @@ export const patientInfo = css`
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  margin-left: 4rem;
-  width: 50rem;
+  width: 100%;
   height: 7rem;
 `;
 
@@ -77,9 +78,8 @@ export const billDetailInfo = css`
   display: flex;
   flex-direction: column;
   margin-top: 2.5rem;
-  margin-left: 4rem;
   margin-bottom: 0.5rem;
-  width: 92.7rem;
+  width: 100%;
   height: auto;
 `;
 
@@ -163,8 +163,9 @@ export const nodata = css`
   justify-content: center;
   text-align: center;
   border: 0.1rem solid #000000;
-  width: 92rem;
-  height: 3rem;
+  font-size: 2rem;
+  width: 100%;
+  height: 4rem;
 `;
 
 export const script = css`
@@ -185,9 +186,9 @@ export const totalPayInfo = css`
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  width: 20.5rem;
+  align-items: end;
+  width: 100%;
   height: 10rem;
-  margin-left: 79.5rem;
 `;
 
 export const totalPayHead = css`

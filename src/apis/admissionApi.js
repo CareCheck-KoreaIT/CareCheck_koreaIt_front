@@ -42,11 +42,20 @@ export const updateEndDate = async (admissionId) => {
   return await api.put(`admission/${admissionId}/complete`);
 };
 
-export const searchAllWaitingListApi = async (keyword) => {
+export const searchAllWaitingListApi = async (keyword, page = 1, limit = 10) => {
   return await api.get("/admission/allWaitings", {
-    params: { keyword: keyword },
-  });
+    params: {
+      keyword: keyword || '',
+      page: page,
+      limit: limit,
+    }})
 };
+
+export const getAllWaitingTotalCountApi = async (keyword) => {
+  return await api.get("/admission/waitingCount", {
+    params: { keyword: keyword || '' }
+  })
+}
 
 export const deleteReceiptApi = async (admissionId) => {
   console.log(admissionId);

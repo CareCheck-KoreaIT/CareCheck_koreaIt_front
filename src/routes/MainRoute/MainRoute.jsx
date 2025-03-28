@@ -3,15 +3,12 @@ import * as s from "./style";
 import { useUserMeQuery } from "../../queries/userQuery";
 import MainSidebar from "../../components/common/MainSidebar/MainSidebar";
 import NoTitleHeaderMenu from "../../components/NoTitleHeaderMenu/NoTitleHeaderMenu";
-import ReceiptPage from "../../pages/ReceiptPage/ReceiptPage";
 import OrderPage from "../../pages/OrderPage/OrderPage";
 import TablePage from "../../pages/TablePage/TablePage";
-import PatientRegistrationPage from "../../pages/PatientRegistrationPage/PatientRegistrationPage";
 import ScorePayPage from "../../pages/ScorePayPage/ScorePayPage";
 import EmployeeNumEnrollPage from "../../pages/EmployeeNumEnrollPage/EmployeeNumEnrollPage";
 import DetailBillPage from "../../pages/DetailBillPage/DetailBillPage";
 import MembershipJoinPage from "../../pages/MembershipJoinPage/MembershipJoinPage";
-import MedicalReceptionPage from "../../pages/MedicalReceptionPage/MedicalReceptionPage";
 import { Route, Routes } from "react-router-dom";
 import UserRoute from "../UserRoute/UserRoute";
 import NoticeWritePage from "../../pages/NoticeWritePage/NoticeWritePage";
@@ -24,8 +21,8 @@ import NoticeMyListPage from "../../pages/NoticeMyListpage/NoticeMyListPage";
 import NoticeModifyPage from "../../pages/NoticeModifyPage/NoticeModifyPage";
 import ReceiptListPage from "../../pages/ReceiptListPage/ReceiptListPage";
 import MainPage from "../../pages/MainPage/MainPage";
-import PatientRoute from "../PatientRoute/PatientRoute";
 import PaymentRoute from "../PaymentRoute/PaymentRoute";
+import PatientRoute from "../PatientRoute/PatientRoute";
 
 function MainRoute() {
   useUserMeQuery();
@@ -72,7 +69,7 @@ function MainRoute() {
               path="/summary/usercode"
               element={<SummaryChartUsercodePage />}
             />
-            
+            <Route path="/payment/list" element={<ReceiptListPage />} />
           </Routes>
         </div>
       </div>
