@@ -73,11 +73,11 @@ export const useGetSearchWaitingList = () => {
   });
 };
 
-export const useGetSearchAllWaitingList = (keyword, page = 1, limit = 10) => {
+export const useGetSearchAllWaitingList = (keyword, page = 1, limitCount = 10) => {
   return useQuery({
-    queryKey: ["useGetSearchAllWaitingList", keyword, page, limit],
+    queryKey: ["useGetSearchAllWaitingList", keyword, page, limitCount],
     queryFn: async () => {
-      return await searchAllWaitingListApi(keyword, page, limit);
+      return await searchAllWaitingListApi(keyword, page, limitCount);
     },
     retry: 0,
     staleTime: 1000 * 60 * 5,

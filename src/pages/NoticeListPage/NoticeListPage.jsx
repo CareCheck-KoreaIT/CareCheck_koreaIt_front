@@ -13,7 +13,6 @@ import NoticeModal from '../../components/modal/NoticeModal/NoticeModal';
 import { useGetSearchNoticeList } from '../../queries/NoticeQuery';
 
 
-
 function NoticeListPage(props) {
     
     const navgiate = useNavigate();
