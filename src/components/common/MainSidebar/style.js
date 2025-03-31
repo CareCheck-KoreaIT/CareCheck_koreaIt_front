@@ -20,6 +20,7 @@ export const header = css`
   margin-top: 5rem;
   font-size: 2.6rem;
   font-weight: bold;
+
   & > h2 {
     color: #ffffff;
   }
@@ -40,41 +41,40 @@ export const header = css`
 export const section = css`
   display: flex;
   flex-direction: column;
+  align-items: center;
   height: 60rem;
-  gap: 4.5rem;
+
   & > div {
     display: flex;
     align-items: center;
     width: 25rem;
     height: 3rem;
+    margin-left: 4rem;
+    margin-bottom: 3.5rem;
     color: #ffffff;
     background-color: #464667;
     font-size: 2.5rem;
-    cursor: pointer;
 
     .NavLinkStyle {
     text-decoration: none; 
     color: inherit;
-    background-color: transparent; 
+    background-color: #e29d9d00; 
     border: none;
     margin-left: 1rem; 
     
     & > span {
-        &:hover{
-          color: black;
-          font-weight: bold;
-          font-size: 2.5rem;
-          white-space: nowrap;
-        }
+      cursor: pointer;
+      &:hover{
+        color: black;
+        font-weight: bold;
+        font-size: 2.5rem;
+        white-space: nowrap;
+      }
       }
     }
   }
 
   
-`;
-
-export const font = css`
-  font-size: 2.1rem;
 `;
 
 export const footer = css`
