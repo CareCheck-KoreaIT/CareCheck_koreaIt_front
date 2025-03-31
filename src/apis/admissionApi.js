@@ -41,7 +41,7 @@ export const updateEndDate = async (admissionId) => {
 };
 
 export const searchAllWaitingListApi = async (keyword, page = 1, limit = 10) => {
-  return await api.get("/admission/allWaitings", { 
+  return await api.get("/admission/waitings", { 
     params: {
     keyword: keyword || '',
     page: page,
@@ -50,7 +50,7 @@ export const searchAllWaitingListApi = async (keyword, page = 1, limit = 10) => 
 };
 
 export const getAllWaitingTotalCountApi = async (keyword) => {
-  return await api.get("/admission/waitingCount", {
+  return await api.get("/admission/waiting-count", {
     params: { keyword: keyword || '' }
   })
 }
@@ -62,7 +62,7 @@ export const deleteReceiptApi = async (admissionId) => {
 };
 
 export const searchAdmissionListApi = async (patientName) => {
-  return await api.get("/admission/searchAdmissionList", {
+  return await api.get("/admission/admission-list", {
     params: { patientName },
   });
 };
