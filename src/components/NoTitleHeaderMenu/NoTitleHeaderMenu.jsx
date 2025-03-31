@@ -45,7 +45,7 @@ function NoTitleHeaderMenu() {
       <div css={s.headerMenu} >
         <NavLink to="/patient" className={({ isActive }) => (isActive ? "active" : "")}
         onClick={()=>setHeaderState("접수메뉴변경")}>
-            <div css={s.lconStyle}><IoReceipt /></div>
+            <div css={s.iconStyle}><IoReceipt /></div>
             <span css={s.titleStyle}>접수</span>
         </NavLink>
       </div>
@@ -55,7 +55,7 @@ function NoTitleHeaderMenu() {
           className={({ isActive }) => (isActive ? "active" : "")}
           onClick={() => setHeaderState("수납메뉴변경")}
         >
-          <div css={s.lconStyle}>
+          <div css={s.iconStyle}>
             <LiaReceiptSolid />
           </div>
           <span css={s.titleStyle}>수납</span>
@@ -65,21 +65,21 @@ function NoTitleHeaderMenu() {
       <div css={s.headerMenu} >
         <NavLink to="/admission" className={({ isActive }) => (isActive ? "active" : "")}
         onClick={()=>setHeaderState("처방메뉴변경")}>
-          <div css={s.lconStyle}><MdOutlineLocalHospital /></div>
+          <div css={s.iconStyle}><MdOutlineLocalHospital /></div>
           <span css={s.titleStyle}>처방</span>
         </NavLink>
       </div>
       <div css={s.headerMenu} >
         <NavLink to="/summary" className={({ isActive }) => (isActive ? "active" : "")}
         onClick={()=>setHeaderState("통계메뉴변경")}>
-        <div css={s.lconStyle}><ImStatsDots /></div> 
+        <div css={s.iconStyle}><ImStatsDots /></div> 
         <span css={s.titleStyle}>통계</span>
         </NavLink>
       </div>
       <div css={s.headerMenu} >
         <NavLink to="/admin/users" className={({ isActive }) => (isActive ? "active" : "")}
         onClick={()=>setHeaderState("관리자메뉴변경")}>
-        <div css={s.lconStyle}><RiAdminLine /></div>
+        <div css={s.iconStyle}><RiAdminLine /></div>
         <span css={s.titleStyle}>관리자</span>
         </NavLink>
       </div>

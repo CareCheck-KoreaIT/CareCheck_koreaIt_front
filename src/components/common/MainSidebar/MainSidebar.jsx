@@ -91,7 +91,7 @@ function MainSidebar() {
         <>
           <div>
             <BsColumnsGap />
-            <NavLink to={`/admission/table`} className="NavLinkStyle">
+            <NavLink to={`/admission`} className="NavLinkStyle">
             <span>처방 관리</span>
             </NavLink>
           </div>
