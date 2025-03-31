@@ -12,8 +12,8 @@ export const useGetSearchNoticeList = (params) => useQuery({
     gcTime: 1000 * 60 * 5,
 });
 
-export const useGetUsercodeNoticeListTest = (params) => useQuery({
-  queryKey: ["useGetUsercodeNoticeListTest"],
+export const useGetUsercodeNoticeList = (params) => useQuery({
+  queryKey: ["useGetUsercodeNoticeList"],
   queryFn: async () => {
     return await getUsercodeNoticeListApi(params);
   },
@@ -21,18 +21,5 @@ export const useGetUsercodeNoticeListTest = (params) => useQuery({
   staleTime: 1000 * 60 * 10,
   gcTime: 1000 * 60 * 5,
 });
-
-export const useGetUsercodeNoticeList = (usercode, params) => {
-    return useQuery({
-      queryKey: ['useGetUsercodeNoticeList', usercode, params],
-      queryFn: async () => {
-        const data = await getUsercodeBoardListApi(usercode, params);
-        return data;
-      },
-      retry: 0,
-      staleTime: 1000 * 60 * 10,
-      gcTime: 1000 * 60 * 5,
-    });
-  };
 
 

@@ -6,7 +6,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { ko } from "date-fns/locale"
 
 
-function CanlendarAddEventModal({ newEvent, setNewEvent, onClose, onSave }) {
+function CalendarAddEventModal({ newEvent, setNewEvent, onClose, onSave }) {
 
   const handleStartDateChange = (date) => {
     setNewEvent({ ...newEvent, start: date });
@@ -47,6 +47,7 @@ function CanlendarAddEventModal({ newEvent, setNewEvent, onClose, onSave }) {
               selected={newEvent.end}
               onChange={handleEndDateChange}
               locale={ko}
+              dateFormatCalendar="yyyy년 MM월"
               dateFormat="yyyy-MM-dd"
               placeholderText="yyyy-MM-dd"
 
@@ -71,4 +72,4 @@ function CanlendarAddEventModal({ newEvent, setNewEvent, onClose, onSave }) {
   );
 }
 
-export default CanlendarAddEventModal;
+export default CalendarAddEventModal;

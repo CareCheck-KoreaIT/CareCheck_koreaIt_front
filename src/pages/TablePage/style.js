@@ -5,6 +5,7 @@ export const layout = css`
   box-sizing: border-box;
   align-items: center;
   flex-direction: column;
+  margin-left: 12rem;
   overflow: hidden;
   width: 130rem;
   height: 75rem;
@@ -14,7 +15,7 @@ export const layout = css`
 export const parent = css`
   display: flex;
   height: 100%;
-  margin-top: 3rem;
+  margin-top: 2rem;
   gap: 10rem;
 
   & > div:nth-of-type(1) {
@@ -42,7 +43,7 @@ export const leftTable = css`
 
   & tbody > tr,
   td {
-    font-size: 3rem;
+    font-size: 2.5rem;
     font-weight: bold;
     color: #ffffff;
     cursor: pointer;
@@ -97,7 +98,7 @@ export const rightTable = css`
   overflow-y: auto;
 
   & > tbody > tr {
-    font-size: 1.7rem;
+    font-size: 2rem;
     font-weight: bold;
     color: #ffffff;
     cursor: pointer;
@@ -232,6 +233,7 @@ export const tableFooter = css`
     box-sizing: border-box;
     border: 0.1rem solid #9f9f9f;
     border-radius: 10px;
+    cursor: pointer;
 
     width: 10rem;
     height: 4rem;

@@ -98,7 +98,8 @@ function ChangeUserModal({setOpen, user}) {
                     Swal.fire({
                         icon: "success",
                         titleText: "변경 완료",
-                        confirmButtonText: "<div style='font-size: 1.3rem'>확인</div>"
+                        showConfirmButton: false,
+                        timer: 1000,
                     }).then(response => {
                         queryClient.invalidateQueries(["useGetSearchUserList"]);
                         queryClient.invalidateQueries(["userMeQuery"]);

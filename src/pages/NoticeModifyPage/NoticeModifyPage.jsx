@@ -36,7 +36,11 @@ function NoticeModifyPage() {
         );
 
         if (!notice) {
-          alert("게시글을 찾을 수 없습니다.");
+          Swal.fire({
+            titleText: "게시글을 찾을 수 없습니다.",
+            icon: "error",
+            confirmButtonText: "<div style='font-size: 1.5rem'>확인</div>",
+          })
         }
 
         setTitle(notice.title);
@@ -45,7 +49,7 @@ function NoticeModifyPage() {
         Swal.fire({
           titleText: error.message || "게시글을 불러오는데 실패했습니다.",
           icon: error,
-          confirmButtonText: "확인",
+          confirmButtonText: "<div style='font-size: 1.5rem'>확인</div>",
         });
       }
     };
@@ -109,7 +113,7 @@ function NoticeModifyPage() {
       await Swal.fire({
         titleText: '제목을 입력하세요.',
         icon: 'warning',
-        confirmButtonText: '확인',
+        confirmButtonText: "<div style='font-size: 1.5rem'>확인</div>",
       });
       return;
     }
@@ -118,7 +122,7 @@ function NoticeModifyPage() {
       await Swal.fire({
         titleText: '게시글 내용을 입력하세요.',
         icon: 'warning',
-        confirmButtonText: '확인',
+        confirmButtonText: "<div style='font-size: 1.5rem'>확인</div>",
       });
       return;
     }
@@ -140,7 +144,8 @@ function NoticeModifyPage() {
       await Swal.fire({
         titleText: '게시글 수정 완료',
         icon: 'success',
-        confirmButtonText: '확인',
+        showConfirmButton: false,
+        timer: 1000,
       });
       navigate(`/notice/${usercode}`);
     } catch (error) {
@@ -148,7 +153,7 @@ function NoticeModifyPage() {
       await Swal.fire({
         titleText: '게시글 수정에 실패했습니다.',
         icon: 'error',
-        confirmButtonText: '확인',
+        confirmButtonText: "<div style='font-size: 1.5rem'>확인</div>",
       });
     }
   };

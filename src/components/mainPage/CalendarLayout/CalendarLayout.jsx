@@ -3,7 +3,7 @@ import * as s from './style';
 import React, { useState } from 'react';
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
-import CanlendarAddEventModal from '../../../components/modal/CanlendarAddEventModal/CanlendarAddEventModal';
+import CalendarAddEventModal from '../../modal/CalendarAddEventModal/CalendarAddEventModal';
 
 function CalendarLayout(props) {
   const [events, setEvents] = useState([]);
@@ -31,8 +31,6 @@ function CalendarLayout(props) {
 
   return (
     <>
-      <div>
-      </div>
       <div css={s.calendarLayout}>
         <FullCalendar
           plugins={[dayGridPlugin]}
@@ -46,7 +44,7 @@ function CalendarLayout(props) {
           일정 추가하기
         </button>
         {showAddEventModal && (
-          <CanlendarAddEventModal 
+          <CalendarAddEventModal
             newEvent={newEvent}
             setNewEvent={setNewEvent}
             onClose={() => setShowAddEventModal(false)}

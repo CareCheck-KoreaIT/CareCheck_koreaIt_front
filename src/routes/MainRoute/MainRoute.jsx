@@ -14,7 +14,6 @@ import PatientRoute from "../PatientRoute/PatientRoute";
 import AdmissionRoute from "../AdmissionRoute/AdmissionRoute";
 import SummaryRoute from "../SummaryRoute/SummaryRoute";
 import NoticeRoute from "../NoticeRoute/NoticeRoute";
-import NoticeTestPage from "../../pages/NoticeTestPage/NoticeTestPage";
 
 function MainRoute() {
   useUserMeQuery();
@@ -35,7 +34,6 @@ function MainRoute() {
             <Route path="/summary/*" element={<SummaryRoute />} />
             <Route path="/notice/*" element={<NoticeRoute />} />
             <Route path="/employeenum" element={<EmployeeNumEnrollPage />} />
-            <Route path="/noticeTest" element={<NoticeTestPage />} />
           </Routes>
         </div>
       </div>

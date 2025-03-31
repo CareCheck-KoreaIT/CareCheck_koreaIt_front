@@ -61,11 +61,11 @@ export const useGetSelectVital = (admissionId) => {
   });
 };
 
-export const useGetSearchWaitingList = (usercode) => {
+export const useGetSearchWaitingList = () => {
   return useQuery({
-    queryKey: ["useGetSearchWaitingList", usercode],
+    queryKey: ["useGetSearchWaitingList"],
     queryFn: async () => {
-      return await searchWaitingListApi(usercode);
+      return await searchWaitingListApi();
     },
     retry: 0,
     staleTime: 0,
@@ -73,11 +73,11 @@ export const useGetSearchWaitingList = (usercode) => {
   });
 };
 
-export const useGetSearchAllWaitingList = (keyword, page = 1, limit = 10) => {
+export const useGetSearchAllWaitingList = (keyword, page = 1, limitCount = 10) => {
   return useQuery({
-    queryKey: ["useGetSearchAllWaitingList", keyword, page, limit],
+    queryKey: ["useGetSearchAllWaitingList", keyword, page, limitCount],
     queryFn: async () => {
-      return await searchAllWaitingListApi(keyword, page, limit);
+      return await searchAllWaitingListApi(keyword, page, limitCount);
     },
     retry: 0,
     staleTime: 1000 * 60 * 5,

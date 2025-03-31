@@ -1,9 +1,7 @@
 import { api } from "../configs/axiosConfig";
 
 export const searchWaitingListApi = async (usercode) => {
-  return await api.get("/admission/waitings", {
-    params: { usercode: usercode },
-  });
+  return await api.get("/admission/waitings");
 };
 
 export const insertVitalByAdmApi = async (admissionId, vitalInfo) => {
@@ -43,12 +41,12 @@ export const updateEndDate = async (admissionId) => {
 };
 
 export const searchAllWaitingListApi = async (keyword, page = 1, limit = 10) => {
-  return await api.get("/admission/allWaitings", {
+  return await api.get("/admission/allWaitings", { 
     params: {
-      keyword: keyword || '',
-      page: page,
-      limit: limit,
-    }})
+    keyword: keyword || '',
+    page: page,
+    limit: limit,
+  }}) 
 };
 
 export const getAllWaitingTotalCountApi = async (keyword) => {
