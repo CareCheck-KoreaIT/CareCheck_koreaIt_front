@@ -1,6 +1,6 @@
 import { atom } from "recoil";
 
-export const waitingLisAdmId = atom({
+export const waitingListAdmId = atom({
   key: "admissionId",
   default: null,
 });

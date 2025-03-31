@@ -6,14 +6,14 @@ import React, { useEffect } from "react";
 import {
   diagnosisDisease,
   diagnosisOrders,
-  waitingLisAdmId,
+  waitingListAdmId,
 } from "../../../atoms/doctorTable/doctorTableAtom";
 import { FaRegCalendarCheck } from "react-icons/fa";
 import { useUpdateStartDateMutation } from "../../../mutations/admissionMutation";
 
 function WaitingList({ usercode }) {
   const updateStartDateMutation = useUpdateStartDateMutation();
-  const [admissionId, setAdmissionId] = useRecoilState(waitingLisAdmId);
+  const [admissionId, setAdmissionId] = useRecoilState(waitingListAdmId);
   const [diagnosisDiseaseState, setResetDisease] =
     useRecoilState(diagnosisDisease);
   const [diagnosisOrdersState, setDiagnosisOrders] =

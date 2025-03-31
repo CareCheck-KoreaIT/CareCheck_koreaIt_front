@@ -29,8 +29,6 @@ export const noticeLayout = css`
 export const calendarLayout = css`
   width: 70rem;
   height: 72rem;
-  
-
   .fc-toolbar-title {
     font-size: 1.5rem;
   }

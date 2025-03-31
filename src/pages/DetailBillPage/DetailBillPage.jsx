@@ -8,6 +8,7 @@ import {
   useGetSearchTotalPay,
 } from "../../queries/admissionQuery";
 import { useQueryClient } from "@tanstack/react-query";
+import { paymentResponse } from "../../atoms/payments/payment";
 
 function DetailBillPage() {
   const navigate = useNavigate();
@@ -26,6 +27,16 @@ function DetailBillPage() {
     patientName: null,
     admDate: null,
   });
+  
+  const totalPay = useGetSearchTotalPay(Number(patientData.admissionId));
+  const handlePaymentClick = async () => {
+    try{
+      paymentResponse(patientData, totalPay?.data?.data);
+      console.log(paymentResponse);
+    } catch(error) {
+      console.log(error);
+    }
+  }
 
   const patientInfoByAdmId = useGetSearchPatientInfo(Number(param.admissionId));
   const patientInfoApi = patientInfoByAdmId?.data?.data;
@@ -139,6 +150,9 @@ function DetailBillPage() {
           }
         >
           영수증
+        </button>
+        <button onClick={handlePaymentClick}>
+          결제
         </button>
       </div>
     </div>

@@ -4,8 +4,9 @@ import * as s from './style';
 import React, { useEffect, useState } from 'react';
 import { FaPlus } from "react-icons/fa6";
 import { useQueryClient } from '@tanstack/react-query';
-import { useGetSearchNoticeList } from '../../../queries/noticeQuery';
 import NoticeModal from "../../../components/modal/NoticeModal/NoticeModal";
+import { useGetSearchNoticeList } from "../../../queries/noticeQuery";
+
 
 function NoticeLayout(props) { 
   const navigate = useNavigate();

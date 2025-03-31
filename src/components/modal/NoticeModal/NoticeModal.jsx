@@ -20,6 +20,7 @@ const NoticeModal = ({ isOpen, setIsOpen, notice }) => {
                     justifyContent: 'center',
                     alignItems: 'center',
                     backgroundColor: '#00000088',
+                    zIndex: 9999,
                 },
                 content: {
                     position: 'relative',
@@ -30,6 +31,7 @@ const NoticeModal = ({ isOpen, setIsOpen, notice }) => {
                     height: '75rem',
                     overflowY: 'auto',
                     fontSize: '1.5rem',
+                    zIndex: 10000,
                 },
             }}
         >

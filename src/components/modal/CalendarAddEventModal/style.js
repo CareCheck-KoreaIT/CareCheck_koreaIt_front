@@ -62,14 +62,14 @@ export const startDate = css`
   }
 
   .react-datepicker {
-    width: 28rem;
+    width: 23rem;
     height: 22rem;
     border-radius: 12px;
   }
 
   .react-datepicker__header {
     background-color: #e0f2fe;
-    width: 28rem;
+    width: 23rem;
     border-top-right-radius: 12px;
     border-top-left-radius: 12px;
     border-bottom: none;
@@ -134,14 +134,14 @@ export const endDate = css`
   }
 
   .react-datepicker {
-    width: 28rem;
+    width: 23rem;
     height: 22rem;
     border-radius: 12px;
   }
 
   .react-datepicker__header {
     background-color: #e0f2fe;
-    width: 28rem;
+    width: 23rem;
     border-top-right-radius: 12px;
     border-top-left-radius: 12px;
     border-bottom: none;
