@@ -1,5 +1,5 @@
 /**@jsxImportSource @emotion/react */
-import { useGetAllWaitingTotalCount, useGetSearchAllWaitingList } from '../../queries/admissionQuery';
+import { useGetAllWaitingTotalCount, useGetSearchAdmissionListByPatientName, useGetSearchAllWaitingList } from '../../queries/admissionQuery';
 import * as s from './style';
 import React, { useEffect, useState } from 'react';
 import { BiSearch } from 'react-icons/bi';
@@ -8,38 +8,40 @@ import DeleteReceiptModal from '../../components/modal/DeleteReceiptModal/Delete
 import Swal from 'sweetalert2';
 import { GoChevronLeft, GoChevronRight } from 'react-icons/go';
 import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useQueryClient } from '@tanstack/react-query';
 
 function ReceiptPage() {
     const navigate = useNavigate();
     const [ searchParams, setSearchParams ] = useSearchParams();
     const page = parseInt(searchParams.get("page") || "1");
     const keyword = searchParams.get("keyword") || "";
-    const searchAllList = useGetSearchAllWaitingList();
+    const searchAllList = useGetSearchAllWaitingList({
+        page,
+        limitCount: 10,
+        keyword,
+    });
+
     const [ pageNumbers, setPageNumbers ] = useState([]);
     const [ searchValue, setSearchValue ] = useState(keyword);
-    
-    const { data } = useGetSearchAllWaitingList(keyword, startIndex, limitCount);
-    
-    console.log(data);
-    
-    useEffect(() => {
-        if(!searchAllList.isLoading) {
-            const currentPage = searchAllList?.data?.data.page || 1;
-            const totalPages = searchAllList?.data?.data.totalPages || 1;
-            const startIndex = (Math.floor((currentPage - 1) / 5) * 5) + 1;
-            const endIndex = startIndex + 4 > totalPages ? totalPages : startIndex + 4;
 
-            let newPageNumbers = [];
-            for(let i = startIndex; i <= endIndex; i++) {
-                newPageNumbers = [...newPageNumbers, i];
-            }
-            setPageNumbers(newPageNumbers);
-        }
-    },[searchAllList.data])
+    // useEffect(() => {
+    //     if(!searchAllList.isLoading) {
+    //         const currentPage = searchAllList?.data?.data.page || 1;
+    //         const totalPages = searchAllList?.data?.data.totalPages || 1;
+    //         const startIndex = (Math.floor((currentPage - 1) / 5) * 5) + 1;
+    //         const endIndex = startIndex + 4 > totalPages ? totalPages : startIndex + 4;
 
-    useEffect(() => {
-        searchAllList.refetch();
-    }, [searchParams]);
+    //         let newPageNumbers = [];
+    //         for(let i = startIndex; i <= endIndex; i++) {
+    //             newPageNumbers.push(i);
+    //         }
+    //         setPageNumbers(newPageNumbers);
+    //     }
+    // },[searchAllList.data])
+
+    // useEffect(() => {
+    //     searchAllList.refetch();
+    // }, [searchParams]);
     
     const handleSearchInputOnChange = (e) => {
         setSearchValue(e.target.value);
@@ -51,17 +53,19 @@ function ReceiptPage() {
         }
     }
     
-    const handleSearchButtonOnClick = () => {
-        searchParams.set("searchText", searchValue);
-        searchParams.set("page", 1);
-        setSearchParams(searchParams);
-    }
-
     const handlePageNumbersOnClick = (pageNumber) => {
-        searchParams.set("page", pageNumber);
-        setSearchParams(searchParams);
+        const newSearchParams = new URLSearchParams(searchParams);
+        newSearchParams.set("page", pageNumber);
+        setSearchParams(newSearchParams);
     }
 
+    const handleSearchButtonOnClick = () => {
+        const newSearchParams = new URLSearchParams(searchParams);
+        newSearchParams.set("keyword", searchValue);
+        newSearchParams.set("page", 1);
+        setSearchParams(newSearchParams);
+    }
+    const queryClient = useQueryClient();
     const mutation = useDeleteReceiptMutation();
     const handleDeleteReceiptOnClick = (admissionId) => {
         // 삭제 확인 모달 띄우기
@@ -95,7 +99,6 @@ function ReceiptPage() {
         }
     };
 
-    const [ selectedNotice, setSelectedNotice ] = useState(null);
     const [ isModalOpen, setIsModalOpen ] = useState(false);
 
     const handleCloseModal = () => {
