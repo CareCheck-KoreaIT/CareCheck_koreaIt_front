@@ -6,7 +6,7 @@ import { RiAdminFill } from 'react-icons/ri';
 import { FaUserDoctor, FaUserNurse } from 'react-icons/fa6';
 import { BiSupport } from 'react-icons/bi';
 import ReactModal from 'react-modal';
-import ChangePassrodModal from '../../components/modal/ChangePasswordModal/ChangePasswordModal';
+import ChangePasswordModal from '../../components/modal/ChangePasswordModal/ChangePasswordModal';
 import ChangeEmailModal from '../../components/modal/ChangeEmailModal/ChangeEmailModal';
 import ChangePhoneNumberModal from '../../components/modal/ChangePhoneNumberModal/ChangePhoneNumberModal';
 import { useNavigate } from 'react-router-dom';
@@ -149,7 +149,7 @@ function AccountPage(props) {
                             width: "60rem",
                         }
                     }}
-                    children={<ChangePassrodModal setOpen={setPasswordModalOpen} />}
+                    children={<ChangePasswordModal setOpen={setPasswordModalOpen} />}
                 />
                 <ReactModal 
                     ariaHideApp={false}
@@ -160,7 +160,7 @@ function AccountPage(props) {
                             display: "flex",
                             justifyContent: "center",
                             alignItems: "center",
-                            backgroundColor: "#00000088"
+                            backgroundColor: "#00000088",
                         },
                         content: {
                             position: "static",

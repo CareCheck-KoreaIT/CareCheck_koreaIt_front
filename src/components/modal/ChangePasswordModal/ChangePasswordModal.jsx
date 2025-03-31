@@ -50,7 +50,8 @@ function ChangePasswordModal({setOpen}) {
             Swal.fire({
                 icon: "success",
                 titleText: "비밀번호 변경 완료",
-                confirmButtonText: "<div style='font-size: 1.3rem'>확인</div>",
+                showConfirmButton: false,
+                timer: 1000,
             }).then(response => {
                 queryClient.invalidateQueries(["userMeQuery"]);
                 setOpen(false);
@@ -60,7 +61,7 @@ function ChangePasswordModal({setOpen}) {
                 icon: "error",
                 titleText: "비밀번호 변경 실패",
                 html: "<div style='font-size: 1.5rem'>입력 정보를 다시 확인해주세요</div>",
-                confirmButtonText: "<div style='font-size: 1.3rem'>확인</div>",
+                confirmButtonText: "<div style='font-size: 1.5rem'>확인</div>",
             }).then(response => {
                 setInputValue({
                     currentPassword: "",
