@@ -40,8 +40,9 @@ function MainSidebar() {
             <div><BsColumnsGap/>
             <NavLink to="/account/info" className="NavLinkStyle"><span>내 정보</span></NavLink>
             </div>
-            <div><BsColumnsGap/><span>공지사항</span></div>
-            <div><BsColumnsGap/><span>테스트3</span></div>
+            <div><BsColumnsGap/>
+            <NavLink to="/notice/list" className="NavLinkStyle"><span>공지사항</span></NavLink>
+            </div>
           </>
         )
 
@@ -72,7 +73,7 @@ function MainSidebar() {
       return (
         <>
           <div><BsColumnsGap />
-          <NavLink to={`/admission/table`} className="NavLinkStyle"><span>처방 관리</span></NavLink>
+          <NavLink to={`/admission`} className="NavLinkStyle"><span>처방 관리</span></NavLink>
           </div>
           <div><BsColumnsGap />
           <NavLink to={`/admission/${loginUser?.data?.usercode}`} className="NavLinkStyle"><span>처방 확인</span></NavLink>
@@ -105,6 +106,12 @@ function MainSidebar() {
           <div><BsColumnsGap />
           <NavLink to="/admin/users/signup" className="NavLinkStyle"><span>사원 등록</span></NavLink>
           </div>
+          <div><BsColumnsGap />
+          <NavLink to="/admin/users/order" className="NavLinkStyle"><span>오더 등록</span></NavLink>
+          </div>
+          <div><BsColumnsGap />
+          <NavLink to="/admin/users/scorepay" className="NavLinkStyle"><span>수가 관리</span></NavLink>
+          </div>
         </>
       );
     }
@@ -112,7 +119,7 @@ function MainSidebar() {
   return (
     <div css={s.sidebar}>
       <header css={s.header} >
-        <NavLink to="/" className={({ isActive }) => (isActive ? undefined : "")}
+        <NavLink to="/" 
         onClick={()=>setHeaderState("메인메뉴")}>
         <h2>CareCheck</h2>
         </NavLink>

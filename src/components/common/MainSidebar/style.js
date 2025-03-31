@@ -54,20 +54,18 @@ export const section = css`
 
     .NavLinkStyle {
     text-decoration: none; 
-    color: inherit;
-    background-color: transparent; 
+    color: inherit; 
     border: none;
     margin-left: 1rem; 
     
-    & > span {
-        &:hover{
-          color: black;
-          font-weight: bold;
-          font-size: 2.5rem;
-          white-space: nowrap;
-        }
+      &:hover{
+        color: black;
+        font-weight: bold;
+        font-size: 2.5rem;
+        white-space: nowrap;
       }
     }
+
   }
 
   

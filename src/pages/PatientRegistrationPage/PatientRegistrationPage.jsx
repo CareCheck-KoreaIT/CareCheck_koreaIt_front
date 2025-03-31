@@ -4,8 +4,10 @@ import { useState } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
 import { usePatientMutation } from '../../mutations/patientMutation';
+import { useNavigate } from 'react-router-dom';
 
 function PatientRegistrationPage(props) {
+    const navigate = useNavigate();
     const queryClient = useQueryClient();
 
     const patientMutation = usePatientMutation();
@@ -55,7 +57,7 @@ function PatientRegistrationPage(props) {
         
         
         try {
-            await patientMutation.mutateAsync(patientData);
+            const response = await patientMutation.mutateAsync(patientData);
             Swal.fire({
                 icon: "success",
                 title: "✅ 환자 등록 완료!",
@@ -69,6 +71,8 @@ function PatientRegistrationPage(props) {
 
                 // 입력 폼 초기화
             setPatientData({ patientName: "", regidentNum: "", phoneNumber: "" });
+            navigate("/patient/medical-reception", { state: { patientId: response.patientId } });
+            console.log(response);
         } catch (error){
                 Swal.fire({
                     icon: "error",
@@ -78,6 +82,8 @@ function PatientRegistrationPage(props) {
                     confirmButtonText: "확인",
                 });
             }
+            
+            
     };
     
 
