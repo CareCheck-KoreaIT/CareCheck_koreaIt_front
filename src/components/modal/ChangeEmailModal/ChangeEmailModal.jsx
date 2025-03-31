@@ -34,7 +34,7 @@ function ChangeEmailModal({setOpen}) {
                 icon: "error",
                 titleText: "이메일 변경 실패",
                 html: "<div style='font-size: 1.5rem'>변경할 이메일을 입력해주세요.</div>",
-                confirmButtonText: "<div style='font-size: 1.3rem'>확인</div>",
+                confirmButtonText: "<div style='font-size: 1.5rem'>확인</div>",
             });
             return;
         }
@@ -43,7 +43,8 @@ function ChangeEmailModal({setOpen}) {
             Swal.fire({
                 icon: "success",
                 titleText: "이메일 변경 완료",
-                confirmButtonText: "<div style='font-size: 1.3rem'>확인</div>",
+                showConfirmButton: false,
+                timer: 1000,
             }).then(response => {
                 queryClient.invalidateQueries(["userMeQuery"]);
                 setOpen(false);
@@ -53,7 +54,7 @@ function ChangeEmailModal({setOpen}) {
                 icon: "error",
                 titleText: "이메일 변경 실패",
                 html: "<div style='font-size: 1.5rem'>오류가 발생했습니다. 다시 시도해주세요.</div>",
-                confirmButtonText: "<div style='font-size: 1.3rem'>확인</div>",
+                confirmButtonText: "<div style='font-size: 1.5rem'>확인</div>",
             }).then(response => {
                 setEmailValue("");
             });

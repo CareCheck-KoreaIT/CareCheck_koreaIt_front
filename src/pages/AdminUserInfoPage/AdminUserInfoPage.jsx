@@ -118,9 +118,9 @@ function AdminUserInfoPage(props) {
             html: "<div style='font-size: 1.5rem'>초기화 비밀번호를 입력해주세요</div>",
             input: "text",
             inputValue: "",
-            showCancelButton: true,
+            showDenyButton: true,
             confirmButtonText: "<div style='font-size: 1.5rem'>확인</div>",
-            cancelButtonText: "<div style='font-size: 1.5rem'>취소</div>",
+            denyButtonText: "<div style='font-size: 1.5rem'>취소</div>",
             inputValidator: (value) => {
               if (!value) {
                 return "<div style='font-size: 1.2rem'>초기화 비밀번호를 입력해주세요.</div>";
@@ -135,7 +135,8 @@ function AdminUserInfoPage(props) {
             Swal.fire({
                 icon: "success",
                 titleText: "비밀번호가 초기화 되었습니다",
-                confirmButtonText: "<div style='font-size: 1.5rem'>확인</div>"
+                showConfirmButton: false,
+                timer: 1000,
             }).then(response => {
                 queryClient.invalidateQueries(["useGetSearchUserList"]);
                 queryClient.invalidateQueries(["userMeQuery"]);
@@ -153,11 +154,7 @@ function AdminUserInfoPage(props) {
                 ${usercode} 직원을 삭제합니다.
                 </div>
             `,
-            confirmButtonText: `
-                <div style='font-size: 1.5rem'>
-                Continue&nbsp;<i class="fa fa-arrow-right"></i>
-                </div>
-            `,
+            confirmButtonText:"<div style='font-size: 1.5rem'>확인</div>",
             inputValidator: (result) => {
               return !result && "<div style='font-size: 1.2rem'>삭제하시려면 체크해주세요.</div>";
             }
@@ -167,7 +164,8 @@ function AdminUserInfoPage(props) {
             Swal.fire({
                 icon: "success",
                 titleText: "삭제되었습니다",
-                confirmButtonText: "<div style='font-size: 1.5rem'>확인</div>"
+                showConfirmButton: false,
+                timer: 1000,
             }).then(response => {
                 queryClient.invalidateQueries(["useGetSearchUserList"]);
                 queryClient.invalidateQueries(["userMeQuery"]);

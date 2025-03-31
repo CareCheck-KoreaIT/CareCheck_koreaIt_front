@@ -81,9 +81,9 @@ function NoticeMyListPage() {
         Swal.fire({
             title: "정말 삭제하시겠습니까?",
             icon: "warning",
-            showCancelButton: true,
+            showDenyButton: true,
             confirmButtonText: "<div style='font-size: 1.5rem'>삭제</div>",
-            cancelButtonText: "<div style='font-size: 1.5rem'>취소</div>",
+            denyButtonText: "<div style='font-size: 1.5rem'>취소</div>",
         }).then((result) => {
             if (result.isConfirmed) {
                 deleteNoticeMutation.mutate(noticeId, {
@@ -91,7 +91,8 @@ function NoticeMyListPage() {
                         await Swal.fire({
                             title: "삭제 완료",
                             icon: "success",
-                            confirmButtonText: "<div style='font-size: 1.5rem'>확인</div>",
+                            showConfirmButton: false,
+                            timer: 1000,
                         });
                         queryClient.invalidateQueries(["searchNoticeList"]);
                     },
@@ -99,7 +100,8 @@ function NoticeMyListPage() {
                         await Swal.fire({
                             title: "삭제 실패",
                             icon: "error",
-                            confirmButtonText: "<div style='font-size: 1.5rem'>확인</div>",
+                            showConfirmButton: false,
+                            timer: 1000,
                         });
                     },
                 });
