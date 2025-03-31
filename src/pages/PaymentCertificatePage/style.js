@@ -3,11 +3,9 @@ import { css } from "@emotion/react";
 export const layout = css`
     display: flex;
     box-sizing: border-box;
-    align-items: center;
     justify-content: center;
-    /* flex-direction: column; */
+    margin-top: 5rem;
     overflow: hidden;
-    /* width: 100%; */
     height: 90%;
     background-color: #ffffff;
 `;
@@ -87,7 +85,7 @@ export const button = css`
   display: flex;
   justify-content: flex-end;
   align-self: flex-end;
-  margin: 0rem 0rem 6rem 5rem;
+  margin: 0rem 0rem 11rem 5rem;
   gap: 1rem;
 
   & > button {
@@ -98,5 +96,6 @@ export const button = css`
     border-radius: 1rem;
     color: #ffffff;
     font-size: 1.5rem;
+    cursor: pointer;
   }
 `;

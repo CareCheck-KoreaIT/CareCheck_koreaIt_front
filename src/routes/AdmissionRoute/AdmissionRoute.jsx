@@ -8,7 +8,7 @@ function AdmissionRoute(props) {
     return (
         <>
             <Routes>
-                <Route path="/table" element={<TablePage />} />    
+                <Route path="/" element={<TablePage />} />    
                 <Route
                 path="/:admissionId/certificate"
                 element={<PaymentCertificatePage />}
