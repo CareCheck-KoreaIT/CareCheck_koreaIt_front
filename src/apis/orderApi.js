@@ -7,3 +7,8 @@ export const orderCreateApi = async (order) => {
 export const orderSearchApi = async (keyword) => {
   return await api.get(`/orders/list`, { params: { keyword } });
 };
+
+export const scorePayInsertApi = async (scorePay) => {
+  console.log(scorePay);
+  return await api.post(`/orders/score?scorePay=${scorePay}`);
+};

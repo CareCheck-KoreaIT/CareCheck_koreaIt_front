@@ -4,12 +4,12 @@ export const list = css`
   justify-content: center;
   border: 0.1rem solid #000000;
   border-collapse: collapse;
-  margin: 2rem 0rem 2rem;
+  margin: 1rem 0rem 1rem;
 
   & > tbody > tr,
   td {
     width: 20rem;
-    height: 5rem;
+    height: 4rem;
     border: 0.1rem solid #000000;
     box-sizing: border-box;
     font-size: 2rem;
