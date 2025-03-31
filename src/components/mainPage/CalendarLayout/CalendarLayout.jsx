@@ -21,6 +21,7 @@ function CalendarLayout(props) {
       title: `${newEvent.content_title} - ${newEvent.description}`,
       start: newEvent.start,
       end: newEvent.end,
+      allDay: true,
     };
 
     setEvents([...events, event]);
