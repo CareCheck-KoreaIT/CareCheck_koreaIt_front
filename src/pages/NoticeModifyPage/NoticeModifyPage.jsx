@@ -36,7 +36,11 @@ function NoticeModifyPage() {
         );
 
         if (!notice) {
-          alert("게시글을 찾을 수 없습니다.");
+          Swal.fire({
+            titleText: "게시글을 찾을 수 없습니다.",
+            icon: "error",
+            confirmButtonText: "<div style='font-size: 1.5rem'>확인</div>",
+          })
         }
 
         setTitle(notice.title);
