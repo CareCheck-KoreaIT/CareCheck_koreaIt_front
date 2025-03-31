@@ -23,7 +23,7 @@ function MainSidebar() {
     if(savedState) {
       setHeaderState(savedState);
     } else {
-      setHeaderState("접수메뉴변경")
+      setHeaderState("메인메뉴")
     }
   },[setHeaderState]);
 
@@ -95,7 +95,7 @@ function MainSidebar() {
             <span>처방 관리</span>
             </NavLink>
           </div>
-          <div>
+          {/* <div>
             <BsColumnsGap />
             <NavLink to={`/admission/${loginUser?.data?.usercode}/certificate`} className="NavLinkStyle">
             <span>영수증</span>
@@ -106,7 +106,7 @@ function MainSidebar() {
             <NavLink to={`/admission/${loginUser?.data?.usercode}/detailbill`} className="NavLinkStyle">
             <span>진료비 세부내역서</span>
             </NavLink>
-          </div>
+          </div> */}
         </>
       );
       case "통계메뉴변경":
@@ -142,12 +142,12 @@ function MainSidebar() {
           </div>
           <div>
             <BsColumnsGap />
-            <NavLink to="/order" className="NavLinkStyle">
+            <NavLink to="/admin/users/order" className="NavLinkStyle">
             <span>오더 등록</span></NavLink>
           </div>
           <div>
             <BsColumnsGap />
-            <NavLink to="/scorepay" className="NavLinkStyle">
+            <NavLink to="/admin/users/scorepay" className="NavLinkStyle">
             <span>수가 등록</span></NavLink>
           </div>
         </>

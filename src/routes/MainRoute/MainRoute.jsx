@@ -35,13 +35,11 @@ function MainRoute() {
             <Route path="/" element={<MainPage />} />
             <Route path="/account/*" element={<AccountRoute />} />
             <Route path="/admin/*" element={<UserRoute />} />
-            <Route path="/order" element={<OrderPage />} />
             <Route path="/payment/*" element={<PaymentRoute />} /> 
             <Route path="/patient/*" element={<PatientRoute />} />
             <Route path="/admission/*" element={<AdmissionRoute/>} />
             <Route path="/summary/*" element={<SummaryRoute />} />
             <Route path="/notice/*" element={<NoticeRoute />} />
-            <Route path="/scorepay" element={<ScorePayPage />} />
             <Route path="/employeenum" element={<EmployeeNumEnrollPage />} />
           </Routes>
         </div>
