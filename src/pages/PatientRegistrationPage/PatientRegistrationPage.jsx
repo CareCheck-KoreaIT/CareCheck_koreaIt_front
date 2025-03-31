@@ -4,8 +4,10 @@ import { useState } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
 import { usePatientMutation } from '../../mutations/patientMutation';
+import { useNavigate } from 'react-router-dom';
 
 function PatientRegistrationPage(props) {
+    const navigate = useNavigate();
     const queryClient = useQueryClient();
 
     const patientMutation = usePatientMutation();
@@ -32,7 +34,7 @@ function PatientRegistrationPage(props) {
                 icon: 'error',
                 title: '❌ 주민등록번호 형식이 올바르지 않습니다. (예: 990919-1111111)',
                 confirmButtonColor: '#d33',
-                confirmButtonText: '확인',
+                confirmButtonText: "<div style='font-size: 1.5rem'>확인</div>",
             });
             return false;
         }
@@ -42,7 +44,7 @@ function PatientRegistrationPage(props) {
                 icon: 'error',
                 title: '❌ 휴대폰 번호 형식이 올바르지 않습니다. (예: 010-1234-5678)',
                 confirmButtonColor: '#d33',
-                confirmButtonText: '확인',
+                confirmButtonText: "<div style='font-size: 1.5rem'>확인</div>",
             });
             return false;
         }
@@ -55,13 +57,13 @@ function PatientRegistrationPage(props) {
         
         
         try {
-            await patientMutation.mutateAsync(patientData);
+            const response = await patientMutation.mutateAsync(patientData);
             Swal.fire({
                 icon: "success",
                 title: "✅ 환자 등록 완료!",
-                text: "환자 정보가 성공적으로 등록되었습니다.",
-                confirmButtonColor: "#3085d6",
-                confirmButtonText: "확인",
+                html: "<div style='font-size: 1.5rem'>환자 정보가 성공적으로 등록되었습니다.</div>",
+                showConfirmButton: false,
+                timer: 1000,
             });
 
             // 환자 목록 새로고침
@@ -69,15 +71,19 @@ function PatientRegistrationPage(props) {
 
                 // 입력 폼 초기화
             setPatientData({ patientName: "", regidentNum: "", phoneNumber: "" });
+            navigate("/patient/medical-reception", { state: { patientId: response.patientId } });
+            console.log(response);
         } catch (error){
                 Swal.fire({
                     icon: "error",
                     title: "❌ 환자 등록 실패",
-                    text: error.message,
+                    html: "<div style='font-size: 1.5rem'>" + error.message + "</div>",
                     confirmButtonColor: "#d33",
-                    confirmButtonText: "확인",
+                    confirmButtonText: "<div style='font-size: 1.5rem'>확인</div>",
                 });
             }
+            
+            
     };
     
 

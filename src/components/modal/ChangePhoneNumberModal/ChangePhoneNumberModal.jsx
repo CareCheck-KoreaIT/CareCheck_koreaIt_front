@@ -14,7 +14,6 @@ function ChangePhoneNumberModal({setOpen}) {
 
     const [ phoneNumberValue, setPhoneNumberValue ] = useState("");
     const [ phoneNumberValidMessage, setPhoneNumberValidMessage ] = useState("");
-    const [ isValid, setIsValid ] = useState(false);
     const phoneNumberRegex = /^010-\d{4}-\d{4}$/;
 
     const handlePhoneNumberInputOnChange = (e) => {
@@ -36,7 +35,7 @@ function ChangePhoneNumberModal({setOpen}) {
                 icon: "error",
                 titleText: "전화번호 변경 실패",
                 html: "<div style='font-size: 1.5rem'>변경할 전화번호를 입력해주세요.</div>",
-                confirmButtonText: "<div style='font-size: 1.3rem'>확인</div>",
+                confirmButtonText: "<div style='font-size: 1.5rem'>확인</div>",
             });
             return;
         }
@@ -45,7 +44,8 @@ function ChangePhoneNumberModal({setOpen}) {
             Swal.fire({
                 icon: "success",
                 titleText: "전화번호 변경 완료",
-                confirmButtonText: "<div style='font-size: 1.3rem'>확인</div>",
+                showConfirmButton: false,
+                timer: 1000,
             }).then(response => {
                 queryClient.invalidateQueries(["userMeQuery"]);
                 setOpen(false);
@@ -55,7 +55,7 @@ function ChangePhoneNumberModal({setOpen}) {
                 icon: "error",
                 titleText: "전화번호 변경 실패",
                 html: "<div style='font-size: 1.5rem'>오류가 발생했습니다. 다시 시도해주세요.</div>",
-                confirmButtonText: "<div style='font-size: 1.3rem'>확인</div>",
+                confirmButtonText: "<div style='font-size: 1.5rem'>확인</div>",
             }).then(response => {
                 setPhoneNumberValue("");
             });

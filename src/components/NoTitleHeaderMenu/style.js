@@ -5,7 +5,7 @@ export const header = css`
   align-items: center;
   box-sizing: border-box;
   margin: 3rem 5rem;
-  width: 150rem; // 150rem
+  width: 150rem;
   height: 6rem;
   position: relative;
 `;
@@ -17,7 +17,7 @@ export const headerMenu = css`
   width: 9rem;
   height: 3rem;
   font-size: 2rem;
-  /* transition: all 0.2s ease-in-out; */
+  transition: all 0.2s ease-in-out;
   cursor: pointer;
 
   & > a {
@@ -38,7 +38,7 @@ export const headerMenu = css`
       color: #404040;
     }
   }
-
+  
   .active {
     color: #464667;
     font-weight: bold;
@@ -78,7 +78,7 @@ export const logoutBtn = css`
   }
 `;
 
-export const lconStyle = css`
+export const iconStyle = css`
   margin-right: 0.7rem;
 `;
 

@@ -71,7 +71,8 @@ function NoticeWritePage(props) {
     const response = await createNoticeMutation.mutateAsync(notice);
     await Swal.fire({
       titleText: "게시글 작성 완료",
-      confirmButtonText: "확인",
+      showConfirmButton: false,
+      timer: 1000,
     });
   };
 

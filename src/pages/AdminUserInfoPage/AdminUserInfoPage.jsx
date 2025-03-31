@@ -50,10 +50,10 @@ function AdminUserInfoPage(props) {
 
     const orderSelectOptions = [
         {label: "전체", value: "all"},
-        {label: "관리자", value: "관리자"},
-        {label: "의사", value: "의사"},
-        {label: "간호사", value: "간호사"},
-        {label: "원무", value: "원무"},
+        {label: "관리자", value: "ROLE_ADMIN"},
+        {label: "의사", value: "ROLE_DOCTOR"},
+        {label: "간호사", value: "ROLE_NURSE"},
+        {label: "원무", value: "ROLE_STAFF"},
     ];
     
     // ChangeUserModal 을 위한 값
@@ -118,9 +118,9 @@ function AdminUserInfoPage(props) {
             html: "<div style='font-size: 1.5rem'>초기화 비밀번호를 입력해주세요</div>",
             input: "text",
             inputValue: "",
-            showCancelButton: true,
+            showDenyButton: true,
             confirmButtonText: "<div style='font-size: 1.5rem'>확인</div>",
-            cancelButtonText: "<div style='font-size: 1.5rem'>취소</div>",
+            denyButtonText: "<div style='font-size: 1.5rem'>취소</div>",
             inputValidator: (value) => {
               if (!value) {
                 return "<div style='font-size: 1.2rem'>초기화 비밀번호를 입력해주세요.</div>";
@@ -131,13 +131,16 @@ function AdminUserInfoPage(props) {
             }
           });
           if (password) {
-            // password 정규식 추가
             await updateUserPasswordMutation.mutateAsync({usercode: usercode, password: password});
             Swal.fire({
                 icon: "success",
                 titleText: "비밀번호가 초기화 되었습니다",
-                confirmButtonText: "<div style='font-size: 1.5rem'>확인</div>"
-            }).then(response => {queryClient.invalidateQueries(["userMeQuery"])});
+                showConfirmButton: false,
+                timer: 1000,
+            }).then(response => {
+                queryClient.invalidateQueries(["useGetSearchUserList"]);
+                queryClient.invalidateQueries(["userMeQuery"]);
+            });
           }
     }
     const handleDeleteButtonOnClick = async (usercode) => {
@@ -151,11 +154,7 @@ function AdminUserInfoPage(props) {
                 ${usercode} 직원을 삭제합니다.
                 </div>
             `,
-            confirmButtonText: `
-                <div style='font-size: 1.5rem'>
-                Continue&nbsp;<i class="fa fa-arrow-right"></i>
-                </div>
-            `,
+            confirmButtonText:"<div style='font-size: 1.5rem'>확인</div>",
             inputValidator: (result) => {
               return !result && "<div style='font-size: 1.2rem'>삭제하시려면 체크해주세요.</div>";
             }
@@ -165,8 +164,12 @@ function AdminUserInfoPage(props) {
             Swal.fire({
                 icon: "success",
                 titleText: "삭제되었습니다",
-                confirmButtonText: "<div style='font-size: 1.5rem'>확인</div>"
-            }).then(response => {queryClient.invalidateQueries(["userMeQuery"])});
+                showConfirmButton: false,
+                timer: 1000,
+            }).then(response => {
+                queryClient.invalidateQueries(["useGetSearchUserList"]);
+                queryClient.invalidateQueries(["userMeQuery"]);
+            });
         }
     }
     

@@ -20,6 +20,7 @@ export const header = css`
   margin-top: 5rem;
   font-size: 2.6rem;
   font-weight: bold;
+
   & > h2 {
     color: #ffffff;
   }
@@ -40,32 +41,41 @@ export const header = css`
 export const section = css`
   display: flex;
   flex-direction: column;
+  align-items: center;
   height: 60rem;
-  gap: 4.5rem;
+
   & > div {
     display: flex;
-    justify-content: flex-start;
     align-items: center;
-    width: 21.2rem;
+    width: 25rem;
     height: 3rem;
+    margin-left: 4rem;
+    margin-bottom: 3.5rem;
     color: #ffffff;
     background-color: #464667;
-    font-size: 2rem;
-    cursor: pointer;
+    font-size: 2.5rem;
 
+    .NavLinkStyle {
+    text-decoration: none; 
+    color: inherit;
+    background-color: #e29d9d00; 
+    border: none;
+    margin-left: 1rem; 
+    
     & > span {
-      margin-left: 1rem;
+      cursor: pointer;
+
+      &:hover{
+        color: black;
+        font-weight: bold;
+        font-size: 2.5rem;
+        white-space: nowrap;
+      }
     }
+   }
   }
 
-  .activ {
-    color: #464667;
-    font-weight: bold;
-    border-bottom: 3px solid #464667;  
-    padding-bottom: 0.5rem;
-    width: 100%;
-
-  }
+  
 `;
 
 export const footer = css`
@@ -84,5 +94,4 @@ export const footer = css`
     cursor: pointer;
   }
 `;
-
 
