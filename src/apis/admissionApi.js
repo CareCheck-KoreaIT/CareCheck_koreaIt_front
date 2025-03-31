@@ -41,7 +41,7 @@ export const updateEndDate = async (admissionId) => {
 };
 
 export const searchAllWaitingListApi = async (keyword, page = 1, limit = 10) => {
-  return await api.get("/admission/waitings", { 
+  return await api.get("/admission/all-waitings", { 
     params: {
     keyword: keyword || '',
     page: page,
