@@ -48,6 +48,10 @@ export const calendarLayout = css`
   .fc-event-title {
     font-size: 1.5rem;
   }
+
+  .fc-event-main {
+    font-size: 1.5rem;
+  }
 `;
 
 export const addEventButton = css`

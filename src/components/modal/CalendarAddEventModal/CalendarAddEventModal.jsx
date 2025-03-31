@@ -47,6 +47,7 @@ function CalendarAddEventModal({ newEvent, setNewEvent, onClose, onSave }) {
               selected={newEvent.end}
               onChange={handleEndDateChange}
               locale={ko}
+              dateFormatCalendar="yyyy년 MM월"
               dateFormat="yyyy-MM-dd"
               placeholderText="yyyy-MM-dd"
 

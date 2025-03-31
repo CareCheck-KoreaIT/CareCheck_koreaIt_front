@@ -57,7 +57,7 @@ export const searchAllWaitingListApi = async ({ page, limitCount, keyword }) => 
 
 
 export const getAllWaitingTotalCountApi = async (keyword) => {
-  return await api.get("/admission/waitingCount", {
+  return await api.get("/admission/waiting-count", {
     params: { keyword: keyword || '' }
   })
 }
@@ -69,7 +69,13 @@ export const deleteReceiptApi = async (admissionId) => {
 };
 
 export const searchAdmissionListApi = async (patientName) => {
-  return await api.get("/admission/searchAdmissionList", {
+  return await api.get("/admission/admission-list", {
     params: { patientName },
+  });
+};
+
+export const insertAdmissonApi = async (patientId) => {
+  await api.post("/admission", {
+    params: {patientId}
   });
 };

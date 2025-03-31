@@ -12,7 +12,7 @@ function NoticeRoute(props) {
                 <Route path="/write" element={<NoticeWritePage />} />
                 <Route path="/list" element={<NoticeListPage />} />
                 <Route path="/mylist" element={<NoticeMyListPage />} />
-                <Route path="/:usercode/modify/:noticeId"
+                <Route path="/modify/:noticeId"
                 element={<NoticeModifyPage />}
                 />
             </Routes>

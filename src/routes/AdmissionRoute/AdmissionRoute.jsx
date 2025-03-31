@@ -5,17 +5,18 @@ import PaymentCertificatePage from '../../pages/PaymentCertificatePage/PaymentCe
 import DetailBillPage from '../../pages/DetailBillPage/DetailBillPage';
 
 function AdmissionRoute(props) {
+
     return (
         <>
             <Routes>
-                <Route path="/table" element={<TablePage />} />    
+                <Route path="/" element={<TablePage />} />    
                 <Route
                 path="/:admissionId/certificate"
                 element={<PaymentCertificatePage />}
                 />
                 <Route
-                path={`/:admissionId/detailbill`}
-                element={<DetailBillPage />}
+                path="/:admissionId/detailbill"
+                element={<DetailBillPage/>}
                 />
             </Routes>
         </>
