@@ -35,7 +35,7 @@ function OrderPage(props) {
     if(isEmpty()) {
       await Swal.fire({
         titleText: "정보를 입력해주세요.",
-        confirmButtonText: "확인"
+        confirmButtonText: "<div style='font-size: 1.5rem'>확인</div>",
       });
       return;
     }
@@ -44,7 +44,7 @@ function OrderPage(props) {
     if (isNaN(inputValue.orderScore)) {
       await Swal.fire({
         titleText: "상대가치점수는 숫자여야 합니다.",
-        confirmButtonText: "확인",
+        confirmButtonText: "<div style='font-size: 1.5rem'>확인</div>",
       });
       return;
     }
@@ -75,7 +75,7 @@ function OrderPage(props) {
       await Swal.fire({
         titleText: "오더 등록 실패",
         icon: "error",
-        confirmButtonText: "확인"
+        confirmButtonText: "<div style='font-size: 1.5rem'>확인</div>",
       });
     }
 
