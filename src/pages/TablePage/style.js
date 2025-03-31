@@ -92,9 +92,9 @@ export const rightTable = css`
   justify-content: center;
   align-items: center;
   border: 0.1rem solid #000000;
-  height: 5rem;
+  height: 4rem;
   background-color: #464667;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
   overflow-y: auto;
 
   & > tbody > tr {
@@ -129,10 +129,11 @@ export const lefttableLayout = css`
   height: 60rem;
   overflow-y: auto;
 `;
-
+export const vitalLayout = css`
+  height: 10rem;
+`;
 export const tableLayout = css`
   height: 10rem;
-  overflow-x: hidden;
   overflow-y: auto;
 `;
 export const diagnosisRegister = css`
@@ -145,7 +146,7 @@ export const diagnosisRegister = css`
   & > tr,
   td {
     width: 100%;
-    height: 4rem;
+    height: 3rem;
     border: 0.1rem solid black;
     font-size: 1.8rem;
     color: #ffffff;
@@ -173,7 +174,7 @@ export const prescriptionRegister = css`
 
   & > tr,
   td {
-    height: 4rem;
+    height: 3rem;
     border: 0.1rem solid black;
     font-size: 1.8rem;
     color: #ffffff;

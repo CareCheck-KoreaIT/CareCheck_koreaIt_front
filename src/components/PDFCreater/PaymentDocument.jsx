@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
   mainRow: {
     flexDirection: "row",
     height: 50,
-    alignItems: "center",
+    justifyContent: "center",
     borderBottomWidth: 1,
     borderBottomColor: "#000",
   },
@@ -49,8 +49,6 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     height: 200,
     justifyContent: "center",
-    borderBottomWidth: 1,
-    borderBottomColor: "#000",
   },
   cell: {
     flex: 1,
@@ -73,11 +71,13 @@ const styles = StyleSheet.create({
     borderRightColor: "#000000",
     fontSize: 16,
     fontFamily: "SpoqaHanSans",
+    textAlign: "center",
   },
   noBorderCell: {
-    padding: 6,
     height: "100%",
+    flex: 1,
     fontSize: 16,
+    justifyContent: "center",
     textAlign: "center",
     fontFamily: "SpoqaHanSans",
   },
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginVertical: 5,
     fontWeight: "bold",
-    textAlign: "center",
+    alignItems: "center",
     paddingLeft: 20,
   },
   note: {
@@ -122,19 +122,37 @@ const PaymentDocument = ({
         </View>
 
         <View style={styles.mainRow}>
-          <Text style={styles.cell}>차트번호</Text>
-          <Text style={styles.cell}>{searchPatientData.patientId}</Text>
-          <Text style={styles.cell}>진료과</Text>
-          <Text style={styles.celllast}>{searchPatientData.clinicDeft}</Text>
+          <Text style={styles.cell}>
+            {"\n"}차트번호{"\n"}
+          </Text>
+          <Text style={styles.cell}>
+            {"\n"}
+            {searchPatientData.patientId}
+            {"\n"}
+          </Text>
+          <Text style={styles.cell}>
+            {"\n"}진료과{"\n"}
+          </Text>
+          <Text style={styles.celllast}>
+            {"\n"}
+            {searchPatientData.clinicDeft}
+            {"\n"}
+          </Text>
         </View>
 
         <View style={styles.mainRow}>
-          <Text style={styles.cellmain}>영수액</Text>
-          <Text style={styles.noBorderCell}>일금 {totalPayAdmId} 원</Text>
+          <Text style={styles.cellmain}>
+            {"\n"}영수액{"\n"}
+          </Text>
+          <Text style={styles.noBorderCell}>
+            {"\n"}일금 {totalPayAdmId} 원{"\n"}
+          </Text>
         </View>
 
         <View style={styles.mainRow}>
-          <Text style={styles.cellmain}>내 용</Text>
+          <Text style={styles.cellmain}>
+            {"\n"}내 용{"\n"}
+          </Text>
           <Text style={styles.noBorderCell}></Text>
         </View>
 

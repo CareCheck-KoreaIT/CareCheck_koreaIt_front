@@ -4,8 +4,7 @@ export const list = css`
   width: 100%;
   border: 0.1rem solid #000000;
   border-collapse: collapse;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+  margin: 1rem 0rem 1rem;
 
   & tbody tr {
     height: 4rem; /* 행 높이 설정 */
@@ -14,7 +13,7 @@ export const list = css`
 
   & tbody td {
     border: 0.1rem solid #000000; /* 셀 테두리 */
-    height: 5rem;
+    height: 4rem;
     font-size: 1.8rem; /* 폰트 크기 */
     text-align: center; /* 텍스트 가운데 정렬 */
   }

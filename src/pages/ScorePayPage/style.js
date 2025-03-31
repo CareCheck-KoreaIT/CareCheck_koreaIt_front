@@ -37,7 +37,7 @@ export const headerMenu = css`
   & > svg {
     width: 3rem;
     height: 3rem;
-    
+
     & > path {
       color: #404040;
     }
@@ -75,24 +75,23 @@ export const titleGroup = css`
   margin-top: 5rem;
 `;
 
-
 export const title1 = css`
-    display: flex;
-    justify-content: center;
-    margin: 0;
-    font-size: 5rem;
-    color: #464667;
-    cursor: default;
-    font-weight: 400;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  font-size: 5rem;
+  color: #464667;
+  cursor: default;
+  font-weight: 400;
 `;
 
 export const title2 = css`
-    display: flex;
-    justify-content: center;
-    margin: 0;
-    font-size: 3rem;
-    color: #464667;
-    cursor: default;    
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  font-size: 3rem;
+  color: #464667;
+  cursor: default;
 `;
 
 export const inputGroup = css`
@@ -101,7 +100,6 @@ export const inputGroup = css`
   flex-direction: column;
   box-sizing: border-box;
   margin-top: 15rem;
-  
 `;
 
 export const input = css`
@@ -111,7 +109,7 @@ export const input = css`
   box-sizing: border-box;
   width: 60rem;
   font-size: 2rem;
-  border-bottom: 0.1rem solid #3283CE;
+  border-bottom: 0.1rem solid #3283ce;
 
   & > label {
     width: 13rem;
@@ -148,5 +146,6 @@ export const button = css`
     border-radius: 1.5rem;
     color: #ffffff;
     font-size: 3rem;
+    cursor: pointer;
   }
 `;
