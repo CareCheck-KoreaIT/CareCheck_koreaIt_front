@@ -49,7 +49,6 @@ export const inputGroup = css`
 
 export const input = css`
   display: flex;
-  justify-content: space-between;
   align-items: center;
   box-sizing: border-box;
   width: 71rem;
@@ -63,23 +62,24 @@ export const input = css`
     text-align: left;
     line-height: 8rem;
     
-}
-
-& > input {
-    width: 60rem;
-    height: 8.4rem;
-    border: none;
-
-    &:focus {
-      outline: none;
-      border: none;
-    }
-
-    &::placeholder{
-    font-size: 2rem;
-    color: #9F9F9F;
-    }
   }
+
+  & > input {
+      width: 60rem;
+      height: 8.4rem;
+      border: none;
+      font-size: 2rem;
+
+      &:focus {
+        outline: none;
+        border: none;
+      }
+
+      &::placeholder{
+      font-size: 2rem;
+      color: #9F9F9F;
+      }
+    }
 
 `;
 

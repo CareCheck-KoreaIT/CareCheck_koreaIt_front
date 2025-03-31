@@ -66,3 +66,9 @@ export const searchAdmissionListApi = async (patientName) => {
     params: { patientName },
   });
 };
+
+export const insertAdmissonApi = async (patientId) => {
+  await api.post("/admission", {
+    params: {patientId}
+  });
+};

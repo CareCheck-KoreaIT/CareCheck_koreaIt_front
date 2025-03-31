@@ -64,14 +64,15 @@ export const section = css`
     
     & > span {
       cursor: pointer;
+
       &:hover{
         color: black;
         font-weight: bold;
         font-size: 2.5rem;
         white-space: nowrap;
       }
-      }
     }
+   }
   }
 
   

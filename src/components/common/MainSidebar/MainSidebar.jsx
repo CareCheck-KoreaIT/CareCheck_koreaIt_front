@@ -150,6 +150,12 @@ function MainSidebar() {
             <NavLink to="/scorepay" className="NavLinkStyle">
             <span>수가 등록</span></NavLink>
           </div>
+          <div><BsColumnsGap />
+          <NavLink to="/admin/users/order" className="NavLinkStyle"><span>오더 등록</span></NavLink>
+          </div>
+          <div><BsColumnsGap />
+          <NavLink to="/admin/users/scorepay" className="NavLinkStyle"><span>수가 관리</span></NavLink>
+          </div>
         </>
       );
     }
@@ -157,7 +163,7 @@ function MainSidebar() {
   return (
     <div css={s.sidebar}>
       <header css={s.header} >
-        <NavLink to="/" className={({ isActive }) => (isActive ? undefined : "")}
+        <NavLink to="/" 
         onClick={()=>setHeaderState("메인메뉴")}>
         <h2>CareCheck</h2>
         </NavLink>
