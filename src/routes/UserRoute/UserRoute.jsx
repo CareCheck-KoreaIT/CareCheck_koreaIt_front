@@ -9,8 +9,8 @@ function UserRoute(props) {
     return (
         <>
             <Routes>
-                <Route path='/users/signup' element={<JoinPage />} />
                 <Route path='/users' element={<AdminUserInfoPage />} />
+                <Route path='/users/signup' element={<JoinPage />} />
                 <Route path='/users/order' element={<OrderPage />} />
                 <Route path='/users/scorepay' element={<ScorePayPage />} />
             </Routes>

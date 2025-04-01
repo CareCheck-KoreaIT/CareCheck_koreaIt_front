@@ -150,12 +150,7 @@ function MainSidebar() {
             <NavLink to="/admin/users/scorepay" className="NavLinkStyle">
             <span>수가 등록</span></NavLink>
           </div>
-          <div><BsColumnsGap />
-          <NavLink to="/admin/users/order" className="NavLinkStyle"><span>오더 등록</span></NavLink>
-          </div>
-          <div><BsColumnsGap />
-          <NavLink to="/admin/users/scorepay" className="NavLinkStyle"><span>수가 관리</span></NavLink>
-          </div>
+
         </>
       );
     }

@@ -13,6 +13,7 @@ export const quillEditor = css`
         flex-wrap: wrap;
         border: none;
         border-bottom: 0.1rem solid #dbdbdb;
+
         &.ql-snow {
             box-sizing: border-box;
             padding: 1rem 0;
@@ -25,7 +26,6 @@ export const quillEditor = css`
         border: 0.1rem solid #dbdbdb;
         font-size: 1.5rem;
     }
-
 `;
 
 
@@ -53,9 +53,11 @@ export const saveButton = css`
     padding: 0.5rem 1rem;
     background-color: #fafafa;
     cursor: pointer;
+
     &:hover {
         background-color: #eeeeee;
     }
+    
     &:active {
         background-color: #dddddd;
     }
