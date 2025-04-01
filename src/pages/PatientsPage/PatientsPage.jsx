@@ -1,24 +1,19 @@
 /**@jsxImportSource @emotion/react */
-import {  useGetSearchAllWaitingList } from '../../queries/admissionQuery';
 import * as s from './style';
-import React, { useEffect, useState } from 'react';
-import { BiSearch } from 'react-icons/bi';
-import { useDeleteReceiptMutation } from '../../mutations/admissionMutation';
-import DeleteReceiptModal from '../../components/modal/DeleteReceiptModal/DeleteReceiptModal';
-import Swal from 'sweetalert2';
-import { GoChevronLeft, GoChevronRight } from 'react-icons/go';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { useQueryClient } from '@tanstack/react-query';
+import { useGetSearchPatients } from '../../queries/admissionQuery';
+import { BiSearch } from 'react-icons/bi';
+import { GoChevronLeft, GoChevronRight } from 'react-icons/go';
+import { useEffect, useState } from 'react';
 
-function ReceiptPage() {
-    const navigate = useNavigate();
+function PatientsPage(props) {
     const queryClient = useQueryClient();
-    const deleteReceiptMutation = useDeleteReceiptMutation();
 
     const [ searchParams, setSearchParams ] = useSearchParams();
     const page = parseInt(searchParams.get("page") || "1");
     const searchText = searchParams.get("searchText") || "";
-    const searchAllList = useGetSearchAllWaitingList({
+    const searchAllList = useGetSearchPatients({
         page,
         limitCount: 10,
         searchText,
@@ -68,34 +63,6 @@ function ReceiptPage() {
         searchParams.set("page", pageNumber)
         setSearchParams(searchParams);
     }
-    const handleDeleteReceiptButtonOnClick = async (admId) => {
-        Swal.fire({
-            icon: "warning",
-            titleText: "접수를 취소하시겠습니까?",
-            html:"<div style='font-size: 1.5rem'>해당 환자의 접수를 취소하시려면 확인을 눌러주세요.</div>",
-            showDenyButton: true,
-            confirmButtonText: "<div style='font-size: 1.5rem'>확인</div>",
-            denyButtonText: "<div style='font-size: 1.5rem'>취소</div>"
-        }).then((result) => {
-            if (result.isConfirmed) {
-                deleteReceiptMutation.mutateAsync(admId)
-                .then(response => {
-                    Swal.fire({
-                        icon: "success",
-                        title: "취소되었습니다",
-                        showConfirmButton: false,
-                        timer: 1000
-                    }).then(response => {
-                        queryClient.invalidateQueries(["useGetSearchAllWaitingList"]);
-                    });
-                });
-            }
-        });
-    };
-
-    const handlePaymentButtonOnClick = (admId) => {
-        navigate(`/admission/${admId}/detailBill`);
-    };
 
     return (
         <>
@@ -120,43 +87,29 @@ function ReceiptPage() {
                                 <tr css={s.trHeader}>
                                     <td>환자번호</td>
                                     <td>환자명</td>
+                                    <td>주민등록번호</td>
                                     <td>연락처</td>
-                                    <td>접수시간</td>
-                                    <td>접수취소</td>
-                                    <td>내역서</td>
+                                    <td>등록날짜</td>
+                                    <td>수정날짜</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 {   searchAllList.isLoading || (
-                                    searchAllList?.data?.data.patientAllWaitingList.length > 0 
+                                    searchAllList?.data?.data.patientList.length > 0 
                                     ?
-                                    searchAllList?.data?.data.patientAllWaitingList.map((patient) => (
-                                        <tr key={patient.admId}>
+                                    searchAllList?.data?.data.patientList.map((patient) => (
+                                        <tr key={patient.patientId} css={s.trBody}>
                                             <td>{patient.patientId}</td>
                                             <td>{patient.patientName}</td>
+                                            <td>{patient.regidentNum}</td>
                                             <td>{patient.phoneNum}</td>
-                                            <td>{patient.admDate}</td>
-                                            <td>
-                                                <button 
-                                                    css={s.receiptButtons}
-                                                    onClick={() => handleDeleteReceiptButtonOnClick(patient.admId)}
-                                                >
-                                                    접수취소
-                                                </button>
-                                            </td>
-                                            <td>
-                                                <button
-                                                    css={s.receiptButtons}
-                                                    onClick={() => handlePaymentButtonOnClick(patient.admId)}
-                                                >
-                                                    결제
-                                                </button>
-                                            </td>
+                                            <td>{patient.createdAt}</td>
+                                            <td>{patient.updatedAt}</td>
                                         </tr>
                                     )) 
                                     : 
                                     <tr>
-                                        <td colSpan="6">진료 대기자가 없습니다.</td>
+                                        <td colSpan="6">등록된 환자가 없습니다.</td>
                                     </tr>
                                 )}
                             </tbody>
@@ -178,5 +131,4 @@ function ReceiptPage() {
         </>
     );
 }
-
-export default ReceiptPage;
+export default PatientsPage;

@@ -8,6 +8,8 @@ export const insertVitalByAdmApi = async (vitalInfo) => {
   );
 };
 
+export const searchWaitingListApi = async () => await api.get("/admission/waitings")
+
 export const selectVitalByAdmApi = async (admissionId) => {
   return await api.get(`/admission/${admissionId}/vitals`);
 };
@@ -57,3 +59,5 @@ export const insertAdmissonApi = async (patientId) => {
     params: { patientId },
   });
 };
+
+export const searchPatientsApi = async (params) => await api.get("/admission/patients", {params})
