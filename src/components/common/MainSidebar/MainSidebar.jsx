@@ -25,7 +25,24 @@ function MainSidebar() {
     } else {
       setHeaderState("메인메뉴")
     }
-  },[setHeaderState]);
+  },[]);
+
+  useEffect(() => { // 뒤로 가기 
+    let newHeaderState = "메인메뉴";
+    if (location.pathname.includes("/patient")) {
+      newHeaderState = "접수메뉴변경";
+    } else if (location.pathname.includes("/payment")) {
+      newHeaderState="수납메뉴변경";
+    } else if (location.pathname.includes("/admission")) {
+      newHeaderState="처방메뉴변경";
+    } else if (location.pathname.includes("/summary")) {
+      newHeaderState="통계메뉴변경";
+    } else if (location.pathname.includes("/admin")) {
+      newHeaderState="관리자메뉴변경";
+    } 
+    setHeaderState(newHeaderState);
+}, [location.pathname]);
+
 
   useEffect(() => {
     sessionStorage.setItem("headerState", headerState);
@@ -150,7 +167,6 @@ function MainSidebar() {
             <NavLink to="/admin/users/scorepay" className="NavLinkStyle">
             <span>수가 등록</span></NavLink>
           </div>
-
         </>
       );
     }
