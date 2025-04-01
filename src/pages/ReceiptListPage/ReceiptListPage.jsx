@@ -4,6 +4,7 @@ import { useGetSearchAdmissionListByPatientName } from "../../queries/admissionQ
 import * as s from "./style";
 import React, { useEffect, useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
+import Swal from "sweetalert2";
 
 function ReceiptListPage() {
   const [inputNameValue, setInputNameValue] = useState("");
@@ -34,6 +35,16 @@ function ReceiptListPage() {
   };
 
   const handleInputRegidentNumValueOnChange = (e) => {
+    if (!searchNameValue) {
+      Swal.fire({
+        icon: "warning",
+        title: "이름 입력 필요",
+        text: "이름을 먼저 검색해주세요!",
+        confirmButtonText: "확인",
+      });
+      return;
+    }
+
     setInputRegidentNumValue(e.target.value);
   };
 
@@ -48,7 +59,6 @@ function ReceiptListPage() {
       const filterData = admissionData.filter((item) =>
         item.regidentNum.includes(searchRegidentNumValue)
       );
-      console.log(filterData);
       setAdmissionData(filterData);
     } else {
       setAdmissionData(getAdmissionList?.data?.data);
