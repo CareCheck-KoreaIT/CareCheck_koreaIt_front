@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import { addPatientApi, checkPatientIdApi } from "../apis/patientsApi";
+import { addPatientApi } from "../apis/patientsApi";
 
 export const usePatientMutation = () => useMutation({
     mutationKey: ["PatientMutation"],
