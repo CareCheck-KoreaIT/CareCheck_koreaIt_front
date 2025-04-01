@@ -24,7 +24,6 @@ function AdminUserInfoPage(props) {
     const page = parseInt(searchParams.get("page") || "1");
     const order = searchParams.get("order") || "all";
     const searchName = searchParams.get("searchName") || "";
-
     const searchUserList = useGetSearchUserList({
         page,
         limitCount: 15,

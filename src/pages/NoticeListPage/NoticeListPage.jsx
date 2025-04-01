@@ -86,7 +86,7 @@ function NoticeListPage(props) {
         setSearchParams(searchParams);
     }
 
-    const handleWirtePageOnClick = () => {
+    const handleWritePageOnClick = () => {
         navgiate("/notice/write")
     }
 
