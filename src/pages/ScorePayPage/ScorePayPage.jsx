@@ -31,8 +31,8 @@ function ScorePayPage(props) {
   return (
     <div css={s.layout}>
       <div css={s.titleGroup}>
-        <h1 css={s.title1}>carecheck</h1>
-        <p css={s.title2}>점수당 단가</p>
+        <h1 css={s.title1}>CareCheck</h1>
+        <p css={s.title2}>점수당단가</p>
       </div>
       <main css={s.inputGroup}>
         <div css={s.input}>

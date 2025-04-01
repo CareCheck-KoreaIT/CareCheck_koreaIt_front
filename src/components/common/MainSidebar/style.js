@@ -50,7 +50,7 @@ export const section = css`
     width: 25rem;
     height: 3rem;
     margin-left: 4rem;
-    margin-bottom: 3.5rem;
+    margin-bottom: 4rem;
     color: #ffffff;
     background-color: #464667;
     font-size: 2.5rem;

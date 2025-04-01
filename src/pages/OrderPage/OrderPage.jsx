@@ -83,7 +83,7 @@ function OrderPage(props) {
   return (
     <div css={s.layout}>
       <div css={s.titleGroup}>
-        <h1 css={s.title1}>carecheck</h1>
+        <h1 css={s.title1}>CareCheck</h1>
         <p css={s.title2}>오더등록</p>
       </div>
       <main css={s.inputGroup}>
@@ -101,7 +101,7 @@ function OrderPage(props) {
         </div>
       </main>
       <footer css={s.button}>
-        <button onClick={handleSaveOnClick}>오더 등록</button>
+        <button onClick={handleSaveOnClick}>등록</button>
       </footer>
     </div>
   );

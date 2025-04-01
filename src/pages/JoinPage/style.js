@@ -5,9 +5,9 @@ export const layout = css`
     box-sizing: border-box;
     align-items: center;
     flex-direction: column;
-    margin-top: 5rem;
+    margin-top: 4rem;
     overflow: hidden;
-    width: 100%;
+    width: 150rem;
     height: 100%;
     background-color: #ffffff;
 `;
@@ -17,7 +17,7 @@ export const titleGroup = css`
   justify-content: center;
   flex-direction: column;
   box-sizing: border-box;
-  
+  margin-left: 2.5rem;
 `;
 
 
@@ -28,7 +28,7 @@ export const title1 = css`
     font-size: 6rem;
     color: #464667;
     cursor: default;
-    font-weight: 400;
+    font-weight: 500;
 `;
 
 export const title2 = css`
@@ -37,7 +37,8 @@ export const title2 = css`
     margin: 0;
     font-size: 3.6rem;
     color: #464667;
-    cursor: default;    
+    cursor: default;
+    font-weight: 400;
 `;
 
 export const inputGroup = css`
@@ -46,6 +47,8 @@ export const inputGroup = css`
   flex-direction: column;
   box-sizing: border-box;
   margin-top: 2rem;
+  width: 55rem;
+  height: 40rem;
   
 `;
 
@@ -135,12 +138,22 @@ export const button = css`
   margin-top: 5rem;
 
   & > button {
-    width: 58rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 54rem;
     height: 9.6rem;
+    margin-left: 2.5rem;
     background-color: #464667;
     outline: none;
     border-radius: 1.5rem;
     color: #ffffff;
     font-size: 3.6rem;
+    cursor: pointer;
   }
+
+  & > button:hover {
+    background-color: #505070;
+  }
+
 `;

@@ -5,8 +5,9 @@ export const layout = css`
   box-sizing: border-box;
   align-items: center;
   flex-direction: column;
+  margin-top: 4rem;
   overflow: hidden;
-  width: 100%;
+  width: 150rem;
   height: 100%;
   background-color: #ffffff;
 `;
@@ -16,27 +17,27 @@ export const titleGroup = css`
   justify-content: center;
   flex-direction: column;
   box-sizing: border-box;
-  margin-top: 5rem;
+  margin-left: 2.5rem;
 `;
-
 
 export const title1 = css`
     display: flex;
     justify-content: center;
     margin: 0;
-    font-size: 5rem;
+    font-size: 6rem;
     color: #464667;
     cursor: default;
-    font-weight: 400;
+    font-weight: 500;
 `;
 
 export const title2 = css`
     display: flex;
     justify-content: center;
     margin: 0;
-    font-size: 3rem;
+    font-size: 3.6rem;
     color: #464667;
-    cursor: default;    
+    cursor: default;
+    font-weight: 400;
 `;
 
 export const inputGroup = css`
@@ -44,14 +45,16 @@ export const inputGroup = css`
   justify-content: center;
   flex-direction: column;
   box-sizing: border-box;
-  margin-top: 2rem;
+  margin-left: 6rem;
+  width: 60rem;
+  height: 35rem;
 `;
 
 export const input = css`
   display: flex;
   align-items: center;
   box-sizing: border-box;
-  width: 71rem;
+  width: 60rem;
   font-size: 2rem;
   border-bottom: 0.1rem solid #3283CE;
 
@@ -90,12 +93,21 @@ export const button = css`
   margin-top: 5rem;
 
   & > button {
-    width: 71rem;
-    height: 11.6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 54rem;
+    height: 9.6rem;
+    margin-left: 3rem;
     background-color: #464667;
     outline: none;
     border-radius: 1.5rem;
     color: #ffffff;
     font-size: 3.6rem;
+    cursor: pointer;
+  }
+
+  & > button:hover {
+    background-color: #505070;
   }
 `;

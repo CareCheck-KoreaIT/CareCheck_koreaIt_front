@@ -28,8 +28,6 @@ export const header = css`
 
 export const title = css`
     display: flex;
-
-    
 `;
 
 export const searchItems = css`
