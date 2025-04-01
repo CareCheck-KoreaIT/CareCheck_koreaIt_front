@@ -10,6 +10,7 @@ import {
 } from "../../../atoms/doctorTable/doctorTableAtom";
 import { FaRegCalendarCheck } from "react-icons/fa";
 import { useUpdateStartDateMutation } from "../../../mutations/admissionMutation";
+import Swal from "sweetalert2";
 
 function WaitingList({ usercode }) {
   const updateStartDateMutation = useUpdateStartDateMutation();
@@ -29,7 +30,7 @@ function WaitingList({ usercode }) {
     setAdmissionId(admId);
   };
   const handleUpdateStartDateOnClick = async (admissionId) => {
-    return await updateStartDateMutation.mutateAsync(admissionId);
+    await updateStartDateMutation.mutateAsync(admissionId);
   };
   return (
     <div css={s.layout}>

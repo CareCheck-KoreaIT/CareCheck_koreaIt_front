@@ -37,7 +37,11 @@ function LoginPage(){
 
     const handleLoginButtonOnClick = async () => {
         if(isEmpty()) {
-            alert("사용자 정보를 입력해주세요.");
+            Swal.fire({
+                icon: "error",
+                titleText: "사용자 정보를 다시 확인해주세요",
+                confirmButtonText: "<div style='font-size: 1.5rem'>확인</div>",
+            });
             return;
         }
 
@@ -49,13 +53,23 @@ function LoginPage(){
             const accessToken = response.data.token;
             setTokenLocalStorage(tokenName, accessToken);
             // 로그인 성공 알림
-            alert("로그인 성공. 메인 화면으로 넘어갑니다.");
+            Swal.fire({
+                icon: "success",
+                titleText: "로그인 성공. 메인 화면으로 넘어갑니다.",
+                showConfirmButton: false,
+                timer: 1000,
+            }).then(response => {
+                queryClient.invalidateQueries({queryKey: ["userMeQuery"]});
+                navigate("/");
+            })
             // 캐시 만료
-            await queryClient.invalidateQueries({queryKey: ["userMeQuery"]});
             // 로그인 성공 후 메인화면으로 이동
-            navigate("/");
         } catch (error) {
-            alert("사용자 정보를 다시 확인해주세요.");
+            Swal.fire({
+                icon: "error",
+                titleText: "사용자 정보를 다시 확인해주세요",
+                confirmButtonText: "<div style='font-size: 1.5rem'>확인</div>",
+            });
             console.log(error);
             return;
         }
