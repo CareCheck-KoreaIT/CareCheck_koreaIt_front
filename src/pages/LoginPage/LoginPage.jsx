@@ -55,7 +55,8 @@ function LoginPage(){
             // 로그인 성공 알림
             Swal.fire({
                 icon: "success",
-                titleText: "로그인 성공. 메인 화면으로 넘어갑니다.",
+                titleText: "로그인 성공",
+                html: "<div style='font-size: 1.5rem'>메인 화면으로 넘어갑니다.</div>",
                 showConfirmButton: false,
                 timer: 1000,
             }).then(response => {
