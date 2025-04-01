@@ -86,7 +86,7 @@ function NoticeListPage(props) {
         setSearchParams(searchParams);
     }
 
-    const handleWirtePageOnClick = () => {
+    const handleWritePageOnClick = () => {
         navgiate("/notice/write")
     }
 
@@ -185,7 +185,7 @@ function NoticeListPage(props) {
                     <button disabled={searchNoticeList?.data?.data.lastPage} onClick={() => handlePagenumbersOnClick(page + 1)}><GoChevronRight /></button>
                 </div>
                 <span css={s.wirteBoxwrapper}>
-                    <button css={s.writeBox} onClick={handleWirtePageOnClick}>글쓰기</button>
+                    <button css={s.writeBox} onClick={handleWritePageOnClick}>글쓰기</button>
                 </span>
             </div>
         </div>

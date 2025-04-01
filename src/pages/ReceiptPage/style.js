@@ -34,6 +34,10 @@ export const searchButton = css`
     }
 `;
 
+export const container = css`
+    height: 60rem;
+`;
+
 export const tableContainer = css`
     display: flex;
     justify-content: center;
@@ -49,7 +53,20 @@ export const table = css`
     box-sizing: border-box; /* 테이블 외부 테두리 */
 
     td {
+        box-sizing: border-box;
         border: 0.1rem solid #000000;
+
+        &:nth-of-type(1) {
+            width: 14rem;
+        }
+        &:nth-of-type(2) {
+            width: 20rem;
+        }
+        &:nth-of-type(5),
+        &:nth-of-type(6) {
+            padding: 0.5rem 0;
+            width: 25rem;
+        }
     }
 
 `;
@@ -60,13 +77,10 @@ export const trHeader = css`
     color: white;
 `;
 
-export const trData = css`
-    height: 5rem; /* 데이터 행 높이 설정 */
-`;
-
-export const cancelButton = css`
-    width: 10rem;
-    height: 5rem;
+export const receiptButtons = css`
+    box-sizing: border-box;
+    width: 8rem;
+    height: 4rem;
     padding: 0.5rem 1rem;
     font-size: 1.3rem;
     color: white;
@@ -76,23 +90,10 @@ export const cancelButton = css`
     cursor: pointer;
 
     &:hover {
-        background-color: #464667;
+        background-color: #3d3d5a;
     }
-`;
-
-export const PaymentButton = css`
-    width: 10rem;
-    height: 5rem;
-    padding: 0.5rem 1rem;
-    font-size: 1.3rem;
-    color: white;
-    background-color: #464667;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-
-    &:hover {
-        background-color: #464667;
+    &:active {
+        background-color: #313148;
     }
 `;
 
