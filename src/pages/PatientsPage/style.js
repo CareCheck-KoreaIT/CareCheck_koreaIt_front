@@ -77,6 +77,10 @@ export const trHeader = css`
     color: white;
 `;
 
+export const trBody = css`
+    height: 5rem;
+`;
+
 export const receiptButtons = css`
     box-sizing: border-box;
     width: 8rem;

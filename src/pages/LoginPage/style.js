@@ -16,7 +16,7 @@ export const title = css`
     display: flex;
     justify-content: center;
     font-size: 7rem;
-    font-weight: 400;
+    font-weight: 600;
     color: #464667;
 
 
@@ -36,7 +36,7 @@ export const inputContainer = css`
   display: flex;
   align-items: center;
   position: relative;
-  width: 60rem;
+  width: 55rem;
   padding-bottom: 2rem;
 
 `;
@@ -46,7 +46,6 @@ export const inputstyle = css`
   height: 7rem;
   padding: 0 1rem;
   box-sizing: border-box;
-
   font-size: 2rem;
 
   
@@ -66,7 +65,7 @@ export const button = css`
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 60rem;
+    width: 55rem;
     height: 8rem;
     padding: 1.5rem;
     margin-top: 5rem;

@@ -10,7 +10,6 @@ import Swal from "sweetalert2";
 
 function MedicalReceptionPage(props) {
   const location = useLocation();
-  const navigate = useNavigate();
   const { patientId } = location.state || {};
   const [receptionData, setReceptionData] = useState({
     patientId: patientId || '',
@@ -28,7 +27,8 @@ function MedicalReceptionPage(props) {
 
   const usercodeOptions = [
     { value: '2025020003', label: '거북이'},
-    { value: '2025020004', label: '두루미'}
+    { value: '2025020004', label: '두루미'},
+    { value: '2025020005', label: '김둘리'}
   ]
 
   const handleAdmissionListOnClick = async () => {
@@ -38,11 +38,11 @@ function MedicalReceptionPage(props) {
 
     const result = await Swal.fire({
       title: '정말 등록하시겠습니까?',
-      html: `환자 번호: ${patient} <br>진료과: ${clinicDeft} <br>담당 의사: ${usercode ? usercodeOptions.find(option => option.value === usercode).label:'선택되지 않음'}`,
+      html: `<div style='font-size:1.5rem'>환자 번호: ${patient} <br>진료과: ${clinicDeft} <br>담당 의사: ${usercode ? usercodeOptions.find(option => option.value === usercode).label:'선택되지 않음'}</div>`,
       icon: 'question',
       showCancelButton: true,
-      confirmButtonText: '확인',
-      cancelButtonText: '취소'
+      confirmButtonText: "<div style='font-size: 1.5rem'>확인</div>",
+      cancelButtonText: "<div style='font-size: 1.5rem'>취소</div>"
     })
       if(result.isConfirmed) {
         const requestData = {
@@ -52,30 +52,32 @@ function MedicalReceptionPage(props) {
       
 
       try {
-      
+       
         const response = await axios.post("http://localhost:8080/admission", requestData);
   
         if (response.status === 200) {
           Swal.fire({
             icon: "success",
             title: "접수 등록 완료!",
-            confirmButtonColor: "#3085d6",
-            confirmButtonText: "확인",
-          });
+            // confirmButtonColor: "#3085d6",
+            // confirmButtonText: "확인",
+            showConfirmButton: false,
+            timer: 1000,
+          })
         }
         
       } catch (error) {
         Swal.fire({
           icon: "error",
           title: "접수 등록 실패!",
-          confirmButtonColor: "#d33",
-          confirmButtonText: "확인",
+          // confirmButtonColor: "#d33",
+          // confirmButtonText: "확인",
         });
       }
       
     }
-    navigate("/patient/admission-list")
-  }
+    
+  } 
 
 
   const handleReceptiOnChange = (e) => {

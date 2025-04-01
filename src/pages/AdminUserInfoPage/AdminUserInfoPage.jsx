@@ -11,20 +11,19 @@ import { MdOutlineCancel } from 'react-icons/md';
 import ReactModal from 'react-modal';
 import ChangeUserModal from '../../components/modal/Admin/ChangeUserModal/ChangeUserModal';
 import { CgPassword } from 'react-icons/cg';
-import { useDeleteUserMutation, useUpdateUserPasswordMutation } from '../../mutations/userMutation';
+import { useUpdateUserAccountMutation, useUpdateUserPasswordMutation } from '../../mutations/userMutation';
 import Swal from 'sweetalert2';
 import { useQueryClient } from '@tanstack/react-query';
 
 function AdminUserInfoPage(props) {
     const queryClient = useQueryClient();
     const updateUserPasswordMutation = useUpdateUserPasswordMutation();
-    const deleteUserMutation = useDeleteUserMutation();
+    const updateUserAccountMutation = useUpdateUserAccountMutation();
 
     const [ searchParams, setSearchParams ] = useSearchParams();
     const page = parseInt(searchParams.get("page") || "1");
     const order = searchParams.get("order") || "all";
     const searchName = searchParams.get("searchName") || "";
-
     const searchUserList = useGetSearchUserList({
         page,
         limitCount: 15,
@@ -42,6 +41,15 @@ function AdminUserInfoPage(props) {
             return "간호사";
         } else if(list.userRole.role.roleName === "ROLE_STAFF") {
             return "원무";
+        }
+    }
+
+    // 퇴사 처리 유무
+    const isResignation = (list) => {
+        if(list.accountEnabled === 1) {
+            return "";
+        } else {
+            return list.updatedAt;
         }
     }
 
@@ -146,24 +154,24 @@ function AdminUserInfoPage(props) {
     const handleDeleteButtonOnClick = async (usercode) => {
         const { value: accept } = await Swal.fire({
             icon: "warning",
-            titleText: "삭제하시겠습니까?",
+            titleText: "퇴사 처리하시겠습니까?",
             input: "checkbox",
             inputValue: 0,
             inputPlaceholder: `
                 <div style='font-size: 1.5rem'>
-                ${usercode} 직원을 삭제합니다.
+                ${usercode} 직원을 퇴사 처리합니다.
                 </div>
             `,
             confirmButtonText:"<div style='font-size: 1.5rem'>확인</div>",
             inputValidator: (result) => {
-              return !result && "<div style='font-size: 1.2rem'>삭제하시려면 체크해주세요.</div>";
+              return !result && "<div style='font-size: 1.2rem'>퇴사 처리하시려면 체크해주세요.</div>";
             }
         });
         if (accept) {
-            await deleteUserMutation.mutateAsync({usercode});
+            await updateUserAccountMutation.mutateAsync({usercode});
             Swal.fire({
                 icon: "success",
-                titleText: "삭제되었습니다",
+                titleText: "처리되었습니다",
                 showConfirmButton: false,
                 timer: 1000,
             }).then(response => {
@@ -219,7 +227,8 @@ function AdminUserInfoPage(props) {
                         <div>이메일</div>
                         <div>생성날짜</div>
                         <div>수정날짜</div>
-                        <div>수정/PW초기화/삭제</div>
+                        <div>퇴사여부</div>
+                        <div>수정/PW초기화/퇴사</div>
                     </li>
                     {
                         searchUserList.isLoading ||
@@ -232,6 +241,7 @@ function AdminUserInfoPage(props) {
                                 <div>{userList.email}</div>
                                 <div>{userList.createdAt}</div>
                                 <div>{userList.updatedAt}</div>
+                                <div>{isResignation(userList)}</div>
                                 <div>
                                     <button onClick={() => handleChangeInfoButtonOnClick(userList.usercode)}><IoSettingsSharp /></button>
                                     <button onClick={() => handleChangePasswordButtonOnClick(userList.usercode)}><CgPassword /></button>

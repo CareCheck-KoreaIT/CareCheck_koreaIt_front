@@ -4,10 +4,10 @@ import {
   searchPatientInfoByAdmApi,
   searchTotalPayByAdmApi,
   selectVitalByAdmApi,
-  searchWaitingListApi,
   searchAllWaitingListApi,
   searchAdmissionListApi,
-  getAllWaitingTotalCountApi,
+  searchWaitingListApi,
+  searchPatientsApi,
 } from "../apis/admissionApi";
 
 export const useGetSearchDetailBill = (admissionId) => {
@@ -73,17 +73,15 @@ export const useGetSearchWaitingList = () => {
   });
 };
 
-export const useGetSearchAllWaitingList = (keyword) => {
-  return useQuery({
-    queryKey: ["useGetSearchAllWaitingList", keyword],
-    queryFn: async () => {
-      return await searchAllWaitingListApi(keyword);
-    },
-    retry: 0,
-    staleTime: 1000 * 60 * 5,
-    gcTime: 1000 * 60 * 5,
-  });
-};
+export const useGetSearchAllWaitingList = (params) => useQuery({
+  queryKey: ["useGetSearchAllWaitingList"],
+  queryFn: async () => {
+    return await searchAllWaitingListApi(params);
+  },
+  retry: 0,
+  staleTime: 1000 * 60 * 5,
+  gcTime: 1000 * 60 * 5,
+});
 
 export const useGetAllWaitingTotalCount = (keyword) => {
   return useQuery({
@@ -109,3 +107,13 @@ export const useGetSearchAdmissionListByPatientName = (patientName) => {
     enabled: !!patientName,
   });
 };
+
+export const useGetSearchPatients = (params) => useQuery({
+  queryKey: ["useGetSearchPatients"],
+  queryFn: async () => {
+    return await searchPatientsApi(params)
+  },
+  retry: 0,
+  staleTime: 1000 * 60 * 5,
+  gcTime: 1000 * 60 * 5,
+})
