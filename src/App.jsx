@@ -45,7 +45,6 @@ function App() {
         <Routes>
           <Route path="/*" element={<MainRoute />} />
           <Route path="/auth/*" element={<AuthRoute />} />
-          <Route path="/user/*" element={<UserRoute />} />
         </Routes>
       </MainLayout>
     </>

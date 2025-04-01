@@ -3,35 +3,42 @@ import * as s from './style';
 import React, { useEffect, useRef, useState } from 'react';
 import Quill from 'quill';
 import "quill/dist/quill.snow.css";
-import { useModifyNoticeMutation } from '../../mutations/noticeMutation'; // 수정된 공지사항을 위한 Mutation 훅
+import { useModifyNoticeMutation } from '../../mutations/noticeMutation';
 import Swal from 'sweetalert2';
-import { useParams, useNavigate } from 'react-router-dom';
-import { useGetUsercodeNoticeList } from '../../queries/noticeQuery';  // 기존에 사용하던 훅을 가져옵니다.
+import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
+import { useGetUsercodeNoticeList } from '../../queries/noticeQuery';
 
 function NoticeModifyPage() {
-  const { noticeId, usercode } = useParams(); // URL에서 noticeId와 usercode를 받음
+  const { noticeId } = useParams();
   const navigate = useNavigate();
 
   const modifyNoticeMutation = useModifyNoticeMutation();
+  const [ searchParams, setSearchParams ] = useSearchParams();
+  const page = parseInt(searchParams.get("page") || "1");
+  const searchText = searchParams.get("searchText") || "";
+  const order = searchParams.get("order") || "default";
 
   const [title, setTitle] = useState("");
-  const [quillContent, setQuillContent] = useState(""); // 초기 상태를 빈 문자열로 설정
+  const [quillContent, setQuillContent] = useState("");
 
   const containerRef = useRef();
   const quillInstanceRef = useRef(null);
 
-  // usercode에 해당하는 공지사항 목록을 가져옴
-  const noticeList = useGetUsercodeNoticeList(usercode);
+  const searchNoticeList = useGetUsercodeNoticeList({
+    page,
+    limitCount: 15,
+    order,
+    searchText,
+  });
 
-  // useEffect: noticeId와 usercode에 해당하는 공지사항 데이터를 가져오기
   useEffect(() => {
-    if (!noticeList?.data?.data?.noticeList) {
+    if (!searchNoticeList?.data?.data?.noticeList) {
       return;
     }
 
     const fetchNoticeData = async () => {
       try {
-        const notice = noticeList.data.data.noticeList.find(
+        const notice = searchNoticeList.data.data.noticeList.find(
           (notice) => notice.noticeId === parseInt(noticeId)
         );
 
@@ -54,10 +61,10 @@ function NoticeModifyPage() {
       }
     };
 
-    if (noticeId && usercode) {
+    if (!!noticeId) {
       fetchNoticeData();
     }
-  }, [noticeId, usercode, noticeList?.data?.data?.noticeList]);
+  }, [noticeId, searchNoticeList?.data?.data?.noticeList]);
 
   useEffect(() => {
     if (quillInstanceRef.current) return;
@@ -78,7 +85,6 @@ function NoticeModifyPage() {
 
     quillInstanceRef.current = quillInstance;
 
-    // 변경된 내용을 반영
     quillInstance.on('text-change', () => {
       setQuillContent(quillInstance.root.innerHTML);
     });
@@ -133,11 +139,10 @@ function NoticeModifyPage() {
     const parsedNoticeId = parseInt(noticeId, 10);
   
     try {
-      console.log('보낼 데이터:', parsedNoticeId, usercode, notice);
+      console.log('보낼 데이터:', parsedNoticeId, notice);
   
       await modifyNoticeMutation.mutateAsync({ 
         noticeId: parsedNoticeId, 
-        usercode: usercode,
         notice: notice
       });
   
@@ -147,7 +152,8 @@ function NoticeModifyPage() {
         showConfirmButton: false,
         timer: 1000,
       });
-      navigate(`/notice/${usercode}`);
+      navigate(`/notice/mylist`);
+
     } catch (error) {
       console.error('에러 발생:', error);
       await Swal.fire({

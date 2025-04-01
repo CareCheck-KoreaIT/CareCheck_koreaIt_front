@@ -13,7 +13,7 @@ const NoticeMyListModal = ({ isOpen, setIsOpen, notice }) => {
 
     const handleModifyButtonClick = () => {
         // 수정 버튼 클릭 시 NoticeModifyPage로 이동
-        navigate(`/notice/${notice.usercode}/modify/${notice.noticeId}`);
+        navigate(`/notice/modify/${notice.noticeId}`);
     };
 
     return (

@@ -114,7 +114,10 @@ function NoticeListPage(props) {
         <div css={s.container}>
             <div css={s.header}>
                 <div css={s.title}>
-                    <h2>공지사항</h2>
+                    <h2>
+                        공지사항
+                        <span>- 총 {searchNoticeList?.data?.data?.totalElements || 0}건 -</span>
+                    </h2>
                 </div>
                 <div css={s.searchItems}>
                     <Select 
@@ -184,9 +187,9 @@ function NoticeListPage(props) {
                     }
                     <button disabled={searchNoticeList?.data?.data.lastPage} onClick={() => handlePagenumbersOnClick(page + 1)}><GoChevronRight /></button>
                 </div>
-                <span css={s.wirteBoxwrapper}>
+                <div css={s.writeLayout}>
                     <button css={s.writeBox} onClick={handleWirtePageOnClick}>글쓰기</button>
-                </span>
+                </div>
             </div>
         </div>
     );

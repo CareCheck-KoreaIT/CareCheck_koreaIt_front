@@ -88,6 +88,12 @@ function TablePage() {
     queryClient.invalidateQueries(["useGetSearchWaitingList"]);
     setAdmissionId("");
   };
+  const today = new Date();
+  const dateString = today.toLocaleDateString("ko-KR", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
   return (
     <>
       <div css={s.layout}>
@@ -96,7 +102,7 @@ function TablePage() {
             <table css={s.leftTable}>
               <tbody>
                 <tr onClick={handleRefetchOnClick}>
-                  <td>진료 대기자 명단</td>
+                  <td>{dateString} 대기자 명단</td>
                 </tr>
               </tbody>
             </table>
@@ -106,7 +112,7 @@ function TablePage() {
                 <tr>
                   <td>차트번호</td>
                   <td>환자명</td>
-                  <td>나이</td>
+                  <td>접수시간</td>
                   <td>시작</td>
                 </tr>
               </tbody>
@@ -132,14 +138,17 @@ function TablePage() {
                   <tr>
                     <td>차트번호</td>
                     <td>환자명</td>
-                    <td>나이</td>
                     <td>키</td>
                     <td>몸무게</td>
+                    <td>체온</td>
                   </tr>
                 </tbody>
               </table>
-              <div css={s.tableLayout}>
-                <AdmPatientVital admissionId={admissionId} />
+              <div css={s.vitalLayout}>
+                <AdmPatientVital
+                  admissionId={admissionId}
+                  usercode={loginUser?.data?.usercode}
+                />
               </div>
             </div>
             {/*환자정보 끝*/}

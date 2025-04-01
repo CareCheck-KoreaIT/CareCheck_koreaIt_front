@@ -112,7 +112,7 @@ function MainSidebar() {
             <span>처방 관리</span>
             </NavLink>
           </div>
-          <div>
+          {/* <div>
             <BsColumnsGap />
             <NavLink to={`/admission/${loginUser?.data?.usercode}/certificate`} className="NavLinkStyle">
             <span>영수증</span>
@@ -123,7 +123,7 @@ function MainSidebar() {
             <NavLink to={`/admission/${loginUser?.data?.usercode}/detailbill`} className="NavLinkStyle">
             <span>진료비 세부내역서</span>
             </NavLink>
-          </div>
+          </div> */}
         </>
       );
       case "통계메뉴변경":

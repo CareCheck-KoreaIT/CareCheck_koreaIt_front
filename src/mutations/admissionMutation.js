@@ -3,6 +3,7 @@ import {
   deleteReceiptApi,
   insertDiagnosisApi,
   insertOrdersApi,
+  insertVitalByAdmApi,
   updateEndDate,
   updateStartDate,
 } from "../apis/admissionApi";
@@ -40,4 +41,11 @@ export const useDeleteReceiptMutation = () =>
     mutationKey: ["useDeleteReceiptMutation"],
     mutationFn: deleteReceiptApi,
     retry: 0,
-  })
+  });
+
+export const useInsertVitallMutation = () =>
+  useMutation({
+    mutationKey: ["useInsertVitalMutation"],
+    mutationFn: insertVitalByAdmApi,
+    retry: 0,
+  });

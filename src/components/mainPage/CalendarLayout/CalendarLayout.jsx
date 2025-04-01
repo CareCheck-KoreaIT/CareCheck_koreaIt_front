@@ -38,7 +38,10 @@ function CalendarLayout(props) {
           locale="ko"
           events={events}
           height="100%"
-          dayCellContent={(e) => e.date.getDate()} 
+          dayCellContent={(e) => e.date.getDate()}
+          eventContent={(eventInfo) => {
+            return <div>{eventInfo.event.title}</div>;
+          }}
         />
         <button css={s.addEventButton} onClick={() => setShowAddEventModal(true)}>
           일정 추가하기
