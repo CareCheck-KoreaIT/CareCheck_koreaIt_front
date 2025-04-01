@@ -4,6 +4,7 @@ import { useGetSearchAdmissionListByPatientName } from "../../queries/admissionQ
 import * as s from "./style";
 import React, { useEffect, useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
+import Swal from "sweetalert2";
 
 function ReceiptListPage() {
   const [inputNameValue, setInputNameValue] = useState("");
@@ -34,6 +35,16 @@ function ReceiptListPage() {
   };
 
   const handleInputRegidentNumValueOnChange = (e) => {
+    if (!searchNameValue) {
+      Swal.fire({
+        icon: "warning",
+        title: "이름 입력 필요",
+        text: "이름을 먼저 검색해주세요!",
+        confirmButtonText: "확인",
+      });
+      return;
+    }
+
     setInputRegidentNumValue(e.target.value);
   };
 
@@ -48,7 +59,6 @@ function ReceiptListPage() {
       const filterData = admissionData.filter((item) =>
         item.regidentNum.includes(searchRegidentNumValue)
       );
-      console.log(filterData);
       setAdmissionData(filterData);
     } else {
       setAdmissionData(getAdmissionList?.data?.data);
@@ -61,13 +71,14 @@ function ReceiptListPage() {
         <h2>수납 명단 조회</h2>
         <input
           type="text"
+          placeholder="이름 검색"
           value={inputNameValue}
           onChange={handleInputNameValueOnChange}
           onKeyDown={handleSearchNameValueOnKeyDown}
         />
         <input
           type="text"
-          placeholder="주민번호 검색"
+          placeholder="주민번호(추가필터)"
           value={inputRegidentNumValue}
           onChange={handleInputRegidentNumValueOnChange}
           onKeyDown={handleSearchRegidentNumValueOnKeyDown}
