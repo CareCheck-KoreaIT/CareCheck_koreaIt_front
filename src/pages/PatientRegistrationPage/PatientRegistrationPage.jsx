@@ -92,7 +92,7 @@ function PatientRegistrationPage(props) {
             <div css={s.layout}>
                 <div>
                 <header css={s.titleGroup}>
-                    <h1 css={s.title1}>CareCheck</h1>
+                    <h2 css={s.title1}>CareCheck</h2>
                     <p css={s.title2}>환자 등록</p>
                 </header>
                 <main css={s.inputGroup}>

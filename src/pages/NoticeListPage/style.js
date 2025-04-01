@@ -21,6 +21,11 @@ export const title = css`
         font-size: 2.5rem;
         font-weight: 400;
         color: #2c2c43;
+
+        & > span {
+            margin-left: 1rem;
+            font-size: 1.2rem;
+        }
     }
 `;
 
@@ -34,7 +39,7 @@ export const searchItems = css`
 `;
 
 export const searchInput = css`
-    margin-left: 0.3rem;
+    margin-left: 0.8rem;
 `;
 
 export const searchButton = css`
@@ -59,7 +64,7 @@ export const searchButton = css`
 
 export const main = css`
     padding: 1rem;
-    height: 50rem;
+    height: 55rem;
 `;
 
 export const noticeListContainer = css`
@@ -103,6 +108,7 @@ export const noticeListContainer = css`
         }
         & > div:nth-of-type(2) {
             flex-grow: 1;
+            cursor: pointer;
         }
         & > div:nth-of-type(3) {
             width: 18rem;
@@ -119,9 +125,8 @@ export const noticeListContainer = css`
 
 export const footer = css`
     display: flex;
+    box-sizing: border-box;
     justify-content: center;
-    align-items: center;
-    position: relative;
     padding: 1rem;
 `;
 
@@ -166,25 +171,22 @@ export const pageNum = (isSelect) => css`
     background-color: ${isSelect ? "#a4a4ca" : "#ffffff"} !important;
 `;
 
-export const wirteBoxwrapper = css`
-    position: absolute;
-    right: 5rem;
-    top: 50%;
-    transform: translateY(-50%);
+export const writeLayout = css`
+    position: relative;
 `;
 
 export const writeBox = css`
-    box-sizing: border-box;
-    border-radius: 0.2rem;
+    position: absolute;
+    left: 55rem;
     width: 8rem;
     height: 2.5rem;
-    border: 1px solid #eeeeee;
+    border-radius: 0.5rem;
+    border: none;
     background-color: #464667;
-    color: #dbdbdb;
+    color: #fafafa;
     cursor: pointer;
 
     &:hover{
         background-color: #3A3A4B;
     }
-
 `;

@@ -10,7 +10,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { getViewCountApi } from '../../apis/noticeApi';
 import ReactModal from 'react-modal';
 import NoticeModal from '../../components/modal/NoticeModal/NoticeModal';
-import { useGetSearchNoticeList } from '../../queries/NoticeQuery';
+import { useGetSearchNoticeList } from '../../queries/noticeQuery';
 
 
 function NoticeListPage(props) {
@@ -114,7 +114,10 @@ function NoticeListPage(props) {
         <div css={s.container}>
             <div css={s.header}>
                 <div css={s.title}>
-                    <h2>공지사항</h2>
+                    <h2>
+                        공지사항
+                        <span>- 총 {searchNoticeList?.data?.data?.totalElements || 0}건 -</span>
+                    </h2>
                 </div>
                 <div css={s.searchItems}>
                     <Select 
@@ -184,9 +187,9 @@ function NoticeListPage(props) {
                     }
                     <button disabled={searchNoticeList?.data?.data.lastPage} onClick={() => handlePagenumbersOnClick(page + 1)}><GoChevronRight /></button>
                 </div>
-                <span css={s.wirteBoxwrapper}>
-                    <button css={s.writeBox} onClick={handleWritePageOnClick}>글쓰기</button>
-                </span>
+                <div css={s.writeLayout}>
+                    <button css={s.writeBox} onClick={handleWirtePageOnClick}>글쓰기</button>
+                </div>
             </div>
         </div>
     );

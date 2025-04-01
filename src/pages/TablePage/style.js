@@ -43,7 +43,7 @@ export const leftTable = css`
 
   & tbody > tr,
   td {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     font-weight: bold;
     color: #ffffff;
     cursor: pointer;
@@ -128,6 +128,11 @@ export const patientInfo = css`
 export const lefttableLayout = css`
   height: 60rem;
   overflow-y: auto;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 export const vitalLayout = css`
   height: 10rem;
@@ -135,6 +140,11 @@ export const vitalLayout = css`
 export const tableLayout = css`
   height: 10rem;
   overflow-y: auto;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 export const diagnosisRegister = css`
   /*상병 등록*/
