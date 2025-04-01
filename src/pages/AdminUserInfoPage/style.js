@@ -34,7 +34,7 @@ export const searchItems = css`
 `;
 
 export const searchInput = css`
-    margin-left: 0.3rem;
+    margin-left: 0.8rem;
 `;
 
 export const searchButton = css`
@@ -96,16 +96,16 @@ export const userListContainer = css`
         }
         & > div:nth-of-type(1) {
             padding-left: 0.5rem;
-            width: 18rem;
-        }
-        & > div:nth-of-type(2) {
-            width: 18rem;
-        }
-        & > div:nth-of-type(3) {
             width: 15rem;
         }
+        & > div:nth-of-type(2) {
+            width: 15rem;
+        }
+        & > div:nth-of-type(3) {
+            width: 13rem;
+        }
         & > div:nth-of-type(4) {
-            width: 24rem;
+            width: 20rem;
         }
         & > div:nth-of-type(5) {
             flex-grow: 1;
@@ -120,6 +120,10 @@ export const userListContainer = css`
         }
 
         & > div:nth-of-type(8) {
+            width: 16.5rem;
+        }
+
+        & > div:nth-of-type(9) {
             display: flex;
             align-items: center;
             width: 11rem;
