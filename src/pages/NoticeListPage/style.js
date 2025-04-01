@@ -189,5 +189,4 @@ export const writeBox = css`
     &:hover{
         background-color: #3A3A4B;
     }
-
 `;

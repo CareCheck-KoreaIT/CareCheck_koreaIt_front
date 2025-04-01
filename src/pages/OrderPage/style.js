@@ -20,7 +20,6 @@ export const titleGroup = css`
   margin-left: 2.5rem;
 `;
 
-
 export const title1 = css`
     display: flex;
     justify-content: center;
@@ -101,6 +100,7 @@ export const button = css`
     font-size: 3.6rem;
     cursor: pointer;
   }
+  
   & > button:hover {
     background-color: #505070;
   }
