@@ -21,6 +21,7 @@ export const header = css`
     font-size: 1.9rem;
     text-align: center;
     margin-left: 1.5rem;
+    
   }
 `;
 

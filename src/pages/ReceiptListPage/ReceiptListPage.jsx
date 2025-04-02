@@ -14,6 +14,7 @@ function ReceiptListPage() {
   const [searchRegidentNumValue, setSearchRegidentNumValue] = useState(
     inputRegidentNumValue
   );
+  const [ isDisabled, setIsDisabled ] = useState(true);
 
   const queryClient = useQueryClient();
   const loginUser = queryClient.getQueryData(["userMeQuery"]);
@@ -65,6 +66,13 @@ function ReceiptListPage() {
     }
   }, [searchRegidentNumValue, getAdmissionList?.data]);
 
+  // 이름 검색 값이 없을 경우 주민 번호 검색 불가(disabled)
+  useEffect(() => {
+    if (searchNameValue.length > 0 && getAdmissionList?.data?.data.length > 0) {
+      setIsDisabled(false);
+    }
+  }, [searchNameValue, getAdmissionList?.data])
+
   return (
     <div css={s.layout}>
       <div css={s.header}>
@@ -82,6 +90,7 @@ function ReceiptListPage() {
           value={inputRegidentNumValue}
           onChange={handleInputRegidentNumValueOnChange}
           onKeyDown={handleSearchRegidentNumValueOnKeyDown}
+          disabled={isDisabled}
         />
       </div>
       <div css={s.main}>
