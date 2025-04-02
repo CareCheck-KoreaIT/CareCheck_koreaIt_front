@@ -59,16 +59,17 @@ export const table = css`
         &:nth-of-type(1) {
             width: 14rem;
         }
+
         &:nth-of-type(2) {
             width: 20rem;
         }
+
         &:nth-of-type(5),
         &:nth-of-type(6) {
             padding: 0.5rem 0;
             width: 25rem;
         }
     }
-
 `;
 
 export const trHeader = css`
@@ -86,17 +87,17 @@ export const receiptButtons = css`
     color: white;
     background-color: #464667;
     border: none;
-    border-radius: 4px;
+    border-radius: 0.5rem;
     cursor: pointer;
 
     &:hover {
         background-color: #3d3d5a;
     }
+
     &:active {
         background-color: #313148;
     }
 `;
-
 
 export const footer = css`
     display: flex;
@@ -128,6 +129,7 @@ export const pageNumbers = css`
         &:hover {
             background-color: #d2d2d3;
         }
+        
         &:active {
             background-color: #a4a4ca;
         }

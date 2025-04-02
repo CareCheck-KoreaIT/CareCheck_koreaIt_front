@@ -114,7 +114,7 @@ export const patientInfo = css`
   width: 100%;
   border: 0.1rem solid black;
   border-collapse: collapse;
-
+  
   & > tr,
   td {
     width: 40rem;
@@ -239,7 +239,7 @@ export const tableFooter = css`
     margin-left: 1rem;
     box-sizing: border-box;
     border: 0.1rem solid #9f9f9f;
-    border-radius: 10px;
+    border-radius: 1rem;
     cursor: pointer;
 
     width: 10rem;

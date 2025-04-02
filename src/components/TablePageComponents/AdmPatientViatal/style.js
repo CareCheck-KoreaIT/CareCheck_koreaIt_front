@@ -43,6 +43,7 @@ export const tableFooter = css`
   align-items: center;
   justify-content: end;
   margin-bottom: 0.5rem;
+
   & > button {
     display: flex;
     justify-content: center;
@@ -50,7 +51,7 @@ export const tableFooter = css`
     margin-left: 1rem;
     box-sizing: border-box;
     border: 0.1rem solid #9f9f9f;
-    border-radius: 10px;
+    border-radius: 1rem;
     cursor: pointer;
 
     width: 10rem;

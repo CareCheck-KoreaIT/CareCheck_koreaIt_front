@@ -59,7 +59,7 @@ function PatientRegistrationPage(props) {
             });
             return false;
         }
-
+        
         return true;
     }
 

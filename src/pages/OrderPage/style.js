@@ -76,7 +76,7 @@ export const input = css`
       border: none;
     }
   }
-
+  
 `;
 
 export const button = css`
