@@ -104,7 +104,6 @@ export const startDate = css`
       margin-bottom: 0.3rem;
     }
   }
-
 `;
 
 
