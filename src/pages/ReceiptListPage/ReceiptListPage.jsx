@@ -25,6 +25,12 @@ function ReceiptListPage() {
     setAdmissionData(getAdmissionList?.data?.data || []);
   }, [searchNameValue, getAdmissionList?.data]);
 
+  useEffect(() => {
+    if(searchNameValue.length > 0) {
+      getAdmissionList.refetch();
+    }
+  }, [searchNameValue, searchRegidentNumValue])
+
   const handleInputNameValueOnChange = (e) => {
     setInputNameValue(e.target.value);
   };
@@ -70,8 +76,10 @@ function ReceiptListPage() {
   useEffect(() => {
     if (searchNameValue.length > 0 && getAdmissionList?.data?.data.length > 0) {
       setIsDisabled(false);
+    } else {
+      setIsDisabled(true);
     }
-  }, [searchNameValue, getAdmissionList?.data])
+  }, [getAdmissionList?.data])
 
   return (
     <div css={s.layout}>
