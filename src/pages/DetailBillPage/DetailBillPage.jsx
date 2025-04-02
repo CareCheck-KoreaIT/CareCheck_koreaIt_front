@@ -20,6 +20,7 @@ function DetailBillPage() {
     month: "long",
     day: "numeric",
   });
+  
   const param = useParams();
   const [patientData, setPatientData] = useState({
     admissionId: null,

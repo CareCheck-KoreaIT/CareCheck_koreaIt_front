@@ -20,11 +20,13 @@ export const container = css`
   height: 100%;
   border: 0.1rem solid #000000;
 `;
+
 export const title = css`
   text-align: center;
   font-size: 4rem;
   font-weight: 400;
 `;
+
 export const patientInfo = css`
   box-sizing: border-box;
   display: flex;
@@ -54,12 +56,14 @@ export const patientTable = css`
   border: 0.1rem solid #000000;
   border-collapse: collapse;
   table-layout: fixed;
+
   & td {
     border: 0.1rem solid #000000;
     padding: 0.5rem;
     text-align: center;
     font-size: 1.2rem;
   }
+
   & input[type="date"] {
     border: none;
     width: 95%;
@@ -88,6 +92,7 @@ export const billDetailHead = css`
   display: flex;
   margin-bottom: 0.8rem;
   gap: 0.1rem;
+
   & > div {
     height: 2rem;
     background-color: #464667;
@@ -122,6 +127,7 @@ export const billDetailTable = css`
   border: 0.1rem solid #000000;
   border-collapse: collapse;
   table-layout: fixed;
+  
   & td,
   & th {
     box-sizing: border-box;

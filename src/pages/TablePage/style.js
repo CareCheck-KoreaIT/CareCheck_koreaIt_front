@@ -33,10 +33,10 @@ export const parent = css`
 
 export const leftTable = css`
   display: flex;
+  box-sizing: border-box;
   justify-content: center;
   align-items: center;
-
-  box-sizing: border-box;
+  margin-bottom: 1.5rem;
   border: 0.1rem solid #000000;
   height: 5rem;
   background-color: #464667;
@@ -49,7 +49,6 @@ export const leftTable = css`
     cursor: pointer;
   }
 
-  margin-bottom: 1.5rem;
 `;
 
 export const waitingList = css`
@@ -93,9 +92,9 @@ export const rightTable = css`
   align-items: center;
   border: 0.1rem solid #000000;
   height: 4rem;
-  background-color: #464667;
   margin-bottom: 0.5rem;
   overflow-y: auto;
+  background-color: #464667;
 
   & > tbody > tr {
     font-size: 2rem;
@@ -251,7 +250,7 @@ export const tableFooter = css`
     &:hover {
       background-color: #464457;
     }
-    
+
     & > span {
       font-size: 1.5rem;
       font-weight: bold;
