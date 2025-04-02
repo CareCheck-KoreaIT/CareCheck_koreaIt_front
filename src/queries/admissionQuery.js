@@ -84,16 +84,15 @@ export const useGetSearchAllWaitingList = (params) => useQuery({
 });
 
 export const useGetSearchAdmissionListByParams = (params) => {
-  console.log(params);
   return useQuery({
-    queryKey: ["useGetSearchAdmissionListByParams"],
+    queryKey: ["useGetSearchAdmissionListByParams", params],
     queryFn: async () => {
       return await searchAdmissionListApi(params);
     },
     retry: 0,
     staleTime: 1000 * 60 * 5,
     gcTime: 1000 * 60 * 5,
-    enabled: !!params && params.patientName != null && params.patientName.trim() !== "",
+    enabled: !!params.patientName.trim(),
   });
 };
 
