@@ -11,22 +11,26 @@ function SummaryChartUsercodePage() {
   const dateString = today.getFullYear();
   const [year, setYear] = useState(dateString);
   const usernameByroleId = useGetUsercodeByRoleId(2);
+
   //2번 = 데이터베이스의 고정값으로 ROLE_DOCTOR 시행.
   const [selectUser, setSelectUser] = useState({
     usercode: "",
     username: "",
   });
+
   const [userList, setUserList] = useState([]);
   const summaryInfoByUsercode = useGetTotalSummaryByUsercode(
     selectUser.usercode,
     year
   );
+
   const [summaryData, setSummaryData] = useState({
     "1분기": 0,
     "2분기": 0,
     "3분기": 0,
     "4분기": 0,
   });
+
   useEffect(() => {
     if (usernameByroleId?.data?.data) {
       setUserList(usernameByroleId?.data?.data);
@@ -59,6 +63,7 @@ function SummaryChartUsercodePage() {
   const changeYearOnChange = (e) => {
     setYear(e.target.value);
   };
+  
   return (
     <div css={s.layout}>
       <div css={s.header}>

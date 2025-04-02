@@ -114,7 +114,7 @@ export const patientInfo = css`
   width: 100%;
   border: 0.1rem solid black;
   border-collapse: collapse;
-
+  
   & > tr,
   td {
     width: 40rem;

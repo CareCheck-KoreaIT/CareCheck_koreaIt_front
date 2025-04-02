@@ -8,12 +8,14 @@ export const layout = css`
   align-items: center;
   flex-direction: column;
 `;
+
 export const header = css`
   & > h2 {
     font-size: 3.5rem;
     font-weight: bold;
     text-align: center;
   }
+
   & > input {
     width: 20rem;
     height: 3rem;
@@ -39,6 +41,7 @@ export const main = css`
   border: 0.1rem solid #dbdbdb;
   box-sizing: border-box;
 `;
+
 export const bodytable = css`
   box-sizing: border-box;
   border: 0.1rem solid #dbdbdb;
@@ -73,18 +76,23 @@ export const bodytable = css`
     background-color: #f1f1f1;
     cursor: pointer;
   }
+
   td:nth-of-type(2) {
     width: 5rem;
   }
+
   td:nth-of-type(3) {
     width: 15rem;
   }
+
   td:nth-of-type(4) {
     width: 13rem;
   }
+
   td:nth-of-type(5) {
     width: 10rem;
   }
+  
   td:nth-of-type(6),
   td:nth-of-type(7) {
     width: 9rem;
