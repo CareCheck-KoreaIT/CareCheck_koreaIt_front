@@ -22,10 +22,10 @@ function SummaryChartUsercodePage() {
     year
   );
   const [summaryData, setSummaryData] = useState({
-    "1분기": 1000000,
-    "2분기": 2000000,
-    "3분기": 3000000,
-    "4분기": 4000000,
+    "1분기": 0,
+    "2분기": 0,
+    "3분기": 0,
+    "4분기": 0,
   });
   useEffect(() => {
     if (usernameByroleId?.data?.data) {

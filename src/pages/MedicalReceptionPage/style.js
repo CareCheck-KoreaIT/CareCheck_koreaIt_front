@@ -59,7 +59,6 @@ export const input = css`
   & > label {
     width: 10rem;
     height: 8.6rem;
-    margin-right: 2rem;
     text-align: left;
     line-height: 8rem;
     
@@ -82,6 +81,10 @@ export const input = css`
       }
     }
 
+`;
+
+export const inputNum = css`
+  margin-right: 2rem;
 `;
 
 export const button = css`
