@@ -22,6 +22,9 @@ export const header = css`
     text-align: center;
     margin-left: 1.5rem;
     
+    &:disabled {
+      background-color: #dbdbdb;
+    }
   }
 `;
 
