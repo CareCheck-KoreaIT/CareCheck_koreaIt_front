@@ -188,7 +188,7 @@ function NoticeListPage(props) {
                     <button disabled={searchNoticeList?.data?.data.lastPage} onClick={() => handlePagenumbersOnClick(page + 1)}><GoChevronRight /></button>
                 </div>
                 <div css={s.writeLayout}>
-                    <button css={s.writeBox} onClick={handleWirtePageOnClick}>글쓰기</button>
+                    <button css={s.writeBox} onClick={handleWritePageOnClick}>글쓰기</button>
                 </div>
             </div>
         </div>
