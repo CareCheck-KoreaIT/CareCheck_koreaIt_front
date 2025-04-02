@@ -98,7 +98,7 @@ export const button = css`
     align-items: center;
     width: 54rem;
     height: 9.6rem;
-    margin-left: 3rem;
+    margin-left: 6rem;
     background-color: #464667;
     outline: none;
     border-radius: 1.5rem;
