@@ -1,8 +1,6 @@
 /**@jsxImportSource @emotion/react */
 import * as s from "./style";
 import React, { useState } from "react";
-import MainSidebar from "../../components/common/MainSidebar/MainSidebar";
-import NoTitleHeaderMenu from "../../components/NoTitleHeaderMenu/NoTitleHeaderMenu";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Select from 'react-select';
@@ -14,6 +12,7 @@ function MedicalReceptionPage(props) {
   const [receptionData, setReceptionData] = useState({
     patientId: patientId || '',
   });
+
 
   const [ clinicData, setClinicData] = useState({
     clinicDeft: null,
@@ -104,7 +103,7 @@ function MedicalReceptionPage(props) {
         </div>
         <main css={s.inputGroup}>
                 <div css={s.input}>
-                  <label htmlFor="chartNumber">환자 번호</label>
+                  <label css={s.inputNum} htmlFor="chartNumber">환자 번호</label>
                   <input 
                     type="text" 
                     name="patientId" 
