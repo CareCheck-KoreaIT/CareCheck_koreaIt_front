@@ -141,6 +141,7 @@ export const userListContainer = css`
                 width: 4rem;
                 height: 2rem;
                 cursor: pointer;
+                
                 &:nth-of-type(1),
                 &:nth-of-type(2) {
                     background-color: #464667;
