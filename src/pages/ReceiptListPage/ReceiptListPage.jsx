@@ -36,7 +36,7 @@ function ReceiptListPage() {
   };
 
   const handleSearchNameValueOnKeyDown = (e) => {
-    if (e.keyCode === 13) {
+    if (e.key === "Enter") {
       setSearchNameValue(inputNameValue);
     }
   };
@@ -56,7 +56,7 @@ function ReceiptListPage() {
   };
 
   const handleSearchRegidentNumValueOnKeyDown = (e) => {
-    if (e.keyCode === 13) {
+    if (e.key === "Enter") {
       setSearchRegidentNumValue(inputRegidentNumValue);
     }
   };
