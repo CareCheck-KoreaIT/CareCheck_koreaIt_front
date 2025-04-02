@@ -48,7 +48,7 @@ export const inputGroup = css`
   margin-left: 6rem;
   width: 60rem;
   height: 35rem;
-`;
+  `;
 
 export const input = css`
   display: flex;
@@ -57,18 +57,18 @@ export const input = css`
   width: 60rem;
   font-size: 2rem;
   border-bottom: 0.1rem solid #3283CE;
-
+  
+  
   & > label {
     width: 10rem;
     height: 8.6rem;
     margin-right: 2rem;
     text-align: left;
     line-height: 8rem;
-    
   }
 
   & > input {
-      width: 60rem;
+      width: 48rem;
       height: 8.4rem;
       border: none;
       font-size: 2rem;
@@ -98,7 +98,7 @@ export const button = css`
     align-items: center;
     width: 54rem;
     height: 9.6rem;
-    margin-left: 3rem;
+    margin-left: 6rem;
     background-color: #464667;
     outline: none;
     border-radius: 1.5rem;
