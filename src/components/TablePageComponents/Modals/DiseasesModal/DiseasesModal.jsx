@@ -23,6 +23,7 @@ function DiseasesModal({ admissionId }) {
     diseaseCode: "",
     diseaseKName: "",
   });
+  
   const searchDiseases = searchDiseaseByKeyword?.data?.data || [];
   useEffect(() => {
     setNewDiagnosis({
@@ -41,6 +42,7 @@ function DiseasesModal({ admissionId }) {
       setSearchKeyword(inputKeyword);
     }
   };
+
   const handleSelectDiseases = (disease) => {
     // 새로운 진단 객체 생성
     const newDiagnosis = {
@@ -62,6 +64,7 @@ function DiseasesModal({ admissionId }) {
   const handleSaveSearchKeywordOnClick = () => {
     setSearchKeyword(inputKeyword);
   };
+
   const handleSaveDiseasesOnClick = () => {
     if (selectDiseases.length === 0) {
       return;
@@ -69,6 +72,7 @@ function DiseasesModal({ admissionId }) {
     setListDiagnosisDisease([...listDiagnosisDisease, ...selectDiseases]);
     setSelectDiseases([]);
   };
+
   return (
     <div css={s.container}>
       <div css={s.header}>
