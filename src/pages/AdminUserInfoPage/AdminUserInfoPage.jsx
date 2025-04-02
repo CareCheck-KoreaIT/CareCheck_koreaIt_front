@@ -213,6 +213,7 @@ function AdminUserInfoPage(props) {
                         value={searchValue}
                         onChange={handleSearchInputOnChange}
                         onKeyDown={handleSearchInputOnKeyDown}
+                        placeholder="이름으로 검색"
                     />
                     <button css={s.searchButton} onClick={handleSearchButtonOnClick}><BiSearch /></button>
                 </div>
