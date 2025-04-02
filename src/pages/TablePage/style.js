@@ -46,7 +46,6 @@ export const leftTable = css`
     font-size: 2.2rem;
     font-weight: bold;
     color: #ffffff;
-    cursor: pointer;
   }
 
 `;

@@ -95,7 +95,7 @@ function PatientRegistrationPage(props) {
                 <main css={s.inputGroup}>
                     <div css={s.inputLineGroup}>
                         <div css={s.input2}>
-                            <label htmlFor="patientName">이름</label>
+                            <label htmlFor="patientName" css={{ wordSpacing: '3rem' }}>이 름</label>
                             <input 
                                 type="text"
                                 name="patientName"
