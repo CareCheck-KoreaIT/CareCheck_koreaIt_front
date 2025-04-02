@@ -55,6 +55,7 @@ export const inputLineGroup = css`
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    margin-left: 2.45rem;
 `;
 
 export const input = css`
@@ -87,15 +88,14 @@ export const input = css`
       border: none;
     }
   }
-
 `;
 
 export const input2 = css`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 1rem 2rem 0;
-  width: 71rem;
+  box-sizing: border-box;
+  width: 60rem;
   font-size: 2rem;
   border-bottom: 0.1rem solid #3283CE;
   
