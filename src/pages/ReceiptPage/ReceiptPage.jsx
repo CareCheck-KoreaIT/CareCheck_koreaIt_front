@@ -4,7 +4,6 @@ import * as s from './style';
 import React, { useEffect, useState } from 'react';
 import { BiSearch } from 'react-icons/bi';
 import { useDeleteReceiptMutation } from '../../mutations/admissionMutation';
-import DeleteReceiptModal from '../../components/modal/DeleteReceiptModal/DeleteReceiptModal';
 import Swal from 'sweetalert2';
 import { GoChevronLeft, GoChevronRight } from 'react-icons/go';
 import { useNavigate, useSearchParams } from 'react-router-dom';
@@ -23,7 +22,6 @@ function ReceiptPage() {
         limitCount: 10,
         searchText,
     });
-    
 
     const [ pageNumbers, setPageNumbers ] = useState([]);
     const [ searchValue, setSearchValue ] = useState(searchText);

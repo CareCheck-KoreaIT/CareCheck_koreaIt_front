@@ -199,11 +199,11 @@ export const prescriptionRegister = css`
   }
 
   & > td:nth-of-type(1) {
-    width: 20rem;
+    width: 21.3rem;
   }
 
   & > td:nth-of-type(2) {
-    width: 35rem;
+    width: 34.5rem;
   }
 
   & > td:nth-of-type(3) {

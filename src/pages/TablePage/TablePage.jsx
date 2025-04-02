@@ -41,6 +41,7 @@ function TablePage() {
   const handleDiseaseModalOpen = () => {
     setDiseaseModalOpen(true);
   };
+
   const handleOrdersModalOpen = () => {
     setOrdersModalOpen(true);
   };
@@ -48,11 +49,13 @@ function TablePage() {
   const handleRefetchOnClick = () => {
     queryClient.invalidateQueries(["useGetSearchWaitingList"]);
   };
+
   const handleSaveDiagnosisOnClick = async () => {
     await diagnosisInAdmIdMutation.mutateAsync({
       admissionId,
       diagnosisList,
     });
+    
     await Swal.fire({
       titleText: "진단입력이 완료되었습니다.",
       icon: "success",
@@ -67,6 +70,7 @@ function TablePage() {
       admissionId,
       ordersList,
     });
+
     await Swal.fire({
       titleText: "처방입력이 완료되었습니다.",
       icon: "success",
@@ -85,15 +89,18 @@ function TablePage() {
       timer: 1000,
       position: "center",
     });
+
     queryClient.invalidateQueries(["useGetSearchWaitingList"]);
     setAdmissionId("");
   };
+
   const today = new Date();
   const dateString = today.toLocaleDateString("ko-KR", {
     year: "numeric",
     month: "long",
     day: "numeric",
   });
+
   return (
     <>
       <div css={s.layout}>
