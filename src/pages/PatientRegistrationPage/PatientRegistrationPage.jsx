@@ -82,10 +82,7 @@ function PatientRegistrationPage(props) {
                     confirmButtonText: "<div style='font-size: 1.5rem'>확인</div>",
                 });
             }
-            
-            
     };
-    
 
     return (
         <>

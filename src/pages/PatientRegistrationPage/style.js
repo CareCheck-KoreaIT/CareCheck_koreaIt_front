@@ -119,7 +119,6 @@ export const input2 = css`
     color: #9F9F9F;
     }
   }
-
 `;
 
 export const button = css`

@@ -115,7 +115,7 @@ export const input2 = css`
   border-bottom: 0.1rem solid #3283CE;
 
   & > label {
-    width: 8rem;
+    width: 9.8rem;
     margin-right: 2rem;
     text-align: left;
     font-size: 2rem;
