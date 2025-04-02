@@ -3,8 +3,6 @@ import * as s from "./style";
 import { useUserMeQuery } from "../../queries/userQuery";
 import MainSidebar from "../../components/common/MainSidebar/MainSidebar";
 import NoTitleHeaderMenu from "../../components/NoTitleHeaderMenu/NoTitleHeaderMenu";
-import ScorePayPage from "../../pages/ScorePayPage/ScorePayPage";
-import EmployeeNumEnrollPage from "../../pages/EmployeeNumEnrollPage/EmployeeNumEnrollPage";
 import { Route, Routes } from "react-router-dom";
 import UserRoute from "../UserRoute/UserRoute";
 import AccountRoute from "../AccountRoute/AccountRoute";
@@ -33,7 +31,6 @@ function MainRoute() {
             <Route path="/admission/*" element={<AdmissionRoute/>} />
             <Route path="/summary/*" element={<SummaryRoute />} />
             <Route path="/notice/*" element={<NoticeRoute />} />
-            <Route path="/employeenum" element={<EmployeeNumEnrollPage />} />
           </Routes>
         </div>
       </div>
