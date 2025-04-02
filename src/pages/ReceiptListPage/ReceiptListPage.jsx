@@ -14,6 +14,7 @@ function ReceiptListPage() {
   const [searchRegidentNumValue, setSearchRegidentNumValue] = useState(
     inputRegidentNumValue
   );
+  const [ isDisabled, setIsDisabled ] = useState(true);
 
   const queryClient = useQueryClient();
   const loginUser = queryClient.getQueryData(["userMeQuery"]);
@@ -24,12 +25,18 @@ function ReceiptListPage() {
     setAdmissionData(getAdmissionList?.data?.data || []);
   }, [searchNameValue, getAdmissionList?.data]);
 
+  useEffect(() => {
+    if(searchNameValue.length > 0) {
+      getAdmissionList.refetch();
+    }
+  }, [searchNameValue, searchRegidentNumValue])
+
   const handleInputNameValueOnChange = (e) => {
     setInputNameValue(e.target.value);
   };
 
   const handleSearchNameValueOnKeyDown = (e) => {
-    if (e.keyCode === 13) {
+    if (e.key === "Enter") {
       setSearchNameValue(inputNameValue);
     }
   };
@@ -49,7 +56,7 @@ function ReceiptListPage() {
   };
 
   const handleSearchRegidentNumValueOnKeyDown = (e) => {
-    if (e.keyCode === 13) {
+    if (e.key === "Enter") {
       setSearchRegidentNumValue(inputRegidentNumValue);
     }
   };
@@ -64,6 +71,15 @@ function ReceiptListPage() {
       setAdmissionData(getAdmissionList?.data?.data);
     }
   }, [searchRegidentNumValue, getAdmissionList?.data]);
+
+  // 이름 검색 값이 없을 경우 주민 번호 검색 불가(disabled)
+  useEffect(() => {
+    if (searchNameValue.length > 0 && getAdmissionList?.data?.data.length > 0) {
+      setIsDisabled(false);
+    } else {
+      setIsDisabled(true);
+    }
+  }, [getAdmissionList?.data])
 
   return (
     <div css={s.layout}>
@@ -82,6 +98,7 @@ function ReceiptListPage() {
           value={inputRegidentNumValue}
           onChange={handleInputRegidentNumValueOnChange}
           onKeyDown={handleSearchRegidentNumValueOnKeyDown}
+          disabled={isDisabled}
         />
       </div>
       <div css={s.main}>

@@ -86,7 +86,13 @@ function MainSidebar() {
             <div>
               <BsColumnsGap />
               <NavLink to="/patient/admission-list" className="NavLinkStyle">
-              <span>환자 리스트</span>
+              <span>오늘 접수 명단</span>
+              </NavLink>
+            </div>
+            <div>
+              <BsColumnsGap />
+              <NavLink to="/patient/patients" className="NavLinkStyle">
+              <span>환자 찾기</span>
               </NavLink>
             </div>
           </>
