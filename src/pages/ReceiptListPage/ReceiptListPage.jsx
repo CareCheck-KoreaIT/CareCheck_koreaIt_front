@@ -1,21 +1,24 @@
 /**@jsxImportSource @emotion/react */
-import { useGetSearchAdmissionListByParams, useGetSearchTotalPay } from "../../queries/admissionQuery";
+import {
+  useGetSearchAdmissionListByParams,
+  useGetSearchTotalPay,
+} from "../../queries/admissionQuery";
 import * as s from "./style";
 import { useEffect, useState } from "react";
 
 function ReceiptListPage() {
-
-  const [ searchPatientName, setSearchPatientName ] = useState("");
-  const [ searchRegidentNum, setSearchRegidentNum ] = useState("");
-  const [ admissionApiParams, setAdmissionApiParams ] = useState({
+  const [searchPatientName, setSearchPatientName] = useState("");
+  const [searchRegidentNum, setSearchRegidentNum] = useState("");
+  const [admissionApiParams, setAdmissionApiParams] = useState({
     patientName: "",
     regidentNum: "",
   });
 
-  const getAdmissionList = useGetSearchAdmissionListByParams(admissionApiParams);
+  const getAdmissionList =
+    useGetSearchAdmissionListByParams(admissionApiParams);
 
   useEffect(() => {
-    if(!searchPatientName.trim()) {
+    if (!searchPatientName.trim()) {
       setSearchRegidentNum("");
     }
   }, [searchPatientName]);
@@ -36,7 +39,6 @@ function ReceiptListPage() {
       });
     }
   };
-
 
   return (
     <div css={s.layout}>
@@ -87,7 +89,7 @@ function ReceiptListPage() {
                   <td>{item.regidentNum}</td>
                   <td>{item.phoneNum}</td>
                   <td>{item.admDate}</td>
-                  <td>{}원</td>
+                  <td>{item.totalPay}원</td>
                   <td>
                     <button
                       onClick={() =>
