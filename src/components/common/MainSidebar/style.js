@@ -66,7 +66,7 @@ export const section = css`
       cursor: pointer;
 
       &:hover{
-        color: black;
+        color: #000000 ;
         font-weight: bold;
         font-size: 2.5rem;
         white-space: nowrap;
@@ -75,7 +75,7 @@ export const section = css`
    }
   }
 
-  
+
 `;
 
 export const footer = css`
