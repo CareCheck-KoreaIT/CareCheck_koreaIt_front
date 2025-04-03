@@ -53,9 +53,11 @@ export const saveButton = css`
     padding: 0.5rem 1rem;
     background-color: #fafafa;
     cursor: pointer;
+    
     &:hover {
         background-color: #eeeeee;
     }
+
     &:active {
         background-color: #dddddd;
     }

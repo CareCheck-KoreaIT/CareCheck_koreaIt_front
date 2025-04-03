@@ -24,23 +24,4 @@ export const global = css`
   body {
     font-size: 1.125rem;
   }
-
-  /* @media screen and (max-width: 64rem) {
-    body {
-      font-size: 1.125rem;
-    }
-  }
-
-  @media screen and (max-width: 48rem) {
-    body {
-      font-size: 1.25rem;
-    }
-  }
-
-  @media screen and (max-width: 48rem) {
-    button {
-      padding: 1rem 2rem;
-      font-size: 1.5rem;
-    }
-  } */
 `;
