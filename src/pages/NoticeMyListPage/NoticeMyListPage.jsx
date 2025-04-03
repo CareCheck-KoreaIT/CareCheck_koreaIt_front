@@ -84,6 +84,7 @@ function NoticeMyListPage() {
             showDenyButton: true,
             confirmButtonText: "<div style='font-size: 1.5rem'>삭제</div>",
             denyButtonText: "<div style='font-size: 1.5rem'>취소</div>",
+            reverseButtons: true,
         }).then((result) => {
             if (result.isConfirmed) {
                 deleteNoticeMutation.mutate(noticeId, {

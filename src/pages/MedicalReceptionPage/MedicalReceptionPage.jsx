@@ -41,7 +41,8 @@ function MedicalReceptionPage(props) {
       icon: 'question',
       showCancelButton: true,
       confirmButtonText: "<div style='font-size: 1.5rem'>확인</div>",
-      cancelButtonText: "<div style='font-size: 1.5rem'>취소</div>"
+      cancelButtonText: "<div style='font-size: 1.5rem'>취소</div>",
+      reverseButtons: true,
     })
       if(result.isConfirmed) {
         const requestData = {
@@ -58,8 +59,6 @@ function MedicalReceptionPage(props) {
           Swal.fire({
             icon: "success",
             title: "접수 등록 완료!",
-            // confirmButtonColor: "#3085d6",
-            // confirmButtonText: "확인",
             showConfirmButton: false,
             timer: 1000,
           })
@@ -69,8 +68,6 @@ function MedicalReceptionPage(props) {
         Swal.fire({
           icon: "error",
           title: "접수 등록 실패!",
-          // confirmButtonColor: "#d33",
-          // confirmButtonText: "확인",
         });
       }
       

@@ -73,7 +73,8 @@ function ReceiptPage() {
             html:"<div style='font-size: 1.5rem'>해당 환자의 접수를 취소하시려면 확인을 눌러주세요.</div>",
             showDenyButton: true,
             confirmButtonText: "<div style='font-size: 1.5rem'>확인</div>",
-            denyButtonText: "<div style='font-size: 1.5rem'>취소</div>"
+            denyButtonText: "<div style='font-size: 1.5rem'>취소</div>",
+            reverseButtons: true
         }).then((result) => {
             if (result.isConfirmed) {
                 deleteReceiptMutation.mutateAsync(admId)
