@@ -16,18 +16,23 @@ export const header = css`
     text-align: center;
   }
 
-  & > input {
-    width: 20rem;
-    height: 3rem;
-    border: 0.1rem solid #dbdbdb;
-    font-size: 1.9rem;
-    text-align: center;
-    margin-left: 1.5rem;
-    
-    &:disabled {
-      background-color: #dbdbdb;
+  & > div {
+    display: flex;
+    align-items: center;
+    & > input {
+      width: 20rem;
+      height: 3rem;
+      border: 0.1rem solid #dbdbdb;
+      font-size: 1.9rem;
+      text-align: center;
+      margin-left: 1.5rem;
+      
+      &:disabled {
+        background-color: #dbdbdb;
+      }
     }
   }
+
 `;
 
 export const main = css`
