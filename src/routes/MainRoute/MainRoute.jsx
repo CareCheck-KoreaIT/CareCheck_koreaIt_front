@@ -1,9 +1,8 @@
 /**@jsxImportSource @emotion/react */
 import * as s from "./style";
-import { useUserMeQuery } from "../../queries/userQuery";
 import MainSidebar from "../../components/common/MainSidebar/MainSidebar";
 import NoTitleHeaderMenu from "../../components/NoTitleHeaderMenu/NoTitleHeaderMenu";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import UserRoute from "../UserRoute/UserRoute";
 import AccountRoute from "../AccountRoute/AccountRoute";
 import MainPage from "../../pages/MainPage/MainPage";
@@ -13,11 +12,22 @@ import AdmissionRoute from "../AdmissionRoute/AdmissionRoute";
 import SummaryRoute from "../SummaryRoute/SummaryRoute";
 import NoticeRoute from "../NoticeRoute/NoticeRoute";
 import NotFoundPage from "../../pages/NotFoundPage/NotFoundPage";
+import { useQueryClient } from "@tanstack/react-query";
+import React, { useEffect } from 'react';
 
 function MainRoute() {
-  useUserMeQuery();
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
+  const queryState = queryClient.getQueryState(["userMeQuery"]);
+  
+  useEffect(() => {
+    console.log(queryState.status);
+    if(queryState.status === "error") {
+      navigate("/auth/signin");
+    }
+  }, [queryState])
 
-  return (
+  return queryState.status === "success" &&
     <>
       <div css={s.containerStyle}>
         <MainSidebar />
@@ -37,7 +47,7 @@ function MainRoute() {
         </div>
       </div>
     </>
-  );
+  ;
 }
 
 export default MainRoute;

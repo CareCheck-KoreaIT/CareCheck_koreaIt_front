@@ -6,6 +6,7 @@ import { Global } from "@emotion/react";
 import { global } from "./styles/global";
 import { useEffect } from "react";
 import { useUserMeQuery } from "./queries/userQuery";
+import { useQueryClient } from "@tanstack/react-query";
 
 function App() {
   useUserMeQuery();
@@ -42,8 +43,8 @@ function App() {
       <Global styles={global} />
       <MainLayout>
         <Routes>
-          <Route path="/*" element={<MainRoute />} />
           <Route path="/auth/*" element={<AuthRoute />} />
+          <Route path="/*" element={<MainRoute />} />
         </Routes>
       </MainLayout>
     </>
