@@ -110,7 +110,7 @@ export const userListContainer = css`
         }
 
         & > div:nth-of-type(4) {
-            width: 20rem;
+            width: 15rem;
         }
 
         & > div:nth-of-type(5) {
