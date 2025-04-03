@@ -14,16 +14,21 @@ export const header = css`
     font-weight: bold;
     text-align: center;
   }
-  & > input {
-    width: 20rem;
-    height: 3rem;
-    border: 0.1rem solid #dbdbdb;
-    font-size: 1.9rem;
-    text-align: center;
-    margin-left: 1.5rem;
-    
-    &:disabled {
-      background-color: #dbdbdb;
+
+  & > div {
+    display: flex;
+    align-items: center;
+    & > input {
+      width: 20rem;
+      height: 3rem;
+      border: 0.1rem solid #dbdbdb;
+      font-size: 1.9rem;
+      text-align: center;
+      margin: 0 1.5rem;
+      
+      &:disabled {
+        background-color: #dbdbdb;
+      }
     }
   }
 `;
@@ -31,7 +36,7 @@ export const header = css`
 export const main = css`
   display: flex;
   justify-content: center;
-  width: 85rem;
+  width: 100rem;
   max-height: 50rem;
   margin-top: 2rem;
   padding: 1rem;
@@ -74,19 +79,19 @@ export const bodytable = css`
     cursor: pointer;
   }
   td:nth-of-type(2) {
-    width: 5rem;
+    width: 12rem;
   }
   td:nth-of-type(3) {
-    width: 15rem;
+    width: 17rem;
   }
   td:nth-of-type(4) {
-    width: 13rem;
+    width: 15rem;
   }
   td:nth-of-type(5) {
-    width: 10rem;
+    width: 13rem;
   }
   td:nth-of-type(6),
   td:nth-of-type(7) {
-    width: 9rem;
+    width: 8rem;
   }
 `;

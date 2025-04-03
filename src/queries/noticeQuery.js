@@ -3,7 +3,7 @@ import { getSearchNoticeListApi, getUsercodeBoardListApi, getUsercodeNoticeListA
 
 
 export const useGetSearchNoticeList = (params) => useQuery({
-    queryKey: ["useGetSearchNoticeList"],
+    queryKey: ["useGetSearchNoticeList", params],
     queryFn: async () => {
         return await getSearchNoticeListApi(params);
     },
@@ -13,7 +13,7 @@ export const useGetSearchNoticeList = (params) => useQuery({
 });
 
 export const useGetUsercodeNoticeList = (params) => useQuery({
-  queryKey: ["useGetUsercodeNoticeList"],
+  queryKey: ["useGetUsercodeNoticeList", params],
   queryFn: async () => {
     return await getUsercodeNoticeListApi(params);
   },
