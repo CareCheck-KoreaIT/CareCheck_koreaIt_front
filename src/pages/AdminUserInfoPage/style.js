@@ -90,23 +90,29 @@ export const userListContainer = css`
             box-sizing: border-box;
             font-size: 1.5rem;
         }
+
         & > div:not(& > div:nth-last-of-type(1)) {
             margin: 0 1rem 0 0.5rem;
             border-right: 0.1rem solid #dbdbdb;
         }
+
         & > div:nth-of-type(1) {
             padding-left: 0.5rem;
             width: 15rem;
         }
+
         & > div:nth-of-type(2) {
             width: 15rem;
         }
+
         & > div:nth-of-type(3) {
-            width: 13rem;
+            width: 12rem;
         }
+
         & > div:nth-of-type(4) {
             width: 20rem;
         }
+
         & > div:nth-of-type(5) {
             flex-grow: 1;
         }
@@ -141,6 +147,7 @@ export const userListContainer = css`
                 width: 4rem;
                 height: 2rem;
                 cursor: pointer;
+                
                 &:nth-of-type(1),
                 &:nth-of-type(2) {
                     background-color: #464667;
@@ -150,8 +157,10 @@ export const userListContainer = css`
                         color: #ffffff;
                     }
                 }
+
                 &:nth-of-type(3) {
                     background-color: #ff6161;
+                    
                     & > svg {
                         width: 1.5rem;
                         height: 1.5rem;

@@ -17,7 +17,6 @@ export const titleGroup = css`
   justify-content: center;
   flex-direction: column;
   box-sizing: border-box;
-  margin-left: 2.5rem;
 `;
 
 export const title1 = css`
@@ -45,7 +44,6 @@ export const inputGroup = css`
   justify-content: center;
   flex-direction: column;
   box-sizing: border-box;
-  margin-left: 6rem;
   width: 65rem;
   height: 35rem;
 `;
@@ -119,7 +117,6 @@ export const input2 = css`
     color: #9F9F9F;
     }
   }
-
 `;
 
 export const button = css`
@@ -134,7 +131,6 @@ export const button = css`
     align-items: center;
     width: 54rem;
     height: 9.6rem;
-    margin-left: 6rem;
     background-color: #464667;
     outline: none;
     border-radius: 1.5rem;

@@ -36,7 +36,7 @@ function ScorePayPage(props) {
       </div>
       <main css={s.inputGroup}>
         <div css={s.input}>
-          <label htmlFor="scorePay">단가점수: </label>
+          <label htmlFor="scorePay">단가점수</label>
           <input
             type="number"
             value={inputValue}

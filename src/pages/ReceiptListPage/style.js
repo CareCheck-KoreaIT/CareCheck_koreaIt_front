@@ -8,6 +8,7 @@ export const layout = css`
   align-items: center;
   flex-direction: column;
 `;
+
 export const header = css`
   & > h2 {
     font-size: 3.5rem;
@@ -15,20 +16,16 @@ export const header = css`
     text-align: center;
   }
 
-  & > div {
-    display: flex;
-    align-items: center;
-    & > input {
-      width: 20rem;
-      height: 3rem;
-      border: 0.1rem solid #dbdbdb;
-      font-size: 1.9rem;
-      text-align: center;
-      margin: 0 1.5rem;
-      
-      &:disabled {
-        background-color: #dbdbdb;
-      }
+  & > input {
+    width: 20rem;
+    height: 3rem;
+    border: 0.1rem solid #dbdbdb;
+    font-size: 1.9rem;
+    text-align: center;
+    margin-left: 1.5rem;
+    
+    &:disabled {
+      background-color: #dbdbdb;
     }
   }
 `;
@@ -44,6 +41,7 @@ export const main = css`
   border: 0.1rem solid #dbdbdb;
   box-sizing: border-box;
 `;
+
 export const bodytable = css`
   box-sizing: border-box;
   border: 0.1rem solid #dbdbdb;
@@ -78,18 +76,23 @@ export const bodytable = css`
     background-color: #f1f1f1;
     cursor: pointer;
   }
+
   td:nth-of-type(2) {
     width: 12rem;
   }
+
   td:nth-of-type(3) {
     width: 17rem;
   }
+
   td:nth-of-type(4) {
     width: 15rem;
   }
+
   td:nth-of-type(5) {
     width: 13rem;
   }
+  
   td:nth-of-type(6),
   td:nth-of-type(7) {
     width: 8rem;

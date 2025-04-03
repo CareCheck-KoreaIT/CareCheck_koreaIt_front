@@ -1,6 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 import {
   deleteReceiptApi,
+  insertAdmissonApi,
   insertDiagnosisApi,
   insertOrdersApi,
   insertVitalByAdmApi,

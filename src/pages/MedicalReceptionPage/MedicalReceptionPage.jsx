@@ -1,8 +1,6 @@
 /**@jsxImportSource @emotion/react */
 import * as s from "./style";
 import React, { useState } from "react";
-import MainSidebar from "../../components/common/MainSidebar/MainSidebar";
-import NoTitleHeaderMenu from "../../components/NoTitleHeaderMenu/NoTitleHeaderMenu";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Select from 'react-select';
@@ -14,6 +12,7 @@ function MedicalReceptionPage(props) {
   const [receptionData, setReceptionData] = useState({
     patientId: patientId || '',
   });
+
 
   const [ clinicData, setClinicData] = useState({
     clinicDeft: null,
@@ -65,27 +64,38 @@ function MedicalReceptionPage(props) {
             timer: 1000,
           })
         }
-        
       } catch (error) {
+        let errorMessage = "접수 등록 실패";
+        
+        if (error.response && error.response.data) {
+          // 1. message 필드가 있는 경우 (NotFoundException 같은 경우)
+          if (error.response.data.message) {
+            errorMessage = error.response.data.message;
+          }
+          // 2. error 필드가 있는 경우 (토큰 인증 실패 같은 경우)
+          else if (error.response.data.error) {
+            errorMessage = error.response.data.error;
+          }
+          // 3. 기타 예외 처리
+          else {
+            errorMessage = JSON.stringify(error.response.data);
+          }
+        }
+
         Swal.fire({
           icon: "error",
-          title: "접수 등록 실패!",
-          // confirmButtonColor: "#d33",
-          // confirmButtonText: "확인",
+          title: "오류 발생",
+          text: errorMessage, // 오류 메시지를 사용자에게 표시
         });
       }
-      
     }
-    
   } 
-
 
   const handleReceptiOnChange = (e) => {
     setReceptionData(prev => ({ 
       ...prev,
       [e.target.name]: e.target.value,
     }));
-
   };
 
   const handleClinicOnChange = (selectedOption, actionMeta) => {
@@ -97,48 +107,48 @@ function MedicalReceptionPage(props) {
 
   return (
     <>
-        <div css={s.layout}>
+      <div css={s.layout}>
         <div css={s.titleGroup}>
             <h1 css={s.title1}>CareCheck</h1>
             <p css={s.title2}>진료 접수</p>
         </div>
         <main css={s.inputGroup}>
-                <div css={s.input}>
-                  <label htmlFor="chartNumber">환자 번호</label>
-                  <input 
-                    type="text" 
-                    name="patientId" 
-                    value={receptionData.patientId} 
-                    onChange={handleReceptiOnChange} 
-                  />
-                </div>
-                <div css={s.input}>
-                  <label htmlFor="department">진료과</label>
-                  <Select 
-                  type="text" 
-                  name="clinicDeft" 
-                  options={clinicDeftOptions}
-                  value={clinicDeftOptions.find(option => option.value === clinicData.clinicDeft)} 
-                  onChange={handleClinicOnChange}
-                  placeholder="진료과 선택"
-                  />
-                </div>
-                <div css={s.input}>
-                  <label htmlFor="exaggeration">담당 의사</label>
-                  <Select
-                  type="text" 
-                  name="usercode"
-                  options={usercodeOptions} 
-                  value={usercodeOptions.find(option => option.value === clinicData.usercode)} 
-                  onChange={handleClinicOnChange}
-                  placeholder="담당 의사 선택"
-                  />
-                  </div>
-              </main>
+          <div css={s.input}>
+            <label css={s.inputNum} htmlFor="chartNumber">환자 번호</label>
+            <input 
+              type="text" 
+              name="patientId" 
+              value={receptionData.patientId} 
+              onChange={handleReceptiOnChange} 
+            />
+          </div>
+          <div css={s.input}>
+            <label htmlFor="department">진료과</label>
+            <Select 
+            type="text" 
+            name="clinicDeft" 
+            options={clinicDeftOptions}
+            value={clinicDeftOptions.find(option => option.value === clinicData.clinicDeft)} 
+            onChange={handleClinicOnChange}
+            placeholder="진료과 선택"
+            />
+          </div>
+          <div css={s.input}>
+            <label htmlFor="exaggeration">담당 의사</label>
+            <Select
+            type="text" 
+            name="usercode"
+            options={usercodeOptions} 
+            value={usercodeOptions.find(option => option.value === clinicData.usercode)} 
+            onChange={handleClinicOnChange}
+            placeholder="담당 의사 선택"
+            />
+            </div>
+        </main>
         <footer css={s.button}>
             <button onClick={handleAdmissionListOnClick}>등록</button>
         </footer>
-    </div>
+      </div>
     </>
   );
 }

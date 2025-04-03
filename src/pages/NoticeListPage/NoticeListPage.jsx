@@ -11,6 +11,7 @@ import { getViewCountApi } from '../../apis/noticeApi';
 import ReactModal from 'react-modal';
 import NoticeModal from '../../components/modal/NoticeModal/NoticeModal';
 import { useGetSearchNoticeList } from '../../queries/noticeQuery';
+import { useViewCountMutation } from '../../mutations/noticeMutation';
 
 
 function NoticeListPage(props) {
@@ -92,9 +93,8 @@ function NoticeListPage(props) {
 
     const queryClient = useQueryClient();
 
-    const viewCountMutation = useMutation({
-        mutationFn: getViewCountApi,
-    });
+    const viewCountMutation = useViewCountMutation();
+    
     const handleViewCountOnClick = async (noticeId, notice) => {
         try{
             await viewCountMutation.mutateAsync(noticeId);
