@@ -41,21 +41,23 @@ function ReceiptListPage() {
     <div css={s.layout}>
       <div css={s.header}>
         <h2>수납 명단 조회</h2>
-        <input
-          type="text"
-          placeholder="이름 검색"
-          value={searchPatientName}
-          onChange={handleInputNameValueOnChange}
-          onKeyDown={handleSearchRequestOnKeyDown}
-        />
-        <input
-          type="text"
-          placeholder="주민번호(추가필터)"
-          value={searchRegidentNum}
-          onChange={handleInputRegidentNumValueOnChange}
-          onKeyDown={handleSearchRequestOnKeyDown}
-          disabled={!searchPatientName}
-        />
+        <div>
+          <input
+            type="text"
+            placeholder="이름 검색"
+            value={searchPatientName}
+            onChange={handleInputNameValueOnChange}
+            onKeyDown={handleSearchRequestOnKeyDown}
+          />
+          <input
+            type="text"
+            placeholder="주민번호(추가필터)"
+            value={searchRegidentNum}
+            onChange={handleInputRegidentNumValueOnChange}
+            onKeyDown={handleSearchRequestOnKeyDown}
+            disabled={!searchPatientName}
+          />
+        </div>
       </div>
       <div css={s.main}>
         <table css={s.bodytable}>

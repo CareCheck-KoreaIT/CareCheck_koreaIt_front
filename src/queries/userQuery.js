@@ -10,7 +10,7 @@ export const useUserMeQuery = () => useQuery({
 });
 
 export const useGetSearchUserList = (params) => useQuery({
-    queryKey: ["useGetSearchUserList"],
+    queryKey: ["useGetSearchUserList", params],
     queryFn: async () => {
         return await getSearchUserListApi(params);
     },

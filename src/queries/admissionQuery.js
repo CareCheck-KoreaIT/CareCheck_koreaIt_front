@@ -74,7 +74,7 @@ export const useGetSearchWaitingList = () => {
 };
 
 export const useGetSearchAllWaitingList = (params) => useQuery({
-  queryKey: ["useGetSearchAllWaitingList"],
+  queryKey: ["useGetSearchAllWaitingList", params],
   queryFn: async () => {
     return await searchAllWaitingListApi(params);
   },
@@ -97,7 +97,7 @@ export const useGetSearchAdmissionListByParams = (params) => {
 };
 
 export const useGetSearchPatients = (params) => useQuery({
-  queryKey: ["useGetSearchPatients"],
+  queryKey: ["useGetSearchPatients", params],
   queryFn: async () => {
     return await searchPatientsApi(params)
   },

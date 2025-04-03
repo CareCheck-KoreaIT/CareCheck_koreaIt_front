@@ -33,7 +33,7 @@ export const header = css`
 export const main = css`
   display: flex;
   justify-content: center;
-  width: 85rem;
+  width: 100rem;
   max-height: 50rem;
   margin-top: 2rem;
   padding: 1rem;
@@ -78,23 +78,23 @@ export const bodytable = css`
   }
 
   td:nth-of-type(2) {
-    width: 5rem;
+    width: 12rem;
   }
 
   td:nth-of-type(3) {
-    width: 15rem;
+    width: 17rem;
   }
 
   td:nth-of-type(4) {
-    width: 13rem;
+    width: 15rem;
   }
 
   td:nth-of-type(5) {
-    width: 10rem;
+    width: 13rem;
   }
   
   td:nth-of-type(6),
   td:nth-of-type(7) {
-    width: 9rem;
+    width: 8rem;
   }
 `;
