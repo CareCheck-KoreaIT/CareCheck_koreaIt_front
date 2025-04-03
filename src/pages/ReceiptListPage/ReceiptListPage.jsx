@@ -1,10 +1,10 @@
 /**@jsxImportSource @emotion/react */
-import { useGetSearchAdmissionListByParams } from "../../queries/admissionQuery";
+import { useGetSearchAdmissionListByParams, useGetSearchTotalPay } from "../../queries/admissionQuery";
 import * as s from "./style";
 import { useEffect, useState } from "react";
 
 function ReceiptListPage() {
-  
+
   const [ searchPatientName, setSearchPatientName ] = useState("");
   const [ searchRegidentNum, setSearchRegidentNum ] = useState("");
   const [ admissionApiParams, setAdmissionApiParams ] = useState({
@@ -37,6 +37,7 @@ function ReceiptListPage() {
     }
   };
 
+
   return (
     <div css={s.layout}>
       <div css={s.header}>
@@ -68,6 +69,7 @@ function ReceiptListPage() {
               <td>주민번호</td>
               <td>연락처</td>
               <td>진료일자</td>
+              <td>수납비용</td>
               <td>영수증조회</td>
               <td>내역서조회</td>
             </tr>
@@ -85,6 +87,7 @@ function ReceiptListPage() {
                   <td>{item.regidentNum}</td>
                   <td>{item.phoneNum}</td>
                   <td>{item.admDate}</td>
+                  <td>{}원</td>
                   <td>
                     <button
                       onClick={() =>

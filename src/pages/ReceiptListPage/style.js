@@ -38,7 +38,7 @@ export const header = css`
 export const main = css`
   display: flex;
   justify-content: center;
-  width: 100rem;
+  width: 110rem;
   max-height: 50rem;
   margin-top: 2rem;
   padding: 1rem;
@@ -97,9 +97,13 @@ export const bodytable = css`
   td:nth-of-type(5) {
     width: 13rem;
   }
+
+  td:nth-of-type(6) {
+    width: 10rem;
+  }
   
-  td:nth-of-type(6),
-  td:nth-of-type(7) {
+  td:nth-of-type(7),
+  td:nth-of-type(8) {
     width: 8rem;
   }
 `;

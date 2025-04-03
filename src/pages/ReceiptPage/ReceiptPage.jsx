@@ -137,6 +137,7 @@ function ReceiptPage() {
                                     <td>연락처</td>
                                     <td>접수시간</td>
                                     <td>담당의사</td>
+                                    <td>수납비용</td>
                                     <td>접수취소</td>
                                     <td>내역서</td>
                                 </tr>
@@ -152,6 +153,7 @@ function ReceiptPage() {
                                             <td>{patient.phoneNum}</td>
                                             <td>{patient.admDate}</td>
                                             <td>{patient.doctorName}</td>
+                                            <td>원</td>
                                             <td>
                                                 <button 
                                                     css={s.receiptButtons}
