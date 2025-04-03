@@ -74,7 +74,7 @@ export const useGetSearchWaitingList = () => {
 };
 
 export const useGetSearchAllWaitingList = (params) => useQuery({
-  queryKey: ["useGetSearchAllWaitingList"],
+  queryKey: ["useGetSearchAllWaitingList", params],
   queryFn: async () => {
     return await searchAllWaitingListApi(params);
   },
@@ -83,33 +83,21 @@ export const useGetSearchAllWaitingList = (params) => useQuery({
   gcTime: 1000 * 60 * 5,
 });
 
-export const useGetAllWaitingTotalCount = (keyword) => {
+export const useGetSearchAdmissionListByParams = (params) => {
   return useQuery({
-    queryKey: ["useGetAllWaitingTotalCount", keyword],
+    queryKey: ["useGetSearchAdmissionListByParams", params],
     queryFn: async () => {
-      return await getAllWaitingTotalCountApi(keyword);
+      return await searchAdmissionListApi(params);
     },
     retry: 0,
     staleTime: 1000 * 60 * 5,
     gcTime: 1000 * 60 * 5,
-  })
-}
-
-export const useGetSearchAdmissionListByPatientName = (patientName) => {
-  return useQuery({
-    queryKey: ["useGetSearchAdmissionListByPatientName", patientName],
-    queryFn: async () => {
-      return await searchAdmissionListApi(patientName);
-    },
-    retry: 0,
-    staleTime: 1000 * 60 * 5,
-    gcTime: 1000 * 60 * 5,
-    enabled: !!patientName,
+    enabled: !!params.patientName.trim(),
   });
 };
 
 export const useGetSearchPatients = (params) => useQuery({
-  queryKey: ["useGetSearchPatients"],
+  queryKey: ["useGetSearchPatients", params],
   queryFn: async () => {
     return await searchPatientsApi(params)
   },

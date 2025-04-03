@@ -61,7 +61,7 @@ function LoginPage(){
                 timer: 1000,
             }).then(response => {
                 queryClient.invalidateQueries({queryKey: ["userMeQuery"]});
-                navigate("/");
+                navigate("/main");
             })
             // 캐시 만료
             // 로그인 성공 후 메인화면으로 이동

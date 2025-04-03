@@ -12,6 +12,7 @@ import PatientRoute from "../PatientRoute/PatientRoute";
 import AdmissionRoute from "../AdmissionRoute/AdmissionRoute";
 import SummaryRoute from "../SummaryRoute/SummaryRoute";
 import NoticeRoute from "../NoticeRoute/NoticeRoute";
+import NotFoundPage from "../../pages/NotFoundPage/NotFoundPage";
 
 function MainRoute() {
   useUserMeQuery();
@@ -23,7 +24,7 @@ function MainRoute() {
         <div css={s.contentStyle}>
           <NoTitleHeaderMenu />
           <Routes>
-            <Route path="/" element={<MainPage />} />
+            <Route path="/main" element={<MainPage />} />
             <Route path="/account/*" element={<AccountRoute />} />
             <Route path="/admin/*" element={<UserRoute />} />
             <Route path="/payment/*" element={<PaymentRoute />} /> 
@@ -31,6 +32,7 @@ function MainRoute() {
             <Route path="/admission/*" element={<AdmissionRoute/>} />
             <Route path="/summary/*" element={<SummaryRoute />} />
             <Route path="/notice/*" element={<NoticeRoute />} />
+            <Route path="/*" element={<NotFoundPage />} />
           </Routes>
         </div>
       </div>

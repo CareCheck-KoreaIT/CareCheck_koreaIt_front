@@ -96,7 +96,6 @@ export const input2 = css`
   width: 60rem;
   font-size: 2rem;
   border-bottom: 0.1rem solid #3283CE;
-  word-spacing: 1rem;
   
   & > label {
     width: 10rem;

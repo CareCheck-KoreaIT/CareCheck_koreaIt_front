@@ -122,7 +122,7 @@ function NoticeMyListPage() {
                     공지 사항
                     <span>- 총 {searchNoticeList?.data?.data?.totalElements || 0}건 -</span>
                 </h2>
-        <div css={s.searchItems}>
+                <div css={s.searchItems}>
                     <input
                     css={s.searchInput}
                     type="text"
@@ -135,36 +135,36 @@ function NoticeMyListPage() {
                     </button>
                 </div>
             </div>
-        
+            
             <div css={s.main}>
                 <ul css={s.noticeList}>
                     <li>
-                    <div>No.</div>
-                    <div>제목</div>
-                    <div>작성자</div>
-                    <div>등록일</div>
-                    <div>삭제</div>
+                        <div>No.</div>
+                        <div>제목</div>
+                        <div>작성자</div>
+                        <div>등록일</div>
+                        <div>삭제</div>
                     </li>
                     {searchNoticeList.isLoading ? (
-                    <div>로딩 중...</div>
-                    ) : searchNoticeList?.data?.data?.noticeList?.length ? (
-                    searchNoticeList.data?.data.noticeList.map((param, index) => (
-                        <li key={param.noticeId}>
-                        <div>{(page - 1) * 15 + (index + 1)}</div>
-                        <div onClick={() => handleTitleOnClick(param)}>{param.title}</div>
-                        <div>{param.username}</div>
-                        <div>{param.createdAt}</div>
-                        <div>
-                            <button 
-                                css={s.deleteButton} 
-                                onClick={() => handleDeleteNoticeOnClick(param.noticeId)}>
-                                삭제
-                            </button>
-                        </div>
-                        </li>
-                    ))
-                    ) : (
-                    null
+                        <div>로딩 중...</div>
+                        ) : searchNoticeList?.data?.data?.noticeList?.length ? (
+                            searchNoticeList.data?.data.noticeList.map((param, index) => (
+                                <li key={param.noticeId}>
+                                    <div>{(page - 1) * 15 + (index + 1)}</div>
+                                    <div onClick={() => handleTitleOnClick(param)}>{param.title}</div>
+                                    <div>{param.username}</div>
+                                    <div>{param.createdAt}</div>
+                                    <div>
+                                        <button 
+                                            css={s.deleteButton} 
+                                            onClick={() => handleDeleteNoticeOnClick(param.noticeId)}>
+                                            삭제
+                                        </button>
+                                    </div>
+                                </li>
+                            ))
+                        ) : (
+                        null
                     )}
                 </ul>
             </div>
@@ -205,7 +205,7 @@ function NoticeMyListPage() {
                 setIsOpen={setIsNoticeModalOpen}
                 notice={selectedNotice}
             />
-        
+            
         </div>
         );
 }
