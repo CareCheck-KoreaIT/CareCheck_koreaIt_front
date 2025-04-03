@@ -7,7 +7,7 @@ export const buttontest = css`
 
   box-sizing: border-box;
   border: 0.1rem solid #9f9f9f;
-  border-radius: 10px;
+  border-radius: 0.5rem;
 
   width: 50rem;
   height: 5rem;

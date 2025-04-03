@@ -23,7 +23,6 @@ export const header = css`
             font-size: 1.2rem;
         }
     }
-
 `;
 
 export const title = css`
@@ -99,20 +98,25 @@ export const noticeList = css`
             box-sizing: border-box;
             font-size: 1.5rem;
         }
+
         & > div:not(& > div:nth-last-of-type(1)) {
             border-right: 0.1rem solid #dbdbdb;
         }
+
         & > div:nth-of-type(1) {
             padding-left: 0.5rem;
             width: 20rem;
         }
+
         & > div:nth-of-type(2) {
             flex-grow: 1;
             cursor: pointer;
         }
+
         & > div:nth-of-type(3) {
             width: 18rem;
         }
+
         & > div:nth-of-type(4) {
             width: 24rem;
         }
@@ -173,6 +177,7 @@ export const pageNumbers = css`
         &:hover {
             background-color: #d2d2d3;
         }
+        
         &:active {
             background-color: #a4a4ca;
         }

@@ -8,8 +8,6 @@ export const layout = css`
     height: 100%;
     width: 100%;
     margin-top: 10rem;
-    
-    
 `;
 
 export const title = css`
@@ -18,8 +16,6 @@ export const title = css`
     font-size: 7rem;
     font-weight: 600;
     color: #464667;
-
-
 `;
 
 export const groupBox = css`
@@ -29,7 +25,6 @@ export const groupBox = css`
     box-sizing: border-box;
     padding: 0.6rem 0;
     width: 70.9rem;
-    
 `;
 
 export const inputContainer = css`
@@ -38,7 +33,6 @@ export const inputContainer = css`
   position: relative;
   width: 55rem;
   padding-bottom: 2rem;
-
 `;
 
 export const inputstyle = css`
@@ -47,8 +41,6 @@ export const inputstyle = css`
   padding: 0 1rem;
   box-sizing: border-box;
   font-size: 2rem;
-
-  
 `;
 
 export const iconStyle = css`

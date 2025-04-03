@@ -6,7 +6,6 @@ import { useUpdatePhoneNumberMutation } from '../../../mutations/userMutation';
 import { useEffect, useState } from 'react';
 import { RiCloseCircleFill } from 'react-icons/ri';
 import Swal from 'sweetalert2';
-import { useUserMeQuery } from '../../../queries/userQuery';
 
 function ChangePhoneNumberModal({setOpen}) {
     const queryClient = useQueryClient();

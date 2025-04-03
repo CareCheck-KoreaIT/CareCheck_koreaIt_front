@@ -16,6 +16,7 @@ function SummaryChartPage() {
     "3분기": 3000000,
     "4분기": 4000000,
   });
+  
   useEffect(() => {
     if (summaryInfoByYear?.data?.data) {
       const newSummaryData = {};
@@ -25,9 +26,11 @@ function SummaryChartPage() {
       setSummaryData(newSummaryData);
     }
   }, [year, summaryInfoByYear?.data]);
+
   const changeYearOnChange = (e) => {
     setYear(e.target.value);
   };
+
   return (
     <div css={s.layout}>
       <div css={s.header}>

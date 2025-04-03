@@ -36,6 +36,7 @@ export const searchField = css`
   & > span {
     width: 10rem;
     margin-left: 1rem;
+    margin-bottom: 0.8rem;
     font-size: 1.9rem;
     font-weight: bold;
   }

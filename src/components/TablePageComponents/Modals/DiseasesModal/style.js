@@ -4,8 +4,9 @@ export const container = css`
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: 1rem;
+  padding: 1rem 0rem 1rem 2rem;
 `;
+
 export const header = css`
   box-sizing: border-box;
   display: flex;
@@ -13,17 +14,20 @@ export const header = css`
   align-items: center;
   width: 95%;
   height: 5rem;
+
   & > h2 {
     width: 40rem;
     margin-left: 12rem;
     font-size: 2.5rem;
     text-align: center;
   }
+
   & > div {
     font-size: 3rem;
     cursor: pointer;
   }
 `;
+
 export const searchField = css`
   box-sizing: border-box;
   display: flex;
@@ -33,17 +37,21 @@ export const searchField = css`
   height: 4rem;
   margin-bottom: 1rem;
   border-bottom: 0.1rem solid #dbdbdb;
+
   & > span {
     width: 10rem;
     margin-left: 1rem;
+    margin-bottom: 0.8rem;
     font-size: 1.9rem;
     font-weight: bold;
   }
+  
   & > input {
     width: 40rem;
     border: none;
     font-size: 1.9rem;
   }
+
   & > div {
     display: flex;
     align-items: center;
@@ -53,11 +61,13 @@ export const searchField = css`
     cursor: pointer;
   }
 `;
+
 export const mainField = css`
   & > h3 {
     margin-left: 1rem;
     font-size: 2rem;
   }
+
   & > table {
     width: 60rem;
     border: 0.1rem solid #dbdbdb;
@@ -97,6 +107,7 @@ export const mainField = css`
     }
   }
 `;
+
 export const selectField = css`
   & > table {
     width: 60rem;
@@ -144,6 +155,7 @@ export const selectFieldHeader = css`
   align-items: center;
   width: 90%;
   height: 5rem;
+  
   & > button {
     box-sizing: border-box;
     display: flex;
@@ -162,12 +174,14 @@ export const selectFieldHeader = css`
       font-size: 1.6rem;
       color: #ffffff;
     }
+
     &:disabled {
       background-color: #9f9f9f;
       color: #d3d3d3;
       cursor: not-allowed;
     }
   }
+
   & > h3 {
     margin-left: 1rem;
     font-size: 2rem;

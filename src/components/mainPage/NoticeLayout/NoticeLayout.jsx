@@ -1,17 +1,15 @@
 /**@jsxImportSource @emotion/react */
 import { useNavigate } from 'react-router-dom';
 import * as s from './style';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FaPlus } from "react-icons/fa6";
-import { useQueryClient } from '@tanstack/react-query';
 import NoticeModal from "../../../components/modal/NoticeModal/NoticeModal";
 import { useGetSearchNoticeList } from "../../../queries/noticeQuery";
 
 
 function NoticeLayout(props) { 
   const navigate = useNavigate();
-  const queryClient = useQueryClient();
-  const MiniNoticeList = useGetSearchNoticeList({
+  const miniNoticeList = useGetSearchNoticeList({
     page: 1,
     limitCount: 8,
     order: 'recent',
@@ -33,13 +31,10 @@ function NoticeLayout(props) {
   }
 
   useEffect(() => {
-    queryClient.resetQueries('searchNoticeList');
-  }, [queryClient]);
-
-  useEffect(() => {
     setSelectedNotice(null);
     setIsModalOpen(false);
   }, [navigate]);
+
   return (
     <>
       <div>
@@ -55,10 +50,10 @@ function NoticeLayout(props) {
                 <div>제목</div>
                 <div>등록일</div>
               </li>
-              {MiniNoticeList.isLoading ? (
+              {miniNoticeList.isLoading ? (
                 <p>로딩 중...</p>
               ) : (
-                MiniNoticeList?.data?.data.noticeList.map((params) => (
+                miniNoticeList?.data?.data.noticeList.map((params) => (
                   <li key={params.noticeId} onClick={() => handleNoticeOnClick(params)}>
                     <div>{params.noticeId}</div>
                     <div>{params.title}</div>

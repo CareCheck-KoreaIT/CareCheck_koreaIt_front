@@ -17,7 +17,6 @@ export const titleGroup = css`
   justify-content: center;
   flex-direction: column;
   box-sizing: border-box;
-  margin-left: 2.5rem;
 `;
 
 export const title1 = css`
@@ -45,7 +44,6 @@ export const inputGroup = css`
   justify-content: center;
   flex-direction: column;
   box-sizing: border-box;
-  margin-left: 6rem;
   width: 65rem;
   height: 35rem;
 `;
@@ -55,6 +53,7 @@ export const inputLineGroup = css`
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    margin-left: 2.45rem;
 `;
 
 export const input = css`
@@ -87,15 +86,14 @@ export const input = css`
       border: none;
     }
   }
-
 `;
 
 export const input2 = css`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 1rem 2rem 0;
-  width: 71rem;
+  box-sizing: border-box;
+  width: 60rem;
   font-size: 2rem;
   border-bottom: 0.1rem solid #3283CE;
   
@@ -119,7 +117,6 @@ export const input2 = css`
     color: #9F9F9F;
     }
   }
-
 `;
 
 export const button = css`
@@ -134,7 +131,6 @@ export const button = css`
     align-items: center;
     width: 54rem;
     height: 9.6rem;
-    margin-left: 3rem;
     background-color: #464667;
     outline: none;
     border-radius: 1.5rem;

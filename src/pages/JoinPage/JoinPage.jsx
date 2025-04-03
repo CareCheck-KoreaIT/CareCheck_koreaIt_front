@@ -15,6 +15,7 @@ function JoinPage(props) {
     phoneNumber: "",
     roleId: roleValue,
   });
+
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   const phoneNumberRegex = /^010-\d{4}-\d{4}$/;
   const passwordRegex = /^.{4,}$/;
@@ -43,6 +44,7 @@ function JoinPage(props) {
       setEmailValidMessage(""); // 올바른 값이면 에러 메시지 제거
     }
   }, [inputValue.email]);
+
   useEffect(() => {
     if (!inputValue.phoneNumber) {
       setPhoneNumberValidMessage("");
@@ -52,6 +54,7 @@ function JoinPage(props) {
       setPhoneNumberValidMessage("");
     }
   }, [inputValue.phoneNumber]);
+  
   useEffect(() => {
     if(!inputValue.password) {
       setPasswordValidMessage("");

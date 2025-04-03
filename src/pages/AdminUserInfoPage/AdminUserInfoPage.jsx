@@ -213,6 +213,7 @@ function AdminUserInfoPage(props) {
                         value={searchValue}
                         onChange={handleSearchInputOnChange}
                         onKeyDown={handleSearchInputOnKeyDown}
+                        placeholder="이름으로 검색"
                     />
                     <button css={s.searchButton} onClick={handleSearchButtonOnClick}><BiSearch /></button>
                 </div>
@@ -239,8 +240,8 @@ function AdminUserInfoPage(props) {
                                 <div>{roleName(userList)}</div>
                                 <div>{userList.phoneNumber}</div>
                                 <div>{userList.email}</div>
-                                <div>{userList.createdAt}</div>
-                                <div>{userList.updatedAt}</div>
+                                <div>{userList.createdAtDateFormat}</div>
+                                <div>{userList.updatedAtDateFormat}</div>
                                 <div>{isResignation(userList)}</div>
                                 <div>
                                     <button onClick={() => handleChangeInfoButtonOnClick(userList.usercode)}><IoSettingsSharp /></button>

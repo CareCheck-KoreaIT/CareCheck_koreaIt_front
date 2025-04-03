@@ -4,6 +4,7 @@ import NoticeWritePage from '../../pages/NoticeWritePage/NoticeWritePage';
 import NoticeListPage from '../../pages/NoticeListPage/NoticeListPage';
 import NoticeModifyPage from '../../pages/NoticeModifyPage/NoticeModifyPage';
 import NoticeMyListPage from '../../pages/NoticeMyListPage/NoticeMyListPage';
+import NotFoundPage from '../../pages/NotFoundPage/NotFoundPage';
 
 function NoticeRoute(props) {
     return (
@@ -15,6 +16,7 @@ function NoticeRoute(props) {
                 <Route path="/modify/:noticeId"
                 element={<NoticeModifyPage />}
                 />
+                <Route path="/*" element={<NotFoundPage />} />
             </Routes>
         </>
     );

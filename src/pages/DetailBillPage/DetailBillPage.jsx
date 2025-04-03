@@ -20,6 +20,7 @@ function DetailBillPage() {
     month: "long",
     day: "numeric",
   });
+  
   const param = useParams();
   const [patientData, setPatientData] = useState({
     admissionId: null,
@@ -28,10 +29,9 @@ function DetailBillPage() {
     admDate: null,
   });
   
-  const totalPay = useGetSearchTotalPay(Number(patientData.admissionId));
   const handlePaymentClick = async () => {
     try{
-      paymentResponse(patientData, totalPay?.data?.data);
+      paymentResponse(patientData, totalPayAdmId?.data?.data);
       console.log(paymentResponse);
     } catch(error) {
       console.log(error);

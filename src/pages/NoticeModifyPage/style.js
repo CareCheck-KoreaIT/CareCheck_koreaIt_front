@@ -28,7 +28,6 @@ export const quillEditor = css`
     }
 `;
 
-
 export const quillTop = css`
     display: flex;
 

@@ -5,6 +5,7 @@ export const header = css`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
   & > h3 {
     font-size: 4rem;
     text-align: center;
@@ -30,6 +31,7 @@ export const select = css`
     font-size: 2rem;
     text-align: center;
   }
+
   & > select {
     width: 15rem;
     height: 4rem;
@@ -38,11 +40,13 @@ export const select = css`
     border: 0.1rem solid #dbdbdb;
   }
 `;
+
 export const container = css`
   display: flex;
   justify-content: center;
   align-items: center;
 `;
+
 export const chart = css`
   box-sizing: border-box;
   margin-top: 4.5rem;
@@ -50,6 +54,7 @@ export const chart = css`
   width: 70rem;
   height: 80rem;
 `;
+
 export const table = css`
   box-sizing: border-box;
   width: 70rem;

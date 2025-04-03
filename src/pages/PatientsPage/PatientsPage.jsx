@@ -103,8 +103,8 @@ function PatientsPage(props) {
                                             <td>{patient.patientName}</td>
                                             <td>{patient.regidentNum}</td>
                                             <td>{patient.phoneNum}</td>
-                                            <td>{patient.createdAt}</td>
-                                            <td>{patient.updatedAt}</td>
+                                            <td>{patient.createdAtDateFormat}</td>
+                                            <td>{patient.updatedAtDateFormat}</td>
                                         </tr>
                                     )) 
                                     : 

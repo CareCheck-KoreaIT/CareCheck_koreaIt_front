@@ -5,8 +5,10 @@ import Quill from 'quill';
 import "quill/dist/quill.snow.css";
 import { useCreateNoticeMutation } from '../../mutations/noticeMutation';
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 function NoticeWritePage(props) {
+  const navigate = useNavigate();
   const createNoticeMutation = useCreateNoticeMutation();
   
   const [title, setTitle] = useState("");
@@ -47,6 +49,7 @@ function NoticeWritePage(props) {
   const handleSaveOnClick = async () => {
     if (!title.trim()) {
       await Swal.fire({
+        icon: "warning",
         titleText: "제목을 입력하세요.",
         confirmButtonText: "확인",
       });
@@ -54,6 +57,7 @@ function NoticeWritePage(props) {
     }
     if (!quillContent.trim()) {
       await Swal.fire({
+        icon: "warning",
         titleText: "게시글 내용을 입력하세요.",
         confirmButtonText: "확인",
       });
@@ -70,10 +74,12 @@ function NoticeWritePage(props) {
 
     const response = await createNoticeMutation.mutateAsync(notice);
     await Swal.fire({
+      icon: "success",
       titleText: "게시글 작성 완료",
       showConfirmButton: false,
       timer: 1000,
     });
+    navigate("/notice/list")
   };
 
   return (

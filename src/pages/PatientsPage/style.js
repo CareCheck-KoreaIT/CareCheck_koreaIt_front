@@ -68,7 +68,6 @@ export const table = css`
             width: 25rem;
         }
     }
-
 `;
 
 export const trHeader = css`
@@ -78,29 +77,8 @@ export const trHeader = css`
 `;
 
 export const trBody = css`
-    height: 5rem;
+    height: 5.1rem;
 `;
-
-export const receiptButtons = css`
-    box-sizing: border-box;
-    width: 8rem;
-    height: 4rem;
-    padding: 0.5rem 1rem;
-    font-size: 1.3rem;
-    color: white;
-    background-color: #464667;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-
-    &:hover {
-        background-color: #3d3d5a;
-    }
-    &:active {
-        background-color: #313148;
-    }
-`;
-
 
 export const footer = css`
     display: flex;
