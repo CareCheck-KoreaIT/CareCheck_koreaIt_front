@@ -58,7 +58,7 @@ function MedicalReceptionPage(props) {
       confirmButtonText: "<div style='font-size: 1.5rem'>확인</div>",
       denyButtonText: "<div style='font-size: 1.5rem'>취소</div>",
     }).then(response => {
-      // console.log(clinicData)
+      console.log(clinicData)
       admissionMutation.mutateAsync(clinicData)
         .then(response => {
           Swal.fire({
