@@ -5,16 +5,18 @@ import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Select from 'react-select';
 import Swal from "sweetalert2";
+import { useAdmissionMutation } from "../../mutations/admissionMutation";
 
 function MedicalReceptionPage(props) {
+  const admissionMutation = useAdmissionMutation();
   const location = useLocation();
   const { patientId } = location.state || {};
-  const [receptionData, setReceptionData] = useState({
-    patientId: patientId || '',
-  });
-
+  // const [receptionData, setReceptionData] = useState({
+  //   patientId: patientId || '',
+  // });
 
   const [ clinicData, setClinicData] = useState({
+    patientId: patientId || '',
     clinicDeft: null,
     usercode: null,
   });
@@ -30,69 +32,109 @@ function MedicalReceptionPage(props) {
     { value: '2025020005', label: '김둘리'}
   ]
 
+  const isError = () => {
+    const isEmptyInput = clinicData.patientId === "";
+    const isNotSelected = Object.values(clinicData).map(value => !!value).includes(false);
+
+    return isEmptyInput || isNotSelected;
+  }
+
   const handleAdmissionListOnClick = async () => {
-    const patient = receptionData.patientId;
-    const clinicDeft = clinicData.clinicDeft;
-    const usercode = clinicData.usercode;
+    if(isError()) {
+      Swal.fire({
+        icon: "error",
+        title: "접수 등록 실패",
+        html: "<div style='font-size: 1.5rem'>값을 모두 입력해주세요.</div>",
+        confirmButtonText: "<div style='font-size: 1.5rem'>확인</div>",
+      });
+      return;
+    }
 
-    const result = await Swal.fire({
-      title: '정말 등록하시겠습니까?',
-      html: `<div style='font-size:1.5rem'>환자 번호: ${patient} <br>진료과: ${clinicDeft} <br>담당 의사: ${usercode ? usercodeOptions.find(option => option.value === usercode).label:'선택되지 않음'}</div>`,
-      icon: 'question',
-      showCancelButton: true,
+    Swal.fire({
+      icon: "question",
+      title: "아래의 정보로 등록하시겠습니까?",
+      html: `<div style='font-size:1.5rem'>환자 번호: ${clinicData.patientId} <br>진료과: ${clinicData.clinicDeft} <br>담당 의사: ${usercodeOptions.find(option => option.value === clinicData.usercode).label}</div>`,
+      showDenyButton: true,
       confirmButtonText: "<div style='font-size: 1.5rem'>확인</div>",
-      cancelButtonText: "<div style='font-size: 1.5rem'>취소</div>"
-    })
-      if(result.isConfirmed) {
-        const requestData = {
-          ...clinicData,
-          patientId: receptionData.patientId,
-        };
-      
-
-      try {
-       
-        const response = await axios.post("http://localhost:8080/admission", requestData);
-  
-        if (response.status === 200) {
+      denyButtonText: "<div style='font-size: 1.5rem'>취소</div>",
+    }).then(response => {
+      // console.log(clinicData)
+      admissionMutation.mutateAsync(clinicData)
+        .then(response => {
           Swal.fire({
             icon: "success",
             title: "접수 등록 완료!",
-            // confirmButtonColor: "#3085d6",
-            // confirmButtonText: "확인",
             showConfirmButton: false,
             timer: 1000,
           })
-        }
-      } catch (error) {
-        let errorMessage = "접수 등록 실패";
-        
-        if (error.response && error.response.data) {
-          // 1. message 필드가 있는 경우 (NotFoundException 같은 경우)
-          if (error.response.data.message) {
-            errorMessage = error.response.data.message;
-          }
-          // 2. error 필드가 있는 경우 (토큰 인증 실패 같은 경우)
-          else if (error.response.data.error) {
-            errorMessage = error.response.data.error;
-          }
-          // 3. 기타 예외 처리
-          else {
-            errorMessage = JSON.stringify(error.response.data);
-          }
-        }
+        }).catch(error => {
+          console.log(error)
+          Swal.fire({
+            icon: "error",
+            title: "진료 접수 실패",
+            html: `<div style='font-size: 1.5rem'>${error.response.data}</div>`,
+            confirmButtonText: "<div style='font-size: 1.5rem'>확인</div>"
+          })
+        })
+    })
 
-        Swal.fire({
-          icon: "error",
-          title: "오류 발생",
-          text: errorMessage, // 오류 메시지를 사용자에게 표시
-        });
-      }
-    }
+    // const result = await Swal.fire({
+    //   title: '정말 등록하시겠습니까?',
+    //   html: `<div style='font-size:1.5rem'>환자 번호: ${receptionData.patientId} <br>진료과: ${clinicData.clinicDeft} <br>담당 의사: ${clinicData.usercode ? usercodeOptions.find(option => option.value === usercode).label:'선택되지 않음'}</div>`,
+    //   icon: 'question',
+    //   showCancelButton: true,
+    //   confirmButtonText: "<div style='font-size: 1.5rem'>확인</div>",
+    //   cancelButtonText: "<div style='font-size: 1.5rem'>취소</div>"
+    // })
+    //   if(result.isConfirmed) {
+    //     const requestData = {
+    //       ...clinicData,
+    //       patientId: receptionData.patientId,
+    //     };
+      
+    //   try {
+       
+    //     const response = await axios.post("http://localhost:8080/admission", requestData);
+  
+    //     if (response.status === 200) {
+    //       Swal.fire({
+    //         icon: "success",
+    //         title: "접수 등록 완료!",
+    //         // confirmButtonColor: "#3085d6",
+    //         // confirmButtonText: "확인",
+    //         showConfirmButton: false,
+    //         timer: 1000,
+    //       })
+    //     }
+    //   } catch (error) {
+    //     let errorMessage = "접수 등록 실패";
+        
+    //     if (error.response && error.response.data) {
+    //       // 1. message 필드가 있는 경우 (NotFoundException 같은 경우)
+    //       if (error.response.data.message) {
+    //         errorMessage = error.response.data.message;
+    //       }
+    //       // 2. error 필드가 있는 경우 (토큰 인증 실패 같은 경우)
+    //       else if (error.response.data.error) {
+    //         errorMessage = error.response.data.error;
+    //       }
+    //       // 3. 기타 예외 처리
+    //       else {
+    //         errorMessage = JSON.stringify(error.response.data);
+    //       }
+    //     }
+
+    //     Swal.fire({
+    //       icon: "error",
+    //       title: "오류 발생",
+    //       text: errorMessage, // 오류 메시지를 사용자에게 표시
+    //     });
+    //   }
+    // }
   } 
 
   const handleReceptiOnChange = (e) => {
-    setReceptionData(prev => ({ 
+    setClinicData(prev => ({ 
       ...prev,
       [e.target.name]: e.target.value,
     }));
@@ -118,7 +160,7 @@ function MedicalReceptionPage(props) {
             <input 
               type="text" 
               name="patientId" 
-              value={receptionData.patientId} 
+              value={clinicData.patientId} 
               onChange={handleReceptiOnChange} 
             />
           </div>
