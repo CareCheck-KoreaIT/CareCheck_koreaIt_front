@@ -4,22 +4,12 @@ import MainRoute from "./routes/MainRoute/MainRoute";
 import AuthRoute from "./routes/AuthRoute/AuthRoute";
 import { Global } from "@emotion/react";
 import { global } from "./styles/global";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useUserMeQuery } from "./queries/userQuery";
 
 function App() {
-  const navigate = useNavigate();
-  const [isAuthChecked, setIsAuthChecked] = useState(false);
-  const token = localStorage.getItem("AccessToken");
 
   useUserMeQuery();
-
-  useEffect(() => {
-    if (!token) {
-      navigate("/auth/signin");
-    }
-    setIsAuthChecked(true);
-  }, [navigate, token]);
 
   useEffect(() => {
     const disableZoom = (event) => {
@@ -43,18 +33,13 @@ function App() {
     };
   }, []);
 
-  if (!isAuthChecked) return null;
-
   return (
     <>
       <Global styles={global} />
       <MainLayout>
         <Routes>
-          {token ? (
-            <Route path="/*" element={<MainRoute />} />
-          ) : (
-            <Route path="/auth/*" element={<AuthRoute />} />
-          )}
+          <Route path="/auth/*" element={<AuthRoute />} />
+          <Route path="/*" element={<MainRoute />} />
         </Routes>
       </MainLayout>
     </>

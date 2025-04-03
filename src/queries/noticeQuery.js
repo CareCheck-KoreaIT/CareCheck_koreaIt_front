@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getSearchNoticeListApi, getUsercodeBoardListApi, getUsercodeNoticeListApi } from "../apis/noticeApi";
+import { getSearchNoticeListApi, getUsercodeNoticeListApi } from "../apis/noticeApi";
 
 
 export const useGetSearchNoticeList = (params) => useQuery({
@@ -10,6 +10,7 @@ export const useGetSearchNoticeList = (params) => useQuery({
     retry: 0,
     staleTime: 1000 * 60 * 10,
     gcTime: 1000 * 60 * 5,
+    refetchInterval: 1000 * 30,
 });
 
 export const useGetUsercodeNoticeList = (params) => useQuery({
