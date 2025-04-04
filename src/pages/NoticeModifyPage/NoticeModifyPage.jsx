@@ -172,7 +172,7 @@ function NoticeModifyPage() {
           value={title}
           onChange={handleTitleOnChange}
         />
-        <button css={s.saveButton} onClick={handleSaveOnClick}>저장</button>
+        <button css={s.saveButton} onClick={handleSaveOnClick}>수정</button>
       </div>
       <div ref={containerRef} /> 
     </div>
