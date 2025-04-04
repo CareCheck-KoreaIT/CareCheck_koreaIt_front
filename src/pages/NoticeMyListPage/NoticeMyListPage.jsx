@@ -1,5 +1,5 @@
 /**@jsxImportSource @emotion/react */
-import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useGetUsercodeNoticeList } from '../../queries/noticeQuery';
 import { GoChevronLeft, GoChevronRight } from 'react-icons/go';
 import { useEffect, useState } from 'react';

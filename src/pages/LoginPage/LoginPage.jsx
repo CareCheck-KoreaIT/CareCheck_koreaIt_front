@@ -1,6 +1,6 @@
 /**@jsxImportSource @emotion/react */
 import * as s from './style';
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { RiUser3Fill } from "react-icons/ri";
 import { FaLock } from "react-icons/fa";
 import Swal from 'sweetalert2';

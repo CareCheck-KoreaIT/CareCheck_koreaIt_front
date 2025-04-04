@@ -1,7 +1,7 @@
 /**@jsxImportSource @emotion/react */
 import DatePicker from 'react-datepicker';
 import * as s from './style';
-import React, { useState } from 'react';
+import React from 'react';
 import 'react-datepicker/dist/react-datepicker.css';
 import { ko } from "date-fns/locale"
 
