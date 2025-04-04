@@ -1,42 +1,42 @@
 /**@jsxImportSource @emotion/react */
 import { IoReceipt } from "react-icons/io5";
 import * as s from "./style";
-import React, { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { LiaReceiptSolid } from "react-icons/lia";
 import { MdOutlineLocalHospital } from "react-icons/md";
 import { ImStatsDots } from "react-icons/im";
 import { RiAdminLine } from "react-icons/ri";
 import { IoIosLogOut } from "react-icons/io";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { headerMenuState } from "../../atoms/Header/headerMenu";
 import Swal from "sweetalert2";
-import { QueryClient, useQueryClient } from "@tanstack/react-query";
+import { useQueryClient } from "@tanstack/react-query";
 import { setTokenLocalStorage } from "../../configs/axiosConfig";
 
 function NoTitleHeaderMenu() {
   const queryClient = useQueryClient();
-  const loginUser = queryClient.getQueryData(["userMeQuery"]);
-  const navigate = useNavigate();
   const [ headerState, setHeaderState] = useRecoilState(headerMenuState)
   useEffect(()=>{
   },[headerState])
 
   const handleLogout = ()=> {
     Swal.fire({
-      title: '로그아웃 하시겠습니까?',
       icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: '확인',
-      cancelButtonText: '취소',
-      reverseButtons: true,
+      title: '로그아웃 하시겠습니까?',
+      showDenyButton: true,
+      confirmButtonText: "<div style='font-size: 1.5rem'>확인</div>",
+      denyButtonText: "<div style='font-size: 1.5rem'>취소</div>",
     }).then((result)=>{
       if(result.isConfirmed){
         // localStorage.removeItem("AccessToken");
         // setHeaderState("");
-        // navigate("/auth/signin");
+        // 위의 2줄의 코드를 아래 한 줄의 코드로 줄일 수 있음
         setTokenLocalStorage("AccessToken", null);
-        queryClient.invalidateQueries(["userMeQuery"]).then(response => navigate("/auth/signin"));
+        queryClient.invalidateQueries(["userMeQuery"])
+        // .then(response => navigate("/auth/signin"));
+        // userMeQuery에 해당하는 캐시를 삭제하고 다시 호출함
+        // 이때 queryState 가 error 상태가 되며 자동으로 로그인 화면으로 넘어감(이는 MainRoute, AuthRoute 에서 작성된 코드에 의함)
       }
       return;
     })
