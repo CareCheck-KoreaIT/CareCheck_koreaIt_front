@@ -66,27 +66,44 @@ function ReceiptPage() {
         searchParams.set("page", pageNumber)
         setSearchParams(searchParams);
     }
-    const handleDeleteReceiptButtonOnClick = async (admId) => {
+    const handleDeleteReceiptButtonOnClick = async (patient) => {
         Swal.fire({
             icon: "warning",
             titleText: "접수를 취소하시겠습니까?",
             html:"<div style='font-size: 1.5rem'>해당 환자의 접수를 취소하시려면 확인을 눌러주세요.</div>",
             showDenyButton: true,
             confirmButtonText: "<div style='font-size: 1.5rem'>확인</div>",
-            denyButtonText: "<div style='font-size: 1.5rem'>취소</div>"
+            denyButtonText: "<div style='font-size: 1.5rem'>취소</div>",
+            reverseButtons: true
         }).then((result) => {
             if (result.isConfirmed) {
-                deleteReceiptMutation.mutateAsync(admId)
-                .then(response => {
+                if(!!patient.startDate) {
                     Swal.fire({
-                        icon: "success",
-                        title: "취소되었습니다",
-                        showConfirmButton: false,
-                        timer: 1000
-                    }).then(response => {
-                        queryClient.invalidateQueries(["useGetSearchAllWaitingList"]);
+                        icon: "error",
+                        title: "취소가 불가능합니다",
+                        html: "<div style='font-size: 1.5rem'>이미 진료가 시작된 환자입니다.</div>",
+                        confirmButtonText: "<div style='font-size: 1.5rem'>확인</div>",
                     });
-                });
+                } else if(!patient.startDate) {
+                    deleteReceiptMutation.mutateAsync(patient.admId)
+                    .then(response => {
+                        Swal.fire({
+                            icon: "success",
+                            title: "취소되었습니다",
+                            showConfirmButton: false,
+                            timer: 1000
+                        }).then(response => {
+                            queryClient.invalidateQueries(["useGetSearchAllWaitingList"]);
+                        });
+                    });
+                } else {
+                    Swal.fire({
+                        icon: "error",
+                        title: "취소가 불가능합니다",
+                        html: "<div style='font-size: 1.5rem'>처리 중 에러가 발생했습니다.</div>",
+                        confirmButtonText: "<div style='font-size: 1.5rem'>확인</div>",
+                    });
+                }
             }
         });
     };
@@ -120,6 +137,8 @@ function ReceiptPage() {
                                     <td>환자명</td>
                                     <td>연락처</td>
                                     <td>접수시간</td>
+                                    <td>담당의사</td>
+                                    <td>수납비용</td>
                                     <td>접수취소</td>
                                     <td>내역서</td>
                                 </tr>
@@ -134,10 +153,12 @@ function ReceiptPage() {
                                             <td>{patient.patientName}</td>
                                             <td>{patient.phoneNum}</td>
                                             <td>{patient.admDate}</td>
+                                            <td>{patient.doctorName}</td>
+                                            <td>원</td>
                                             <td>
                                                 <button 
                                                     css={s.receiptButtons}
-                                                    onClick={() => handleDeleteReceiptButtonOnClick(patient.admId)}
+                                                    onClick={() => handleDeleteReceiptButtonOnClick(patient)}
                                                 >
                                                     접수취소
                                                 </button>
@@ -145,7 +166,12 @@ function ReceiptPage() {
                                             <td>
                                                 <button
                                                     css={s.receiptButtons}
-                                                    onClick={() => handlePaymentButtonOnClick(patient.admId)}
+                                                    onClick={() =>
+                                                        window.open(
+                                                            `/admission/${patient.admId}/detailBill`,
+                                                            "_blank"
+                                                        )
+                                                    }
                                                 >
                                                     결제
                                                 </button>

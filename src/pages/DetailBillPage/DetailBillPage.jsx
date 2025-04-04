@@ -7,20 +7,17 @@ import {
   useGetSearchPatientInfo,
   useGetSearchTotalPay,
 } from "../../queries/admissionQuery";
-import { useQueryClient } from "@tanstack/react-query";
 import { paymentResponse } from "../../atoms/payments/payment";
 
 function DetailBillPage() {
   const navigate = useNavigate();
-  const queryClient = useQueryClient();
-  const loginUser = queryClient.getQueryData(["userMeQuery"]);
   const today = new Date();
   const dateString = today.toLocaleDateString("ko-KR", {
     year: "numeric",
     month: "long",
     day: "numeric",
   });
-  
+
   const param = useParams();
   const [patientData, setPatientData] = useState({
     admissionId: null,
@@ -28,19 +25,19 @@ function DetailBillPage() {
     patientName: null,
     admDate: null,
   });
-  
-  const totalPay = useGetSearchTotalPay(Number(patientData.admissionId));
+
   const handlePaymentClick = async () => {
-    try{
-      paymentResponse(patientData, totalPay?.data?.data);
+    try {
+      paymentResponse(patientData, totalPayAdmId?.data?.data);
       console.log(paymentResponse);
-    } catch(error) {
+    } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   const patientInfoByAdmId = useGetSearchPatientInfo(Number(param.admissionId));
   const patientInfoApi = patientInfoByAdmId?.data?.data;
+  console.log(patientInfoApi);
   useEffect(() => {
     if (!!patientInfoApi) {
       setPatientData((prev) => ({
@@ -152,9 +149,7 @@ function DetailBillPage() {
         >
           영수증
         </button>
-        <button onClick={handlePaymentClick}>
-          결제
-        </button>
+        <button onClick={handlePaymentClick}>결제</button>
       </div>
     </div>
   );

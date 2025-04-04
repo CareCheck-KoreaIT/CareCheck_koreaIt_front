@@ -55,7 +55,7 @@ function TablePage() {
       admissionId,
       diagnosisList,
     });
-    
+
     await Swal.fire({
       titleText: "진단입력이 완료되었습니다.",
       icon: "success",
@@ -101,6 +101,9 @@ function TablePage() {
     day: "numeric",
   });
 
+  useEffect(() => {
+    queryClient.invalidateQueries(["useGetSearchWaitingList"]);
+  }, [admissionId]);
   return (
     <>
       <div css={s.layout}>

@@ -50,10 +50,8 @@ export const deleteReceiptApi = async (admissionId) => await api.delete(`/admiss
 
 export const searchAdmissionListApi = async (params) => await api.get("/admission/admission-list", {params});;
 
-export const insertAdmissonApi = async (patientId) => {
-  await api.post("/admission", {
-    params: { patientId },
-  });
-};
-
 export const searchPatientsApi = async (params) => await api.get("/admission/patients", {params})
+
+export const admissionApi = async ({patientId, clinicDeft, usercode}) => {
+  return await api.post("/admission", {patientId, clinicDeft, usercode})
+};

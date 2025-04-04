@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import MainLayout from "./components/common/MainLayout/MainLayout";
 import MainRoute from "./routes/MainRoute/MainRoute";
 import AuthRoute from "./routes/AuthRoute/AuthRoute";
@@ -8,22 +8,18 @@ import { useEffect } from "react";
 import { useUserMeQuery } from "./queries/userQuery";
 
 function App() {
+
   useUserMeQuery();
 
   useEffect(() => {
-    // 🔹 Ctrl + 마우스 휠을 이용한 줌 방지
     const disableZoom = (event) => {
       if (event.ctrlKey) {
         event.preventDefault();
       }
     };
 
-    // 🔹 Ctrl + + / - 키 사용한 줌 방지
     const disableKeyboardZoom = (event) => {
-      if (
-        event.ctrlKey &&
-        (event.key === "+" || event.key === "-" || event.key === "0")
-      ) {
+      if (event.ctrlKey && ["+", "-", "0"].includes(event.key)) {
         event.preventDefault();
       }
     };
@@ -42,11 +38,12 @@ function App() {
       <Global styles={global} />
       <MainLayout>
         <Routes>
-          <Route path="/*" element={<MainRoute />} />
           <Route path="/auth/*" element={<AuthRoute />} />
+          <Route path="/*" element={<MainRoute />} />
         </Routes>
       </MainLayout>
     </>
   );
 }
+
 export default App;

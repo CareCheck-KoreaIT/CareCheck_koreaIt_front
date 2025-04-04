@@ -63,11 +63,13 @@ export const table = css`
         &:nth-of-type(2) {
             width: 20rem;
         }
-
-        &:nth-of-type(5),
         &:nth-of-type(6) {
+            width: 15rem;
+        }
+        &:nth-of-type(7),
+        &:nth-of-type(8) {
             padding: 0.5rem 0;
-            width: 25rem;
+            width: 15rem;
         }
     }
 `;

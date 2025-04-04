@@ -20,7 +20,7 @@ export const useGetSearchDetailBill = (admissionId) => {
     retry: 0,
     staleTime: 1000 * 60 * 5,
     gcTime: 1000 * 60 * 5,
-    enabled: !!admissionId
+    enabled: !!admissionId,
   });
 };
 
@@ -68,41 +68,42 @@ export const useGetSearchWaitingList = () => {
       return await searchWaitingListApi();
     },
     retry: 0,
-    staleTime: 0,
-    gcTime: 0,
+    staleTime: 1000 * 60 * 5,
+    gcTime: 1000 * 60 * 5,
   });
 };
 
-export const useGetSearchAllWaitingList = (params) => useQuery({
-  queryKey: ["useGetSearchAllWaitingList"],
-  queryFn: async () => {
-    return await searchAllWaitingListApi(params);
-  },
-  retry: 0,
-  staleTime: 1000 * 60 * 5,
-  gcTime: 1000 * 60 * 5,
-});
+export const useGetSearchAllWaitingList = (params) =>
+  useQuery({
+    queryKey: ["useGetSearchAllWaitingList", params],
+    queryFn: async () => {
+      return await searchAllWaitingListApi(params);
+    },
+    retry: 0,
+    staleTime: 1000 * 60 * 5,
+    gcTime: 1000 * 60 * 5,
+  });
 
 export const useGetSearchAdmissionListByParams = (params) => {
-  console.log(params);
   return useQuery({
-    queryKey: ["useGetSearchAdmissionListByParams"],
+    queryKey: ["useGetSearchAdmissionListByParams", params],
     queryFn: async () => {
       return await searchAdmissionListApi(params);
     },
     retry: 0,
     staleTime: 1000 * 60 * 5,
     gcTime: 1000 * 60 * 5,
-    enabled: !!params && params.patientName != null && params.patientName.trim() !== "",
+    enabled: !!params.patientName.trim(),
   });
 };
 
-export const useGetSearchPatients = (params) => useQuery({
-  queryKey: ["useGetSearchPatients"],
-  queryFn: async () => {
-    return await searchPatientsApi(params)
-  },
-  retry: 0,
-  staleTime: 1000 * 60 * 5,
-  gcTime: 1000 * 60 * 5,
-})
+export const useGetSearchPatients = (params) =>
+  useQuery({
+    queryKey: ["useGetSearchPatients", params],
+    queryFn: async () => {
+      return await searchPatientsApi(params);
+    },
+    retry: 0,
+    staleTime: 1000 * 60 * 5,
+    gcTime: 1000 * 60 * 5,
+  });

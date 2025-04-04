@@ -73,7 +73,7 @@ function MainSidebar() {
           <>
             <div>
               <BsColumnsGap />
-              <NavLink to="/patient" className="NavLinkStyle" >
+              <NavLink to="/patient" className="NavLinkStyle" end>
               <span>환자 등록</span>
               </NavLink>
             </div>
@@ -154,7 +154,7 @@ function MainSidebar() {
         <>
           <div>
             <BsColumnsGap />
-            <NavLink to="/admin/users/" className="NavLinkStyle">
+            <NavLink to="/admin/users" className="NavLinkStyle">
             <span>직원 관리</span>
             </NavLink>
           </div>
@@ -180,7 +180,7 @@ function MainSidebar() {
   return (
     <div css={s.sidebar}>
       <header css={s.header} >
-        <NavLink to="/" 
+        <NavLink to="/main" 
         onClick={()=>setHeaderState("메인메뉴")}>
         <h2>CareCheck</h2>
         </NavLink>
