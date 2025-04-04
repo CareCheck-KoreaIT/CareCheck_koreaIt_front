@@ -1,7 +1,7 @@
 /**@jsxImportSource @emotion/react */
 import * as s from "./style";
-import React, { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useLocation } from "react-router-dom";
 import Select from 'react-select';
 import Swal from "sweetalert2";
 import { useAdmissionMutation } from "../../mutations/admissionMutation";
@@ -55,26 +55,28 @@ function MedicalReceptionPage(props) {
       denyButtonText: "<div style='font-size: 1.5rem'>취소</div>",
       reverseButtons: true
     }).then(response => {
-      console.log(clinicData)
-      admissionMutation.mutateAsync(clinicData)
-        .then(response => {
-          Swal.fire({
-            icon: "success",
-            title: "접수 등록 완료!",
-            showConfirmButton: false,
-            timer: 1000,
-          }).then(() => {
-            setClinicData({ patientId: "", clinicDeft: null, usercode: null})
-          })
-        }).catch(error => {
-          console.log(error)
-          Swal.fire({
-            icon: "error",
-            title: "진료 접수 실패",
-            html: `<div style='font-size: 1.5rem'>${error.response.data}</div>`,
-            confirmButtonText: "<div style='font-size: 1.5rem'>확인</div>"
-          })
-        })
+      if(response.isConfirmed){
+        console.log(clinicData)
+        admissionMutation.mutateAsync(clinicData)
+          .then(response => {
+            Swal.fire({
+              icon: "success",
+              title: "접수 등록 완료!",
+              showConfirmButton: false,
+              timer: 1000,
+            }).then(() => {
+              setClinicData({ patientId: "", clinicDeft: null, usercode: null})
+            })
+          }).catch(error => {
+            console.log(error)
+            Swal.fire({
+              icon: "error",
+              title: "진료 접수 실패",
+              html: `<div style='font-size: 1.5rem'>${error.response.data}</div>`,
+              confirmButtonText: "<div style='font-size: 1.5rem'>확인</div>"
+            });
+          });
+      }
     })
 
   } 

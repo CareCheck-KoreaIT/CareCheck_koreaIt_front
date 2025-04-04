@@ -1,6 +1,6 @@
 /**@jsxImportSource @emotion/react */
 import * as s from "./style";
-import React, { useState } from "react";
+import { useState } from "react";
 import Swal from "sweetalert2";
 import { useCreateOrderMutation } from "../../mutations/orderMutation";
 

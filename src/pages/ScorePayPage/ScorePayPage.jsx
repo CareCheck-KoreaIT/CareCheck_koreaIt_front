@@ -1,6 +1,6 @@
 /**@jsxImportSource @emotion/react */
 import * as s from "./style";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useInsertScorePayMutation } from "../../mutations/orderMutation";
 import Swal from "sweetalert2";
 

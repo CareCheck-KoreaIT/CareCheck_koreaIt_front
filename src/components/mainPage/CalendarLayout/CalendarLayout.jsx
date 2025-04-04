@@ -1,6 +1,6 @@
 /**@jsxImportSource @emotion/react */
 import * as s from './style';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import CalendarAddEventModal from '../../modal/CalendarAddEventModal/CalendarAddEventModal';

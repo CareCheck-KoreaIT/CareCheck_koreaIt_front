@@ -20,6 +20,10 @@ export const headerMenu = css`
   transition: all 0.2s ease-in-out;
   cursor: pointer;
 
+  &:disabled {
+    pointer-events: none;
+  }
+
   & > a {
     text-decoration: none;
     color:black;
