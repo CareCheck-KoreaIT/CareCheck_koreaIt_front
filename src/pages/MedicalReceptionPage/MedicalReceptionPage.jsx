@@ -57,6 +57,7 @@ function MedicalReceptionPage(props) {
       showDenyButton: true,
       confirmButtonText: "<div style='font-size: 1.5rem'>확인</div>",
       denyButtonText: "<div style='font-size: 1.5rem'>취소</div>",
+      reverseButtons: true
     }).then(response => {
       console.log(clinicData)
       admissionMutation.mutateAsync(clinicData)
@@ -66,6 +67,8 @@ function MedicalReceptionPage(props) {
             title: "접수 등록 완료!",
             showConfirmButton: false,
             timer: 1000,
+          }).then(() => {
+            setClinicData({ patientId: "", clinicDeft: null, usercode: null})
           })
         }).catch(error => {
           console.log(error)
@@ -78,59 +81,6 @@ function MedicalReceptionPage(props) {
         })
     })
 
-    // const result = await Swal.fire({
-    //   title: '정말 등록하시겠습니까?',
-    //   html: `<div style='font-size:1.5rem'>환자 번호: ${receptionData.patientId} <br>진료과: ${clinicData.clinicDeft} <br>담당 의사: ${clinicData.usercode ? usercodeOptions.find(option => option.value === usercode).label:'선택되지 않음'}</div>`,
-    //   icon: 'question',
-    //   showCancelButton: true,
-    //   confirmButtonText: "<div style='font-size: 1.5rem'>확인</div>",
-    //   cancelButtonText: "<div style='font-size: 1.5rem'>취소</div>"
-    // })
-    //   if(result.isConfirmed) {
-    //     const requestData = {
-    //       ...clinicData,
-    //       patientId: receptionData.patientId,
-    //     };
-      
-    //   try {
-       
-    //     const response = await axios.post("http://localhost:8080/admission", requestData);
-  
-    //     if (response.status === 200) {
-    //       Swal.fire({
-    //         icon: "success",
-    //         title: "접수 등록 완료!",
-    //         // confirmButtonColor: "#3085d6",
-    //         // confirmButtonText: "확인",
-    //         showConfirmButton: false,
-    //         timer: 1000,
-    //       })
-    //     }
-    //   } catch (error) {
-    //     let errorMessage = "접수 등록 실패";
-        
-    //     if (error.response && error.response.data) {
-    //       // 1. message 필드가 있는 경우 (NotFoundException 같은 경우)
-    //       if (error.response.data.message) {
-    //         errorMessage = error.response.data.message;
-    //       }
-    //       // 2. error 필드가 있는 경우 (토큰 인증 실패 같은 경우)
-    //       else if (error.response.data.error) {
-    //         errorMessage = error.response.data.error;
-    //       }
-    //       // 3. 기타 예외 처리
-    //       else {
-    //         errorMessage = JSON.stringify(error.response.data);
-    //       }
-    //     }
-
-    //     Swal.fire({
-    //       icon: "error",
-    //       title: "오류 발생",
-    //       text: errorMessage, // 오류 메시지를 사용자에게 표시
-    //     });
-    //   }
-    // }
   } 
 
   const handleReceptiOnChange = (e) => {
@@ -170,7 +120,7 @@ function MedicalReceptionPage(props) {
             type="text" 
             name="clinicDeft" 
             options={clinicDeftOptions}
-            value={clinicDeftOptions.find(option => option.value === clinicData.clinicDeft)} 
+            value={clinicData.clinicDeft ? clinicDeftOptions.find(option => option.value === clinicData.clinicDeft) : null} 
             onChange={handleClinicOnChange}
             placeholder="진료과 선택"
             />
@@ -181,7 +131,7 @@ function MedicalReceptionPage(props) {
             type="text" 
             name="usercode"
             options={usercodeOptions} 
-            value={usercodeOptions.find(option => option.value === clinicData.usercode)} 
+            value={clinicData.usercode ? usercodeOptions.find(option => option.value === clinicData.usercode) : null} 
             onChange={handleClinicOnChange}
             placeholder="담당 의사 선택"
             />
