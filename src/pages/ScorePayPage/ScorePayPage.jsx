@@ -1,13 +1,6 @@
 /**@jsxImportSource @emotion/react */
 import * as s from "./style";
 import React, { useEffect, useState } from "react";
-import { IoReceipt } from "react-icons/io5";
-import { LiaReceiptSolid } from "react-icons/lia";
-import { MdOutlineLocalHospital } from "react-icons/md";
-import { ImStatsDots } from "react-icons/im";
-import { RiAdminLine } from "react-icons/ri";
-import { IoIosLogOut } from "react-icons/io";
-import HeaderMenu from "../../components/HeaderMenu/HeaderMenu";
 import { useInsertScorePayMutation } from "../../mutations/orderMutation";
 import Swal from "sweetalert2";
 

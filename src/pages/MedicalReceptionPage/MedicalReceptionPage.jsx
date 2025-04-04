@@ -2,7 +2,6 @@
 import * as s from "./style";
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import axios from "axios";
 import Select from 'react-select';
 import Swal from "sweetalert2";
 import { useAdmissionMutation } from "../../mutations/admissionMutation";
@@ -11,9 +10,6 @@ function MedicalReceptionPage(props) {
   const admissionMutation = useAdmissionMutation();
   const location = useLocation();
   const { patientId } = location.state || {};
-  // const [receptionData, setReceptionData] = useState({
-  //   patientId: patientId || '',
-  // });
 
   const [ clinicData, setClinicData] = useState({
     patientId: patientId || '',
