@@ -1,6 +1,6 @@
 /**@jsxImportSource @emotion/react */
 import * as s from './style';
-import React, { useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import { RiUser3Fill } from "react-icons/ri";
 import { FaLock } from "react-icons/fa";
 import Swal from 'sweetalert2';
@@ -56,9 +56,9 @@ function LoginPage(){
             Swal.fire({
                 icon: "success",
                 titleText: "로그인 성공",
-                html: "<div style='font-size: 1.5rem'>메인 화면으로 넘어갑니다.</div>",
+                html: "<div style='font-size: 1.5rem'>Hello, CareCheck!</div>",
                 showConfirmButton: false,
-                timer: 1000,
+                timer: 700,
             }).then(response => {
                 queryClient.invalidateQueries({queryKey: ["userMeQuery"]});
                 navigate("/main");

@@ -1,8 +1,8 @@
 /**@jsxImportSource @emotion/react */
 import ReactModal from 'react-modal';
 import * as s from './style';
-import React from 'react';
 import { useNavigate } from 'react-router-dom';  // useNavigate 추가
+import { IoClose } from "react-icons/io5";
 
 const NoticeMyListModal = ({ isOpen, setIsOpen, notice }) => {
     const navigate = useNavigate();  // useNavigate 훅 사용
@@ -44,7 +44,7 @@ const NoticeMyListModal = ({ isOpen, setIsOpen, notice }) => {
                 <p><strong>작성자:</strong> {notice?.username}</p>
                 <p><strong>등록일:</strong> {notice?.createdAt}</p>
                 <p><strong>내용:</strong> {notice?.content}</p>
-                <button css={s.headerCloseButton} onClick={handleCloseModal}>×</button>
+                <button css={s.headerCloseButton} onClick={handleCloseModal}><IoClose /></button>
                 <div css={s.buttonLayout}>
                     <button css={s.modifyButton} onClick={handleModifyButtonClick}>수정</button>
                     <button css={s.closeButton} onClick={handleCloseModal}>닫기</button>
