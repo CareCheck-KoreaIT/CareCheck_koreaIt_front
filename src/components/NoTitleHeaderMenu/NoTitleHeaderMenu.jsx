@@ -12,6 +12,7 @@ import { useRecoilState } from "recoil";
 import { headerMenuState } from "../../atoms/Header/headerMenu";
 import Swal from "sweetalert2";
 import { QueryClient, useQueryClient } from "@tanstack/react-query";
+import { setTokenLocalStorage } from "../../configs/axiosConfig";
 
 function NoTitleHeaderMenu() {
   const queryClient = useQueryClient();
@@ -31,9 +32,11 @@ function NoTitleHeaderMenu() {
       reverseButtons: true,
     }).then((result)=>{
       if(result.isConfirmed){
-        localStorage.removeItem("AccessToken");
-        setHeaderState("");
-        navigate("/auth/signin");
+        // localStorage.removeItem("AccessToken");
+        // setHeaderState("");
+        // navigate("/auth/signin");
+        setTokenLocalStorage("AccessToken", null);
+        queryClient.invalidateQueries(["userMeQuery"]).then(response => navigate("/auth/signin"));
       }
       return;
     })
