@@ -1,7 +1,7 @@
 /**@jsxImportSource @emotion/react */
 import {  useGetSearchAllWaitingList } from '../../queries/admissionQuery';
 import * as s from './style';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BiSearch } from 'react-icons/bi';
 import { useDeleteReceiptMutation } from '../../mutations/admissionMutation';
 import Swal from 'sweetalert2';
@@ -108,25 +108,27 @@ function ReceiptPage() {
         });
     };
 
-    const handlePaymentButtonOnClick = (admId) => {
-        navigate(`/admission/${admId}/detailBill`);
-    };
 
     return (
         <>
             <div>
                 <div css={s.searchItems}>
-                    <input 
-                        css={s.searchInput} 
-                        type="text" 
-                        value={searchValue}
-                        onChange={handleSearchInputOnChange} // 텍스트 변경만 처리
-                        onKeyDown={handleSearchInputOnKeyDown}
-                        placeholder="이름으로 검색"
-                    />
-                    <button css={s.searchButton} onClick={handleSearchButtonOnClick}>
-                        <BiSearch />
-                    </button>
+                    <div>
+                        <h1>오늘 접수 명단</h1>
+                    </div>
+                    <div>
+                        <input 
+                            css={s.searchInput} 
+                            type="text" 
+                            value={searchValue}
+                            onChange={handleSearchInputOnChange} // 텍스트 변경만 처리
+                            onKeyDown={handleSearchInputOnKeyDown}
+                            placeholder="이름으로 검색"
+                        />
+                        <button css={s.searchButton} onClick={handleSearchButtonOnClick}>
+                            <BiSearch />
+                        </button>
+                    </div>
                 </div>
                 <div css={s.container}>
                     <div css={s.tableContainer}>
@@ -154,7 +156,7 @@ function ReceiptPage() {
                                             <td>{patient.phoneNum}</td>
                                             <td>{patient.admDate}</td>
                                             <td>{patient.doctorName}</td>
-                                            <td>원</td>
+                                            <td>{/* 명환씨 부탁합니다 허허 */}원</td>
                                             <td>
                                                 <button 
                                                     css={s.receiptButtons}

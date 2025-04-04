@@ -1,7 +1,7 @@
 /**@jsxImportSource @emotion/react */
 import { BsColumnsGap } from "react-icons/bs";
 import * as s from "./style";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { useRecoilState } from "recoil";
 import { headerMenuState } from "../../../atoms/Header/headerMenu";

@@ -1,7 +1,6 @@
 /**@jsxImportSource @emotion/react */
 import {
-  useGetSearchAdmissionListByParams,
-  useGetSearchTotalPay,
+  useGetSearchAdmissionListByParams
 } from "../../queries/admissionQuery";
 import * as s from "./style";
 import { useEffect, useState } from "react";
