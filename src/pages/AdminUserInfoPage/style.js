@@ -35,6 +35,7 @@ export const searchItems = css`
 
 export const searchInput = css`
     margin-left: 0.8rem;
+    padding-left: 0.5rem;
 `;
 
 export const searchButton = css`
@@ -177,7 +178,6 @@ export const footer = css`
     display: flex;
     justify-content: center;
     padding: 1rem;
-    width: 155rem;
 `;
 
 export const pageNumbers = css`

@@ -2,7 +2,7 @@
 import Swal from 'sweetalert2';
 import { useSignupMutation } from '../../mutations/userMutation';
 import * as s from './style';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function JoinPage(props) {
   const signupMutation = useSignupMutation();

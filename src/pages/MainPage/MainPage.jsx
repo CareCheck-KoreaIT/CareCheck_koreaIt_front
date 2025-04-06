@@ -3,7 +3,6 @@ import AccountLayout from '../../components/mainPage/AccountLayout/AccountLayout
 import CalendarLayout from '../../components/mainPage/CalendarLayout/CalendarLayout';
 import NoticeLayout from '../../components/mainPage/NoticeLayout/NoticeLayout';
 import * as s from './style';
-import React from 'react';
 
 function MainPage(props) {
   return (

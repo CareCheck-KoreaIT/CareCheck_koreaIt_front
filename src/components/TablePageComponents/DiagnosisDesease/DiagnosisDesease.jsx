@@ -1,7 +1,6 @@
 /**@jsxImportSource @emotion/react */
 import { useRecoilState } from "recoil";
 import * as s from "./style";
-import React from "react";
 import { diagnosisDisease } from "../../../atoms/doctorTable/doctorTableAtom";
 import { FaMinus } from "react-icons/fa";
 

@@ -1,5 +1,5 @@
 /**@jsxImportSource @emotion/react */
-import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useGetUsercodeNoticeList } from '../../queries/noticeQuery';
 import { GoChevronLeft, GoChevronRight } from 'react-icons/go';
 import { useEffect, useState } from 'react';
@@ -119,7 +119,7 @@ function NoticeMyListPage() {
         <div css={s.container}>
             <div css={s.header}>
                 <h2>
-                    공지 사항
+                    내가 쓴 게시글
                     <span>- 총 {searchNoticeList?.data?.data?.totalElements || 0}건 -</span>
                 </h2>
                 <div css={s.searchItems}>
@@ -129,6 +129,7 @@ function NoticeMyListPage() {
                     value={searchValue}
                     onChange={searchOnChange}
                     onKeyDown={handleSearchInputOnKeyDown}
+                    placeholder='제목으로 검색'
                     />
                     <button css={s.searchButton} onClick={handleSearchButtonOnClick}>
                     <BiSearch />
@@ -151,6 +152,7 @@ function NoticeMyListPage() {
                             searchNoticeList.data?.data.noticeList.map((param, index) => (
                                 <li key={param.noticeId}>
                                     <div>{(page - 1) * 15 + (index + 1)}</div>
+                                    {/* <div>{param.noticeId}</div> */}
                                     <div onClick={() => handleTitleOnClick(param)}>{param.title}</div>
                                     <div>{param.username}</div>
                                     <div>{param.createdAt}</div>

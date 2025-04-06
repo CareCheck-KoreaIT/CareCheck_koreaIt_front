@@ -28,7 +28,6 @@ export const headerCloseButton = css`
     top: 1rem;
     right: 1rem;
     background-color: transparent;
-    color: #000000;
     border: none;
     font-size: 3rem;
     cursor: pointer;

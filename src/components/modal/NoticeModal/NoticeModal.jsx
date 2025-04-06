@@ -1,7 +1,7 @@
 /**@jsxImportSource @emotion/react */
 import ReactModal from 'react-modal';
 import * as s from './style';
-import React from 'react';
+import { IoClose } from 'react-icons/io5';
 
 const NoticeModal = ({ isOpen, setIsOpen, notice }) => {
     const handleCloseModal = () => {
@@ -41,7 +41,7 @@ const NoticeModal = ({ isOpen, setIsOpen, notice }) => {
                 <p><strong>등록일:</strong> {notice?.createdAt}</p>
                 <p><strong>내용:</strong> {notice?.content}</p>
                 <div>
-                    <button css={s.style} onClick={handleCloseModal}>닫기</button>
+                    <button css={s.style} onClick={handleCloseModal}><IoClose /></button>
                 </div>
             </div>
         </ReactModal>

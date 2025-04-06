@@ -1,9 +1,7 @@
 /**@jsxImportSource @emotion/react */
-import { useParams } from "react-router-dom";
 import * as s from "./style";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useGetSelectVital } from "../../../queries/admissionQuery";
-import { useQueryClient } from "@tanstack/react-query";
 import { useInsertVitallMutation } from "../../../mutations/admissionMutation";
 import Swal from "sweetalert2";
 
