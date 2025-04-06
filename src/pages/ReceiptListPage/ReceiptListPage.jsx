@@ -1,7 +1,5 @@
 /**@jsxImportSource @emotion/react */
-import {
-  useGetSearchAdmissionListByParams
-} from "../../queries/admissionQuery";
+import { useGetSearchAdmissionListByParams } from "../../queries/admissionQuery";
 import * as s from "./style";
 import { useEffect, useState } from "react";
 
@@ -88,7 +86,7 @@ function ReceiptListPage() {
                   <td>{item.regidentNum}</td>
                   <td>{item.phoneNum}</td>
                   <td>{item.admDate}</td>
-                  <td>{item.totalPay}원</td>
+                  <td>{item.totalPay.toLocaleString("ko-KR")}원</td>
                   <td>
                     <button
                       onClick={() =>
