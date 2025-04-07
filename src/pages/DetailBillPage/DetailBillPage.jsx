@@ -1,6 +1,6 @@
 /**@jsxImportSource @emotion/react */
 import * as s from "./style";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import {
   useGetSearchDetailBill,
@@ -111,10 +111,10 @@ function DetailBillPage() {
                     <tr>
                       <td>{order.orderCode}</td>
                       <td>{order.orderName}</td>
-                      <td>{order.orderPay}</td>
+                      <td>{order.orderPay.toLocaleString("ko-KR")}</td>
                       <td>{order.orderCount}</td>
                       <td>{order.orderDays}</td>
-                      <td>{order.totalOrderPay}</td>
+                      <td>{order.totalOrderPay.toLocaleString("ko-KR")}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -127,7 +127,7 @@ function DetailBillPage() {
             </div>
             <table css={s.totalPayTable}>
               <tr>
-                <td>{totalPayAdmId?.data?.data}</td>
+                <td>{totalPayAdmId?.data?.data.toLocaleString("ko-KR")}</td>
               </tr>
             </table>
           </div>

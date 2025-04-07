@@ -16,6 +16,7 @@ import { setTokenLocalStorage } from "../../configs/axiosConfig";
 
 function NoTitleHeaderMenu() {
   const queryClient = useQueryClient();
+  const loginUser = queryClient.getQueryData(["userMeQuery"]);
   const [ headerState, setHeaderState] = useRecoilState(headerMenuState)
   useEffect(()=>{
   },[headerState])
@@ -81,7 +82,18 @@ function NoTitleHeaderMenu() {
       </div>
       <div css={s.headerMenu} >
         <NavLink to="/admin/users" className={({ isActive }) => (isActive ? "active" : "")}
-        onClick={()=>setHeaderState("관리자메뉴변경")}>
+        onClick={(e) => {
+          if (loginUser?.data?.userRole.roleId !== 1) {
+            Swal.fire({
+              icon: "error",
+              title:"관리자 권한이 필요합니다",
+              confirmButtonText: "<div style='font-size: 1.5rem'>확인</div>",
+            })
+            e.preventDefault(); // 경로 이동 막기!
+            return;
+          }
+          setHeaderState("관리자메뉴변경");
+        }}>
         <div css={s.iconStyle}><RiAdminLine /></div>
         <span css={s.titleStyle}>관리자</span>
         </NavLink>

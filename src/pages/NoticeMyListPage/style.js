@@ -40,6 +40,7 @@ export const searchItems = css`
 
 export const searchInput = css`
     margin-left: 0.3rem;
+    padding-left: 0.5rem;
 `;
 
 export const searchButton = css`

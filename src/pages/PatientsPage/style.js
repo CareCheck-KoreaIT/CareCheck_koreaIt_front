@@ -2,16 +2,28 @@ import { css } from "@emotion/react";
 
 export const searchItems = css`
     display: flex;
-    justify-content: flex-end;
-    margin: 4rem 16rem 0rem;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin: 4rem 16.5rem 0rem;
+    
+    & > div:nth-of-type(1){
+        & > h1 {
+            margin: 0;
+            font-size: 3rem;
+        }
+    }
 
-    & > Select {
-        font-size: 1.5rem;
+    & > div:nth-of-type(2) {
+        display: flex;
+        align-items: flex-end;
+        height: 5rem;
     }
 `;
 
 export const searchInput = css`
     justify-self: flex-end;
+    padding-left: 0.5rem;
+    height: 2.6rem;
 `;
 
 export const searchButton = css`
