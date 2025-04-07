@@ -91,14 +91,21 @@ function JoinPage(props) {
       phoneNumber: inputValue.phoneNumber,
       roleId: roleValue,
     }).then(response => {
-      console.log(response);
       Swal.fire({
         icon: "success",
         titleText: "직원 등록 완료",
         confirmButtonText: "<div style='font-size: 1.5rem'>확인</div>"
+      }).then(response => {
+        setRoleValue(0);
+        setInputValue({
+          username: "",
+          password: "",
+          email: "",
+          phoneNumber: "",
+          roleId: roleValue,
+        });
       });
     }).catch(error => {
-      console.error(error);
       Swal.fire({
         icon: "error",
         titleText: "직원 등록 실패",

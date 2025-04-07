@@ -26,9 +26,9 @@ function PatientRegistrationPage(props) {
     };
 
     const validateInputs = () => {
-        const regidentNumRegex = /^\d{6}-\d{7}$/; // 주민번호 형식 (6자리-7자리)
-        const phoneNumberRegex = /^\d{3}-\d{3,4}-\d{4}$/; // 휴대폰 번호 형식 (xxx-xxxx-xxxx)
         const patientNameRegex = /^[a-zA-Z가-힣]{2,}$/; // 이름 형식 (2글자 이상)
+        const regidentNumRegex = /^(?:[0-9]{2})(?:0[1-9]|1[0-2])(?:0[1-9]|[12][0-9]|3[01])-[1-4][0-9]{6}$/; // 주민번호 형식 (6자리-7자리)
+        const phoneNumberRegex = /^\d{3}-\d{3,4}-\d{4}$/; // 휴대폰 번호 형식 (xxx-xxxx-xxxx)
 
         if(!patientNameRegex.test(patientData.patientName)){
             Swal.fire({
@@ -76,13 +76,10 @@ function PatientRegistrationPage(props) {
                 timer: 1000,
             });
 
-            // 환자 목록 새로고침
             queryClient.invalidateQueries(["patients"]);
 
-                // 입력 폼 초기화
             setPatientData({ patientName: "", regidentNum: "", phoneNumber: "" });
             navigate("/patient/medical-reception", { state: { patientId: response.patientId } });
-            console.log(response);
         } catch (error){
                 Swal.fire({
                     icon: "error",

@@ -141,6 +141,7 @@ export const contentBox = css`
         margin-right: 2rem;
         width: 25rem;
         font-size: 3rem;
+        color: #464667;
     }
 
     & > span {

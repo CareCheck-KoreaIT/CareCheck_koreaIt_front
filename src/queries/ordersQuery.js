@@ -2,7 +2,6 @@ import { useQuery } from "@tanstack/react-query";
 import { orderSearchApi } from "../apis/orderApi";
 
 export const useGetSearchOrders = (keyword) => {
-  console.log("searchorder 시행", keyword);
   return useQuery({
     queryKey: ["useGetSearchOrders", keyword],
     queryFn: async () => {

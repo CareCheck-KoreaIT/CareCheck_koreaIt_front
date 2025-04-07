@@ -97,7 +97,7 @@ function ChangePasswordModal({setOpen}) {
                     <input type="password" name='currentPassword' value={inputValue.currentPassword} onChange={handleInputOnChange} placeholder='현재 비밀번호' />
                 </div>
                 <div css={s.passwordBox}>
-                    <input type="password" name='newPassword' value={inputValue.newPassword} onChange={handleInputOnChange} placeholder='새 비밀번호' />
+                    <input type="password" name='newPassword' value={inputValue.newPassword} onChange={handleInputOnChange} placeholder='새 비밀번호 (4자리 이상)' />
                 </div>
                 {
                     !!passwordValidMessage &&

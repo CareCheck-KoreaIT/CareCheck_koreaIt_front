@@ -56,7 +56,6 @@ function MedicalReceptionPage(props) {
       reverseButtons: true
     }).then(response => {
       if(response.isConfirmed){
-        console.log(clinicData)
         admissionMutation.mutateAsync(clinicData)
           .then(response => {
             Swal.fire({
@@ -68,7 +67,6 @@ function MedicalReceptionPage(props) {
               setClinicData({ patientId: "", clinicDeft: null, usercode: null})
             })
           }).catch(error => {
-            console.log(error)
             Swal.fire({
               icon: "error",
               title: "진료 접수 실패",
