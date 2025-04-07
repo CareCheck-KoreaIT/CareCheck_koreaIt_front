@@ -43,12 +43,10 @@ function NoticeMyListPage() {
             }
             setPageNumbers(newPageNumbers);
         }
-        console.log(searchNoticeList?.data?.data);
     }, [searchNoticeList.data]);
 
     useEffect(() => {
         searchNoticeList.refetch();
-        console.log("!!!!");
     }, [searchParams]);
 
     const searchOnChange = (e) => {
@@ -65,7 +63,6 @@ function NoticeMyListPage() {
         searchParams.set("searchText", searchValue);
         searchParams.set("page", 1);
         setSearchParams(searchParams);
-        console.log(searchValue);
     };
 
     const handlePagenumbersOnClick = (pageNumber) => {
@@ -151,8 +148,7 @@ function NoticeMyListPage() {
                         ) : searchNoticeList?.data?.data?.noticeList?.length ? (
                             searchNoticeList.data?.data.noticeList.map((param, index) => (
                                 <li key={param.noticeId}>
-                                    <div>{(page - 1) * 15 + (index + 1)}</div>
-                                    {/* <div>{param.noticeId}</div> */}
+                                    <div>{searchNoticeList?.data?.data?.totalElements - ((page - 1) * 15 + index)}</div>
                                     <div onClick={() => handleTitleOnClick(param)}>{param.title}</div>
                                     <div>{param.username}</div>
                                     <div>{param.createdAt}</div>

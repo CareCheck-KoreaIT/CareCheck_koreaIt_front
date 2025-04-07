@@ -8,6 +8,7 @@ import {
   useGetSearchTotalPay,
 } from "../../queries/admissionQuery";
 import { paymentResponse } from "../../atoms/payments/payment";
+import Swal from "sweetalert2";
 
 function DetailBillPage() {
   const navigate = useNavigate();
@@ -29,15 +30,17 @@ function DetailBillPage() {
   const handlePaymentClick = async () => {
     try {
       paymentResponse(patientData, totalPayAdmId?.data?.data);
-      console.log(paymentResponse);
     } catch (error) {
-      console.log(error);
+      Swal.fire({
+        icon: "error",
+        title: "에러 발생",
+        confirmButtonText: "<div style='font-size: 1.5rem'>확인</div>",
+      })
     }
   };
 
   const patientInfoByAdmId = useGetSearchPatientInfo(Number(param.admissionId));
   const patientInfoApi = patientInfoByAdmId?.data?.data;
-  console.log(patientInfoApi);
   useEffect(() => {
     if (!!patientInfoApi) {
       setPatientData((prev) => ({

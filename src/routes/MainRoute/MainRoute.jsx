@@ -21,7 +21,6 @@ function MainRoute() {
   const queryState = queryClient.getQueryState(["userMeQuery"]);
   
   useEffect(() => {
-    console.log(queryState.status);
     if(queryState.status === "error") {
       navigate("/auth/signin");
     }
