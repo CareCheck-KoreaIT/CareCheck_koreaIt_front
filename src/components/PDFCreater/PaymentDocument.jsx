@@ -145,7 +145,7 @@ const PaymentDocument = ({
             {"\n"}영수액{"\n"}
           </Text>
           <Text style={styles.noBorderCell}>
-            {"\n"}일금 {totalPayAdmId} 원{"\n"}
+            {"\n"}일금 {totalPayAdmId.toLocaleString("ko-KR")} 원{"\n"}
           </Text>
         </View>
 
