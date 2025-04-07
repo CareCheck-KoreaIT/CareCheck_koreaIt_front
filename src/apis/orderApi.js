@@ -9,6 +9,5 @@ export const orderSearchApi = async (keyword) => {
 };
 
 export const scorePayInsertApi = async (scorePay) => {
-  console.log(scorePay);
   return await api.post(`/orders/score?scorePay=${scorePay}`);
 };

@@ -6,7 +6,6 @@ import { IoClose } from 'react-icons/io5';
 const NoticeModal = ({ isOpen, setIsOpen, notice }) => {
     const handleCloseModal = () => {
         setIsOpen(false);
-        console.log(notice);
     };
 
     return (

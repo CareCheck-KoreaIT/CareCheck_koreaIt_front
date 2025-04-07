@@ -1,7 +1,6 @@
 import { api } from "../configs/axiosConfig";
 
 export const insertVitalByAdmApi = async (vitalInfo) => {
-  console.log(vitalInfo);
   return await api.post(
     `/admission/${vitalInfo.admissionId}/vitals`,
     vitalInfo

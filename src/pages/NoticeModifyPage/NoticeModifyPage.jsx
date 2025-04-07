@@ -139,8 +139,6 @@ function NoticeModifyPage() {
     const parsedNoticeId = parseInt(noticeId, 10);
   
     try {
-      console.log('보낼 데이터:', parsedNoticeId, notice);
-  
       await modifyNoticeMutation.mutateAsync({ 
         noticeId: parsedNoticeId, 
         notice: notice

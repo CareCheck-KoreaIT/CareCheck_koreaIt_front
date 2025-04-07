@@ -51,7 +51,6 @@ function NoticeListPage(props) {
             }
             setPageNumbers(newPageNumbers);
         }
-        console.log(searchNoticeList?.data?.data);
     }, [searchNoticeList.data]);
 
     useEffect(() => {

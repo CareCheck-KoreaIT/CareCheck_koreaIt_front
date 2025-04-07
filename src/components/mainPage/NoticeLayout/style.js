@@ -88,7 +88,7 @@ export const mininoticeListContainer = css`
         }
         & > div:nth-of-type(1) {
             padding-left: 0.5rem;
-            width: 4rem;
+            width: 6rem;
             
         }
         & > div:nth-of-type(2) {
