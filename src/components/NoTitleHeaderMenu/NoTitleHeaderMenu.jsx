@@ -95,7 +95,7 @@ function NoTitleHeaderMenu() {
                 title:"관리자 권한이 필요합니다",
                 confirmButtonText: "<div style='font-size: 1.5rem'>확인</div>",
               })
-              e.preventDefault(); // 경로 이동 막기!
+              e.preventDefault();
               return;
             }
             setHeaderState("관리자메뉴변경");
