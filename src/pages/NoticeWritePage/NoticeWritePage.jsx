@@ -72,14 +72,14 @@ function NoticeWritePage(props) {
       content: plainContent,
     };
 
-    const response = await createNoticeMutation.mutateAsync(notice);
+    await createNoticeMutation.mutateAsync(notice);
     await Swal.fire({
       icon: "success",
       titleText: "게시글 작성 완료",
       showConfirmButton: false,
       timer: 1000,
     });
-    navigate("/notice/list")
+    navigate("/notice/list");
   };
 
   return (

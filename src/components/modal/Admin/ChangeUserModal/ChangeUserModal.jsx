@@ -87,6 +87,7 @@ function ChangeUserModal({setOpen, user}) {
             showDenyButton: true,
             confirmButtonText: "<div style='font-size: 1.3rem'>변경</div>",
             denyButtonText: "<div style='font-size: 1.3rem'>취소</div>",
+            reverseButtons: true,
         }).then((result) => {
             if (result.isConfirmed) {
                 updateUserMutation.mutateAsync({
@@ -109,8 +110,10 @@ function ChangeUserModal({setOpen, user}) {
                     Swal.fire({
                         icon: "error",
                         titleText: "변경 실패",
-                        html: "<div style='font-size: 1.5rem'>오류가 발생했습니다. 다시 시도해주세요.</div>",
+                        html: `<div style='font-size: 1.5rem'>${error.response.data}</div>`,
                         confirmButtonText: "<div style='font-size: 1.3rem'>확인</div>",
+                    }).then(response => {
+                        setOpen(false);
                     });
                 });
             };

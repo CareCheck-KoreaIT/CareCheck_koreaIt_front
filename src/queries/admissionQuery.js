@@ -11,7 +11,6 @@ import {
 } from "../apis/admissionApi";
 
 export const useGetSearchDetailBill = (admissionId) => {
-  console.log("detailBill", admissionId);
   return useQuery({
     queryKey: ["useGetSearchDetailBill", admissionId],
     queryFn: async () => {
@@ -25,7 +24,6 @@ export const useGetSearchDetailBill = (admissionId) => {
 };
 
 export const useGetSearchPatientInfo = (admissionId) => {
-  console.log("patientInfo", admissionId);
   return useQuery({
     queryKey: ["useGetSearchPatientInfo", admissionId],
     queryFn: async () => {
@@ -38,7 +36,6 @@ export const useGetSearchPatientInfo = (admissionId) => {
 };
 
 export const useGetSearchTotalPay = (admissionId) => {
-  console.log("totalpay", admissionId);
   return useQuery({
     queryKey: ["useGetSearchTotalPay", admissionId],
     queryFn: async () => {

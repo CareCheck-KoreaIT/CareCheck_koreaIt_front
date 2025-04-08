@@ -6,11 +6,10 @@ import { BiSearch } from "react-icons/bi";
 import { useDeleteReceiptMutation } from "../../mutations/admissionMutation";
 import Swal from "sweetalert2";
 import { GoChevronLeft, GoChevronRight } from "react-icons/go";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { useQueryClient } from "@tanstack/react-query";
 
 function ReceiptPage() {
-  const navigate = useNavigate();
   const queryClient = useQueryClient();
   const deleteReceiptMutation = useDeleteReceiptMutation();
 
@@ -40,7 +39,6 @@ function ReceiptPage() {
       }
       setPageNumbers(newPageNumbers);
     }
-    console.log(searchAllList?.data?.data);
   }, [searchAllList.data]);
 
   useEffect(() => {

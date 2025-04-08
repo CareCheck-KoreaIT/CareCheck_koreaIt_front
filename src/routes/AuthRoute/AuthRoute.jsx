@@ -11,7 +11,6 @@ function AuthRoute(props) {
     const queryState = queryClient.getQueryState(["userMeQuery"]);
     
     useEffect(() => {
-        console.log(queryState.status);
         if(queryState.status === "success") {
             navigate("/main");
         }

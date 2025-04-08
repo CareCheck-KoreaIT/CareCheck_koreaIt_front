@@ -28,16 +28,11 @@ function NoTitleHeaderMenu() {
       showDenyButton: true,
       confirmButtonText: "<div style='font-size: 1.5rem'>확인</div>",
       denyButtonText: "<div style='font-size: 1.5rem'>취소</div>",
+      reverseButtons: true,
     }).then((result)=>{
       if(result.isConfirmed){
-        // localStorage.removeItem("AccessToken");
-        // setHeaderState("");
-        // 위의 2줄의 코드를 아래 한 줄의 코드로 줄일 수 있음
         setTokenLocalStorage("AccessToken", null);
         queryClient.invalidateQueries(["userMeQuery"])
-        // .then(response => navigate("/auth/signin"));
-        // userMeQuery에 해당하는 캐시를 삭제하고 다시 호출함
-        // 이때 queryState 가 error 상태가 되며 자동으로 로그인 화면으로 넘어감(이는 MainRoute, AuthRoute 에서 작성된 코드에 의함)
       }
       return;
     })

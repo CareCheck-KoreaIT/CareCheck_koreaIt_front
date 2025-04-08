@@ -47,12 +47,9 @@ function LoginPage(){
 
         try {
             const response = await signinMutation.mutateAsync(inputValue);
-            console.log(response);
-            // Local Storage 에 AccessToken 저장
             const tokenName = response.data.name;
             const accessToken = response.data.token;
             setTokenLocalStorage(tokenName, accessToken);
-            // 로그인 성공 알림
             Swal.fire({
                 icon: "success",
                 titleText: "로그인 성공",
@@ -63,21 +60,17 @@ function LoginPage(){
                 queryClient.invalidateQueries({queryKey: ["userMeQuery"]});
                 navigate("/main");
             })
-            // 캐시 만료
-            // 로그인 성공 후 메인화면으로 이동
         } catch (error) {
             Swal.fire({
                 icon: "error",
                 titleText: "사용자 정보를 다시 확인해주세요",
                 confirmButtonText: "<div style='font-size: 1.5rem'>확인</div>",
             });
-            console.log(error);
             return;
         }
     }
 
     const handleLoginInputOnKeyDown = async (e) => {
-        // Enter 키 입력 시 다음 Input으로 넘어감
         if(e.key === 'Enter') {
             let foundIndex = -1;
             for(let i = 0; i < inputRefs.length; i++) {
@@ -86,7 +79,6 @@ function LoginPage(){
                     break;
                 }
             }
-            // 마지막 Input 에서 Enter 키 입력 시 로그인 버튼 클릭 메서드 호출
             if(foundIndex === inputRefs.length -1) {
                 await handleLoginButtonOnClick();
                 return;
