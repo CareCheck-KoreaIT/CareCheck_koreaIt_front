@@ -10,3 +10,9 @@ export const style = css`
     font-size: 3rem;
     cursor: pointer;
 `;
+
+export const header = css`
+    display: block;
+    max-width: calc(100% - 3rem);
+
+`;
