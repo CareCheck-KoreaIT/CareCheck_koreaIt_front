@@ -110,7 +110,6 @@ export const noticeListContainer = css`
         }
 
         & > div:nth-of-type(2) {
-            flex-grow: 1;
             display: block;               
             justify-content: flex-start;    
             align-items: center;       
