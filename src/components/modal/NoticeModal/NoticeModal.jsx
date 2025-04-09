@@ -35,13 +35,15 @@ const NoticeModal = ({ isOpen, setIsOpen, notice }) => {
             }}
         >
             <div>
-                <h2>제목: {notice?.title}</h2>
+                <h2 css={s.header}>
+                    제목: {notice?.title}
+                </h2>
+                    <button css={s.style} onClick={handleCloseModal}><IoClose /></button>
+            </div>
+            <div>
                 <p><strong>작성자:</strong> {notice?.username}</p>
                 <p><strong>등록일:</strong> {notice?.createdAt}</p>
                 <p><strong>내용:</strong> {notice?.content}</p>
-                <div>
-                    <button css={s.style} onClick={handleCloseModal}><IoClose /></button>
-                </div>
             </div>
         </ReactModal>
     );

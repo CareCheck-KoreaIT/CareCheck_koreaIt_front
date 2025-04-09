@@ -63,7 +63,18 @@ function NoTitleHeaderMenu() {
 
       <div css={s.headerMenu} >
         <NavLink to="/admission" className={({ isActive }) => (isActive ? "active" : "")}
-        onClick={()=>setHeaderState("처방메뉴변경")}>
+          onClick={(e)=>{
+            if (loginUser?.data?.userRole.roleId !== 2) {
+              Swal.fire({
+                icon: "error",
+                title:"의사 권한이 필요합니다",
+                confirmButtonText: "<div style='font-size: 1.5rem'>확인</div>",
+              })
+              e.preventDefault(); // 경로 이동 막기!
+              return;
+            }
+            setHeaderState("처방메뉴변경")
+          }}>
           <div css={s.iconStyle}><MdOutlineLocalHospital /></div>
           <span css={s.titleStyle}>처방</span>
         </NavLink>
@@ -77,20 +88,20 @@ function NoTitleHeaderMenu() {
       </div>
       <div css={s.headerMenu} >
         <NavLink to="/admin/users" className={({ isActive }) => (isActive ? "active" : "")}
-        onClick={(e) => {
-          if (loginUser?.data?.userRole.roleId !== 1) {
-            Swal.fire({
-              icon: "error",
-              title:"관리자 권한이 필요합니다",
-              confirmButtonText: "<div style='font-size: 1.5rem'>확인</div>",
-            })
-            e.preventDefault(); // 경로 이동 막기!
-            return;
-          }
-          setHeaderState("관리자메뉴변경");
-        }}>
-        <div css={s.iconStyle}><RiAdminLine /></div>
-        <span css={s.titleStyle}>관리자</span>
+          onClick={(e) => {
+            if (loginUser?.data?.userRole.roleId !== 1) {
+              Swal.fire({
+                icon: "error",
+                title:"관리자 권한이 필요합니다",
+                confirmButtonText: "<div style='font-size: 1.5rem'>확인</div>",
+              })
+              e.preventDefault();
+              return;
+            }
+            setHeaderState("관리자메뉴변경");
+          }}>
+          <div css={s.iconStyle}><RiAdminLine /></div>
+          <span css={s.titleStyle}>관리자</span>
         </NavLink>
       </div>
       <button css={s.logoutBtn} onClick={handleLogout}>
