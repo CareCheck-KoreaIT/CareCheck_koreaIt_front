@@ -93,7 +93,18 @@ export const mininoticeListContainer = css`
         }
         & > div:nth-of-type(2) {
             flex-grow: 1;
+            display: block;               
+            justify-content: flex-start;    
+            align-items: center;       
+            text-align: center;
+            padding: 0 1rem;             
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            cursor: pointer;
+            width: 41rem;     
         }
+        
         & > div:nth-of-type(3) {
             width: 20rem;
         }
