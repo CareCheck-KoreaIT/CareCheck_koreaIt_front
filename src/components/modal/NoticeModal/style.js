@@ -13,6 +13,6 @@ export const style = css`
 
 export const header = css`
     display: block;
-    max-width: calc(100% - 3rem);
+    padding-right: 5rem;
 
 `;

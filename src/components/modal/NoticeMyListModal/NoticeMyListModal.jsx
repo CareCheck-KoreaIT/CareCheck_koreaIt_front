@@ -40,11 +40,14 @@ const NoticeMyListModal = ({ isOpen, setIsOpen, notice }) => {
             }}
         >
             <div css={s.mainlayout}>
-                <h1><strong>제목:</strong> {notice?.title}</h1>
+                <div css={s.header}>
+                    <h1><strong>제목:</strong> {notice?.title}</h1>
+                    <button css={s.headerCloseButton} onClick={handleCloseModal}><IoClose /></button>
+                </div>
                 <p><strong>작성자:</strong> {notice?.username}</p>
                 <p><strong>등록일:</strong> {notice?.createdAt}</p>
                 <p><strong>내용:</strong> {notice?.content}</p>
-                <button css={s.headerCloseButton} onClick={handleCloseModal}><IoClose /></button>
+                
                 <div css={s.buttonLayout}>
                     <button css={s.modifyButton} onClick={handleModifyButtonClick}>수정</button>
                     <button css={s.closeButton} onClick={handleCloseModal}>닫기</button>

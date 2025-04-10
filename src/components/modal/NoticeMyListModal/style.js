@@ -23,6 +23,11 @@ export const mainlayout = css`
     }
 `;
 
+export const header = css`
+    display: block;
+    padding-right: 5rem;
+`;
+
 export const headerCloseButton = css`
     position: absolute;
     top: 1rem;
@@ -71,3 +76,4 @@ export const modifyButton = css`
         background-color: #1E8BB0;
     }
 `;
+
