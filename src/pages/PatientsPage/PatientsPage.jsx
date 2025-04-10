@@ -34,7 +34,6 @@ function PatientsPage(props) {
             }
             setPageNumbers(newPageNumbers);
         }
-        console.log(searchAllList?.data?.data);
     },[searchAllList.data])
 
     useEffect(() => {

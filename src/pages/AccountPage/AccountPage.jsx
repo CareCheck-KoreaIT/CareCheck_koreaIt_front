@@ -20,7 +20,6 @@ function AccountPage(props) {
     const [ emailModalOpen, setEmailModalOpen ] = useState(false);
     const [ phoneNumberModalOpen, setPhoneNumberModalOpen ] = useState(false);
 
-    // roleName 바꾸는 함수
     const roleName = (loginUser) => {
         if(loginUser?.data?.userRole.role.roleName === "ROLE_ADMIN") {
             return "관리자";
@@ -52,7 +51,7 @@ function AccountPage(props) {
             <div css={s.layout}>
                 <div css={s.container}>
                     <div css={s.title}>
-                        <p>Account</p>
+                        <p>내 정보</p>
                     </div>
                     <div css={s.accountBox}>
                         <div css={s.profileImgBox}>
@@ -102,7 +101,7 @@ function AccountPage(props) {
                 </div>
                 <div css={s.container}>
                     <div css={s.title}>
-                        <p>Account Security</p>
+                        <p>보안 설정</p>
                     </div>
                     <div css={s.elementBox}>
                         <div css={s.contentBox}>

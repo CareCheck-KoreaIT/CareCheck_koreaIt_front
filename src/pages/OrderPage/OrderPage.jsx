@@ -63,8 +63,6 @@ function OrderPage(props) {
         orderScore: "",
       });
     } catch (error) {
-      console.log(error)
-      
       await Swal.fire({
         titleText: "오더 등록 실패",
         icon: "error",

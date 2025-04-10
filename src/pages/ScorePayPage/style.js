@@ -61,13 +61,14 @@ export const input = css`
   & > label {
     width: 13rem;
     height: 6rem;
-    margin: 0rem 1rem 2rem 0rem;
+    margin: 0rem 0rem 2rem 0rem;
     text-align: left;
     line-height: 6rem;
   }
 
   & > input {
     flex-grow: 1;
+    margin: 0rem 0rem 2rem 0rem;
     height: 6rem;
     border: none;
     font-size: 2rem;

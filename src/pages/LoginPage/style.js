@@ -1,18 +1,19 @@
 import { css } from "@emotion/react";
 
 export const layout = css`
-    display: flex;
     box-sizing: border-box;
+    display: flex;
+    justify-content: center;
     align-items: center;
     flex-direction: column;
     height: 100%;
     width: 100%;
-    margin-top: 10rem;
 `;
 
 export const title = css`
     display: flex;
     justify-content: center;
+    margin-top: 0;
     font-size: 7rem;
     font-weight: 600;
     color: #464667;
