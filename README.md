@@ -1,4 +1,4 @@
-<div align="center">
+![image](https://github.com/user-attachments/assets/5c638da1-c33e-4200-a8a7-615d55ab5053)<div align="center">
 <img src="https://github.com/user-attachments/assets/a01db6f4-38cb-4f72-b7f6-92fb14d0fc60" />
 </div>
 
@@ -199,9 +199,8 @@
 | emotion/react, emotion/styled                                               | 리액트 내 css 적용                         |
 | testing-library/jest-dom, testing-library/react, testing-library/user-event | 리액트 dom 테스트                          |
 | axios                                                                       | 서버로 요청을 보내 통신                    |
-| firebase                                                                    | 저장된 이미지를 업로드                     |
 | react-dom, react-router-dom                                                 | 주소 요청 발생 시 각 페이지로 이동         |
-| react-calendar                                                              | 달력을 커스텀하여 사용                     |
+| react-datapicker                                                            | 달력을 커스텀하여 사용                     |
 | react-icons                                                                 | 리액트 아이콘을 불러와 사용                |
 | react-query                                                                 | 서버 데이터 동기화(fetching, caching) 지원 |
 | react-quill                                                                 | 글 작성 요소로 커스텀하여 사용             |
@@ -209,11 +208,12 @@
 | react-select                                                                | select 요소를 쉽게 사용                    |
 | react-modal                                                                 | 페이지를 modal창으로 사용                   |
 | react, react-scripts                                                        | 리액트 라이브러리 적용                     |
-| chart.js                                                                    | 가져온 데이터를 차트로 시각화하는 역할     |
+| react-pdf/rendere                                                           | pdf 문서 생성                            |
+| react-chart.js2                                                             | 가져온 데이터를 차트로 시각화하는 역할     |
+| PostOne/browser-sdk                                                         | 포트원 결제 SDC-카카오결제                |
 | recoil                                                                      | 전역 상태 관리                             |
 | styled-reset                                                                | 초기 CSS 스타일 재설정                     |
 | sweetalert2                                                                 | 알림창 구현                                |
-| uuid                                                                        | 고유 아이디 값을 생성하는 함수 제공        |
 
 <br/>
 <br/>
@@ -280,9 +280,11 @@
 
 -   개발과 동시에 지속적으로 배포를 진행할 것이 아니라, 기능을 모두 개발하고 최종적으로 배포를 할 예정이었기 때문에 Git flow에 비해 흐름이 단순해짐에 따라 그 규칙도 단순한 GitHub Flow 전략이 적합하다고 생각했습니다.
 
--   프로젝트 기간 동안 팀원들이 같은 시간에 작업하기 때문에 잦은 충돌이 발생할 것을 우려하여 충돌의 크기를 줄이고자 GitHub Flow 전략을 채택하여 작은 단위로 이슈를 쪼개 이슈 별로 브랜치를 분기하고 main 브랜치에 지속적으로 merge 하는 방식으로 진행했습니다.
+-   프로젝트 기간 동안 팀원들이 같은 시간에 작업하기 때문에 잦은 충돌이 발생할 것을 우려하여 충돌의 크기를 줄이고자 GitHub Flow 전략을 채택하여 작은 단위로 이슈를 쪼개 이슈 별로 브랜치를 분기하고 main 브랜치에 지속적으로 merge 방식으로 진행했습니다.
 
--   기본적으로 master branch에 대한 규칙만 정확하게 정립되어 있다면 나머지 가지들에 대해서는 특별한 관여를 하지 않으며 pull request기능을 사용하도록 권장하였습니다.
+-   충돌을 고려하여 main을 개개인의 branch에 merge를 하여 충돌 최소화.
+
+-   브랜치 생성 전 issue 생성 관리를 통한 작업 중복 최소화.
 
 <br/>
 <br/>
