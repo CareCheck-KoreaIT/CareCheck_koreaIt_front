@@ -6,41 +6,25 @@ export const global = css`
   html,
   body,
   #root {
-    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin: 0;
     padding: 0;
+    height: 100%;
     overflow: hidden;
     font-family: "Noto Sans KR", serif;
     font-size: 62.5%; /** 1rem을 10px로 변환 */
   }
 
   #root {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     background-color: #fafafa;
+    & > div {
+      border: none;
+    }
   }
 
   body {
-    font-size: 1.125rem;
+    font-size: 1rem;
   }
-
-  /* @media screen and (max-width: 64rem) {
-    body {
-      font-size: 1.125rem;
-    }
-  }
-
-  @media screen and (max-width: 48rem) {
-    body {
-      font-size: 1.25rem;
-    }
-  }
-
-  @media screen and (max-width: 48rem) {
-    button {
-      padding: 1rem 2rem;
-      font-size: 1.5rem;
-    }
-  } */
 `;

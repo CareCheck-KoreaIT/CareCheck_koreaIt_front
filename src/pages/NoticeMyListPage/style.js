@@ -23,7 +23,6 @@ export const header = css`
             font-size: 1.2rem;
         }
     }
-
 `;
 
 export const title = css`
@@ -41,6 +40,7 @@ export const searchItems = css`
 
 export const searchInput = css`
     margin-left: 0.3rem;
+    padding-left: 0.5rem;
 `;
 
 export const searchButton = css`
@@ -99,20 +99,33 @@ export const noticeList = css`
             box-sizing: border-box;
             font-size: 1.5rem;
         }
+
         & > div:not(& > div:nth-last-of-type(1)) {
             border-right: 0.1rem solid #dbdbdb;
         }
+
         & > div:nth-of-type(1) {
             padding-left: 0.5rem;
             width: 20rem;
         }
+
         & > div:nth-of-type(2) {
-            flex-grow: 1;
+            display: block;               
+            justify-content: flex-start;    
+            align-items: center;       
+            text-align: center;
+            padding: 0 1rem;             
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
             cursor: pointer;
+            width: 88rem;     
         }
+
         & > div:nth-of-type(3) {
             width: 18rem;
         }
+
         & > div:nth-of-type(4) {
             width: 24rem;
         }
@@ -173,6 +186,7 @@ export const pageNumbers = css`
         &:hover {
             background-color: #d2d2d3;
         }
+        
         &:active {
             background-color: #a4a4ca;
         }

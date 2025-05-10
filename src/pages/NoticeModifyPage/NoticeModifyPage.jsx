@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import * as s from './style';
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Quill from 'quill';
 import "quill/dist/quill.snow.css";
 import { useModifyNoticeMutation } from '../../mutations/noticeMutation';
@@ -139,8 +139,6 @@ function NoticeModifyPage() {
     const parsedNoticeId = parseInt(noticeId, 10);
   
     try {
-      console.log('보낼 데이터:', parsedNoticeId, notice);
-  
       await modifyNoticeMutation.mutateAsync({ 
         noticeId: parsedNoticeId, 
         notice: notice
@@ -172,7 +170,7 @@ function NoticeModifyPage() {
           value={title}
           onChange={handleTitleOnChange}
         />
-        <button css={s.saveButton} onClick={handleSaveOnClick}>저장</button>
+        <button css={s.saveButton} onClick={handleSaveOnClick}>수정</button>
       </div>
       <div ref={containerRef} /> 
     </div>

@@ -4,10 +4,15 @@ export const style = css`
     position: absolute;
     top: 4rem;
     right: 3rem;
-    background-color: #464667;
-    color: #dbdbdb;
-    border-radius: 0.2rem;
-    border: 1px solid #dbdbdb;
+    background-color: transparent;
+    border: none;
     height: 3rem;
-    
+    font-size: 3rem;
+    cursor: pointer;
+`;
+
+export const header = css`
+    display: block;
+    padding-right: 5rem;
+
 `;

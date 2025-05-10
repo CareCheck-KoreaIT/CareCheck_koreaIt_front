@@ -5,12 +5,11 @@ import { BiSearch } from 'react-icons/bi';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { GoChevronLeft, GoChevronRight } from 'react-icons/go';
-import { IoSettingsSharp } from 'react-icons/io5';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { getViewCountApi } from '../../apis/noticeApi';
-import ReactModal from 'react-modal';
+import { useQueryClient } from '@tanstack/react-query';
+
 import NoticeModal from '../../components/modal/NoticeModal/NoticeModal';
 import { useGetSearchNoticeList } from '../../queries/noticeQuery';
+import { useViewCountMutation } from '../../mutations/noticeMutation';
 
 
 function NoticeListPage(props) {
@@ -52,7 +51,6 @@ function NoticeListPage(props) {
             }
             setPageNumbers(newPageNumbers);
         }
-        console.log(searchNoticeList?.data?.data);
     }, [searchNoticeList.data]);
 
     useEffect(() => {
@@ -92,9 +90,8 @@ function NoticeListPage(props) {
 
     const queryClient = useQueryClient();
 
-    const viewCountMutation = useMutation({
-        mutationFn: getViewCountApi,
-    });
+    const viewCountMutation = useViewCountMutation();
+    
     const handleViewCountOnClick = async (noticeId, notice) => {
         try{
             await viewCountMutation.mutateAsync(noticeId);
@@ -188,7 +185,7 @@ function NoticeListPage(props) {
                     <button disabled={searchNoticeList?.data?.data.lastPage} onClick={() => handlePagenumbersOnClick(page + 1)}><GoChevronRight /></button>
                 </div>
                 <div css={s.writeLayout}>
-                    <button css={s.writeBox} onClick={handleWirtePageOnClick}>글쓰기</button>
+                    <button css={s.writeBox} onClick={handleWritePageOnClick}>글쓰기</button>
                 </div>
             </div>
         </div>

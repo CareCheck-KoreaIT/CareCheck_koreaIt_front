@@ -1,25 +1,24 @@
 /**@jsxImportSource @emotion/react */
 import * as s from "./style";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import {
   useGetSearchDetailBill,
   useGetSearchPatientInfo,
   useGetSearchTotalPay,
 } from "../../queries/admissionQuery";
-import { useQueryClient } from "@tanstack/react-query";
 import { paymentResponse } from "../../atoms/payments/payment";
+import Swal from "sweetalert2";
 
 function DetailBillPage() {
   const navigate = useNavigate();
-  const queryClient = useQueryClient();
-  const loginUser = queryClient.getQueryData(["userMeQuery"]);
   const today = new Date();
   const dateString = today.toLocaleDateString("ko-KR", {
     year: "numeric",
     month: "long",
     day: "numeric",
   });
+
   const param = useParams();
   const [patientData, setPatientData] = useState({
     admissionId: null,
@@ -27,16 +26,18 @@ function DetailBillPage() {
     patientName: null,
     admDate: null,
   });
-  
-  const totalPay = useGetSearchTotalPay(Number(patientData.admissionId));
+
   const handlePaymentClick = async () => {
-    try{
-      paymentResponse(patientData, totalPay?.data?.data);
-      console.log(paymentResponse);
-    } catch(error) {
-      console.log(error);
+    try {
+      paymentResponse(patientData, totalPayAdmId?.data?.data);
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "에러 발생",
+        confirmButtonText: "<div style='font-size: 1.5rem'>확인</div>",
+      })
     }
-  }
+  };
 
   const patientInfoByAdmId = useGetSearchPatientInfo(Number(param.admissionId));
   const patientInfoApi = patientInfoByAdmId?.data?.data;
@@ -113,10 +114,10 @@ function DetailBillPage() {
                     <tr>
                       <td>{order.orderCode}</td>
                       <td>{order.orderName}</td>
-                      <td>{order.orderPay}</td>
+                      <td>{order.orderPay.toLocaleString("ko-KR")}</td>
                       <td>{order.orderCount}</td>
                       <td>{order.orderDays}</td>
-                      <td>{order.totalOrderPay}</td>
+                      <td>{order.totalOrderPay.toLocaleString("ko-KR")}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -129,7 +130,7 @@ function DetailBillPage() {
             </div>
             <table css={s.totalPayTable}>
               <tr>
-                <td>{totalPayAdmId?.data?.data}</td>
+                <td>{totalPayAdmId?.data?.data.toLocaleString("ko-KR")}</td>
               </tr>
             </table>
           </div>
@@ -151,9 +152,7 @@ function DetailBillPage() {
         >
           영수증
         </button>
-        <button onClick={handlePaymentClick}>
-          결제
-        </button>
+        <button onClick={handlePaymentClick}>결제</button>
       </div>
     </div>
   );

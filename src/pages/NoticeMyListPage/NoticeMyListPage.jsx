@@ -1,5 +1,5 @@
 /**@jsxImportSource @emotion/react */
-import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useGetUsercodeNoticeList } from '../../queries/noticeQuery';
 import { GoChevronLeft, GoChevronRight } from 'react-icons/go';
 import { useEffect, useState } from 'react';
@@ -43,12 +43,10 @@ function NoticeMyListPage() {
             }
             setPageNumbers(newPageNumbers);
         }
-        console.log(searchNoticeList?.data?.data);
     }, [searchNoticeList.data]);
 
     useEffect(() => {
         searchNoticeList.refetch();
-        console.log("!!!!");
     }, [searchParams]);
 
     const searchOnChange = (e) => {
@@ -65,7 +63,6 @@ function NoticeMyListPage() {
         searchParams.set("searchText", searchValue);
         searchParams.set("page", 1);
         setSearchParams(searchParams);
-        console.log(searchValue);
     };
 
     const handlePagenumbersOnClick = (pageNumber) => {
@@ -84,6 +81,7 @@ function NoticeMyListPage() {
             showDenyButton: true,
             confirmButtonText: "<div style='font-size: 1.5rem'>삭제</div>",
             denyButtonText: "<div style='font-size: 1.5rem'>취소</div>",
+            reverseButtons: true,
         }).then((result) => {
             if (result.isConfirmed) {
                 deleteNoticeMutation.mutate(noticeId, {
@@ -118,52 +116,53 @@ function NoticeMyListPage() {
         <div css={s.container}>
             <div css={s.header}>
                 <h2>
-                    공지 사항
+                    내가 쓴 게시글
                     <span>- 총 {searchNoticeList?.data?.data?.totalElements || 0}건 -</span>
                 </h2>
-        <div css={s.searchItems}>
+                <div css={s.searchItems}>
                     <input
                     css={s.searchInput}
                     type="text"
                     value={searchValue}
                     onChange={searchOnChange}
                     onKeyDown={handleSearchInputOnKeyDown}
+                    placeholder='제목으로 검색'
                     />
                     <button css={s.searchButton} onClick={handleSearchButtonOnClick}>
                     <BiSearch />
                     </button>
                 </div>
             </div>
-        
+            
             <div css={s.main}>
                 <ul css={s.noticeList}>
                     <li>
-                    <div>No.</div>
-                    <div>제목</div>
-                    <div>작성자</div>
-                    <div>등록일</div>
-                    <div>삭제</div>
+                        <div>No.</div>
+                        <div>제목</div>
+                        <div>작성자</div>
+                        <div>등록일</div>
+                        <div>삭제</div>
                     </li>
                     {searchNoticeList.isLoading ? (
-                    <div>로딩 중...</div>
-                    ) : searchNoticeList?.data?.data?.noticeList?.length ? (
-                    searchNoticeList.data?.data.noticeList.map((param, index) => (
-                        <li key={param.noticeId}>
-                        <div>{(page - 1) * 15 + (index + 1)}</div>
-                        <div onClick={() => handleTitleOnClick(param)}>{param.title}</div>
-                        <div>{param.username}</div>
-                        <div>{param.createdAt}</div>
-                        <div>
-                            <button 
-                                css={s.deleteButton} 
-                                onClick={() => handleDeleteNoticeOnClick(param.noticeId)}>
-                                삭제
-                            </button>
-                        </div>
-                        </li>
-                    ))
-                    ) : (
-                    null
+                        <div>로딩 중...</div>
+                        ) : searchNoticeList?.data?.data?.noticeList?.length ? (
+                            searchNoticeList.data?.data.noticeList.map((param, index) => (
+                                <li key={param.noticeId}>
+                                    <div>{searchNoticeList?.data?.data?.totalElements - ((page - 1) * 15 + index)}</div>
+                                    <div onClick={() => handleTitleOnClick(param)}>{param.title}</div>
+                                    <div>{param.username}</div>
+                                    <div>{param.createdAt}</div>
+                                    <div>
+                                        <button 
+                                            css={s.deleteButton} 
+                                            onClick={() => handleDeleteNoticeOnClick(param.noticeId)}>
+                                            삭제
+                                        </button>
+                                    </div>
+                                </li>
+                            ))
+                        ) : (
+                        null
                     )}
                 </ul>
             </div>
@@ -204,7 +203,7 @@ function NoticeMyListPage() {
                 setIsOpen={setIsNoticeModalOpen}
                 notice={selectedNotice}
             />
-        
+            
         </div>
         );
 }

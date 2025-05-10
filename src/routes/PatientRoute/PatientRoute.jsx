@@ -4,6 +4,7 @@ import PatientRegistrationPage from '../../pages/PatientRegistrationPage/Patient
 import MedicalReceptionPage from '../../pages/MedicalReceptionPage/MedicalReceptionPage';
 import ReceiptPage from '../../pages/ReceiptPage/ReceiptPage';
 import PatientsPage from '../../pages/PatientsPage/PatientsPage';
+import NotFoundPage from '../../pages/NotFoundPage/NotFoundPage';
 
 function PatientRoute(props) {
     return (
@@ -17,6 +18,7 @@ function PatientRoute(props) {
                 <Route path="/admission-list" element={<ReceiptPage />} />
                 {/* 전체 환자 명단 */}
                 <Route path="/patients" element={<PatientsPage />} />
+                <Route path="/*" element={<NotFoundPage />} />
             </Routes>
         </>
     );

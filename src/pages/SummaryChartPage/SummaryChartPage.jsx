@@ -1,6 +1,6 @@
 /**@jsxImportSource @emotion/react */
 import * as s from "./style";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import SummaryChart from "../../components/Summury/Chart/SummaryChart";
 import SummaryTable from "../../components/Summury/Table/SummaryTable";
 import { useGetTotalSummary } from "../../queries/summaryQuery";
@@ -16,6 +16,7 @@ function SummaryChartPage() {
     "3분기": 3000000,
     "4분기": 4000000,
   });
+  
   useEffect(() => {
     if (summaryInfoByYear?.data?.data) {
       const newSummaryData = {};
@@ -25,9 +26,11 @@ function SummaryChartPage() {
       setSummaryData(newSummaryData);
     }
   }, [year, summaryInfoByYear?.data]);
+
   const changeYearOnChange = (e) => {
     setYear(e.target.value);
   };
+
   return (
     <div css={s.layout}>
       <div css={s.header}>

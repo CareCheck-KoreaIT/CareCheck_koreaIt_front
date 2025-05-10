@@ -2,16 +2,28 @@ import { css } from "@emotion/react";
 
 export const searchItems = css`
     display: flex;
-    justify-content: flex-end;
-    margin: 4rem 16rem 0rem;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin: 4rem 16.5rem 0rem;
 
-    & > Select {
-        font-size: 1.5rem;
+    & > div:nth-of-type(1){
+        & > h1 {
+            margin: 0;
+            font-size: 3rem;
+        }
+    }
+
+    & > div:nth-of-type(2) {
+        display: flex;
+        align-items: flex-end;
+        height: 5rem;
     }
 `;
 
 export const searchInput = css`
     justify-self: flex-end;
+    padding-left: 0.5rem;
+    height: 2.6rem;
 `;
 
 export const searchButton = css`
@@ -59,16 +71,19 @@ export const table = css`
         &:nth-of-type(1) {
             width: 14rem;
         }
+
         &:nth-of-type(2) {
             width: 20rem;
         }
-        &:nth-of-type(5),
         &:nth-of-type(6) {
+            width: 15rem;
+        }
+        &:nth-of-type(7),
+        &:nth-of-type(8) {
             padding: 0.5rem 0;
-            width: 25rem;
+            width: 15rem;
         }
     }
-
 `;
 
 export const trHeader = css`
@@ -86,17 +101,17 @@ export const receiptButtons = css`
     color: white;
     background-color: #464667;
     border: none;
-    border-radius: 4px;
+    border-radius: 0.5rem;
     cursor: pointer;
 
     &:hover {
         background-color: #3d3d5a;
     }
+
     &:active {
         background-color: #313148;
     }
 `;
-
 
 export const footer = css`
     display: flex;
@@ -128,6 +143,7 @@ export const pageNumbers = css`
         &:hover {
             background-color: #d2d2d3;
         }
+        
         &:active {
             background-color: #a4a4ca;
         }

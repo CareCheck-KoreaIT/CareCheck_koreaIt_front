@@ -8,7 +8,7 @@ export const sidebar = css`
   justify-content: space-between;
   align-items: center;
   width: 31rem;
-  height: 100%;
+  height: 95.4rem;
   background-color: #464667;
   border-top-right-radius: 2.8rem;
   border-bottom-right-radius: 2.8rem;
@@ -66,7 +66,7 @@ export const section = css`
       cursor: pointer;
 
       &:hover{
-        color: black;
+        color: #000000 ;
         font-weight: bold;
         font-size: 2.5rem;
         white-space: nowrap;
@@ -75,7 +75,7 @@ export const section = css`
    }
   }
 
-  
+
 `;
 
 export const footer = css`

@@ -2,7 +2,7 @@
 import Swal from 'sweetalert2';
 import { useSignupMutation } from '../../mutations/userMutation';
 import * as s from './style';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function JoinPage(props) {
   const signupMutation = useSignupMutation();
@@ -15,6 +15,7 @@ function JoinPage(props) {
     phoneNumber: "",
     roleId: roleValue,
   });
+
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   const phoneNumberRegex = /^010-\d{4}-\d{4}$/;
   const passwordRegex = /^.{4,}$/;
@@ -43,6 +44,7 @@ function JoinPage(props) {
       setEmailValidMessage(""); // 올바른 값이면 에러 메시지 제거
     }
   }, [inputValue.email]);
+
   useEffect(() => {
     if (!inputValue.phoneNumber) {
       setPhoneNumberValidMessage("");
@@ -52,6 +54,7 @@ function JoinPage(props) {
       setPhoneNumberValidMessage("");
     }
   }, [inputValue.phoneNumber]);
+  
   useEffect(() => {
     if(!inputValue.password) {
       setPasswordValidMessage("");
@@ -88,14 +91,21 @@ function JoinPage(props) {
       phoneNumber: inputValue.phoneNumber,
       roleId: roleValue,
     }).then(response => {
-      console.log(response);
       Swal.fire({
         icon: "success",
         titleText: "직원 등록 완료",
         confirmButtonText: "<div style='font-size: 1.5rem'>확인</div>"
+      }).then(response => {
+        setRoleValue(0);
+        setInputValue({
+          username: "",
+          password: "",
+          email: "",
+          phoneNumber: "",
+          roleId: roleValue,
+        });
       });
     }).catch(error => {
-      console.error(error);
       Swal.fire({
         icon: "error",
         titleText: "직원 등록 실패",

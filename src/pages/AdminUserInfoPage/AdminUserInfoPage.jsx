@@ -81,7 +81,6 @@ function AdminUserInfoPage(props) {
             }
             setPageNumbers(newPageNumbers);
         }
-        console.log(searchUserList?.data?.data);
     }, [searchUserList.data]);
 
     useEffect(() => {
@@ -129,27 +128,36 @@ function AdminUserInfoPage(props) {
             showDenyButton: true,
             confirmButtonText: "<div style='font-size: 1.5rem'>확인</div>",
             denyButtonText: "<div style='font-size: 1.5rem'>취소</div>",
+            reverseButtons: true,
             inputValidator: (value) => {
-              if (!value) {
-                return "<div style='font-size: 1.2rem'>초기화 비밀번호를 입력해주세요.</div>";
-              }
-              if (!passwordRegex.test(value)) {
-                return "<div style='font-size: 1.2rem'>4자리 이상 입력해주세요.</div>"
-              }
+                if (!value) {
+                    return "<div style='font-size: 1.2rem'>초기화 비밀번호를 입력해주세요.</div>";
+                }
+                if (!passwordRegex.test(value)) {
+                    return "<div style='font-size: 1.2rem'>4자리 이상 입력해주세요.</div>"
+                }
             }
-          });
-          if (password) {
-            await updateUserPasswordMutation.mutateAsync({usercode: usercode, password: password});
-            Swal.fire({
-                icon: "success",
-                titleText: "비밀번호가 초기화 되었습니다",
-                showConfirmButton: false,
-                timer: 1000,
-            }).then(response => {
-                queryClient.invalidateQueries(["useGetSearchUserList"]);
-                queryClient.invalidateQueries(["userMeQuery"]);
+        });
+        if (password) {
+            await updateUserPasswordMutation.mutateAsync({usercode: usercode, password: password}).then(response => {
+                Swal.fire({
+                    icon: "success",
+                    titleText: "비밀번호가 초기화 되었습니다",
+                    showConfirmButton: false,
+                    timer: 1000,
+                }).then(response => {
+                    queryClient.invalidateQueries(["useGetSearchUserList"]);
+                    queryClient.invalidateQueries(["userMeQuery"]);
+                });
+            }).catch(error => {
+                Swal.fire({
+                    icon: "error",
+                    titleText: "에러 발생",
+                    html: `<div style='font-size: 1.5rem'>${error.response.data}</div>`,
+                    confirmButtonText: "<div style='font-size: 1.5rem'>확인</div>"
+                });
             });
-          }
+        }
     }
     const handleDeleteButtonOnClick = async (usercode) => {
         const { value: accept } = await Swal.fire({
@@ -164,19 +172,28 @@ function AdminUserInfoPage(props) {
             `,
             confirmButtonText:"<div style='font-size: 1.5rem'>확인</div>",
             inputValidator: (result) => {
-              return !result && "<div style='font-size: 1.2rem'>퇴사 처리하시려면 체크해주세요.</div>";
+                return !result && "<div style='font-size: 1.3rem'>퇴사 처리하시려면 체크해주세요.</div>";
             }
         });
         if (accept) {
-            await updateUserAccountMutation.mutateAsync({usercode});
-            Swal.fire({
-                icon: "success",
-                titleText: "처리되었습니다",
-                showConfirmButton: false,
-                timer: 1000,
-            }).then(response => {
-                queryClient.invalidateQueries(["useGetSearchUserList"]);
-                queryClient.invalidateQueries(["userMeQuery"]);
+            await updateUserAccountMutation.mutateAsync({usercode})
+            .then(response => {
+                Swal.fire({
+                    icon: "success",
+                    titleText: "처리되었습니다",
+                    showConfirmButton: false,
+                    timer: 1000,
+                }).then(response => {
+                    queryClient.invalidateQueries(["useGetSearchUserList"]);
+                    queryClient.invalidateQueries(["userMeQuery"]);
+                });
+            }).catch(error => {
+                Swal.fire({
+                    icon: "error",
+                    titleText: "에러 발생",
+                    html: `<div style='font-size: 1.5rem'>${error.response.data}</div>`,
+                    confirmButtonText: "<div style='font-size: 1.5rem'>확인</div>"
+                });
             });
         }
     }
@@ -213,6 +230,7 @@ function AdminUserInfoPage(props) {
                         value={searchValue}
                         onChange={handleSearchInputOnChange}
                         onKeyDown={handleSearchInputOnKeyDown}
+                        placeholder="이름으로 검색"
                     />
                     <button css={s.searchButton} onClick={handleSearchButtonOnClick}><BiSearch /></button>
                 </div>
@@ -239,8 +257,8 @@ function AdminUserInfoPage(props) {
                                 <div>{roleName(userList)}</div>
                                 <div>{userList.phoneNumber}</div>
                                 <div>{userList.email}</div>
-                                <div>{userList.createdAt}</div>
-                                <div>{userList.updatedAt}</div>
+                                <div>{userList.createdAtDateFormat}</div>
+                                <div>{userList.updatedAtDateFormat}</div>
                                 <div>{isResignation(userList)}</div>
                                 <div>
                                     <button onClick={() => handleChangeInfoButtonOnClick(userList.usercode)}><IoSettingsSharp /></button>

@@ -1,7 +1,7 @@
 /**@jsxImportSource @emotion/react */
 import { BsColumnsGap } from "react-icons/bs";
 import * as s from "./style";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { useRecoilState } from "recoil";
 import { headerMenuState } from "../../../atoms/Header/headerMenu";
@@ -73,7 +73,7 @@ function MainSidebar() {
           <>
             <div>
               <BsColumnsGap />
-              <NavLink to="/patient" className="NavLinkStyle" >
+              <NavLink to="/patient" className="NavLinkStyle" end>
               <span>환자 등록</span>
               </NavLink>
             </div>
@@ -86,7 +86,13 @@ function MainSidebar() {
             <div>
               <BsColumnsGap />
               <NavLink to="/patient/admission-list" className="NavLinkStyle">
-              <span>환자 리스트</span>
+              <span>오늘 접수 명단</span>
+              </NavLink>
+            </div>
+            <div>
+              <BsColumnsGap />
+              <NavLink to="/patient/patients" className="NavLinkStyle">
+              <span>환자 찾기</span>
               </NavLink>
             </div>
           </>
@@ -112,18 +118,6 @@ function MainSidebar() {
             <span>처방 관리</span>
             </NavLink>
           </div>
-          {/* <div>
-            <BsColumnsGap />
-            <NavLink to={`/admission/${loginUser?.data?.usercode}/certificate`} className="NavLinkStyle">
-            <span>영수증</span>
-            </NavLink>
-          </div>
-          <div>
-            <BsColumnsGap />
-            <NavLink to={`/admission/${loginUser?.data?.usercode}/detailbill`} className="NavLinkStyle">
-            <span>진료비 세부내역서</span>
-            </NavLink>
-          </div> */}
         </>
       );
       case "통계메뉴변경":
@@ -148,7 +142,7 @@ function MainSidebar() {
         <>
           <div>
             <BsColumnsGap />
-            <NavLink to="/admin/users/" className="NavLinkStyle">
+            <NavLink to="/admin/users" className="NavLinkStyle">
             <span>직원 관리</span>
             </NavLink>
           </div>
@@ -174,7 +168,7 @@ function MainSidebar() {
   return (
     <div css={s.sidebar}>
       <header css={s.header} >
-        <NavLink to="/" 
+        <NavLink to="/main" 
         onClick={()=>setHeaderState("메인메뉴")}>
         <h2>CareCheck</h2>
         </NavLink>

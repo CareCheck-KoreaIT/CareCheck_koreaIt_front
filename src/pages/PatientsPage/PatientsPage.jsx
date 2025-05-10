@@ -1,14 +1,12 @@
 /**@jsxImportSource @emotion/react */
 import * as s from './style';
 import { useSearchParams } from 'react-router-dom';
-import { useQueryClient } from '@tanstack/react-query';
 import { useGetSearchPatients } from '../../queries/admissionQuery';
 import { BiSearch } from 'react-icons/bi';
 import { GoChevronLeft, GoChevronRight } from 'react-icons/go';
 import { useEffect, useState } from 'react';
 
 function PatientsPage(props) {
-    const queryClient = useQueryClient();
 
     const [ searchParams, setSearchParams ] = useSearchParams();
     const page = parseInt(searchParams.get("page") || "1");
@@ -36,7 +34,6 @@ function PatientsPage(props) {
             }
             setPageNumbers(newPageNumbers);
         }
-        console.log(searchAllList?.data?.data);
     },[searchAllList.data])
 
     useEffect(() => {
@@ -68,17 +65,22 @@ function PatientsPage(props) {
         <>
             <div>
                 <div css={s.searchItems}>
-                    <input 
-                        css={s.searchInput} 
-                        type="text" 
-                        value={searchValue}
-                        onChange={handleSearchInputOnChange} // 텍스트 변경만 처리
-                        onKeyDown={handleSearchInputOnKeyDown}
-                        placeholder="이름으로 검색"
-                    />
-                    <button css={s.searchButton} onClick={handleSearchButtonOnClick}>
-                        <BiSearch />
-                    </button>
+                    <div>
+                        <h1>환자 전체 명단</h1>
+                    </div>
+                    <div>
+                        <input 
+                            css={s.searchInput} 
+                            type="text" 
+                            value={searchValue}
+                            onChange={handleSearchInputOnChange} // 텍스트 변경만 처리
+                            onKeyDown={handleSearchInputOnKeyDown}
+                            placeholder="이름으로 검색"
+                        />
+                        <button css={s.searchButton} onClick={handleSearchButtonOnClick}>
+                            <BiSearch />
+                        </button>
+                    </div>
                 </div>
                 <div css={s.container}>
                     <div css={s.tableContainer}>
@@ -103,8 +105,8 @@ function PatientsPage(props) {
                                             <td>{patient.patientName}</td>
                                             <td>{patient.regidentNum}</td>
                                             <td>{patient.phoneNum}</td>
-                                            <td>{patient.createdAt}</td>
-                                            <td>{patient.updatedAt}</td>
+                                            <td>{patient.createdAtDateFormat}</td>
+                                            <td>{patient.updatedAtDateFormat}</td>
                                         </tr>
                                     )) 
                                     : 

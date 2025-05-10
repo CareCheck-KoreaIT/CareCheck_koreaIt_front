@@ -17,7 +17,7 @@ export const titleGroup = css`
   justify-content: center;
   flex-direction: column;
   box-sizing: border-box;
-  margin-left: 2.5rem;
+  width: 60rem;
 `;
 
 export const title1 = css`
@@ -45,8 +45,7 @@ export const inputGroup = css`
   justify-content: center;
   flex-direction: column;
   box-sizing: border-box;
-  margin-top: 4rem;
-  width: 55rem;
+  width: 60rem;
   height: 20rem;
 `;
 
@@ -62,13 +61,14 @@ export const input = css`
   & > label {
     width: 13rem;
     height: 6rem;
-    margin-right: 1rem;
+    margin: 0rem 0rem 2rem 0rem;
     text-align: left;
     line-height: 6rem;
   }
 
   & > input {
-    width: 74.4rem;
+    flex-grow: 1;
+    margin: 0rem 0rem 2rem 0rem;
     height: 6rem;
     border: none;
     font-size: 2rem;
@@ -84,7 +84,7 @@ export const button = css`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 12rem;
+  margin-top: 10rem;
 
   & > button {
     display: flex;
@@ -92,7 +92,6 @@ export const button = css`
     align-items: center;
     width: 54rem;
     height: 9.6rem;
-    margin-left: 2.5rem;
     background-color: #464667;
     outline: none;
     border-radius: 1.5rem;

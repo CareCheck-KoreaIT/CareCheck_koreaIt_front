@@ -2,16 +2,28 @@ import { css } from "@emotion/react";
 
 export const searchItems = css`
     display: flex;
-    justify-content: flex-end;
-    margin: 4rem 16rem 0rem;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin: 4rem 16.5rem 0rem;
+    
+    & > div:nth-of-type(1){
+        & > h1 {
+            margin: 0;
+            font-size: 3rem;
+        }
+    }
 
-    & > Select {
-        font-size: 1.5rem;
+    & > div:nth-of-type(2) {
+        display: flex;
+        align-items: flex-end;
+        height: 5rem;
     }
 `;
 
 export const searchInput = css`
     justify-self: flex-end;
+    padding-left: 0.5rem;
+    height: 2.6rem;
 `;
 
 export const searchButton = css`
@@ -68,7 +80,6 @@ export const table = css`
             width: 25rem;
         }
     }
-
 `;
 
 export const trHeader = css`
@@ -78,29 +89,8 @@ export const trHeader = css`
 `;
 
 export const trBody = css`
-    height: 5rem;
+    height: 5.1rem;
 `;
-
-export const receiptButtons = css`
-    box-sizing: border-box;
-    width: 8rem;
-    height: 4rem;
-    padding: 0.5rem 1rem;
-    font-size: 1.3rem;
-    color: white;
-    background-color: #464667;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-
-    &:hover {
-        background-color: #3d3d5a;
-    }
-    &:active {
-        background-color: #313148;
-    }
-`;
-
 
 export const footer = css`
     display: flex;

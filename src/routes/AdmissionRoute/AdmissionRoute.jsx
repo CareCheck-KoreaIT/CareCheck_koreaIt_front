@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import TablePage from '../../pages/TablePage/TablePage';
 import PaymentCertificatePage from '../../pages/PaymentCertificatePage/PaymentCertificatePage'
 import DetailBillPage from '../../pages/DetailBillPage/DetailBillPage';
+import NotFoundPage from '../../pages/NotFoundPage/NotFoundPage';
 
 function AdmissionRoute(props) {
 
@@ -18,6 +19,7 @@ function AdmissionRoute(props) {
                 path="/:admissionId/detailbill"
                 element={<DetailBillPage/>}
                 />
+                <Route path="/*" element={<NotFoundPage />} />
             </Routes>
         </>
     );
